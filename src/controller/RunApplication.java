@@ -27,13 +27,12 @@ public class RunApplication {
 
             menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box
 
-            menuHandler.getMainOptions(">1< Available cars", ">2< Customers", ">3< New rental",
-                    ">4< Active rentals");//main menu
+            menuHandler.getMainOptions(">1< Available cars", ">2< Customers",
+                            ">3< New rental",">4< Active rentals");//main menu
 
-//          System.out.println("Enter 1 to add a car. 2 to ");
             switch (userInput.nextInt()) {
                 case 1 -> runCarMenu(statement);
-                case 2 -> viewCars(statement);
+//                case 2 -> viewCars(statement);
 //                case 3 ->
 //                case 4 ->
 //                case 5 ->
@@ -49,6 +48,8 @@ public class RunApplication {
     }
 
     public void runCarMenu(Statement statement) {
+        System.out.println();
+        menuHandler.tools.customizedButton(120, 1, "Cars menu");
 
         menuHandler.getMainOptions(">1< See cars", ">2< Update car", ">3< New car", ">4< \"Delete car\"");
         carService.addCarToDatabase(statement, userInput, carList);
@@ -112,10 +113,10 @@ public class RunApplication {
             if (resultSet != null)
                 while (resultSet.next()) {
                     System.out.println(
-                            resultSet.getString("registration_number") + " "+
-                                    resultSet.getString("brand") + " "+
-                                    resultSet.getString("model") + " "+
-                                    resultSet.getString("registration_date") + " "+
+                            resultSet.getString("registration_number") +
+                                    resultSet.getString("brand") +
+                                    resultSet.getString("model") +
+                                    resultSet.getString("registration_date") +
                                     resultSet.getInt("kmDriven"));
                 }
             resultSet.close();

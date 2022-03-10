@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MenuHandler {
 
     Scanner scan = new Scanner(System.in);
-    MoTools tools = new MoTools();
+    public MoTools tools = new MoTools();
 
     public void getWelcomeScreen(String text){
         tools.customizedButton(120, 7, text);
