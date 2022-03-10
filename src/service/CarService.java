@@ -34,12 +34,14 @@ public class CarService {
             System.out.println("Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
 
             if(userInput.nextInt() == 1){
-                Luxury luxuryCar = addLuxury(statement, userInput, carList, registrationNumber, brand, model, registrationDate, kmDriven);
+                Luxury luxuryCar = addLuxury(statement, userInput, carList, registrationNumber, brand, model,
+                        registrationDate, kmDriven);
                 saveLuxuryToDatabase(luxuryCar, statement);
             } else if(userInput.nextInt() == 2){
                 addSport(statement, userInput, carList);
             } else if(userInput.nextInt() == 3){
-                addFamily(statement, userInput, carList);
+                addFamily(statement, userInput, carList, registrationNumber, brand, model,
+                        registrationDate, kmDriven);
             } else {
                 while (!userInput.hasNextInt()) {
                     System.out.println("You have to enter a correct number");
@@ -97,14 +99,15 @@ public class CarService {
 
     }
 
-    public void addFamily(Statement statement, Scanner userInput, ArrayList<Car> carList){
+    public void addFamily(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
+                          String regDate, int kmDr) throws SQLException {
 
         boolean manualGear = userInput.nextBoolean();
         boolean airCondition = userInput.nextBoolean();
         boolean cruise_control1 = userInput.nextBoolean();
         boolean sevenSeatsOrMore = userInput.nextBoolean();
 
-        Family familyCar = new Family(registrationNumber,brand,model,registrationDate,kmDriven,manualGear,airCondition,
+        Family familyCar = new Family(reg, br , mo, regDate,kmDr,manualGear,airCondition,
                 cruise_control1,sevenSeatsOrMore);
         carList.add(familyCar);
 
