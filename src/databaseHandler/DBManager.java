@@ -3,7 +3,7 @@ package databaseHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-// hello
+
 public class DBManager {
 
     private static String url;
