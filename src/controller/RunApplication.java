@@ -2,6 +2,7 @@ package controller;
 
 import databaseHandler.DBManager;
 import models.Car;
+import models.Family;
 import models.Luxury;
 
 import java.sql.Connection;
@@ -73,6 +74,14 @@ public class RunApplication {
             Luxury luxuryCar = new Luxury(registrationNumber,brand,model,registrationDate,kmDriven,ccm,gear,cruiseControl,leatherSeats);
             carList.add(luxuryCar);
 
+            boolean manualGear = userInput.nextBoolean();
+            boolean airCondition = userInput.nextBoolean();
+            boolean cruise_control1 = userInput.nextBoolean();
+            boolean sevenSeatsOrMore = userInput.nextBoolean();
+            Family familyCar = new Family(registrationNumber,brand,model,registrationDate,kmDriven,manualGear,airCondition,
+                    cruise_control1,sevenSeatsOrMore);
+            carList.add(familyCar);
+
             statement.execute("INSERT INTO cars " + "(registration_number,brand,model, registration_date, kmDriven)" + "" +
                     "VALUES('"
                          + luxuryCar.getRegistrationNumber()   + "','"
@@ -88,10 +97,17 @@ public class RunApplication {
                     + luxuryCar.isAutomaticGear()       +  "','"
                     + luxuryCar.isCruiseControl()       + "','"
                     + luxuryCar.isLeatherSeats()        + "')");
+
+            statement.execute("INSERT INTO  family " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
+                    "VALUES('"
+                    + familyCar.getRegistrationNumber() + "','"
+                    + familyCar.isManualGear() + "','"
+                    + familyCar.isAirCondition()         + "','"
+                    + familyCar.isCruiseControl()       +  "','"
+                    + familyCar.isSevenSeatsOrMore()       + "',')");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
 
     }
 
