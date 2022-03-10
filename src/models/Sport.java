@@ -1,3 +1,7 @@
+package models;
+
+import models.Car;
+
 public class Sport extends Car {
     private boolean manualGear;
     private boolean over200HP;
@@ -11,7 +15,7 @@ public class Sport extends Car {
 
     @Override
     public String toString() {
-        return "Sport{" +
+        return "models.Sport{" +
                 "manualGear=" + manualGear +
                 ", over200HP=" + over200HP +
                 '}';

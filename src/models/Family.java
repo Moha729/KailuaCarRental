@@ -1,4 +1,8 @@
-public class Family extends Car{
+package models;
+
+import models.Car;
+
+public class Family extends Car {
 
     private boolean manualGear;
     private boolean airCondition;
@@ -16,7 +20,7 @@ public class Family extends Car{
 
     @Override
     public String toString() {
-        return "Family{" +
+        return "models.Family{" +
                 "manualGear=" + manualGear +
                 ", airCondition=" + airCondition +
                 ", cruiseControl=" + cruiseControl +

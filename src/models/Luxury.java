@@ -1,3 +1,7 @@
+package models;
+
+import models.Car;
+
 public class Luxury extends Car {
 
     private boolean over3000CCM;
@@ -16,7 +20,7 @@ public class Luxury extends Car {
 
     @Override
     public String toString() {
-        return "Luxury{" +
+        return "models.Luxury{" +
                 "over3000CCM=" + over3000CCM +
                 ", automaticGear=" + automaticGear +
                 ", cruiseControl=" + cruiseControl +

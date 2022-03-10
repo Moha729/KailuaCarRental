@@ -1,3 +1,9 @@
+package Controller;
+
+import DatabaseHandler.DBManager;
+import models.Car;
+import models.Luxury;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,17 +43,33 @@ public class RunApplication {
     public void addCarToDatabase(Statement statement) {
 
         try {
-//            String table = userInput.next();
+            System.out.println("Enter registration number");
             String registrationNumber = userInput.next();
+
+            System.out.println("Enter brand ");
             String brand = userInput.next();
+
+            System.out.println("Enter model");
             String model = userInput.next();
+
+            System.out.println("Enter registration date");
             String registrationDate = userInput.next();
+
+            System.out.println("Enter km driven");
             int kmDriven = userInput.nextInt();
 
+            System.out.println("Enter ccm");
             boolean ccm = userInput.nextBoolean();
+
+            System.out.println("Enter gear");
             boolean gear = userInput.nextBoolean();
+
+            System.out.println("Enter cruisecontrol");
             boolean cruiseControl = userInput.nextBoolean();
+
+            System.out.println("Enter leather seats");
             boolean leatherSeats = userInput.nextBoolean();
+
             Luxury luxuryCar = new Luxury(registrationNumber,brand,model,registrationDate,kmDriven,ccm,gear,cruiseControl,leatherSeats);
             carList.add(luxuryCar);
 
