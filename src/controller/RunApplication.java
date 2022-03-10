@@ -49,6 +49,7 @@ public class RunApplication {
     }
 
     public void runCarMenu(Statement statement) {
+
         menuHandler.getMainOptions(">1< See cars", ">2< Update car", ">3< New car", ">4< \"Delete car\"");
         carService.addCarToDatabase(statement, userInput, carList);
     }
@@ -111,10 +112,10 @@ public class RunApplication {
             if (resultSet != null)
                 while (resultSet.next()) {
                     System.out.println(
-                            resultSet.getString("registration_number") +
-                                    resultSet.getString("brand") +
-                                    resultSet.getString("model") +
-                                    resultSet.getString("registration_date") +
+                            resultSet.getString("registration_number") + " "+
+                                    resultSet.getString("brand") + " "+
+                                    resultSet.getString("model") + " "+
+                                    resultSet.getString("registration_date") + " "+
                                     resultSet.getInt("kmDriven"));
                 }
             resultSet.close();
