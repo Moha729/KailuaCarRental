@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class RunApplication {
 
      final Scanner userInput = new Scanner(System.in);
-     Connection connection = DBManager.getConnection();
+     Connection connection = DBManager.getConnection();//returns connection
      ArrayList<Car> carList = new ArrayList<>();
 
      boolean running = true;
