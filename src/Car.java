@@ -1,4 +1,4 @@
-public abstract class Car {
+public class Car {
 
     private String brand;
     private String model;
