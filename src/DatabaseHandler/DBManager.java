@@ -22,6 +22,7 @@ public class DBManager {
         password = System.getenv("password");
         try {
             connection = DriverManager.getConnection(url,user, password);
+            System.out.println();
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
