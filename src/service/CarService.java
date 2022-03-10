@@ -40,8 +40,9 @@ public class CarService {
             } else if(userInput.nextInt() == 2){
                 addSport(statement, userInput, carList);
             } else if(userInput.nextInt() == 3){
-                addFamily(statement, userInput, carList, registrationNumber, brand, model,
+                Family familyCar = addFamily(statement, userInput, carList, registrationNumber, brand, model,
                         registrationDate, kmDriven);
+                saveFamilyToDatabase(familyCar, statement);
             } else {
                 while (!userInput.hasNextInt()) {
                     System.out.println("You have to enter a correct number");
@@ -55,6 +56,16 @@ public class CarService {
 
     }
 
+    private void saveFamilyToDatabase(Family familyCar, Statement statement) throws SQLException {
+        statement.execute("INSERT INTO  family " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
+                "VALUES('"
+                + familyCar.getRegistrationNumber() + "','"
+                + familyCar.isManualGear() + "','"
+                + familyCar.isAirCondition()         + "','"
+                + familyCar.isCruiseControl()       +  "','"
+                + familyCar.isSevenSeatsOrMore()       + "',')");
+    }
+
     private void saveLuxuryToDatabase(Luxury luxuryCar, Statement statement) throws SQLException {
 
         statement.execute("INSERT INTO cars " + "(registration_number,brand,model, registration_date, kmDriven)" + "" +
@@ -64,6 +75,14 @@ public class CarService {
                 + luxuryCar.getModel()                + "','"
                 + luxuryCar.getRegistrationDate()     + "','"
                 + luxuryCar.getKmDriven()             + "')");
+
+        statement.execute("INSERT INTO  luxury " + "(registration_number, ccm, gear, cruise_control, leather_seats)" + "" +
+                "VALUES('"
+                + luxuryCar.getRegistrationNumber() + "','"
+                + luxuryCar.isOver3000CCM()         + "','"
+                + luxuryCar.isAutomaticGear()       +  "','"
+                + luxuryCar.isCruiseControl()       + "','"
+                + luxuryCar.isLeatherSeats()        + "')");
     }
 
     public Luxury addLuxury(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
@@ -84,14 +103,6 @@ public class CarService {
         Luxury luxuryCar = new Luxury(reg, br, mo, regDate, kmDr, ccm, gear, cruiseControl, leatherSeats);
         carList.add(luxuryCar);
 
-        statement.execute("INSERT INTO  luxury " + "(registration_number, ccm, gear, cruise_control, leather_seats)" + "" +
-                "VALUES('"
-                + luxuryCar.getRegistrationNumber() + "','"
-                + luxuryCar.isOver3000CCM()         + "','"
-                + luxuryCar.isAutomaticGear()       +  "','"
-                + luxuryCar.isCruiseControl()       + "','"
-                + luxuryCar.isLeatherSeats()        + "')");
-
       return luxuryCar;
     }
 
@@ -99,8 +110,8 @@ public class CarService {
 
     }
 
-    public void addFamily(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
-                          String regDate, int kmDr) throws SQLException {
+    public Family addFamily(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
+                            String regDate, int kmDr) throws SQLException {
 
         boolean manualGear = userInput.nextBoolean();
         boolean airCondition = userInput.nextBoolean();
@@ -111,13 +122,7 @@ public class CarService {
                 cruise_control1,sevenSeatsOrMore);
         carList.add(familyCar);
 
-        statement.execute("INSERT INTO  family " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
-                "VALUES('"
-                + familyCar.getRegistrationNumber() + "','"
-                + familyCar.isManualGear() + "','"
-                + familyCar.isAirCondition()         + "','"
-                + familyCar.isCruiseControl()       +  "','"
-                + familyCar.isSevenSeatsOrMore()       + "',')");
+        return familyCar;
     }
 
     /*public void show(Statement statement) throws SQLException {
