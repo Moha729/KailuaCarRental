@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import DatabaseHandler.DBManager;
+import databaseHandler.DBManager;
 import models.Car;
 import models.Luxury;
 
