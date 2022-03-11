@@ -8,7 +8,6 @@ import service.CarService;
 import testing.Testing;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ public class RunApplication {
     CarService carService = new CarService();//Service class
     MenuHandler menuHandler = new MenuHandler();//UI class
     Testing testing = new Testing();
-    Luxury luxury = new Luxury();
     boolean running = true;
     Car car;
 
