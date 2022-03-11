@@ -24,7 +24,7 @@ public class RunApplication {
 
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
-        readCarsFromDatabase(statement);
+        populateArrayList(statement);
         while (running) {
 
             menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box
@@ -35,7 +35,7 @@ public class RunApplication {
             switch (userInput.nextInt()) {
                 case 1 -> runCarMenu(statement);
 //                case 2 -> viewCars(statement);
-                case 3 -> System.out.println(carList);
+//                case 3 -> System.out.println(carList);
                 case 4 -> join(statement);
                 case 5 -> update(statement);
                 case 6 -> carService.createCar(statement,userInput,carList);
@@ -55,8 +55,22 @@ public class RunApplication {
 
         menuHandler.getMainOptions(">1< See cars", ">2< Update car", ">3< New car", ">4< \"Delete car\"");
         carService.createCar(statement, userInput, carList);
+        switch (userInput.nextInt()) {
+
+            case 1 ->System.out.println(carList); //view cars
+//            case 2 -> //change information for car
+            case 3 -> carService.createCar(statement, userInput, carList);
+//            case 4 -> //deletecar
+
+        }
+
+        carService.createCar(statement, userInput, carList);
     }
 
+
+    private void runCustomerMenu(){}
+
+    private void runRentalMenu(){}
 
     public void updateCar(Statement statement) {
 
@@ -125,7 +139,7 @@ public class RunApplication {
         }
     }
 
-    public void readCarsFromDatabase(Statement statement) { // table content
+    public void populateArrayList(Statement statement) { // table content
         try {
             statement.execute("SELECT * FROM car_table");
             ResultSet resultSet = statement.getResultSet();
