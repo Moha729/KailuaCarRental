@@ -22,10 +22,10 @@ public class CarService {
 
             int chooseType = tools.returnIntInfo(80,1, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
 
-            while (chooseType != 1 || chooseType != 2 || chooseType != 3){
+            /*while (chooseType != 1 || chooseType != 2 || chooseType != 3){
                 tools.customizedButton(60, 1, "Try again!");
                 tools.customizedButton(80, 1, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
-            }
+            }*/ //Robust programming not ready yet
 
             String registrationNumber = tools.returnStringInfo(50,1, "Enter registration number");
 
@@ -47,7 +47,8 @@ public class CarService {
 
 
             } else if(userInput.nextInt() == 2){
-                createSportsCar(statement, userInput, carList);
+                createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
+                        registrationDate, kmDriven);
 
             } else if(userInput.nextInt() == 3){
 
@@ -136,7 +137,30 @@ public class CarService {
 
 
 
-    private void createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList){
+    private void createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
+                                 String regDate, int kmDr){
+
+        String gear = tools.returnStringInfo(60, 1, "does it have a manual gear?");
+        boolean gearGear;
+        if (gear.equalsIgnoreCase("yes")){
+            gearGear = true;
+        }else {
+            gearGear = false;
+        }
+
+        String horsePower = tools.returnStringInfo(60, 1, "does it have over 200 hP?");
+        boolean hpHp;
+        if (horsePower.equalsIgnoreCase("Yes")){
+            hpHp = true;
+        } else {
+            hpHp = false;
+        }
+
+        Sport sportsCar = new Sport(reg, br , mo, regDate,kmDr,gearGear, hpHp);
+
+        carList.add(sportsCar);
+
+        addSportsCarToDB(sportsCar, statement);
 
     }
 
