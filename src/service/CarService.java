@@ -20,7 +20,7 @@ public class CarService {
 
         try {
 
-            int chooseType = tools.returnIntInfo(80,1, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
+            int chooseType = tools.returnIntInfo(100,1, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
 
             /*while (chooseType != 1 || chooseType != 2 || chooseType != 3){
                 tools.customizedButton(60, 1, "Try again!");
@@ -35,7 +35,7 @@ public class CarService {
 
             String registrationDate  = tools.returnStringInfo(50,1, "Enter date");
 
-            int kmDriven = tools.returnIntInfo(50,1, "Enter registration number");
+            int kmDriven = tools.returnIntInfo(50,1, "Enter km driven");
 
 
 
@@ -47,6 +47,7 @@ public class CarService {
 
 
             } else if(userInput.nextInt() == 2){
+
                 createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
                         registrationDate, kmDriven);
 
@@ -140,7 +141,7 @@ public class CarService {
     private void createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
                                  String regDate, int kmDr){
 
-        String gear = tools.returnStringInfo(60, 1, "does it have a manual gear?");
+        String gear = tools.returnStringInfo(50, 1, "does it have a manual gear?");
         boolean gearGear;
         if (gear.equalsIgnoreCase("yes")){
             gearGear = true;
@@ -148,7 +149,7 @@ public class CarService {
             gearGear = false;
         }
 
-        String horsePower = tools.returnStringInfo(60, 1, "does it have over 200 hP?");
+        String horsePower = tools.returnStringInfo(50, 1, "does it have over 200 hP?");
         boolean hpHp;
         if (horsePower.equalsIgnoreCase("Yes")){
             hpHp = true;
