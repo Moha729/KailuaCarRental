@@ -32,22 +32,20 @@ public class RunApplication {
 
             switch (userInput.nextInt()) {
                 case 1 -> runCarMenu(statement);
-//                case 2 ->
-//                case 3 ->
-//                case 4 ->
-//                case 5 ->
-//                case 6 ->
-//                case 7 ->
+                case 2 -> runCustomerMenu();
+                case 3 -> runRentalMenu();
+//                case 4 -> //view active rentals
+
                 default -> {
                     if (running) {
-                        System.out.println("Enter a valid number");
+                        menuHandler.tools.customizedButton(50, 1, "Enter a valid number");
                     }
                 }
             }
         }
     }
 
-    public void runCarMenu(Statement statement) {
+    private void runCarMenu(Statement statement) {
         System.out.println();
         menuHandler.tools.customizedButton(120, 1, "Cars menu");
 
@@ -64,6 +62,10 @@ public class RunApplication {
 
         }
     }
+
+    private void runCustomerMenu(){}
+
+    private void runRentalMenu(){}
 
 
     public void updateCar(Statement statement) {
@@ -128,6 +130,7 @@ public class RunApplication {
                                     resultSet.getString("model") +
                                     resultSet.getString("registration_date") +
                                     resultSet.getInt("kmDriven"));
+                    //Add disse informationer til Arraylisten, sådan så man læser objecterne fra Arraylisten
                 }
             resultSet.close();
         } catch (SQLException e) {
