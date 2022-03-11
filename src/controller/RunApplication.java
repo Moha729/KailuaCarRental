@@ -20,7 +20,6 @@ public class RunApplication {
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     CarService carService = new CarService();//Service class
     MenuHandler menuHandler = new MenuHandler();//UI class
-    Car readCars;
     Testing testing = new Testing();
     boolean running = true;
 
