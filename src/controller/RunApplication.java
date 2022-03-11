@@ -54,7 +54,7 @@ public class RunApplication {
         menuHandler.tools.customizedButton(120, 1, "Cars menu");
 
         menuHandler.getMainOptions(">1< See cars", ">2< Update car", ">3< New car", ">4< \"Delete car\"");
-        carService.addCarToDatabase(statement, userInput, carList);
+        carService.createCar(statement, userInput, carList);
     }
 
 
