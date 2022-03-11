@@ -3,6 +3,7 @@ package controller;
 import UI.MenuHandler;
 import databaseHandler.DBManager;
 import models.Car;
+import models.Luxury;
 import service.CarService;
 import testing.Testing;
 
@@ -21,11 +22,13 @@ public class RunApplication {
     CarService carService = new CarService();//Service class
     MenuHandler menuHandler = new MenuHandler();//UI class
     Testing testing = new Testing();
+    Luxury luxury = new Luxury();
     boolean running = true;
+    Car car;
 
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
-        testing.populateArrayList(statement);
+        testing.populateArrayList(statement,carList,car);
         while (running) {
 
             menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box
@@ -38,7 +41,7 @@ public class RunApplication {
 //                case 2 -> viewCars(statement);
 //                case 3 -> System.out.println(carList);
                 case 4 -> testing.join(statement);
-                case 5 -> testing.update(statement);
+                case 5 -> testing.update(statement,carList);
                 case 6 -> carService.createCar(statement, userInput, carList);
 //                case 7 ->
                 default -> {
@@ -61,7 +64,7 @@ public class RunApplication {
             case 1 -> System.out.println(carList); //view cars
 //            case 2 -> //change information for car
             case 3 -> carService.createCar(statement, userInput, carList);
-//            case 4 -> //deletecar
+            case 4 -> testing.join(statement);
 
 
         }

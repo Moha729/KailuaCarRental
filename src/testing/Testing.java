@@ -10,11 +10,9 @@ import java.util.Scanner;
 
 public class Testing {
 
-        ArrayList<Car> carList = new ArrayList<>();
         Scanner userInput = new Scanner(System.in);
-        Car readCars;
 
-    public void update(Statement statement) throws SQLException {
+    public void update(Statement statement, ArrayList<Car> carList) throws SQLException {
 //        try {
 //                System.out.println("Enter which registration number to be updated");
 //                String existingRegistrationNumber = userInput.next();
@@ -48,9 +46,9 @@ public class Testing {
 
     }
 
-    public void populateArrayList(Statement statement) { // table content
+    public void populateArrayList(Statement statement,ArrayList<Car> carList, Car readCars) { // table content
         try {
-            statement.execute("SELECT * FROM car_table");
+            statement.execute("SELECT * FROM car_table ");
             ResultSet resultSet = statement.getResultSet();
             if (resultSet != null)
                 while (resultSet.next()) {
@@ -73,7 +71,7 @@ public class Testing {
 
     public void join(Statement statement){
         try {
-            String sql = ("SELECT * FROM car_table INNER JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
+            String sql = ("SELECT * FROM car_table  LEFT JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
             ResultSet resultSet = statement.executeQuery(sql);
             System.out.println("reg  brand   model    regdate    kmdriven    ccm   gear   cruise    leather");
             if (resultSet != null)
@@ -85,7 +83,7 @@ public class Testing {
                     String registration_date =  resultSet.getString("registration_date");
                     int kmDriven =     resultSet.getInt("kmDriven");
                     String ccm =       resultSet.getString("ccm");
-                    String gear =      resultSet.getString("gear");
+                    String gear =      resultSet.getString("automatic_gear");
                     String cruise_control =  resultSet.getString("cruise_control");
                     String leather_seats =  resultSet.getString("leather_seats");
 

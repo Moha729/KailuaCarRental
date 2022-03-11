@@ -9,7 +9,7 @@ public class Luxury extends Car {
     private boolean cruiseControl;
     private boolean leatherSeats;
 
-    public Luxury(String brand, String model, String registrationNumber, String registrationDate, int kmDriven,
+    public Luxury(String registrationNumber,String brand, String model, String registrationDate, int kmDriven,
                   boolean over3000CCM, boolean automaticGear, boolean cruiseControl, boolean leatherSeats) {
         super(brand, model, registrationNumber, registrationDate, kmDriven);
         this.over3000CCM = over3000CCM;

@@ -14,6 +14,7 @@ import java.sql.Statement;
 public class CarService {
 
     MoTools tools = new MoTools();
+    ArrayList<Car> carList = new ArrayList<>();
 
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
@@ -42,8 +43,9 @@ public class CarService {
 
             if(chooseType == 1){
 
-                Luxury luxuryCar = createLuxury(statement, userInput, carList, registrationNumber, brand, model,
+                Luxury luxuryCar = createLuxury(statement, userInput, registrationNumber, brand, model,
                         registrationDate, kmDriven);
+                carList.add(luxuryCar);
 
 
             } else if(userInput.nextInt() == 2){
@@ -66,7 +68,7 @@ public class CarService {
 
     }
 
-    private Luxury createLuxury(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
+    private Luxury createLuxury(Statement statement, Scanner userInput, String  reg, String br, String mo,
                                String regDate, int kmDr) throws SQLException {
 
         System.out.println("Enter ccm");
@@ -98,7 +100,7 @@ public class CarService {
                 + luxuryCar.getRegistrationDate()     + "','"
                 + luxuryCar.getKmDriven()             + "')");
 
-        statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, gear, cruise_control, leather_seats)" + "" +
+        statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
                 "VALUES('"
                 + luxuryCar.getRegistrationNumber() + "','"
                 + luxuryCar.isOver3000CCM()         + "','"
@@ -131,7 +133,7 @@ public class CarService {
                 + familyCar.isManualGear() + "','"
                 + familyCar.isAirCondition()         + "','"
                 + familyCar.isCruiseControl()       +  "','"
-                + familyCar.isSevenSeatsOrMore()       + "',')");
+                + familyCar.isSevenSeatsOrMore()       + "')");
     }
 
 
