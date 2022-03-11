@@ -48,7 +48,7 @@ public class Testing {
 
     public void populateArrayList(Statement statement,ArrayList<Car> carList, Car readCars) { // table content
         try {
-            statement.execute("SELECT * FROM car_table ");
+            statement.execute("SELECT * FROM car_table");
             ResultSet resultSet = statement.getResultSet();
             if (resultSet != null)
                 while (resultSet.next()) {
@@ -58,6 +58,8 @@ public class Testing {
                             resultSet.getString("model"),
                             resultSet.getString("registration_date"),
                             resultSet.getInt("kmDriven"));
+
+
 
                     carList.add(readCars);
                 }
@@ -71,7 +73,7 @@ public class Testing {
 
     public void join(Statement statement){
         try {
-            String sql = ("SELECT * FROM car_table  LEFT JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
+            String sql = "SELECT * FROM car_table  LEFT JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number";
             ResultSet resultSet = statement.executeQuery(sql);
             System.out.println("reg  brand   model    regdate    kmdriven    ccm   gear   cruise    leather");
             if (resultSet != null)
