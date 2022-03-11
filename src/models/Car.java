@@ -8,10 +8,10 @@ public class Car {
     private String registrationDate;
     private int kmDriven;
 
-    public Car(String brand, String model, String registrationNumber, String registrationDate, int kmDriven) {
+    public Car(String registrationNumber, String brand, String model, String registrationDate, int kmDriven) {
+        this.registrationNumber = registrationNumber;
         this.brand = brand;
         this.model = model;
-        this.registrationNumber = registrationNumber;
         this.registrationDate = registrationDate;
         this.kmDriven = kmDriven;
     }
@@ -19,10 +19,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return "models.Car{" +
-                "brand='" + brand + '\'' +
+        return "Car{" +
+                "registrationNumber='" + registrationNumber + '\'' +
+                ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", registrationNumber='" + registrationNumber + '\'' +
                 ", registrationDate='" + registrationDate + '\'' +
                 ", kmDriven=" + kmDriven +
                 '}';

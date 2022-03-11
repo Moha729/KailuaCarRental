@@ -19,10 +19,12 @@ public class RunApplication {
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     CarService carService = new CarService();//Service class
     MenuHandler menuHandler = new MenuHandler();//UI class
+    Car readCars;
     boolean running = true;
 
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
+        readCarsFromDatabase(statement);
         while (running) {
 
             menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box
@@ -33,9 +35,9 @@ public class RunApplication {
             switch (userInput.nextInt()) {
                 case 1 -> runCarMenu(statement);
 //                case 2 -> viewCars(statement);
-//                case 3 ->
-//                case 4 ->
-//                case 5 ->
+                case 3 -> System.out.println(carList.get(1));
+                case 4 -> join(statement);
+                case 5 -> update(statement);
 //                case 6 ->
 //                case 7 ->
                 default -> {
@@ -88,40 +90,96 @@ public class RunApplication {
                 break;
 
 
-//            try {
-////                System.out.println("Enter which registration number to be updated");
-////                String existingRegistrationNumber = userInput.next();
-//                statement.execute("UPDATE cars  SET " +
-//                        "  registration_number='" + registration_number + "' , "
-//                        + "brand='" + brand + "' , "
-//                        + "model='" + model + "' , "
-//                        + "registration_date='" + registration_date + "' , "
-//                        + "kmDriven ='" + kmDriven + "' "
-//                        + "WHERE registration_number ='" + existingRegistrationNumber + "'");
-//            } catch (SQLException e) {
-//                System.out.println(e.getMessage() + "\n");
-//            }
-//        }
+        }
 
         }
-    }
 
-    public void viewCars(Statement statement) { // table content
+
+    public void join(Statement statement){
         try {
-            statement.execute("SELECT * FROM cars");
-            ResultSet resultSet = statement.getResultSet();
+            String sql = ("SELECT * FROM cars INNER JOIN luxury ON cars.registration_number = luxury.registration_number");
+            ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("reg  brand   model    regdate    kmdriven    ccm   gear   cruise    leather");
             if (resultSet != null)
                 while (resultSet.next()) {
-                    System.out.println(
-                            resultSet.getString("registration_number") +
-                                    resultSet.getString("brand") +
-                                    resultSet.getString("model") +
-                                    resultSet.getString("registration_date") +
-                                    resultSet.getInt("kmDriven"));
+
+                    String registration_number =   resultSet.getString("registration_number");
+                    String brand =     resultSet.getString("brand");
+                    String model =     resultSet.getString("model");
+                    String registration_date =  resultSet.getString("registration_date");
+                    int kmDriven =     resultSet.getInt("kmDriven");
+                    String ccm =       resultSet.getString("ccm");
+                    String gear =      resultSet.getString("gear");
+                    String cruise_control =  resultSet.getString("cruise_control");
+                    String leather_seats =  resultSet.getString("leather_seats");
+
+                    System.out.println(registration_number +" / " +brand + " / "+ model + " / " + registration_date+" / "
+                            +kmDriven+" / "+ ccm +" / " +gear+" / " + cruise_control+ " / " + leather_seats+" / ");
+
                 }
+
+
             resultSet.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
         }
     }
+
+    public void readCarsFromDatabase(Statement statement) { // table content
+        try {
+            statement.execute("SELECT * FROM cars");
+            ResultSet resultSet = statement.getResultSet();
+            if (resultSet != null)
+                while (resultSet.next()) {
+                     readCars = new Car(
+                     resultSet.getString("registration_number"),
+                     resultSet.getString("brand"),
+                     resultSet.getString("model"),
+                     resultSet.getString("registration_date"),
+                     resultSet.getInt("kmDriven"));
+
+                    carList.add(readCars);
+                }
+
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\n");
+        }
+    }
+
+    public void update(Statement statement) throws SQLException {
+//        try {
+//                System.out.println("Enter which registration number to be updated");
+                String existingRegistrationNumber = userInput.next();
+
+                for (int i = 0; i<carList.size();i++){
+                    System.out.println(carList.get(i));
+                }
+                System.out.println("Enter which registration number to be updated");
+                int answer = userInput.nextInt();
+
+                String newNumber = userInput.next();
+                carList.get(answer).setRegistrationNumber(newNumber);
+                String newBrand = userInput.next();
+                carList.get(answer).setBrand(newBrand);
+                String newModel = userInput.next();
+                carList.get(answer).setModel(newModel);
+                String regDate = userInput.next();
+                carList.get(answer).setRegistrationDate(regDate);
+                int km = userInput.nextInt();
+                carList.get(answer).setKmDriven(km);
+
+                String a= carList.get(answer).toString();
+                System.out.println(a);
+
+            statement.execute("UPDATE cars  SET " +
+                    "  registration_number='" + newNumber + "' , "
+                    + "brand='" + newBrand + "' , "
+                    + "model='" + newModel + "' , "
+                    + "registration_date='" + regDate + "' , "
+                    + "kmDriven ='" + km + "' "
+                    + "WHERE registration_number ='" + existingRegistrationNumber + "'");
+
+    }
+
 }

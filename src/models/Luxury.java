@@ -1,6 +1,6 @@
 package models;
 
-import models.Car;
+
 
 public class Luxury extends Car {
 
