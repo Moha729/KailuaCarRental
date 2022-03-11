@@ -1,8 +1,10 @@
 package service;
 
+import UI.MoTools;
 import models.Car;
 import models.Family;
 import models.Luxury;
+import models.Sport;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,62 +13,82 @@ import java.sql.Statement;
 
 public class CarService {
 
+    MoTools tools = new MoTools();
 
-    public void addCarToDatabase(Statement statement, Scanner userInput, ArrayList<Car> carList) {
+
+    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
 
         try {
-            System.out.println("Enter registration number");
-            String registrationNumber = userInput.next();
 
-            System.out.println("Enter brand ");
-            String brand = userInput.next();
+            int chooseType = tools.returnIntInfo(100,1, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
 
-            System.out.println("Enter model");
-            String model = userInput.next();
+            /*while (chooseType != 1 || chooseType != 2 || chooseType != 3){
+                tools.customizedButton(60, 1, "Try again!");
+                tools.customizedButton(80, 1, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
+            }*/ //Robust programming not ready yet
 
-            System.out.println("Enter registration date");
-            String registrationDate = userInput.next();
+            String registrationNumber = tools.returnStringInfo(50,1, "Enter registration number");
 
-            System.out.println("Enter km driven");
-            int kmDriven = userInput.nextInt();
+            String brand = tools.returnStringInfo(50,1, "Enter brand");
+
+            String model =  tools.returnStringInfo(50,1, "Enter model");
+
+            String registrationDate  = tools.returnStringInfo(50,1, "Enter date");
+
+            int kmDriven = tools.returnIntInfo(50,1, "Enter km driven");
 
 
-            System.out.println("Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
 
-            if(userInput.nextInt() == 1){
-                Luxury luxuryCar = addLuxury(statement, userInput, carList, registrationNumber, brand, model,
+
+            if(chooseType == 1){
+
+                Luxury luxuryCar = createLuxury(statement, userInput, carList, registrationNumber, brand, model,
                         registrationDate, kmDriven);
-                saveLuxuryToDatabase(luxuryCar, statement);
+
+
             } else if(userInput.nextInt() == 2){
-                addSport(statement, userInput, carList);
-            } else if(userInput.nextInt() == 3){
-                Family familyCar = addFamily(statement, userInput, carList, registrationNumber, brand, model,
+
+                createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
                         registrationDate, kmDriven);
-                saveFamilyToDatabase(familyCar, statement);
-            } else {
-                while (!userInput.hasNextInt()) {
-                    System.out.println("You have to enter a correct number");
-                    System.out.println("Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
-                }
+
+            } else if(userInput.nextInt() == 3){
+
+                Family familyCar = createFamilyCar(statement, userInput, carList, registrationNumber, brand, model,
+                        registrationDate, kmDriven);
+
+            } else { tools.customizedButton(60, 1, "Try again!");
+
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            tools.customizedButton(60, 1, e.getMessage());
         }
 
     }
 
-    private void saveFamilyToDatabase(Family familyCar, Statement statement) throws SQLException {
-        statement.execute("INSERT INTO  family " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
-                "VALUES('"
-                + familyCar.getRegistrationNumber() + "','"
-                + familyCar.isManualGear() + "','"
-                + familyCar.isAirCondition()         + "','"
-                + familyCar.isCruiseControl()       +  "','"
-                + familyCar.isSevenSeatsOrMore()       + "',')");
-    }
+    private Luxury createLuxury(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
+                               String regDate, int kmDr) throws SQLException {
 
-    private void saveLuxuryToDatabase(Luxury luxuryCar, Statement statement) throws SQLException {
+        System.out.println("Enter ccm");
+        boolean ccm = userInput.nextBoolean();
+
+        System.out.println("Enter gear");
+        boolean gear = userInput.nextBoolean();
+
+        System.out.println("Enter cruisecontrol");
+        boolean cruiseControl = userInput.nextBoolean();
+
+        System.out.println("Enter leather seats");
+        boolean leatherSeats = userInput.nextBoolean();
+
+        Luxury luxuryCar = new Luxury(reg, br, mo, regDate, kmDr, ccm, gear, cruiseControl, leatherSeats);
+        carList.add(luxuryCar);
+
+        addLuxuryCarToDB(luxuryCar, statement);
+
+        return luxuryCar;
+    }
+    private void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) throws SQLException {
 
         statement.execute("INSERT INTO cars " + "(registration_number,brand,model, registration_date, kmDriven)" + "" +
                 "VALUES('"
@@ -85,33 +107,8 @@ public class CarService {
                 + luxuryCar.isLeatherSeats()        + "')");
     }
 
-    public Luxury addLuxury(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
-                          String regDate, int kmDr) throws SQLException {
-
-        System.out.println("Enter ccm");
-        boolean ccm = userInput.nextBoolean();
-
-        System.out.println("Enter gear");
-        boolean gear = userInput.nextBoolean();
-
-        System.out.println("Enter cruisecontrol");
-        boolean cruiseControl = userInput.nextBoolean();
-
-        System.out.println("Enter leather seats");
-        boolean leatherSeats = userInput.nextBoolean();
-
-        Luxury luxuryCar = new Luxury(reg, br, mo, regDate, kmDr, ccm, gear, cruiseControl, leatherSeats);
-        carList.add(luxuryCar);
-
-      return luxuryCar;
-    }
-
-    public void addSport(Statement statement, Scanner userInput, ArrayList<Car> carList){
-
-    }
-
-    public Family addFamily(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
-                            String regDate, int kmDr) throws SQLException {
+    private Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
+                                  String regDate, int kmDr) throws SQLException {
 
         boolean manualGear = userInput.nextBoolean();
         boolean airCondition = userInput.nextBoolean();
@@ -122,8 +119,55 @@ public class CarService {
                 cruise_control1,sevenSeatsOrMore);
         carList.add(familyCar);
 
+        addFamilyCarToDB(familyCar, statement);
+
         return familyCar;
     }
+
+    private void addFamilyCarToDB(Family familyCar, Statement statement) throws SQLException {
+        statement.execute("INSERT INTO  family " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
+                "VALUES('"
+                + familyCar.getRegistrationNumber() + "','"
+                + familyCar.isManualGear() + "','"
+                + familyCar.isAirCondition()         + "','"
+                + familyCar.isCruiseControl()       +  "','"
+                + familyCar.isSevenSeatsOrMore()       + "',')");
+    }
+
+
+
+
+
+    private void createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
+                                 String regDate, int kmDr){
+
+        String gear = tools.returnStringInfo(50, 1, "does it have a manual gear?");
+        boolean gearGear;
+        if (gear.equalsIgnoreCase("yes")){
+            gearGear = true;
+        }else {
+            gearGear = false;
+        }
+
+        String horsePower = tools.returnStringInfo(50, 1, "does it have over 200 hP?");
+        boolean hpHp;
+        if (horsePower.equalsIgnoreCase("Yes")){
+            hpHp = true;
+        } else {
+            hpHp = false;
+        }
+
+        Sport sportsCar = new Sport(reg, br , mo, regDate,kmDr,gearGear, hpHp);
+
+        carList.add(sportsCar);
+
+        addSportsCarToDB(sportsCar, statement);
+
+    }
+
+    private void addSportsCarToDB(Sport sportsCar, Statement statement){}
+
+
 
     /*public void show(Statement statement) throws SQLException {
         String name = userInput.next();
