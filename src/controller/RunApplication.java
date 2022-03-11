@@ -35,10 +35,10 @@ public class RunApplication {
             switch (userInput.nextInt()) {
                 case 1 -> runCarMenu(statement);
 //                case 2 -> viewCars(statement);
-                case 3 -> System.out.println(carList.get(1));
+                case 3 -> System.out.println(carList);
                 case 4 -> join(statement);
                 case 5 -> update(statement);
-//                case 6 ->
+                case 6 -> carService.createCar(statement,userInput,carList);
 //                case 7 ->
                 default -> {
                     if (running) {
@@ -97,7 +97,7 @@ public class RunApplication {
 
     public void join(Statement statement){
         try {
-            String sql = ("SELECT * FROM cars INNER JOIN luxury ON cars.registration_number = luxury.registration_number");
+            String sql = ("SELECT * FROM car_table INNER JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
             ResultSet resultSet = statement.executeQuery(sql);
             System.out.println("reg  brand   model    regdate    kmdriven    ccm   gear   cruise    leather");
             if (resultSet != null)
@@ -127,7 +127,7 @@ public class RunApplication {
 
     public void readCarsFromDatabase(Statement statement) { // table content
         try {
-            statement.execute("SELECT * FROM cars");
+            statement.execute("SELECT * FROM car_table");
             ResultSet resultSet = statement.getResultSet();
             if (resultSet != null)
                 while (resultSet.next()) {
@@ -150,7 +150,7 @@ public class RunApplication {
     public void update(Statement statement) throws SQLException {
 //        try {
 //                System.out.println("Enter which registration number to be updated");
-                String existingRegistrationNumber = userInput.next();
+//                String existingRegistrationNumber = userInput.next();
 
                 for (int i = 0; i<carList.size();i++){
                     System.out.println(carList.get(i));
@@ -169,16 +169,15 @@ public class RunApplication {
                 int km = userInput.nextInt();
                 carList.get(answer).setKmDriven(km);
 
-                String a= carList.get(answer).toString();
-                System.out.println(a);
+//                String a= carList.get(answer).toString();
+//                System.out.println(a);
 
-            statement.execute("UPDATE cars  SET " +
+            statement.execute("UPDATE car_table  SET " +
                     "  registration_number='" + newNumber + "' , "
                     + "brand='" + newBrand + "' , "
                     + "model='" + newModel + "' , "
                     + "registration_date='" + regDate + "' , "
-                    + "kmDriven ='" + km + "' "
-                    + "WHERE registration_number ='" + existingRegistrationNumber + "'");
+                    + "kmDriven ='" + km + "'");
 
     }
 

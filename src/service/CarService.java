@@ -90,7 +90,7 @@ public class CarService {
     }
     private void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) throws SQLException {
 
-        statement.execute("INSERT INTO cars " + "(registration_number,brand,model, registration_date, kmDriven)" + "" +
+        statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, kmDriven)" + "" +
                 "VALUES('"
                 + luxuryCar.getRegistrationNumber()   + "','"
                 + luxuryCar.getBrand()                +  "','"
@@ -98,7 +98,7 @@ public class CarService {
                 + luxuryCar.getRegistrationDate()     + "','"
                 + luxuryCar.getKmDriven()             + "')");
 
-        statement.execute("INSERT INTO  luxury " + "(registration_number, ccm, gear, cruise_control, leather_seats)" + "" +
+        statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, gear, cruise_control, leather_seats)" + "" +
                 "VALUES('"
                 + luxuryCar.getRegistrationNumber() + "','"
                 + luxuryCar.isOver3000CCM()         + "','"
@@ -125,7 +125,7 @@ public class CarService {
     }
 
     private void addFamilyCarToDB(Family familyCar, Statement statement) throws SQLException {
-        statement.execute("INSERT INTO  family " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
+        statement.execute("INSERT INTO  family_cars " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
                 "VALUES('"
                 + familyCar.getRegistrationNumber() + "','"
                 + familyCar.isManualGear() + "','"
