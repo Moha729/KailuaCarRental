@@ -154,8 +154,8 @@ public class RunApplication {
 
                 for (int i = 0; i<carList.size();i++){
                     System.out.println(carList.get(i));
-                }
-                System.out.println("Enter which registration number to be updated");
+                }//view method
+                System.out.println("Enter which registration number to be updated");//choose method
                 int answer = userInput.nextInt();
 
                 String newNumber = userInput.next();
