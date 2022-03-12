@@ -9,23 +9,29 @@ public class Luxury extends Car {
     private boolean cruiseControl;
     private boolean leatherSeats;
 
-    public Luxury(String registrationNumber,String brand, String model, String registrationDate, int kmDriven,
+    public Luxury(String registrationNumber, String brand, String model,String registrationDate, int kmDriven,
                   boolean over3000CCM, boolean automaticGear, boolean cruiseControl, boolean leatherSeats) {
-        super(brand, model, registrationNumber, registrationDate, kmDriven);
+        super(registrationNumber,brand, model, registrationDate, kmDriven);
         this.over3000CCM = over3000CCM;
         this.automaticGear = automaticGear;
         this.cruiseControl = cruiseControl;
         this.leatherSeats = leatherSeats;
     }
 
+    public Luxury() {
+        super();
+    }
+
     @Override
     public String toString() {
-        return "models.Luxury{" +
-                "over3000CCM=" + over3000CCM +
-                ", automaticGear=" + automaticGear +
-                ", cruiseControl=" + cruiseControl +
-                ", leatherSeats=" + leatherSeats +
-                '}';
+        return getClass().getSimpleName()+" car: "
+         +super.toString()+
+        ", over3000CCM: "+over3000CCM+
+        ", automatic gear: " +automaticGear+
+        ", cruise control: "+cruiseControl+
+        ", leather seats: "+leatherSeats+"]\n";
+
+
     }
 
     public boolean isOver3000CCM() {

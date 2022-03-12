@@ -26,7 +26,7 @@ public class RunApplication {
 
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
-        testing.populateArrayList(statement,carList,car);
+        testing.populateArrayList(statement,carList);
         while (running) {
 
             menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box

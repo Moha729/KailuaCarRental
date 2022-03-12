@@ -1,6 +1,7 @@
 package testing;
 
 import models.Car;
+import models.Luxury;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class Testing {
 
         Scanner userInput = new Scanner(System.in);
+        Luxury luxury = new Luxury();
 
     public void update(Statement statement, ArrayList<Car> carList) throws SQLException {
 
@@ -41,33 +43,51 @@ public class Testing {
         System.out.println("Enter new km");
         int km = userInput.nextInt();
 
+        System.out.println("Enter new ccm");
+        String ccm = userInput.next();
+        System.out.println("Enter if automatic gear");
+        String automatic = userInput.next();
+        System.out.println("Enter if cruise control ");
+        String cruise = userInput.next();
+        System.out.println("Enter if leather seats");
+        String leather = userInput.next();
 
-        statement.execute("UPDATE car_table SET " +
+
+
+        statement.execute("UPDATE car_table,luxury_cars SET " +
                 "  registration_number='" + newNumber + "' , "
                 + "brand='" + newBrand + "' , "
                 + "model='" + newModel + "' , "
                 + "registration_date='" + regDate + "' , "
-                + "kmDriven ='" + km + "'"
+                + "kmDriven ='" + km + "',"
+                + "registration_number='" + newNumber + "' , "
+                + "ccm='" + ccm + "' , "
+                + "automatic_gear='" + automatic + "' , "
+                + "cruise_control='" + cruise + "' , "
+                + "leather_seats='" + leather + "'"
                 + "WHERE registration_number ='" + answer + "'");
 
     }
 
-    public void populateArrayList(Statement statement,ArrayList<Car> carList, Car readCars) { // table content
+    public void populateArrayList(Statement statement,ArrayList<Car> carList) { // table content
         try {
-            statement.execute("SELECT * FROM car_table");
-            ResultSet resultSet = statement.getResultSet();
+
+            String sql = ("SELECT * FROM car_table LEFT JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
+            ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
-                    readCars = new Car(
+                            luxury = new Luxury(
                             resultSet.getString("registration_number"),
                             resultSet.getString("brand"),
                             resultSet.getString("model"),
                             resultSet.getString("registration_date"),
-                            resultSet.getInt("kmDriven"));
+                            resultSet.getInt("kmDriven"),
+                            resultSet.getBoolean("ccm"),
+                            resultSet.getBoolean("automatic_gear"),
+                            resultSet.getBoolean("cruise_control"),
+                            resultSet.getBoolean("leather_seats"));
 
-
-
-                    carList.add(readCars);
+                      carList.add(luxury);
                 }
 
             resultSet.close();
