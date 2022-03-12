@@ -16,15 +16,17 @@ public class Car {
         this.kmDriven = kmDriven;
     }
 
+    public Car() {
+    }
+
     @Override
     public String toString() {
-        return "Car{" +
-                "registrationNumber='" + registrationNumber + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", registrationDate='" + registrationDate + '\'' +
-                ", kmDriven=" + kmDriven +
-                '}';
+        return
+                "registrationNumber='" + registrationNumber +
+                ", brand='" + brand +
+                ", model='" + model +
+                ", registrationDate='" + registrationDate +
+                ", kmDriven=" + kmDriven;
     }
 
     public String getBrand() {

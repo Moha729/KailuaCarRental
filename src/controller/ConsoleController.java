@@ -1,9 +1,8 @@
 package controller;
 
 import UI.MenuHandler;
-import databaseHandler.DBManager;
+import db.DBManager;
 import models.Car;
-import models.Luxury;
 import service.CarService;
 import testing.Testing;
 
@@ -13,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class RunApplication {
+public class ConsoleController {
 
     final Scanner userInput = new Scanner(System.in);//Scanner
     Connection connection = DBManager.getConnection();//returns connection
