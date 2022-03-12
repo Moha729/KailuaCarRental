@@ -13,36 +13,42 @@ public class Testing {
         Scanner userInput = new Scanner(System.in);
 
     public void update(Statement statement, ArrayList<Car> carList) throws SQLException {
-//        try {
-//                System.out.println("Enter which registration number to be updated");
-//                String existingRegistrationNumber = userInput.next();
 
-        for (int i = 0; i<carList.size();i++){
+
+        for (int i = 0; i < carList.size(); i++) {
             System.out.println(carList.get(i));
-        }//view method
-        System.out.println("Enter which registration number to be updated");//choose method
-        int answer = userInput.nextInt();
+        }
 
+        System.out.println("Enter which registration number to be updated");
+        String answer = userInput.next();
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
+                System.out.println(carList.get(i));
+        }
+        System.out.println("Enter new registration number");
         String newNumber = userInput.next();
-        carList.get(answer).setRegistrationNumber(newNumber);
+
+        System.out.println("Enter new brand");
         String newBrand = userInput.next();
-        carList.get(answer).setBrand(newBrand);
+
+        System.out.println("Enter new model");
         String newModel = userInput.next();
-        carList.get(answer).setModel(newModel);
+
+        System.out.println("Enter new registration date");
         String regDate = userInput.next();
-        carList.get(answer).setRegistrationDate(regDate);
+
+        System.out.println("Enter new km");
         int km = userInput.nextInt();
-        carList.get(answer).setKmDriven(km);
 
-//                String a= carList.get(answer).toString();
-//                System.out.println(a);
 
-        statement.execute("UPDATE car_table  SET " +
+        statement.execute("UPDATE car_table SET " +
                 "  registration_number='" + newNumber + "' , "
                 + "brand='" + newBrand + "' , "
                 + "model='" + newModel + "' , "
                 + "registration_date='" + regDate + "' , "
-                + "kmDriven ='" + km + "'");
+                + "kmDriven ='" + km + "'"
+                + "WHERE registration_number ='" + answer + "'");
 
     }
 
