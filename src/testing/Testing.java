@@ -50,7 +50,7 @@ public class Testing {
         System.out.println("Enter if leather seats");
         String leather = userInput.next();
 
-        statement.executeUpdate("UPDATE car_table SET " +
+        statement.execute("UPDATE car_table SET " +
                 "  registration_number='" + newNumber + "' , "
                 + "brand='" + newBrand + "' , "
                 + "model='" + newModel + "' , "
@@ -58,13 +58,14 @@ public class Testing {
                 + "kmDriven ='" + km + "' "
                 + "WHERE registration_number ='" +answer+"'");
 
-        statement.executeUpdate("UPDATE luxury_cars SET "+
+        statement.execute("UPDATE luxury_cars SET "+
                 "registration_number='" + newNumber + "' , "
                 + "ccm='" + ccm + "' , "
                 + "automatic_gear='" + automatic + "' , "
                 + "cruise_control='" + cruise + "' , "
                 + "leather_seats='" + leather + "'"
                 + "WHERE registration_number ='" + answer + "'");
+        statement.close();
 
 }
 
