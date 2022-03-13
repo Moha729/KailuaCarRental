@@ -15,9 +15,12 @@ public class Testing {
         Luxury luxury = new Luxury();
 
     public void update(Statement statement, ArrayList<Car> carList) throws SQLException {
+
+
         for (int i = 0; i < carList.size(); i++) {
             System.out.println(carList.get(i));
         }
+
         System.out.println("Enter which registration number to be updated");
         String answer = userInput.next();
 
@@ -27,37 +30,37 @@ public class Testing {
         }
         System.out.println("Enter new registration number");
         String newNumber = userInput.next();
-        System.out.println("Enter new car brand");
-        String newBrand =  userInput.next();
 
-        System.out.println("Enter new car model");
+        System.out.println("Enter new brand");
+        String newBrand = userInput.next();
+
+        System.out.println("Enter new model");
         String newModel = userInput.next();
 
         System.out.println("Enter new registration date");
         String regDate = userInput.next();
 
-        System.out.println("Enter new km driven");
+        System.out.println("Enter new km");
         int km = userInput.nextInt();
 
-        System.out.println("Enter if ccm is over 3000");
+        System.out.println("Enter new ccm");
         String ccm = userInput.next();
-        System.out.println("Enter if the car is automatic gear");
+        System.out.println("Enter if automatic gear");
         String automatic = userInput.next();
-        System.out.println("Enter if the car has cruise control ");
+        System.out.println("Enter if cruise control ");
         String cruise = userInput.next();
-        System.out.println("Enter if the car has leather seats");
+        System.out.println("Enter if leather seats");
         String leather = userInput.next();
 
-         statement.executeUpdate("UPDATE car_table SET " +
+
+
+        statement.execute("UPDATE car_table,luxury_cars SET " +
                 "  registration_number='" + newNumber + "' , "
                 + "brand='" + newBrand + "' , "
                 + "model='" + newModel + "' , "
                 + "registration_date='" + regDate + "' , "
-                + "kmDriven ='" + km + "' "
-                + "WHERE registration_number ='" +answer+"'");
-
-          statement.executeUpdate("UPDATE luxury_cars SET "+
-                "registration_number='" + newNumber + "' , "
+                + "kmDriven ='" + km + "',"
+                + "registration_number='" + newNumber + "' , "
                 + "ccm='" + ccm + "' , "
                 + "automatic_gear='" + automatic + "' , "
                 + "cruise_control='" + cruise + "' , "
