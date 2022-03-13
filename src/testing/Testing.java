@@ -16,7 +16,6 @@ public class Testing {
 
     public void update(Statement statement, ArrayList<Car> carList) throws SQLException {
 
-
         for (int i = 0; i < carList.size(); i++) {
             System.out.println(carList.get(i));
         }
@@ -30,9 +29,8 @@ public class Testing {
         }
         System.out.println("Enter new registration number");
         String newNumber = userInput.next();
-
         System.out.println("Enter new brand");
-        String newBrand = userInput.next();
+        String newBrand =  userInput.next();
 
         System.out.println("Enter new model");
         String newModel = userInput.next();
@@ -52,22 +50,23 @@ public class Testing {
         System.out.println("Enter if leather seats");
         String leather = userInput.next();
 
-
-
-        statement.execute("UPDATE car_table,luxury_cars SET " +
+        statement.executeUpdate("UPDATE car_table SET " +
                 "  registration_number='" + newNumber + "' , "
                 + "brand='" + newBrand + "' , "
                 + "model='" + newModel + "' , "
                 + "registration_date='" + regDate + "' , "
-                + "kmDriven ='" + km + "',"
-                + "registration_number='" + newNumber + "' , "
+                + "kmDriven ='" + km + "' "
+                + "WHERE registration_number ='" +answer+"'");
+
+        statement.executeUpdate("UPDATE luxury_cars SET "+
+                "registration_number='" + newNumber + "' , "
                 + "ccm='" + ccm + "' , "
                 + "automatic_gear='" + automatic + "' , "
                 + "cruise_control='" + cruise + "' , "
                 + "leather_seats='" + leather + "'"
                 + "WHERE registration_number ='" + answer + "'");
 
-    }
+}
 
     public void populateArrayList(Statement statement,ArrayList<Car> carList) { // table content
         try {
