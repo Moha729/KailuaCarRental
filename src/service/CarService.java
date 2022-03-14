@@ -14,7 +14,7 @@ import java.sql.Statement;
 public class CarService {
 
     MoTools tools = new MoTools();
-    ArrayList<Car> carList = new ArrayList<>();
+    //ArrayList<Car> carList = new ArrayList<>();//to forskellige arraylister
 
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
@@ -43,7 +43,7 @@ public class CarService {
 
             if(chooseType == 1){
 
-                Luxury luxuryCar = createLuxury(statement, userInput, registrationNumber, brand, model,
+                Luxury luxuryCar = createLuxury(statement, carList, userInput, registrationNumber, brand, model,
                         registrationDate, kmDriven);
                 carList.add(luxuryCar);
 
@@ -68,7 +68,7 @@ public class CarService {
 
     }
 
-    private Luxury createLuxury(Statement statement, Scanner userInput, String  reg, String br, String mo,
+    private Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String  reg, String br, String mo,
                                String regDate, int kmDr) throws SQLException {
 
         System.out.println("Enter ccm");
