@@ -89,7 +89,7 @@ public class CarService {
     }
     private void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) throws SQLException {
 
-        statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, kmDriven)" + "" +
+        statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
                 "VALUES('"
                 + luxuryCar.getRegistrationNumber()   + "','"
                 + luxuryCar.getBrand()                +  "','"
@@ -124,7 +124,7 @@ public class CarService {
     }
 
     private void addFamilyCarToDB(Family familyCar, Statement statement) throws SQLException {
-        statement.execute("INSERT INTO  family_cars " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
+        statement.execute("INSERT INTO  family_cars " + "(registration_number, manualGear ,air_aondition , cruise_control1, seven_seats_or_more)" + "" +
                 "VALUES('"
                 + familyCar.getRegistrationNumber() + "','"
                 + familyCar.isManualGear() + "','"

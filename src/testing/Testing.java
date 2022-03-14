@@ -25,6 +25,7 @@ public class Testing {
 
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
+                carList.remove(i);
                 System.out.println(carList.get(i));
         }
         System.out.println("Enter new registration number");
@@ -125,5 +126,18 @@ public class Testing {
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
         }
+    }
+
+    public void deleteLuxury(Statement statement,ArrayList<Car> carList) throws SQLException {
+        System.out.println("Enter a registration number to delete its car information");
+        String answer = userInput.next();
+        statement.execute("DELETE FROM car_table WHERE registration_number = '"+answer+"'");
+        statement.execute("DELETE FROM luxury_cars WHERE registration_number = '"+answer+"'");
+        for (int i = 0; i < carList.size()-1; i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer));
+                carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
+        }
+
+
     }
 }

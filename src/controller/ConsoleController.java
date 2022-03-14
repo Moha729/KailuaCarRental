@@ -40,7 +40,7 @@ public class ConsoleController {
                 case 4 -> testing.join(statement);
                 case 5 -> testing.update(statement,carList);
                 case 6 -> carService.createCar(statement, userInput, carList);
-//                case 7 ->
+                case 7 -> testing.deleteLuxury(statement,carList);
                 default -> {
                     if (running) {
                         System.out.println("Enter a valid number");
