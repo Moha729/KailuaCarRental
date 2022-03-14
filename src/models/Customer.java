@@ -1,7 +1,8 @@
 package models;
 
 public class Customer {
-
+    private String driverLicenseNumber;
+    private String driverSinceNumber;
     private String name;
     private String lastName;
     private int zip;
@@ -9,19 +10,18 @@ public class Customer {
     private int phone;
     private int mobilePhone;
     private String email;
-    private String driverLicenseNumber;
-    private String driverSinceNumber;
 
 
-    public Customer(String name,
+    public Customer(
+                    String driverLicenseNumber,
+                    String driverSinceNumber,
+                    String name,
                     String lastName,
                     int zip,
                     String city,
                     int phone,
                     int mobilePhone,
-                    String email,
-                    String driverLicenseNumber,
-                    String driverSinceNumber) {
+                    String email) {
         this.name = name;
         this.lastName = lastName;
         this.zip = zip;

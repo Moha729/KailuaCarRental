@@ -5,19 +5,20 @@ import models.Customer;
 
 public class Rental {
 
-
+    private Car car;
+    private Customer customer;
     private String fromDateAndTime;
     private String toDateAndTime;
     private int maxKm;
-    private Car car;
-    private Customer customer;
 
-    public Rental(String fromDateAndTime, String toDateAndTime, int maxKm, Car car, Customer customer) {
+
+    public Rental(Car car, Customer customer, String fromDateAndTime, String toDateAndTime, int maxKm) {
+        this.car = car;
+        this.customer = customer;
         this.fromDateAndTime = fromDateAndTime;
         this.toDateAndTime = toDateAndTime;
         this.maxKm = maxKm;
-        this.car = car;
-        this.customer = customer;
+
     }
 
     public String getFromDateAndTime() {
