@@ -138,6 +138,62 @@ public class FamilyService {
                 newValue =  userInput.next();
                 newVariable = "brand";
                 break;
+            case 3 :
+                System.out.println("Enter new model");
+                newValue = userInput.next();
+                newVariable = "model";
+                break;
+            case 4 :
+                System.out.println("Enter new registration date");
+                newValue = userInput.next();
+                newVariable = "registration_date";
+                break;
+            case 5 :
+                System.out.println("Enter new km driven");
+                newValue = userInput.next();
+                newVariable = "km_driven";
+                break;
+            case 6 :
+                System.out.println("Enter new gear type - does it have manual gear?");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "manual_gear";
+                break;
+            case 7 :
+                System.out.println("Enter new air condition status - does it have air condition?");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "air_condition";
+                break;
+            case 8 :
+                System.out.println("Enter new cruise control status - does it have cruise control?");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "cruise_control";
+                break;
+            case 9 :
+                System.out.println("Enter new info, does it have more than 7 seats");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "seven_seats_or_more";
+                break;
+
         }
         /*System.out.println("Enter new registration number");
         String newNumber = userInput.next();
@@ -180,10 +236,6 @@ public class FamilyService {
             e.printStackTrace();
             System.out.println("Could not update family table");
         }
-
-
-
         //statement.close();
-
     }
 }
