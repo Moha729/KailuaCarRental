@@ -6,7 +6,7 @@ public class Sport extends Car {
     private boolean manualGear;
     private boolean over200HP;
 
-    public Sport(String brand, String model, String registrationNumber, String registrationDate,
+    public Sport(String registrationNumber, String brand, String model, String registrationDate,
                  int kmDriven, boolean manualGear, boolean over200HP) {
         super(registrationNumber, brand, model, registrationDate, kmDriven);
         this.manualGear = manualGear;
