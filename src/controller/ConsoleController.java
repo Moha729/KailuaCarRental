@@ -41,6 +41,7 @@ public class ConsoleController {
                 case 5 -> testing.update(statement,carList);
                 case 6 -> carService.createCar(statement, userInput, carList);
                 case 7 -> testing.deleteLuxury(statement,carList);
+                case 8 -> carService.updateCar(statement, userInput, carList);
                 default -> {
                     if (running) {
                         System.out.println("Enter a valid number");

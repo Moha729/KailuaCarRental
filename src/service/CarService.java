@@ -15,6 +15,8 @@ public class CarService {
 
     MoTools tools = new MoTools();
     SportService sportService = new SportService();
+    FamilyService familyService = new FamilyService();
+
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
 
@@ -47,16 +49,16 @@ public class CarService {
                 carList.add(luxuryCar);
 
 
-            } else if(userInput.nextInt() == 2){
+            } else if(chooseType == 2){
 
                 Sport sportsCar = sportService.createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
                         registrationDate, kmDriven);
                 carList.add(sportsCar);
 
-            } else if(userInput.nextInt() == 3){
+            } else if(chooseType == 3){
 
-                Family familyCar = createFamilyCar(statement, userInput, carList, registrationNumber, brand, model,
-                        registrationDate, kmDriven);
+                Family familyCar = familyService.createFamilyCar(statement, userInput, carList, registrationNumber, brand, model,
+                        registrationDate, kmDriven, tools);
 
             } else { tools.customizedButton(60, 1, "Try again!");
 
@@ -136,4 +138,11 @@ public class CarService {
                 + familyCar.isSevenSeatsOrMore()       + "')");
     }
 
+    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList){
+        System.out.println("1 luxury 2 sport 3 family");
+        switch (userInput.nextInt()){
+            case 3 -> familyService.updateFamilyCar(statement, carList, userInput);
+        }
+
+    }
 }

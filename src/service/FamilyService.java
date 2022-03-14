@@ -56,7 +56,7 @@ public class FamilyService {
 
     private void addFamilyCarToDataBase(Family familyCar, Statement statement){
         try {
-            statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, kmDriven)" + "" +
+            statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
                     "VALUES('"
                     + familyCar.getRegistrationNumber()   + "','"
                     + familyCar.getBrand()                +  "','"
@@ -64,7 +64,7 @@ public class FamilyService {
                     + familyCar.getRegistrationDate()     + "','"
                     + familyCar.getKmDriven()             + "')");
 
-            statement.execute("INSERT INTO  family_cars " + "(registration_number, manualGear ,airCondition , cruise_control1, sevenSeatsOrMore)" + "" +
+            statement.execute("INSERT INTO  family_cars " + "(registration_number, manual_gear ,air_condition , cruise_control, seven_seats_or_more)" + "" +
                     "VALUES('"
                     + familyCar.getRegistrationNumber() + "','"
                     + familyCar.isManualGear() + "','"
@@ -81,7 +81,7 @@ public class FamilyService {
 
     public void viewFamilyCars(ArrayList<Car> carList, MoTools tools){
         System.out.println();
-        tools.customizedButton(50,1, "Luxuries/nn");
+        tools.customizedButton(50,1, "Family");
 
         tools.margeTop(70);
         System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
@@ -123,16 +123,67 @@ public class FamilyService {
         statmentService = "cruise_control";
         String cruise = userInput.next();
 
+        String newValue = null;
+        String newVariable = null;
 
         switch (ans){
 
             case 1 :
-                System.out.println("Enter new registration date");
-                String regDate = userInput.next();
-                //String statmentService = "registration_number";
+                System.out.println("Enter new registration number");
+                newValue = userInput.next();
+                newVariable = "registration_number";
+                break;
+            case 2 :
+                System.out.println("Enter new brand");
+                newValue =  userInput.next();
+                newVariable = "brand";
                 break;
         }
+        /*System.out.println("Enter new registration number");
+        String newNumber = userInput.next();
+        System.out.println("Enter new brand");
+        String newBrand =  userInput.next();
 
+        System.out.println("Enter new model");
+        String newModel = userInput.next();
+
+        System.out.println("Enter new registration date");
+        String regDate = userInput.next();
+
+        System.out.println("Enter new km");
+        int km = userInput.nextInt();
+
+        System.out.println("Enter new ccm");
+        String ccm = userInput.next();
+        System.out.println("Enter if automatic gear");
+        String automatic = userInput.next();
+        System.out.println("Enter if cruise control ");
+        //String cruise = userInput.next();
+        System.out.println("Enter if leather seats");
+        String leather = userInput.next();*/
+
+
+        try {
+            statement.execute("UPDATE car_table SET " +
+                    newVariable + " = '" + newValue + "' " +
+                    "WHERE registration_number ='" + answer + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Could not update car table");
+        }
+
+        try {
+            statement.execute("UPDATE family_cars SET " +
+                    newVariable + " = '" + newValue + "' " +
+                    "WHERE registration_number ='" + answer + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Could not update family table");
+        }
+
+
+
+        //statement.close();
 
     }
 }

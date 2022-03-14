@@ -10,7 +10,7 @@ public class Family extends Car {
     private boolean sevenSeatsOrMore;
 
 
-    public Family(String brand, String model, String registrationNumber, String registrationDate, int kmDriven, boolean manualGear, boolean airCondition, boolean cruiseControl, boolean sevenSeatsOrMore) {
+    public Family(String registrationNumber, String brand, String model, String registrationDate, int kmDriven, boolean manualGear, boolean airCondition, boolean cruiseControl, boolean sevenSeatsOrMore) {
         super(registrationNumber, brand, model, registrationDate, kmDriven);
         this.manualGear = manualGear;
         this.airCondition = airCondition;
