@@ -25,7 +25,6 @@ public class ConsoleController {
     MenuHandler menuHandler = new MenuHandler();//UI class
     Testing testing = new Testing();
     boolean running = true;
-    Car car;
 
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
@@ -72,14 +71,12 @@ public class ConsoleController {
 
         }
 
-//        carService.createCar(statement, userInput, carList);
     }
 
-
-    private void runCustomerMenu() {
+    private void CustomerMenu() {
     }
 
-    private void runRentalMenu() {
+    private void RentalMenu() {
     }
 
 
