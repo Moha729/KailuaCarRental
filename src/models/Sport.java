@@ -15,7 +15,9 @@ public class Sport extends Car {
 
     @Override
     public String toString() {
-        return "models.Sport{" +
+        return getClass().getSimpleName()+" car: "
+                +super.toString()+
+                "models.Sport{" +
                 "manualGear=" + manualGear +
                 ", over200HP=" + over200HP +
                 '}';

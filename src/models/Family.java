@@ -20,7 +20,9 @@ public class Family extends Car {
 
     @Override
     public String toString() {
-        return "models.Family{" +
+        return getClass().getSimpleName()+" car: "
+                +super.toString()+
+                "models.Family{" +
                 "manualGear=" + manualGear +
                 ", airCondition=" + airCondition +
                 ", cruiseControl=" + cruiseControl +
