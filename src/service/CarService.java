@@ -14,6 +14,7 @@ import java.sql.Statement;
 public class CarService {
 
     MoTools tools = new MoTools();
+    SportService sportService = new SportService();
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
 
@@ -48,8 +49,9 @@ public class CarService {
 
             } else if(userInput.nextInt() == 2){
 
-                createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
+                Sport sportsCar = sportService.createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
                         registrationDate, kmDriven);
+                carList.add(sportsCar);
 
             } else if(userInput.nextInt() == 3){
 
@@ -134,44 +136,4 @@ public class CarService {
                 + familyCar.isSevenSeatsOrMore()       + "')");
     }
 
-
-
-
-
-    private void createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg, String br, String mo,
-                                 String regDate, int kmDr){
-
-        String gear = tools.returnStringInfo(50, 1, "does it have a manual gear?");
-        boolean gearGear;
-        if (gear.equalsIgnoreCase("yes")){
-            gearGear = true;
-        }else {
-            gearGear = false;
-        }
-
-        String horsePower = tools.returnStringInfo(50, 1, "does it have over 200 hP?");
-        boolean hpHp;
-        if (horsePower.equalsIgnoreCase("Yes")){
-            hpHp = true;
-        } else {
-            hpHp = false;
-        }
-
-        Sport sportsCar = new Sport(reg, br , mo, regDate,kmDr,gearGear, hpHp);
-
-        carList.add(sportsCar);
-
-        addSportsCarToDB(sportsCar, statement);
-
-    }
-
-    private void addSportsCarToDB(Sport sportsCar, Statement statement){}
-
-
-
-    /*public void show(Statement statement) throws SQLException {
-        String name = userInput.next();
-
-        statement.execute("SELECT * FROM cars WHERE registration_number = '"+ name+"'");
-    }*/
 }
