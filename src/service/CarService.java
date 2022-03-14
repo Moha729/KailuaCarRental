@@ -14,8 +14,6 @@ import java.sql.Statement;
 public class CarService {
 
     MoTools tools = new MoTools();
-    //ArrayList<Car> carList = new ArrayList<>();//to forskellige arraylister
-
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
 
@@ -84,7 +82,6 @@ public class CarService {
         boolean leatherSeats = userInput.nextBoolean();
 
         Luxury luxuryCar = new Luxury(reg, br, mo, regDate, kmDr, ccm, gear, cruiseControl, leatherSeats);
-        carList.add(luxuryCar);
 
         addLuxuryCarToDB(luxuryCar, statement);
 
