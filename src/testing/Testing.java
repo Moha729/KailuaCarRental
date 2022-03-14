@@ -51,6 +51,7 @@ public class Testing {
         System.out.println("Enter if leather seats");
         String leather = userInput.next();
 
+
         statement.execute("UPDATE car_table SET " +
                 "  registration_number='" + newNumber + "' , "
                 + "brand='" + newBrand + "' , "

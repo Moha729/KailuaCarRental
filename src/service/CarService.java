@@ -116,6 +116,7 @@ public class CarService {
 
         Family familyCar = new Family(reg, br , mo, regDate,kmDr,manualGear,airCondition,
                 cruise_control1,sevenSeatsOrMore);
+
         carList.add(familyCar);
 
         addFamilyCarToDB(familyCar, statement);
