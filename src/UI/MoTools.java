@@ -130,9 +130,6 @@ public class MoTools {
             System.out.print("|");
         }
 
-
-
-
     }
 
 }

@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Make structure of FamilyService The same as in LuxuryService and SportService !!!!
+
 public class FamilyService {
 
 
@@ -51,9 +53,7 @@ public class FamilyService {
 
         return familyCar;
 
-
     }
-
     private void addFamilyCarToDataBase(Family familyCar, Statement statement){
         try {
             statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
@@ -89,16 +89,13 @@ public class FamilyService {
         tools.margeTop(120);
 
         for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("family")) {
+            if (carList.get(i).getClass().getSimpleName().equals("Family")) {
                 System.out.println("\n" + carList.get(i).toString());
                 tools.margeTop(120);
             }
         }
-
         System.out.println();
-
     }
-
 
     public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput){
 
@@ -119,8 +116,8 @@ public class FamilyService {
 
         int ans = userInput.nextInt();
 
-        String statmentService = userInput.next();
-        statmentService = "cruise_control";
+        String statementService = userInput.next();
+        statementService = "cruise_control";
         String cruise = userInput.next();
 
         String newValue = null;
@@ -195,29 +192,6 @@ public class FamilyService {
                 break;
 
         }
-        /*System.out.println("Enter new registration number");
-        String newNumber = userInput.next();
-        System.out.println("Enter new brand");
-        String newBrand =  userInput.next();
-
-        System.out.println("Enter new model");
-        String newModel = userInput.next();
-
-        System.out.println("Enter new registration date");
-        String regDate = userInput.next();
-
-        System.out.println("Enter new km");
-        int km = userInput.nextInt();
-
-        System.out.println("Enter new ccm");
-        String ccm = userInput.next();
-        System.out.println("Enter if automatic gear");
-        String automatic = userInput.next();
-        System.out.println("Enter if cruise control ");
-        //String cruise = userInput.next();
-        System.out.println("Enter if leather seats");
-        String leather = userInput.next();*/
-
 
         try {
             statement.execute("UPDATE car_table SET " +

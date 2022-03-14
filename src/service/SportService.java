@@ -15,65 +15,48 @@ public class SportService {
     Scanner userInput = new Scanner(System.in);
 
     public Sport createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String reg, String br, String mo,
-                         String regDate, int kmDr) throws SQLException{
+                                 String regDate, int kmDr) throws SQLException {
 
         String gear = tools.returnStringInfo(50, 1, "does it have a manual gear?");
         boolean gearGear;
-        if (gear.equalsIgnoreCase("yes")){
+        if (gear.equalsIgnoreCase("yes")) {
             gearGear = true;
-        }else {
+        } else {
             gearGear = false;
         }
 
         String horsePower = tools.returnStringInfo(50, 1, "does it have over 200 hP?");
         boolean hpHp;
-        if (horsePower.equalsIgnoreCase("Yes")){
+        if (horsePower.equalsIgnoreCase("Yes")) {
             hpHp = true;
         } else {
             hpHp = false;
         }
 
-        Sport sportsCar = new Sport(reg, br , mo, regDate, kmDr, gearGear, hpHp);
+        Sport sportsCar = new Sport(reg, br, mo, regDate, kmDr, gearGear, hpHp);
 
         addSportsCarToDB(sportsCar, statement);
 
         return sportsCar;
     }
+
     private void addSportsCarToDB(Sport sportsCar, Statement statement) throws SQLException {
         statement.execute("INSERT INTO car_table " + "(registration_number, brand, model, registration_date, km_driven)" + "" +
                 "VALUES('"
-                + sportsCar.getRegistrationNumber()   + "','"
-                + sportsCar.getBrand()                +  "','"
-                + sportsCar.getModel()                + "','"
-                + sportsCar.getRegistrationDate()     + "','"
-                + sportsCar.getKmDriven()             + "')");
+                + sportsCar.getRegistrationNumber() + "','"
+                + sportsCar.getBrand() + "','"
+                + sportsCar.getModel() + "','"
+                + sportsCar.getRegistrationDate() + "','"
+                + sportsCar.getKmDriven() + "')");
 
         statement.execute("INSERT INTO  sport_cars " + "(registration_number, manual_gear, Over200HP)" + "" +
                 "VALUES('"
                 + sportsCar.getRegistrationNumber() + "','"
-                + sportsCar.isManualGear()       + "','"
-                + sportsCar.isOver200HP()        + "')");
+                + sportsCar.isManualGear() + "','"
+                + sportsCar.isOver200HP() + "')");
     }
 
-    public void viewSportCars(ArrayList<Car> carList, MoTools tools){
-        System.out.println();
-        tools.customizedButton(50,1, "Sports/nn");
-
-        tools.margeTop(70);
-        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
-                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
-        tools.margeTop(120);
-
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("sport")) {
-                System.out.println("\n" + carList.get(i).toString());
-                tools.margeTop(120);
-            }
-        }
-        System.out.println();
-    }
-    
-    public void updateSportCars(Statement statement, ArrayList<Car> carList) throws SQLException{
+    public void updateSportCars(Statement statement, ArrayList<Car> carList) throws SQLException {
 
         for (int i = 0; i < carList.size(); i++) {
             System.out.println(carList.get(i));
@@ -89,7 +72,7 @@ public class SportService {
         String newNumber = userInput.next();
 
         System.out.println("Enter new brand");
-        String newBrand =  userInput.next();
+        String newBrand = userInput.next();
 
         System.out.println("Enter new model");
         String newModel = userInput.next();
@@ -102,6 +85,7 @@ public class SportService {
 
         System.out.println("Enter if it has Manual gear");
         String ManualGear = userInput.next();
+
         System.out.println("Enter if it has over 200 Horsepower");
         String Over200HP = userInput.next();
 
@@ -112,15 +96,16 @@ public class SportService {
                 + "model='" + newModel + "' , "
                 + "registration_date='" + regDate + "' , "
                 + "km_driven ='" + km + "' "
-                + "WHERE registration_number ='" +answer+"'");
+                + "WHERE registration_number ='" + answer + "'");
 
-        statement.execute("UPDATE sport_cars SET "+
+        statement.execute("UPDATE sport_cars SET " +
                 "registration_number='" + newNumber + "' , "
                 + "manual_gear='" + ManualGear + "' , "
                 + "Over200Hp='" + Over200HP + "' , "
                 + "WHERE registration_number ='" + answer + "'");
         statement.close();
     }
+
     public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) { // table content
         try {
 
@@ -145,6 +130,24 @@ public class SportService {
             System.out.println(e.getMessage() + "\n");
         }
     }
+    public void viewSportCars(ArrayList<Car> carList, MoTools tools) {
+        System.out.println();
+        tools.customizedButton(50, 1, "Sports/n");
+
+        tools.margeTop(70);
+        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
+        tools.margeTop(120);
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getClass().getSimpleName().equals("Sport")) {
+                System.out.println("\n" + carList.get(i).toString());
+                tools.margeTop(120);
+            }
+        }
+        System.out.println();
+    }
+
     public void deleteSport(Statement statement,ArrayList<Car> carList) throws SQLException {
         System.out.println("Enter a registration number to delete its car information");
         String answer = userInput.next();

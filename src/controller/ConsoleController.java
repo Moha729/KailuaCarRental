@@ -4,6 +4,7 @@ import UI.MenuHandler;
 import db.DBManager;
 import models.Car;
 import service.CarService;
+import service.LuxuryService;
 import service.SportService;
 import testing.Testing;
 
@@ -19,7 +20,8 @@ public class ConsoleController {
     Connection connection = DBManager.getConnection();//returns connection
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     CarService carService = new CarService();//Service class
-    SportService sportService = new SportService();
+    LuxuryService luxuryService = new LuxuryService(); // Luxury Service class
+    SportService sportService = new SportService(); // Sport service class
     MenuHandler menuHandler = new MenuHandler();//UI class
     Testing testing = new Testing();
     boolean running = true;
@@ -27,7 +29,7 @@ public class ConsoleController {
 
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
-        testing.populateArrayList(statement,carList);
+        luxuryService.populateLuxuryToArrayList(statement,carList);
         sportService.populateSportToArrayList(statement, carList);
         while (running) {
 
@@ -43,7 +45,7 @@ public class ConsoleController {
                 case 4 -> testing.join(statement);
                 case 5 -> testing.update(statement,carList);
                 case 6 -> carService.createCar(statement, userInput, carList);
-                case 7 -> testing.deleteLuxury(statement,carList);
+                case 7 -> luxuryService.deleteLuxury(statement,carList);
                 case 8 -> carService.updateCar(statement, userInput, carList);
                 default -> {
                     if (running) {

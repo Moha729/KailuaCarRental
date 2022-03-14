@@ -71,33 +71,6 @@ public class Testing {
 
 }
 
-    public void populateArrayList(Statement statement,ArrayList<Car> carList) { // table content
-        try {
-
-            String sql = ("SELECT * FROM car_table LEFT JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet != null)
-                while (resultSet.next()) {
-                            luxury = new Luxury(
-                            resultSet.getString("registration_number"),
-                            resultSet.getString("brand"),
-                            resultSet.getString("model"),
-                            resultSet.getString("registration_date"),
-                            resultSet.getInt("kmDriven"),
-                            resultSet.getBoolean("ccm"),
-                            resultSet.getBoolean("automatic_gear"),
-                            resultSet.getBoolean("cruise_control"),
-                            resultSet.getBoolean("leather_seats"));
-
-                      carList.add(luxury);
-                }
-
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\n");
-        }
-    }
-
 
     public void join(Statement statement){
         try {
@@ -129,15 +102,4 @@ public class Testing {
         }
     }
 
-    public void deleteLuxury(Statement statement,ArrayList<Car> carList) throws SQLException {
-        System.out.println("Enter a registration number to delete its car information");
-        String answer = userInput.next();
-        statement.execute("DELETE FROM car_table WHERE registration_number = '"+answer+"'");
-        statement.execute("DELETE FROM luxury_cars WHERE registration_number = '"+answer+"'");
-        for (int i = 0; i < carList.size()-1; i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer));
-                carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
-        }
-
-    }
 }
