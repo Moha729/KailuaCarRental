@@ -4,6 +4,7 @@ import UI.MenuHandler;
 import db.DBManager;
 import models.Car;
 import service.CarService;
+import service.SportService;
 import testing.Testing;
 
 import java.sql.Connection;
@@ -18,6 +19,7 @@ public class ConsoleController {
     Connection connection = DBManager.getConnection();//returns connection
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     CarService carService = new CarService();//Service class
+    SportService sportService = new SportService();
     MenuHandler menuHandler = new MenuHandler();//UI class
     Testing testing = new Testing();
     boolean running = true;
@@ -26,6 +28,7 @@ public class ConsoleController {
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
         testing.populateArrayList(statement,carList);
+        sportService.populateSportToArrayList(statement, carList);
         while (running) {
 
             menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box
