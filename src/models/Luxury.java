@@ -24,12 +24,10 @@ public class Luxury extends Car {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName()+" car: "
-         +super.toString()+
-        ", over3000CCM: "+over3000CCM+
-        ", automatic gear: " +automaticGear+
-        ", cruise control: "+cruiseControl+
-        ", leather seats: "+leatherSeats+"]\n";
+        return /*getClass().getSimpleName()+" car: "+super.toString()+*/
+                String.format("| %-14s %-14s %-12s %-12s %-12d %-10b %-10b %-13b %-13b |",
+                        getRegistrationNumber(), getBrand(), getModel(), getRegistrationDate(), getKmDriven(),
+                        isOver3000CCM(), isAutomaticGear(), isCruiseControl(), isLeatherSeats());
 
 
     }

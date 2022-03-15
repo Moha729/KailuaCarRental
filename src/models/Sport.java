@@ -15,10 +15,10 @@ public class Sport extends Car {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName()+" car: "
-                +super.toString()+
-                ", manual gear: "+manualGear+
-                ", over 200 hp?: " +over200HP+"]\n";
+        return /*getClass().getSimpleName()+" car: "+super.toString()+*/
+                String.format("| %-14s %-14s %-12s %-12s %-12d %-10b %-10b |",
+                        getRegistrationNumber(), getBrand(), getModel(), getRegistrationDate(), getKmDriven(),
+                        isManualGear(),isOver200HP());
 
 
     }
