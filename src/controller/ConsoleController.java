@@ -22,7 +22,6 @@ public class ConsoleController {
     ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
     CarService carService = new CarService();//Service class
 
-    Testing testing = new Testing();
     boolean running = true;
 
     public void run() throws SQLException {
