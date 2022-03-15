@@ -72,7 +72,7 @@ public class MoTools {
         return String.format("|%-" + width + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s)) + "|";
     }
 
-    public String doubleBottom(String text1, String text2) {
+    public String doubleButton(String text1, String text2) {
         String margeTop    = " ___________________________________________________________ ";
         String middleSpace = "|                                                           |";
         String margeCenter = centerString(59, text1);

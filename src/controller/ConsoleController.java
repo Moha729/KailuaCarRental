@@ -43,8 +43,8 @@ public class ConsoleController {
     public void runMenu(Statement statement) throws SQLException {
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
 
-        System.out.print(tools.dobbleButton(">1< Cars", ">2< Customers"));
-        System.out.print(tools.dobbleButton(">3< New rental", ">4< Active rentals"));
+        System.out.print(tools.doubleBottom(">1< Cars", ">2< Customers"));
+        System.out.print(tools.doubleBottom(">3< New rental", ">4< Active rentals"));
 
         int mainSwitch = userInput.nextInt();
 
@@ -72,9 +72,8 @@ public class ConsoleController {
         try {
             System.out.println();
             tools.customizedButton(120, 3, "Cars menu");
-
-            System.out.print(tools.dobbleButton(">1< See cars", ">2< Update car"));
-            System.out.print(tools.dobbleButton(">3< New car", ">4< \"Delete car\""));
+            System.out.print(tools.doubleButton(">1< See cars", ">2< Update car"));
+            System.out.print(tools.doubleButton(">3< New car", ">4< \"Delete car\""));
 
             int carsSwitch = userInput.nextInt();
 
