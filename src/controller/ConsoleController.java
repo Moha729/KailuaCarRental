@@ -5,6 +5,7 @@ import db.DBManager;
 import models.Car;
 import models.Customer;
 import service.CarService;
+//import testing.Testing;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,12 +15,12 @@ import java.util.Scanner;
 
 public class ConsoleController {
 
-    final Scanner userInput = new Scanner(System.in);
+    final Scanner userInput = new Scanner(System.in);//Scanner
     final MoTools tools = new MoTools(); //buttons
-    Connection connection = DBManager.getConnection();
-    ArrayList<Car> carList = new ArrayList<>();
-    ArrayList<Customer> customerList = new ArrayList<>();
-    CarService carService = new CarService();
+    Connection connection = DBManager.getConnection();//returns connection
+    ArrayList<Car> carList = new ArrayList<>();//All cars are here
+    ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
+    CarService carService = new CarService();//Service class
 
     boolean running = true;
 
@@ -43,8 +44,8 @@ public class ConsoleController {
     public void runMenu(Statement statement) throws SQLException {
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
 
-        System.out.print(tools.doubleButton(">1< Cars", ">2< Customers"));
-        System.out.print(tools.doubleButton(">3< New rental", ">4< Active rentals"));
+        System.out.print(tools.dobbleButton(">1< Cars", ">2< Customers"));
+        System.out.print(tools.dobbleButton(">3< New rental", ">4< Active rentals"));
 
         int mainSwitch = userInput.nextInt();
 
@@ -72,8 +73,9 @@ public class ConsoleController {
         try {
             System.out.println();
             tools.customizedButton(120, 3, "Cars menu");
-            System.out.print(tools.doubleButton(">1< See cars", ">2< Update car"));
-            System.out.print(tools.doubleButton(">3< New car", ">4< \"Delete car\""));
+
+            System.out.print(tools.dobbleButton(">1< See cars", ">2< Update car"));
+            System.out.print(tools.dobbleButton(">3< New car", ">4< \"Delete car\""));
 
             int carsSwitch = userInput.nextInt();
 
@@ -83,7 +85,7 @@ public class ConsoleController {
                 case 1 -> carService.viewCars(carList, tools); //view cars //Not done yet
                 case 2 -> carService.updateCar(statement, userInput, carList); // Not done yet
                 case 3 -> carService.createCar(statement, userInput, carList, tools); // Not done yet
-                case 4 -> carService.delete(statement, carList, userInput); //Not done yet
+                case 4 -> carService.delete(statement, carList, userInput, tools); //Not done yet
 
             }
         } catch (SQLException sqlEx){
