@@ -93,7 +93,7 @@ public class CarRepository {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)){
                 System.out.println(carList.get(i));
 
-                if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("luxury")){
+                if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Luxury")){
                     updateIndex = 1;
                     System.out.println("It's a luxury");
                 } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Family")){
@@ -105,8 +105,6 @@ public class CarRepository {
                 }
             }
         }
-
-
         switch (updateIndex) {
             case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput, regNum);
             case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum);
