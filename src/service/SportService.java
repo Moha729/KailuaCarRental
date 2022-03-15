@@ -186,17 +186,17 @@ public class SportService {
 
     public void viewSportCars(ArrayList<Car> carList, MoTools tools) {
         System.out.println();
-        tools.customizedButton(50, 1, "Sports/n");
+        tools.customizedButton(50, 1, "Sports");
 
-        tools.margeTop(70);
-        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+        tools.margeTop(40);
+        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s |\n",
                 "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
-        tools.margeTop(120);
+        tools.margeTop(91);
 
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getClass().getSimpleName().equals("Sport")) {
                 System.out.println("\n" + carList.get(i).toString());
-                tools.margeTop(120);
+                tools.margeTop(91);
             }
         }
         System.out.println();

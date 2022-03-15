@@ -21,12 +21,10 @@ public class Family extends Car {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName()+" car: "
-                +super.toString()+
-                ", over3000CCM: "+manualGear+
-                ", automatic gear: " +airCondition+
-                ", cruise control: "+cruiseControl+
-                ", leather seats: "+sevenSeatsOrMore+"]\n";
+        return /*getClass().getSimpleName()+" car: "+super.toString()+*/
+                String.format("| %-14s %-14s %-12s %-12s %-12d %-10b %-10b %-13b %-13b |",
+                        getRegistrationNumber(), getBrand(), getModel(), getRegistrationDate(), getKmDriven(),
+                        isManualGear(),isAirCondition(), isCruiseControl(), isSevenSeatsOrMore());
 
 
     }
