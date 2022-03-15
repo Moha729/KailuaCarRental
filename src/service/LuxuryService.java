@@ -14,6 +14,8 @@ public class LuxuryService {
     Scanner userInput = new Scanner(System.in);
     Luxury luxury = new Luxury();
 
+
+
     public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String  reg, String br, String mo,
                                 String regDate, int kmDr) throws SQLException {
 
