@@ -110,13 +110,14 @@ public class LuxuryRepository {
         String statementService = userInput.next();
         statementService = "cruise_control";
         String cruise = userInput.next();
-        //System.out.println("Enter which registration number to be updated");*/
-        String answer = regNum;
-
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
                 System.out.println(carList.get(i));
         }
+        //System.out.println("Enter which registration number to be updated");*/
+        String answer = regNum;
+
+
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
                 "\n6 for Over 3000CCM\n7 for aircondition\n 8 for AutomaticGear\n9 for LeatherSeats");
@@ -124,7 +125,7 @@ public class LuxuryRepository {
         int ans = userInput.nextInt();
 
 
-
+        boolean extention = true;
         String newValue = null;
         String newVariable = null;
 
@@ -156,6 +157,7 @@ public class LuxuryRepository {
                 newVariable = "km_driven";
                 break;
             case 6 :
+                extention = false;
                 System.out.println("Enter new gear type - does it have Over 3000CCM");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")){
@@ -166,6 +168,7 @@ public class LuxuryRepository {
                 newVariable = "manual_gear";
                 break;
             case 7 :
+                extention = false;
                 System.out.println("Enter new air condition status - does it have air condition?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")){
@@ -176,6 +179,7 @@ public class LuxuryRepository {
                 newVariable = "air_condition";
                 break;
             case 8 :
+                extention = false;
                 System.out.println("Enter new cruise control status - does it have Automatic Gear?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")){
@@ -186,6 +190,7 @@ public class LuxuryRepository {
                 newVariable = "cruise_control";
                 break;
             case 9 :
+                extention = false;
                 System.out.println("Enter new info, does it have Leather Seats");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")){
@@ -198,6 +203,7 @@ public class LuxuryRepository {
 
         }
 
+
         try {
             statement.execute("UPDATE car_table SET " +
                     newVariable + " = '" + newValue + "' " +
@@ -207,13 +213,15 @@ public class LuxuryRepository {
             System.out.println("Could not update car table");
         }
 
-        try {
-            statement.execute("UPDATE family_cars SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update luxury table");
+        if (extention == false) {
+            try {
+                statement.execute("UPDATE family_cars SET " +
+                        newVariable + " = '" + newValue + "' " +
+                        "WHERE registration_number ='" + answer + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Could not update luxury table");
+            }
         }
         //statement.close();
     }
