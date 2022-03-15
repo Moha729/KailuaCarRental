@@ -222,7 +222,6 @@ public class FamilyRepository {
                 }
                 newVariable = "seven_seats_or_more";
                 break;
-
         }
 
         try {

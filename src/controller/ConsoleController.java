@@ -5,7 +5,6 @@ import db.DBManager;
 import models.Car;
 import models.Customer;
 import service.CarService;
-import testing.Testing;
 
 import java.sql.Connection;
 import java.sql.SQLException;
