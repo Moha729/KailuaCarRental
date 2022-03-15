@@ -28,12 +28,11 @@ public class CarRepository {
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) throws SQLException {
 
-        //System.out.println("");
         System.out.println();
         tools.customizedButton(120, 1, "What is the type of the new car?");
 
-        System.out.print(tools.dobbleButton(">1< Luxury", ">2< Family"));
-        System.out.print(tools.dobbleButton(">3< Sport", ">4< \"Back\""));
+        System.out.print(tools.doubleButton(">1< Luxury", ">2< Family"));
+        System.out.print(tools.doubleButton(">3< Sport", ">4< \"Back\""));
         //int chooseType = tools.returnIntInfo(120, 3, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
         int chooseType = userInput.nextInt();
 

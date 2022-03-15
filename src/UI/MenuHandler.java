@@ -10,8 +10,8 @@ public class MenuHandler {
 
 
     public int getMainOptions(String text1, String text2, String text3, String text4){
-        System.out.print(tools.dobbleButton(text1, text2));
-        System.out.print(tools.dobbleButton(text3, text4));
+        System.out.print(tools.doubleButton(text1, text2));
+        System.out.print(tools.doubleButton(text3, text4));
 
         while(!scan.hasNextInt()){
             tools.customizedButton(40,1, "Not valid - try again!");
