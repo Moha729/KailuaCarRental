@@ -110,6 +110,7 @@ for (int i = 0; i < carList.size(); i++) {
         //statementService = "cruise_control";
         //String cruise = userInput.next();
 
+        boolean extention = true;
         String newValue = null;
         String newVariable = null;
 
@@ -141,6 +142,7 @@ for (int i = 0; i < carList.size(); i++) {
                 newVariable = "km_driven";
                 break;
             case 6:
+                extention = false;
                 System.out.println("Enter new gear type - does it have manual gear?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
@@ -151,6 +153,7 @@ for (int i = 0; i < carList.size(); i++) {
                 newVariable = "manual_gear";
                 break;
             case 7:
+                extention = false;
                 System.out.println("Enter new air condition status - does it have air condition?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
@@ -171,15 +174,17 @@ for (int i = 0; i < carList.size(); i++) {
             System.out.println("Could not update sport table");
         }
 
-        try {
-            statement.execute("UPDATE family_cars SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update sport table");
+        if (extention == false) {
+            try {
+                statement.execute("UPDATE sport_cars SET " +
+                        newVariable + " = '" + newValue + "' " +
+                        "WHERE registration_number ='" + answer + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Could not update sport table");
+            }
+            //statement.close();
         }
-        //statement.close();
     }
 
 
