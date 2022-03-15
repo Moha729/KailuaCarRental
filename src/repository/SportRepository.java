@@ -46,7 +46,7 @@ public class SportRepository {
     }
 
 
-    public void populateSportToArrayList(Statement statement,ArrayList<Car> carList) { // table content
+    public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) { // table content
         try {
 
             String sql = ("SELECT * FROM car_table INNER JOIN sport_cars ON car_table.registration_number = sport_cars.registration_number");
@@ -89,71 +89,71 @@ public class SportRepository {
     }
 
 
-    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum){
+    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum) {
 
-        //for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
-
-        //System.out.println("Enter which registration number to be updated");
-        String answer = regNum;
-
-        for (int i = 0; i < carList.size(); i++) {
+        /*for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
+for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
                 System.out.println(carList.get(i));
         }
+        //System.out.println("Enter which registration number to be updated");*/
+        String answer = regNum;
+
+
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
                 "\n6 for manualGear\n7 for Over 200 HP");
 
         int ans = userInput.nextInt();
 
-        String statementService = userInput.next();
-        statementService = "cruise_control";
-        String cruise = userInput.next();
+        //String statementService = userInput.next();
+        //statementService = "cruise_control";
+        //String cruise = userInput.next();
 
         String newValue = null;
         String newVariable = null;
 
-        switch (ans){
+        switch (ans) {
 
-            case 1 :
+            case 1:
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
                 break;
-            case 2 :
+            case 2:
                 System.out.println("Enter new brand");
-                newValue =  userInput.next();
+                newValue = userInput.next();
                 newVariable = "brand";
                 break;
-            case 3 :
+            case 3:
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
                 break;
-            case 4 :
+            case 4:
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
                 break;
-            case 5 :
+            case 5:
                 System.out.println("Enter new km driven");
                 newValue = userInput.next();
                 newVariable = "km_driven";
                 break;
-            case 6 :
+            case 6:
                 System.out.println("Enter new gear type - does it have manual gear?");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
                 }
                 newVariable = "manual_gear";
                 break;
-            case 7 :
+            case 7:
                 System.out.println("Enter new air condition status - does it have air condition?");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
@@ -201,13 +201,13 @@ public class SportRepository {
         System.out.println();
     }
 
-    public void deleteSport(Statement statement,ArrayList<Car> carList) throws SQLException {
+    public void deleteSport(Statement statement, ArrayList<Car> carList) throws SQLException {
         System.out.println("Enter a registration number to delete its car information");
         String answer = userInput.next();
-        statement.execute("DELETE FROM car_table WHERE registration_number = '"+answer+"'");
-        statement.execute("DELETE FROM sport_cars WHERE registration_number = '"+answer+"'");
-        for (int i = 0; i < carList.size()-1; i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer));
+        statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
+        statement.execute("DELETE FROM sport_cars WHERE registration_number = '" + answer + "'");
+        for (int i = 0; i < carList.size() - 1; i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) ;
             carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
         }
     }

@@ -106,9 +106,11 @@ public class LuxuryRepository {
 
     public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum){
 
-        //for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
-
-        //System.out.println("Enter which registration number to be updated");
+        /*/for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
+        String statementService = userInput.next();
+        statementService = "cruise_control";
+        String cruise = userInput.next();
+        //System.out.println("Enter which registration number to be updated");*/
         String answer = regNum;
 
         for (int i = 0; i < carList.size(); i++) {
@@ -121,9 +123,7 @@ public class LuxuryRepository {
 
         int ans = userInput.nextInt();
 
-        String statementService = userInput.next();
-        statementService = "cruise_control";
-        String cruise = userInput.next();
+
 
         String newValue = null;
         String newVariable = null;
