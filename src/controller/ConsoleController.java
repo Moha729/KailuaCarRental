@@ -14,12 +14,12 @@ import java.util.Scanner;
 
 public class ConsoleController {
 
-    final Scanner userInput = new Scanner(System.in);//Scanner
+    final Scanner userInput = new Scanner(System.in);
     final MoTools tools = new MoTools(); //buttons
-    Connection connection = DBManager.getConnection();//returns connection
-    ArrayList<Car> carList = new ArrayList<>();//All cars are here
-    ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
-    CarService carService = new CarService();//Service class
+    Connection connection = DBManager.getConnection();
+    ArrayList<Car> carList = new ArrayList<>();
+    ArrayList<Customer> customerList = new ArrayList<>();
+    CarService carService = new CarService();
 
     boolean running = true;
 

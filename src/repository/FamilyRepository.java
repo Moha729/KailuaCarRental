@@ -73,9 +73,6 @@ public class FamilyRepository {
                             resultSet.getBoolean("air_condition"),
                             resultSet.getBoolean("cruise_control"),
                             resultSet.getBoolean("seven_seats_or_more"));
-
-
-
                     carList.add(family);
                 }
 
