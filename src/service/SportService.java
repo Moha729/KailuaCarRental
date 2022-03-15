@@ -39,6 +39,8 @@ public class SportService {
 
         addSportsCarToDB(sportsCar, statement);
 
+        System.out.println("pres 1 to continue");
+
         return sportsCar;
     }
 

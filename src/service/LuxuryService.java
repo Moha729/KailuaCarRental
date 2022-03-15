@@ -33,6 +33,8 @@ public class LuxuryService {
 
         addLuxuryCarToDB(luxuryCar, statement);
 
+        System.out.println("pres 1 to continue");
+
         return luxuryCar;
     }
 

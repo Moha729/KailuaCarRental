@@ -24,13 +24,34 @@ public class CarService {
         sportService.populateSportToArrayList(statement,carList);
     }
 
+    public void viewCars(ArrayList<Car> carList, MoTools tools){
+        luxuryService.viewLuxuryCars(carList, tools);
+        familyService.viewFamilyCars(carList, tools);
+        sportService.viewSportCars(carList, tools);
 
 
-    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) {
 
-        try {
+    }
+    public void createCartest(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools){
 
-            int chooseType = tools.returnIntInfo(100, 1, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
+        int chooseType = tools.returnIntInfo(120, 3, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
+
+        String brand = tools.returnStringInfo(50, 1, "Enter brand");
+
+        String model = tools.returnStringInfo(50, 1, "Enter model");
+
+        String registrationDate = tools.returnStringInfo(50, 1, "Enter date");
+
+        int kmDriven = tools.returnIntInfo(50, 1, "Enter km driven");
+
+
+    }
+
+
+    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) throws SQLException {
+
+            //System.out.println("");
+            int chooseType = tools.returnIntInfo(120, 3, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
 
             String registrationNumber = tools.returnStringInfo(50, 1, "Enter registration number");
 
@@ -41,7 +62,7 @@ public class CarService {
             String registrationDate = tools.returnStringInfo(50, 1, "Enter date");
 
             int kmDriven = tools.returnIntInfo(50, 1, "Enter km driven");
-
+        //try {
             if (chooseType == 1) {
 
                 Luxury luxuryCar = luxuryService.createLuxury(statement, carList, userInput, registrationNumber, brand, model,
@@ -65,9 +86,7 @@ public class CarService {
 
             }
 
-        } catch (SQLException e) {
-            tools.customizedButton(60, 1, e.getMessage());
-        }
+        //} catch (SQLException e) {tools.customizedButton(60, 1, e.getMessage());}
 
     }
 

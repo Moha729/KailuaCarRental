@@ -21,12 +21,8 @@ public class Car {
 
     @Override
     public String toString() {
-        return
-                "registrationNumber='" + registrationNumber +
-                ", brand='" + brand +
-                ", model='" + model +
-                ", registrationDate='" + registrationDate +
-                ", kmDriven=" + kmDriven;
+        return String.format("| %-14s %-14s %-12s %-12s %-12d ", getRegistrationNumber(),
+                getBrand(), getModel(), getRegistrationDate(), getKmDriven());
     }
 
     public String getBrand() {

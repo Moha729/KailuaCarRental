@@ -23,7 +23,7 @@ public class ConsoleController {
     Testing testing = new Testing();
     boolean running = true;
 
-    public void run() {
+    public void run() throws SQLException {
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -62,7 +62,7 @@ public class ConsoleController {
         }
     }
 
-    public void runCarMenu(Statement statement) {
+    public void runCarMenu(Statement statement) throws SQLException {
 
         try {
             System.out.println();
@@ -76,7 +76,7 @@ public class ConsoleController {
             //while (!userInput.hasNextInt()) { tools.customizedButton(40, 1, "Not valid - try again!");}
             switch (carsSwitch) {
 
-                case 1 -> System.out.println(carList); //view cars //Not done yet
+                case 1 -> carService.viewCars(carList, tools); //view cars //Not done yet
                 case 2 -> carService.updateCar(statement, userInput, carList); // Not done yet
                 case 3 -> carService.createCar(statement, userInput, carList, tools); // Not done yet
                 case 4 -> carService.delete(statement, carList, userInput); //Not done yet

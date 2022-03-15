@@ -15,8 +15,6 @@ import java.util.Scanner;
 
 public class FamilyService {
 
-    Family family;
-
 
     public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg,
                                   String br, String mo, String regDate, int kmDr, MoTools tools){
@@ -47,6 +45,8 @@ public class FamilyService {
             sevenSeatsOrMore = false;
         }
 
+
+
         Family familyCar = new Family(reg, br , mo, regDate,kmDr,manualGear,airCondition,
                 cruiseControl,sevenSeatsOrMore);
 
@@ -54,6 +54,7 @@ public class FamilyService {
 
         addFamilyCarToDataBase(familyCar, statement);
 
+        System.out.println("pres 1 to continue");
 
         return familyCar;
 
@@ -67,7 +68,7 @@ public class FamilyService {
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
-                    family  = new Family(
+                    Family family  = new Family(
                             resultSet.getString("registration_number"),
                             resultSet.getString("brand"),
                             resultSet.getString("model"),
