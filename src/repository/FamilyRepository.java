@@ -82,7 +82,7 @@ public class FamilyRepository {
         }
     }
 
-
+// hello
     private void addFamilyCarToDataBase(Family familyCar, Statement statement){
         try {
             statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
