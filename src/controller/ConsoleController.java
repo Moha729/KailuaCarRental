@@ -37,6 +37,11 @@ public class ConsoleController {
         }
         carService.populateCars(statement, carList);
 
+        runMenu(statement);
+
+
+    }
+    public void runMenu(Statement statement) throws SQLException {
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
 
         System.out.print(tools.dobbleButton(">1< Cars", ">2< Customers"));
@@ -59,7 +64,7 @@ public class ConsoleController {
         }
         int start = userInput.nextInt();
         if (start != 0) {
-            run();
+            runMenu(statement);
         }
     }
 
