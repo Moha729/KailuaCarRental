@@ -126,91 +126,101 @@ public class FamilyRepository {
         System.out.println();
     }
 
-    public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum){
+    public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum,
+    Car car) {
 
-        //for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
-
-        //System.out.println("Enter which registration number to be updated");
-        String answer = regNum;
-
+        /*/for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
                 System.out.println(carList.get(i));
-        }
+        }String statementService = userInput.next();
+        statementService = "cruise_control";
+        String cruise = userInput.next();
+        //System.out.println("Enter which registration number to be updated");*/
+        String answer = regNum;
+
+
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
                 "\n6 for manualGear\n7 for aircondition\n 8 for cruiseControl\n9 for sevenSeatsPlus");
 
         int ans = userInput.nextInt();
 
-        String statementService = userInput.next();
-        statementService = "cruise_control";
-        String cruise = userInput.next();
-
+        boolean extention = true;
         String newValue = null;
         String newVariable = null;
 
-        switch (ans){
+        switch (ans) {
 
-            case 1 :
+            case 1:
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
+                car.setRegistrationNumber(newValue);
                 break;
-            case 2 :
+            case 2:
                 System.out.println("Enter new brand");
-                newValue =  userInput.next();
+                newValue = userInput.next();
                 newVariable = "brand";
+                car.setBrand(newValue);
                 break;
-            case 3 :
+            case 3:
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
+                car.setModel(newValue);
                 break;
-            case 4 :
+            case 4:
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
+                car.setRegistrationDate(newValue);
                 break;
-            case 5 :
+            case 5:
                 System.out.println("Enter new km driven");
-                newValue = userInput.next();
+                int newKm = userInput.nextInt();
+                newValue = String.valueOf(newKm);
                 newVariable = "km_driven";
+                car.setKmDriven(newKm);
                 break;
-            case 6 :
+            case 6:
+                extention = false;
                 System.out.println("Enter new gear type - does it have manual gear?");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
                 }
                 newVariable = "manual_gear";
                 break;
-            case 7 :
+            case 7:
+                extention = false;
                 System.out.println("Enter new air condition status - does it have air condition?");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
                 }
                 newVariable = "air_condition";
                 break;
-            case 8 :
+            case 8:
+                extention = false;
                 System.out.println("Enter new cruise control status - does it have cruise control?");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
                 }
                 newVariable = "cruise_control";
                 break;
-            case 9 :
+            case 9:
+                extention = false;
                 System.out.println("Enter new info, does it have more than 7 seats");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
@@ -228,17 +238,20 @@ public class FamilyRepository {
             System.out.println("Could not update car table");
         }
 
-        try {
-            statement.execute("UPDATE family_cars SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update family table");
+        if (extention == false) {
+            try {
+                statement.execute("UPDATE family_cars SET " +
+                        newVariable + " = '" + newValue + "' " +
+                        "WHERE registration_number ='" + answer + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Could not update family table");
+            }
+            //statement.close();
         }
-        //statement.close();
-    }
 
+
+    }
 
 
 }

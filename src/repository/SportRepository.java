@@ -89,7 +89,7 @@ public class SportRepository {
     }
 
 
-    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum) {
+    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car) {
 
         /*for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
 for (int i = 0; i < carList.size(); i++) {

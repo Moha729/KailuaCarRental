@@ -84,6 +84,7 @@ public class CarRepository {
     public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) {
         //System.out.println("1 luxury 2 sport 3 family");
         int updateIndex = 0;
+        Car car = null;
 
         viewCars(carList, tools);
 
@@ -91,7 +92,9 @@ public class CarRepository {
 
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)){
-                System.out.println(carList.get(i));
+                System.out.println(carList.get(i).getClass().getSimpleName()+" "+carList.get(i));
+                car = carList.get(i);
+
 
                 if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Luxury")){
                     updateIndex = 1;
@@ -106,11 +109,13 @@ public class CarRepository {
             }
         }
         switch (updateIndex) {
-            case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput, regNum);
-            case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum);
-            case 3 -> familyService.updateFamilyCar(statement, carList, userInput, regNum);
-        }
+            case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput, regNum, car);
+            case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum, car);
+            case 3 -> familyService.updateFamilyCar(statement, carList, userInput, regNum, car);
 
+        }
+        //tools.customizedButton(40, 1, "Unexpected feature. Restart the program to view changes");
+        System.out.println("De kan kun opdatere de fields der er i super klassen indtil videre");
     }
 
     public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, MoTools tools) throws SQLException {

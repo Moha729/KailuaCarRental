@@ -104,7 +104,7 @@ public class LuxuryRepository {
         System.out.println();
     }
 
-    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum){
+    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car){
 
         /*/for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
         String statementService = userInput.next();
@@ -116,6 +116,7 @@ public class LuxuryRepository {
         }
         //System.out.println("Enter which registration number to be updated");*/
         String answer = regNum;
+
 
 
         System.out.println("what do you want to update?\n" +
@@ -135,26 +136,32 @@ public class LuxuryRepository {
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
+                car.setRegistrationNumber(newValue);
                 break;
             case 2 :
                 System.out.println("Enter new brand");
                 newValue =  userInput.next();
                 newVariable = "brand";
+                car.setBrand(newValue);
                 break;
             case 3 :
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
+                car.setModel(newValue);
                 break;
             case 4 :
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
+                car.setRegistrationDate(newValue);
                 break;
             case 5 :
                 System.out.println("Enter new km driven");
-                newValue = userInput.next();
+                int newKm = userInput.nextInt();
+                newValue = String.valueOf(newKm);
                 newVariable = "km_driven";
+                car.setKmDriven(newKm);
                 break;
             case 6 :
                 extention = false;
@@ -166,6 +173,7 @@ public class LuxuryRepository {
                     newValue = "false";
                 }
                 newVariable = "manual_gear";
+
                 break;
             case 7 :
                 extention = false;

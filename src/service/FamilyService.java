@@ -31,8 +31,8 @@ public class FamilyService {
     }
 
 
-    public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum) {
-        familyRepository.updateFamilyCar(statement,carList,userInput, regNum);
+    public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car) {
+        familyRepository.updateFamilyCar(statement,carList,userInput, regNum, car);
     }
 
 

@@ -35,7 +35,7 @@ public class SportService {
     }
 
 
-    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum) {
-        sportRepository.updateSportCar(statement,carList,userInput, regNum);
+    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car) {
+        sportRepository.updateSportCar(statement,carList,userInput, regNum, car);
     }
 }

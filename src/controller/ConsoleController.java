@@ -6,7 +6,6 @@ import models.Car;
 import models.Customer;
 import service.CarService;
 
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,8 +21,6 @@ public class ConsoleController {
     ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
     CarService carService = new CarService();//Service class
 
-    boolean running = true;
-
     public void run() throws SQLException {
         Statement statement = null;
         try {
@@ -38,9 +35,8 @@ public class ConsoleController {
         carService.populateCars(statement, carList);
 
         runMenu(statement);
-
-
     }
+
     public void runMenu(Statement statement) throws SQLException {
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
 
@@ -49,19 +45,15 @@ public class ConsoleController {
 
         int mainSwitch = userInput.nextInt();
 
-        //while (!userInput.hasNextInt()) { tools.customizedButton(40, 1, "Not valid - try again!");}
-
         switch (mainSwitch) {
+
             case 1 -> runCarMenu(statement);
-//                case 5 ->
+
             case 6 -> carService.createCar(statement, userInput, carList, tools);
             case 8 -> carService.updateCar(statement, userInput, carList, tools);
-            default -> {
-                if (running) {
-                    System.out.println("Enter a valid number");
-                }
+            case 0 -> System.exit(1);
             }
-        }
+
         int start = userInput.nextInt();
         if (start != 0) {
             runMenu(statement);
@@ -79,22 +71,26 @@ public class ConsoleController {
 
             int carsSwitch = userInput.nextInt();
 
-            //while (!userInput.hasNextInt()) { tools.customizedButton(40, 1, "Not valid - try again!");}
             switch (carsSwitch) {
 
-                case 1 -> carService.viewCars(carList, tools); //view cars //Not done yet
-                case 2 -> carService.updateCar(statement, userInput, carList, tools); // Not done yet
-                case 3 -> carService.createCar(statement, userInput, carList, tools); // Not done yet
-                case 4 -> carService.delete(statement, carList, userInput, tools); //Not done yet
+                case 1 -> carService.viewCars(carList, tools);
+                case 2 -> carService.updateCar(statement, userInput, carList, tools);
+                case 3 -> carService.createCar(statement, userInput, carList, tools);
+                case 4 -> carService.delete(statement, carList, userInput, tools);
+                case 0 -> runMenu(statement);
 
             }
-        } catch (SQLException sqlEx){
+        } catch (SQLException sqlEx) {
             System.out.println("Error in Cars_main_menu: " + sqlEx);
         }
+
+        tools.customizedButton(15, 1, ">1< continue..");
+        System.out.print(" ");
         int start = userInput.nextInt();
-        if (start != 0){
+        if (start != 0) {
             runMenu(statement);
         }
+
     }
 
     private void CustomerMenu() {
