@@ -6,7 +6,6 @@ public class MoTools {
 
     Scanner scan = new Scanner(System.in);
 
-
     public String returnStringInfo(int width, int height, String text){
         scan = new Scanner(System.in);
         customizedButton(width, height, text);
@@ -27,7 +26,6 @@ public class MoTools {
 
         margeTop(width);
         System.out.println();
-
         margingCentre(height, width, text);
         margeTop(width);
 
@@ -35,25 +33,16 @@ public class MoTools {
     public void margingCentre(int height, int width, String text1, String text2) {
 
         margeMiddlSpace(height, width);
-
         System.out.print(centerString(width / 2, text1));
         System.out.println(centerString(width / 2, text2));
-
         margeMiddlSpace(height, width );
-
     }
 
     public void margingCentre(int height, int width, String text){
 
-
         margeMiddlSpace(height, width);
-
-
         System.out.println(centerString(width, text));
-
         margeMiddlSpace(height, width);
-
-
     }
 
     public void margeMiddlSpace(int height, int width) {
@@ -72,17 +61,13 @@ public class MoTools {
             System.out.print("_");
     }
 
-
-    public String welcomeText(String INTROTEXT){
+    public String welcomeText(String INTROTEXT) {
         String BOX1_1 = " ------------------------------------------------------------------------------------------------";
         String BOX1_2 = "|                                                                                                |";
         String centerText = centerString(96, INTROTEXT);
 
         return BOX1_1 + "\n" + BOX1_2 + "\n" + centerText + "\n" + BOX1_2 + "\n" + BOX1_1;
-
-        //return String.format("%s\n%s\n|\t\t\t\t\t\t\t\t%35s\t\t\t\t\t\t\t\t |\n%s\n%s\n", BOX1_1, BOX1_2, INTROTEXT, BOX1_2, BOX1_1);
-
-    }
+    }//return String.format("%s\n%s\n|\t\t\t\t\t\t\t\t%35s\t\t\t\t\t\t\t\t |\n%s\n%s\n", BOX1_1, BOX1_2, INTROTEXT, BOX1_2, BOX1_1);
 
     public static String centerString(int width, String s) {
         return String.format("|%-" + width + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s)) + "|";
@@ -95,10 +80,7 @@ public class MoTools {
         String margeCenter2 = centerString(59, text2);
         String margeBottom = " ___________________________________________________________ ";
         return ("\n" + margeTop + margeTop + "\n" + middleSpace + middleSpace + "\n" + margeCenter + margeCenter2 + "\n" + middleSpace + middleSpace + "\n" + margeBottom + margeBottom);
-
     }
-
-
 
     public void dobbleButton(int width, int height, String text1, String text2) {
 
@@ -131,7 +113,5 @@ public class MoTools {
             }
             System.out.print("|");
         }
-
     }
-
 }

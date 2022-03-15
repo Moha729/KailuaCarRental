@@ -14,11 +14,17 @@ import java.sql.Statement;
 public class CarService {
 
     MoTools tools = new MoTools();
-    LuxuryService luxuryService = new LuxuryService();
-    SportService sportService = new SportService();
-    FamilyService familyService = new FamilyService();
-    //Scanner userInput = new Scanner(System.in);
-    String answer;
+
+    LuxuryService luxuryService = new LuxuryService(); // Luxury cars Service class
+    SportService sportService = new SportService(); // Sport cars service class
+    FamilyService familyService = new FamilyService();// family cars service class
+
+    public void populateCars(Statement statement, ArrayList<Car> carList){
+        luxuryService.populateLuxuryToArrayList(statement,carList);
+        familyService.populateFamilyToArrayList(statement, carList);
+        sportService.populateSportToArrayList(statement,carList);
+    }
+
 
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
@@ -78,6 +84,7 @@ public class CarService {
 
 
     public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput) throws SQLException {
+        String answer;
         System.out.println(carList);
         System.out.println("Enter 1 - to delete a luxury car\nEnter 2 - to delete a sport car\n Enter 3 - to delete a family car");
 

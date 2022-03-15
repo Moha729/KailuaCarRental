@@ -1,12 +1,9 @@
 package controller;
 
-import UI.MenuHandler;
+import UI.MoTools;
 import db.DBManager;
 import models.Car;
 import service.CarService;
-import service.FamilyService;
-import service.LuxuryService;
-import service.SportService;
 import testing.Testing;
 
 import java.sql.Connection;
@@ -18,56 +15,87 @@ import java.util.Scanner;
 public class ConsoleController {
 
     final Scanner userInput = new Scanner(System.in);//Scanner
+    final MoTools tools = new MoTools(); //buttons
     Connection connection = DBManager.getConnection();//returns connection
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     CarService carService = new CarService();//Service class
-    LuxuryService luxuryService = new LuxuryService(); // Luxury Service class
-    SportService sportService = new SportService(); // Sport service class
-    FamilyService familyService = new FamilyService();
-    MenuHandler menuHandler = new MenuHandler();//UI class
+
     Testing testing = new Testing();
     boolean running = true;
 
-    public void run() throws SQLException {
-        Statement statement = connection.createStatement();
-        luxuryService.populateLuxuryToArrayList(statement,carList);
-        familyService.populateFamilyToArrayList(statement, carList);
-        sportService.populateSportToArrayList(statement,carList);
-        while (running) {
+    public void run() {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("No connection");
+        }
+        if (statement == null) {
+            System.out.println("No Connection");
+        }
+        carService.populateCars(statement, carList);
 
-            menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box
+        tools.customizedButton(120, 7, "Welcome to Kailua car rental");
 
-            menuHandler.getMainOptions(">1< Available cars", ">2< Customers",
-                    ">3< New rental", ">4< Active rentals");//main menu
+        System.out.print(tools.dobbleButton(">1< Cars", ">2< Customers"));
+        System.out.print(tools.dobbleButton(">3< New rental", ">4< Active rentals"));
 
-            switch (userInput.nextInt()) {
-                case 1 -> runCarMenu(statement);
+        int mainSwitch = userInput.nextInt();
+
+        //while (!userInput.hasNextInt()) {
+       //     tools.customizedButton(40, 1, "Not valid - try again!");}
+
+
+        switch (mainSwitch) {
+            case 1 -> runCarMenu(statement);
 //                case 5 ->
-                case 6 -> carService.createCar(statement, userInput, carList);
-                case 8 -> carService.updateCar(statement, userInput, carList);
-                default -> {
-                    if (running) {
-                        System.out.println("Enter a valid number");
-                    }
+            case 6 -> carService.createCar(statement, userInput, carList);
+            case 8 -> carService.updateCar(statement, userInput, carList);
+            default -> {
+                if (running) {
+                    System.out.println("Enter a valid number");
                 }
             }
         }
+        int start = userInput.nextInt();
+        if (start != 0) {
+            run();
+        }
     }
 
-    public void runCarMenu(Statement statement) throws SQLException {
-        System.out.println();
-        menuHandler.tools.customizedButton(120, 1, "Cars menu");
 
-        menuHandler.getMainOptions(">1< See cars", ">2< Update car", ">3< New car", ">4< \"Delete car\"");
-//        carService.createCar(statement, userInput, carList);
-        switch (userInput.nextInt()) {
+    public void runCarMenu(Statement statement) {
 
-            case 1 -> System.out.println(carList); //view cars
-            case 2 -> testing.update(statement,carList);
-            case 3 -> carService.createCar(statement, userInput, carList);
-            case 4 -> carService.delete(statement,carList, userInput);
+        try {
 
 
+            System.out.println();
+            tools.customizedButton(120, 1, "Cars menu");
+
+            System.out.print(tools.dobbleButton(">1< See cars", ">2< Update car"));
+            System.out.print(tools.dobbleButton(">3< New car", ">4< \"Delete car\""));
+
+            int carsSwitch = userInput.nextInt();
+
+            //while (!userInput.hasNextInt()) {
+              //  tools.customizedButton(40, 1, "Not valid - try again!");
+            //}
+            switch (carsSwitch) {
+
+                case 1 -> System.out.println(carList); //view cars
+                case 2 -> carService.updateCar(statement, userInput, carList);
+                case 3 -> carService.createCar(statement, userInput, carList);
+                case 4 -> carService.delete(statement, carList, userInput);
+
+
+            }
+        } catch (SQLException sqlEx){
+            System.out.println("Error in Cars_main_menu: " + sqlEx);
+        }
+        int start = userInput.nextInt();
+        if (start != 0){
+            run();
         }
 
     }
