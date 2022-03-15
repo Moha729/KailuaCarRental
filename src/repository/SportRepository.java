@@ -89,14 +89,12 @@ public class SportRepository {
     }
 
 
-    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput){
+    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum){
 
-        for (int i = 0; i < carList.size(); i++) {
-            System.out.println(carList.get(i));
-        }
+        //for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
 
-        System.out.println("Enter which registration number to be updated");
-        String answer = userInput.next();
+        //System.out.println("Enter which registration number to be updated");
+        String answer = regNum;
 
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))

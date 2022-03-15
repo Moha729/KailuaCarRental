@@ -81,12 +81,36 @@ public class CarRepository {
         sportService.viewSportCars(carList, tools);
     }
 
-    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
-        System.out.println("1 luxury 2 sport 3 family");
-        switch (userInput.nextInt()) {
-            case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput);
-            case 2 -> sportService.updateSportCar(statement, carList, userInput);
-            case 3 -> familyService.updateFamilyCar(statement, carList, userInput);
+    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) {
+        //System.out.println("1 luxury 2 sport 3 family");
+        int updateIndex = 0;
+
+        viewCars(carList, tools);
+
+        String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)){
+                System.out.println(carList.get(i));
+
+                if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("luxury")){
+                    updateIndex = 1;
+                    System.out.println("It's a luxury");
+                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Family")){
+                    updateIndex = 3;
+                    System.out.println("It's a family");
+                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("sport")){
+                    updateIndex = 2;
+                    System.out.println("It's a sport");
+                }
+            }
+        }
+
+
+        switch (updateIndex) {
+            case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput, regNum);
+            case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum);
+            case 3 -> familyService.updateFamilyCar(statement, carList, userInput, regNum);
         }
 
     }
@@ -128,7 +152,7 @@ public class CarRepository {
                     if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
                         carList.remove(carList.get(i));
                     //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
-                    System.out.println("Car " + answer + "is deleted");}
+                    System.out.println("Car " + answer + " is deleted");}
                 }
             }
             case 2 -> {
@@ -140,7 +164,7 @@ public class CarRepository {
                     if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
                         carList.remove(carList.get(i));
                     //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
-                    System.out.println("Car " + answer + "is deleted");}
+                    System.out.println("Car " + answer + " is deleted");}
                 }
             }
             case 3 -> {

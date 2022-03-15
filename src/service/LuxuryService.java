@@ -34,8 +34,8 @@ public class LuxuryService {
     }
 
 
-    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput) {
+    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum) {
 
-        luxuryRepository.updateLuxuryCar(statement,carList,userInput);
+        luxuryRepository.updateLuxuryCar(statement,carList,userInput, regNum);
     }
 }

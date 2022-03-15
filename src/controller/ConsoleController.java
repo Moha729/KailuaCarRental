@@ -5,7 +5,7 @@ import db.DBManager;
 import models.Car;
 import models.Customer;
 import service.CarService;
-//import testing.Testing;
+
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -55,7 +55,7 @@ public class ConsoleController {
             case 1 -> runCarMenu(statement);
 //                case 5 ->
             case 6 -> carService.createCar(statement, userInput, carList, tools);
-            case 8 -> carService.updateCar(statement, userInput, carList);
+            case 8 -> carService.updateCar(statement, userInput, carList, tools);
             default -> {
                 if (running) {
                     System.out.println("Enter a valid number");
@@ -83,7 +83,7 @@ public class ConsoleController {
             switch (carsSwitch) {
 
                 case 1 -> carService.viewCars(carList, tools); //view cars //Not done yet
-                case 2 -> carService.updateCar(statement, userInput, carList); // Not done yet
+                case 2 -> carService.updateCar(statement, userInput, carList, tools); // Not done yet
                 case 3 -> carService.createCar(statement, userInput, carList, tools); // Not done yet
                 case 4 -> carService.delete(statement, carList, userInput, tools); //Not done yet
 
