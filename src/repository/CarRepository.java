@@ -92,40 +92,69 @@ public class CarRepository {
 
     }
 
-    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput) throws SQLException {
+    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, MoTools tools) throws SQLException {
         String answer;
-        System.out.println(carList);
-        System.out.println("Enter 1 - to delete a luxury car\nEnter 2 - to delete a sport car\n Enter 3 - to delete a family car");
+        int deleteIndex = 0;
+        //System.out.println(carList);
+        viewCars(carList, tools);
+        //System.out.println("Enter 1 - to delete a luxury car\nEnter 2 - to delete a sport car\n Enter 3 - to delete a family car");
+        String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
+        answer = regNum;
 
-        switch (userInput.nextInt()) {
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)){
+                System.out.println(carList.get(i));
+
+                if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("luxury")){
+                    deleteIndex = 1;
+                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Family")){
+                    deleteIndex = 3;
+                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("sport")){
+                    deleteIndex = 2;
+                }
+            }
+        }
+
+
+
+
+        switch (deleteIndex) {
             case 1 -> {
-                System.out.println("Enter a registration number to delete its car information");
-                answer = userInput.next();
+                //System.out.println("Enter a registration number to delete its car information");
+                //answer = userInput.next();
                 statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
                 statement.execute("DELETE FROM luxury_cars WHERE registration_number = '" + answer + "'");
-                for (int i = 0; i < carList.size() - 1; i++) {
-                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) ;
-                    carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
+                for (int i = 0; i < carList.size(); i++) {
+                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
+                        carList.remove(carList.get(i));
+                    //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
+                    System.out.println("Car " + answer + "is deleted");}
                 }
             }
             case 2 -> {
-                System.out.println("Enter a registration number to delete its car information");
-                answer = userInput.next();
+                //System.out.println("Enter a registration number to delete its car information");
+                //answer = userInput.next();
                 statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
                 statement.execute("DELETE FROM sport_cars WHERE registration_number = '" + answer + "'");
-                for (int i = 0; i < carList.size() - 1; i++) {
-                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) ;
-                    carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
+                for (int i = 0; i < carList.size(); i++) {
+                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
+                        carList.remove(carList.get(i));
+                    //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
+                    System.out.println("Car " + answer + "is deleted");}
                 }
             }
             case 3 -> {
-                System.out.println("Enter a registration number to delete its car information");
-                answer = userInput.next();
+                //System.out.println("Enter a registration number to delete its car information");
+                //answer = userInput.next();
                 statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
                 statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
-                for (int i = 0; i < carList.size() - 1; i++) {
-                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) ;
-                    carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
+                for (int i = 0; i < carList.size(); i++) {
+                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
+                        carList.remove(carList.get(i));
+                    //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
+                    System.out.println("Car " + answer + "is deleted");
+                    }
                 }
             }
             default -> System.out.println("Type in the right number");

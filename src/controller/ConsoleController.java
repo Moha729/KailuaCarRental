@@ -5,7 +5,7 @@ import db.DBManager;
 import models.Car;
 import models.Customer;
 import service.CarService;
-import testing.Testing;
+//import testing.Testing;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -85,7 +85,7 @@ public class ConsoleController {
                 case 1 -> carService.viewCars(carList, tools); //view cars //Not done yet
                 case 2 -> carService.updateCar(statement, userInput, carList); // Not done yet
                 case 3 -> carService.createCar(statement, userInput, carList, tools); // Not done yet
-                case 4 -> carService.delete(statement, carList, userInput); //Not done yet
+                case 4 -> carService.delete(statement, carList, userInput, tools); //Not done yet
 
             }
         } catch (SQLException sqlEx){
