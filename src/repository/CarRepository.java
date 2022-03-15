@@ -29,17 +29,25 @@ public class CarRepository {
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) throws SQLException {
 
         //System.out.println("");
-        int chooseType = tools.returnIntInfo(120, 3, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
+        System.out.println();
+        tools.customizedButton(120, 1, "What is the type of the new car?");
 
-        String registrationNumber = tools.returnStringInfo(50, 1, "Enter registration number");
+        System.out.print(tools.dobbleButton(">1< Luxury", ">2< Family"));
+        System.out.print(tools.dobbleButton(">3< Sport", ">4< \"Back\""));
+        //int chooseType = tools.returnIntInfo(120, 3, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
+        int chooseType = userInput.nextInt();
 
-        String brand = tools.returnStringInfo(50, 1, "Enter brand");
+        //if (chooseType != 1 || chooseType != 2 || chooseType != 3) {return;}
 
-        String model = tools.returnStringInfo(50, 1, "Enter model");
+        String registrationNumber = tools.returnStringInfo(60, 1, "Enter registration number");
 
-        String registrationDate = tools.returnStringInfo(50, 1, "Enter date");
+        String brand = tools.returnStringInfo(60, 1, "Enter brand");
 
-        int kmDriven = tools.returnIntInfo(50, 1, "Enter km driven");
+        String model = tools.returnStringInfo(60, 1, "Enter model");
+
+        String registrationDate = tools.returnStringInfo(60, 1, "Enter date");
+
+        int kmDriven = tools.returnIntInfo(60, 1, "Enter km driven");
         //try {
         if (chooseType == 1) {
 
@@ -48,22 +56,22 @@ public class CarRepository {
             carList.add(luxuryCar);
 
 
-        } else if (chooseType == 2) {
+        } else if (chooseType == 3) {
 
             Sport sportsCar = sportService.createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
                     registrationDate, kmDriven);
             carList.add(sportsCar);
 
-        } else if (chooseType == 3) {
+        } else if (chooseType == 2) {
 
             Family familyCar = familyService.createFamilyCar(statement, userInput, carList, registrationNumber, brand, model,
                     registrationDate, kmDriven, tools);
+            carList.add(familyCar);
 
         } else {
             tools.customizedButton(60, 1, "Try again!");
 
         }
-
         //} catch (SQLException e) {tools.customizedButton(60, 1, e.getMessage());}
 
     }

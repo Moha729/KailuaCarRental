@@ -72,7 +72,7 @@ public class ConsoleController {
 
         try {
             System.out.println();
-            tools.customizedButton(120, 1, "Cars menu");
+            tools.customizedButton(120, 3, "Cars menu");
 
             System.out.print(tools.dobbleButton(">1< See cars", ">2< Update car"));
             System.out.print(tools.dobbleButton(">3< New car", ">4< \"Delete car\""));

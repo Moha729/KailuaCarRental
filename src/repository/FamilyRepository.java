@@ -46,7 +46,6 @@ public class FamilyRepository {
         Family familyCar = new Family(reg, br , mo, regDate,kmDr,manualGear,airCondition,
                 cruiseControl,sevenSeatsOrMore);
 
-        carList.add(familyCar);
 
         addFamilyCarToDataBase(familyCar, statement);
 
@@ -118,7 +117,7 @@ public class FamilyRepository {
 
         tools.margeTop(70);
         System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
-                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Air-Cond.", "CruiseContr.", "Seats_>7");
+                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Air-Cond.", "CruiseContr.", ">7Seats");
         tools.margeTop(120);
 
         for (int i = 0; i < carList.size(); i++) {

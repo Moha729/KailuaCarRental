@@ -92,8 +92,7 @@ public class LuxuryRepository {
 
         tools.margeTop(70);
         System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
-                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "Over 3000CCM", "AutomaticGear", "Cruise Control",
-                "Leather Seats");
+                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", ">3000CCM", "Auto-gear", "CruiseContr.", "LeatherSeats");
         tools.margeTop(120);
 
         for (int i = 0; i < carList.size(); i++) {
