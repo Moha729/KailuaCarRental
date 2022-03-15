@@ -17,7 +17,7 @@ public class CarService {
     LuxuryService luxuryService = new LuxuryService();
     SportService sportService = new SportService();
     FamilyService familyService = new FamilyService();
-    Scanner userInput = new Scanner(System.in);
+    //Scanner userInput = new Scanner(System.in);
     String answer;
 
 
@@ -77,7 +77,7 @@ public class CarService {
     }
 
 
-    public void delete(Statement statement, ArrayList<Car> carList) throws SQLException {
+    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput) throws SQLException {
         System.out.println(carList);
         System.out.println("Enter 1 - to delete a luxury car\nEnter 2 - to delete a sport car\n Enter 3 - to delete a family car");
 

@@ -65,7 +65,7 @@ public class ConsoleController {
             case 1 -> System.out.println(carList); //view cars
             case 2 -> testing.update(statement,carList);
             case 3 -> carService.createCar(statement, userInput, carList);
-            case 4 -> carService.delete(statement,carList);
+            case 4 -> carService.delete(statement,carList, userInput);
 
 
         }
