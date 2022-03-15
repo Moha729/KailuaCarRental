@@ -4,6 +4,7 @@ import UI.MenuHandler;
 import db.DBManager;
 import models.Car;
 import service.CarService;
+import service.FamilyService;
 import service.LuxuryService;
 import service.SportService;
 import testing.Testing;
@@ -22,6 +23,7 @@ public class ConsoleController {
     CarService carService = new CarService();//Service class
     LuxuryService luxuryService = new LuxuryService(); // Luxury Service class
     SportService sportService = new SportService(); // Sport service class
+    FamilyService familyService = new FamilyService();
     MenuHandler menuHandler = new MenuHandler();//UI class
     Testing testing = new Testing();
     boolean running = true;
@@ -29,7 +31,8 @@ public class ConsoleController {
     public void run() throws SQLException {
         Statement statement = connection.createStatement();
         luxuryService.populateLuxuryToArrayList(statement,carList);
-        sportService.populateSportToArrayList(statement, carList);
+        familyService.populateFamilyToArrayList(statement, carList);
+        sportService.populateSportToArrayList(statement,carList);
         while (running) {
 
             menuHandler.getWelcomeScreen("Welcome to Kailua car rental");//Runs welcome box

@@ -3,7 +3,9 @@ package service;
 import UI.MoTools;
 import models.Car;
 import models.Family;
+import models.Sport;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.Scanner;
 // Make structure of FamilyService The same as in LuxuryService and SportService !!!!
 
 public class FamilyService {
+
+    Family family;
 
 
     public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg,
@@ -54,6 +58,38 @@ public class FamilyService {
         return familyCar;
 
     }
+
+
+    public void populateFamilyToArrayList(Statement statement, ArrayList<Car> carList) { // table content
+        try {
+
+            String sql = ("SELECT * FROM car_table INNER JOIN family_cars ON car_table.registration_number = family_cars.registration_number");
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet != null)
+                while (resultSet.next()) {
+                    family  = new Family(
+                            resultSet.getString("registration_number"),
+                            resultSet.getString("brand"),
+                            resultSet.getString("model"),
+                            resultSet.getString("registration_date"),
+                            resultSet.getInt("km_driven"),
+                            resultSet.getBoolean("manual_gear"),
+                            resultSet.getBoolean("air_condition"),
+                            resultSet.getBoolean("cruise_control"),
+                            resultSet.getBoolean("seven_seats_or_more"));
+
+
+
+                    carList.add(family);
+                }
+
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\n");
+        }
+    }
+
+
     private void addFamilyCarToDataBase(Family familyCar, Statement statement){
         try {
             statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +

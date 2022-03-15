@@ -2,6 +2,7 @@ package service;
 
 import UI.MoTools;
 import models.Car;
+import models.Luxury;
 import models.Sport;
 
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 public class SportService {
     MoTools tools = new MoTools();
     Scanner userInput = new Scanner(System.in);
+    Sport sport;
 
     public Sport createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String reg, String br, String mo,
                                  String regDate, int kmDr) throws SQLException {
@@ -38,6 +40,33 @@ public class SportService {
         addSportsCarToDB(sportsCar, statement);
 
         return sportsCar;
+    }
+
+
+    public void populateSportToArrayList(Statement statement,ArrayList<Car> carList) { // table content
+        try {
+
+            String sql = ("SELECT * FROM car_table INNER JOIN sport_cars ON car_table.registration_number = sport_cars.registration_number");
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet != null)
+                while (resultSet.next()) {
+                    sport = new Sport(
+                            resultSet.getString("registration_number"),
+                            resultSet.getString("brand"),
+                            resultSet.getString("model"),
+                            resultSet.getString("registration_date"),
+                            resultSet.getInt("km_driven"),
+                            resultSet.getBoolean("manual_gear"),
+                            resultSet.getBoolean("over200HP"));
+
+
+                    carList.add(sport);
+                }
+
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\n");
+        }
     }
 
     private void addSportsCarToDB(Sport sportsCar, Statement statement) throws SQLException {
@@ -106,30 +135,6 @@ public class SportService {
         statement.close();
     }
 
-    public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) { // table content
-        try {
-
-            String sql = ("SELECT * FROM car_table LEFT JOIN sport_cars ON car_table.registration_number = sport_cars.registration_number");
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet != null)
-                while (resultSet.next()) {
-                    Sport sport = new Sport(
-                            resultSet.getString("registration_number"),
-                            resultSet.getString("brand"),
-                            resultSet.getString("model"),
-                            resultSet.getString("registration_date"),
-                            resultSet.getInt("kmDriven"),
-                            resultSet.getBoolean("manualGear"),
-                            resultSet.getBoolean("over200HP"));
-
-                    carList.add(sport);
-                }
-
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\n");
-        }
-    }
     public void viewSportCars(ArrayList<Car> carList, MoTools tools) {
         System.out.println();
         tools.customizedButton(50, 1, "Sports/n");

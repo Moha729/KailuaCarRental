@@ -23,12 +23,12 @@ public class Family extends Car {
     public String toString() {
         return getClass().getSimpleName()+" car: "
                 +super.toString()+
-                "models.Family{" +
-                "manualGear=" + manualGear +
-                ", airCondition=" + airCondition +
-                ", cruiseControl=" + cruiseControl +
-                ", sevenSeatsOrMore=" + sevenSeatsOrMore +
-                '}';
+                ", over3000CCM: "+manualGear+
+                ", automatic gear: " +airCondition+
+                ", cruise control: "+cruiseControl+
+                ", leather seats: "+sevenSeatsOrMore+"]\n";
+
+
     }
 
     public boolean isManualGear() {

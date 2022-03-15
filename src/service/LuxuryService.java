@@ -58,7 +58,7 @@ public class LuxuryService {
     public void populateLuxuryToArrayList(Statement statement,ArrayList<Car> carList) { // table content
         try {
 
-            String sql = ("SELECT * FROM car_table LEFT JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
+            String sql = ("SELECT * FROM car_table INNER JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
@@ -67,7 +67,7 @@ public class LuxuryService {
                             resultSet.getString("brand"),
                             resultSet.getString("model"),
                             resultSet.getString("registration_date"),
-                            resultSet.getInt("kmDriven"),
+                            resultSet.getInt("km_driven"),
                             resultSet.getBoolean("ccm"),
                             resultSet.getBoolean("automatic_gear"),
                             resultSet.getBoolean("cruise_control"),

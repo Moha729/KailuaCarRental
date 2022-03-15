@@ -17,12 +17,11 @@ public class Sport extends Car {
     public String toString() {
         return getClass().getSimpleName()+" car: "
                 +super.toString()+
-                "models.Sport{" +
-                "manualGear=" + manualGear +
-                ", over200HP=" + over200HP +
-                '}';
-    }
+                ", manual gear: "+manualGear+
+                ", over 200 hp?: " +over200HP+"]\n";
 
+
+    }
     public boolean isManualGear() {
         return manualGear;
     }
