@@ -3,6 +3,7 @@ package controller;
 import UI.MoTools;
 import db.DBManager;
 import models.Car;
+import models.Customer;
 import service.CarService;
 import testing.Testing;
 
@@ -18,6 +19,7 @@ public class ConsoleController {
     final MoTools tools = new MoTools(); //buttons
     Connection connection = DBManager.getConnection();//returns connection
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
+    ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
     CarService carService = new CarService();//Service class
 
     Testing testing = new Testing();
@@ -101,6 +103,7 @@ public class ConsoleController {
     }
 
     private void CustomerMenu() {
+
     }
 
     private void RentalMenu() {
