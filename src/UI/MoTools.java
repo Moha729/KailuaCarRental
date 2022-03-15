@@ -16,7 +16,6 @@ public class MoTools {
     public int returnIntInfo(int width, int height, String text){
         scan = new Scanner(System.in);
         customizedButton(width, height, text);
-        //scan.nextLine();
         int info = scan.nextInt();
         return info;
     }
@@ -73,7 +72,7 @@ public class MoTools {
         return String.format("|%-" + width + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s)) + "|";
     }
 
-    public String dobbleButton(String text1, String text2) {
+    public String doubleButton(String text1, String text2) {
         String margeTop    = " ___________________________________________________________ ";
         String middleSpace = "|                                                           |";
         String margeCenter = centerString(59, text1);
@@ -82,7 +81,7 @@ public class MoTools {
         return ("\n" + margeTop + margeTop + "\n" + middleSpace + middleSpace + "\n" + margeCenter + margeCenter2 + "\n" + middleSpace + middleSpace + "\n" + margeBottom + margeBottom);
     }
 
-    public void dobbleButton(int width, int height, String text1, String text2) {
+    public void doubleBottom(int width, int height, String text1, String text2) {
 
         margeTop(width);
         System.out.println();

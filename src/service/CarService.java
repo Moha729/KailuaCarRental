@@ -24,11 +24,9 @@ public class CarService {
         carRepository.populateCars(statement, carList);
     }
 
-
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) throws SQLException {
         carRepository.createCar(statement, userInput, carList, tools);
     }
-
 
     public void viewCars(ArrayList<Car> carList, MoTools tools) {
         carRepository.viewCars(carList, tools);
