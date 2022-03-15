@@ -45,14 +45,12 @@ public class ConsoleController {
 
         int mainSwitch = userInput.nextInt();
 
-        //while (!userInput.hasNextInt()) {
-       //     tools.customizedButton(40, 1, "Not valid - try again!");}
-
+        //while (!userInput.hasNextInt()) { tools.customizedButton(40, 1, "Not valid - try again!");}
 
         switch (mainSwitch) {
             case 1 -> runCarMenu(statement);
 //                case 5 ->
-            case 6 -> carService.createCar(statement, userInput, carList);
+            case 6 -> carService.createCar(statement, userInput, carList, tools);
             case 8 -> carService.updateCar(statement, userInput, carList);
             default -> {
                 if (running) {
@@ -66,12 +64,9 @@ public class ConsoleController {
         }
     }
 
-
     public void runCarMenu(Statement statement) {
 
         try {
-
-
             System.out.println();
             tools.customizedButton(120, 1, "Cars menu");
 
@@ -80,16 +75,13 @@ public class ConsoleController {
 
             int carsSwitch = userInput.nextInt();
 
-            //while (!userInput.hasNextInt()) {
-              //  tools.customizedButton(40, 1, "Not valid - try again!");
-            //}
+            //while (!userInput.hasNextInt()) { tools.customizedButton(40, 1, "Not valid - try again!");}
             switch (carsSwitch) {
 
-                case 1 -> System.out.println(carList); //view cars
-                case 2 -> carService.updateCar(statement, userInput, carList);
-                case 3 -> carService.createCar(statement, userInput, carList);
-                case 4 -> carService.delete(statement, carList, userInput);
-
+                case 1 -> System.out.println(carList); //view cars //Not done yet
+                case 2 -> carService.updateCar(statement, userInput, carList); // Not done yet
+                case 3 -> carService.createCar(statement, userInput, carList, tools); // Not done yet
+                case 4 -> carService.delete(statement, carList, userInput); //Not done yet
 
             }
         } catch (SQLException sqlEx){
@@ -99,7 +91,6 @@ public class ConsoleController {
         if (start != 0){
             run();
         }
-
     }
 
     private void CustomerMenu() {
@@ -108,6 +99,4 @@ public class ConsoleController {
 
     private void RentalMenu() {
     }
-
-
 }

@@ -13,7 +13,6 @@ import java.sql.Statement;
 
 public class CarService {
 
-    MoTools tools = new MoTools();
 
     LuxuryService luxuryService = new LuxuryService(); // Luxury cars Service class
     SportService sportService = new SportService(); // Sport cars service class
@@ -27,7 +26,7 @@ public class CarService {
 
 
 
-    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList) {
+    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, MoTools tools) {
 
         try {
 
