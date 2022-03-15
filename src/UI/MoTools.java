@@ -10,12 +10,14 @@ public class MoTools {
     public String returnStringInfo(int width, int height, String text){
         scan = new Scanner(System.in);
         customizedButton(width, height, text);
+        scan.nextLine();
         String info = scan.next();
         return info;
     }
     public int returnIntInfo(int width, int height, String text){
         scan = new Scanner(System.in);
         customizedButton(width, height, text);
+        scan.nextLine();
         int info = scan.nextInt();
         return info;
     }

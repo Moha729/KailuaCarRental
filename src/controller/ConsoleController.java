@@ -42,12 +42,8 @@ public class ConsoleController {
 
             switch (userInput.nextInt()) {
                 case 1 -> runCarMenu(statement);
-//                case 2 -> viewCars(statement);
-//                case 3 -> System.out.println(carList);
-                case 4 -> testing.join(statement);
-                case 5 -> testing.update(statement,carList);
+//                case 5 ->
                 case 6 -> carService.createCar(statement, userInput, carList);
-                case 7 -> luxuryService.deleteLuxury(statement,carList);
                 case 8 -> carService.updateCar(statement, userInput, carList);
                 default -> {
                     if (running) {
@@ -58,7 +54,7 @@ public class ConsoleController {
         }
     }
 
-    public void runCarMenu(Statement statement) {
+    public void runCarMenu(Statement statement) throws SQLException {
         System.out.println();
         menuHandler.tools.customizedButton(120, 1, "Cars menu");
 
@@ -67,9 +63,9 @@ public class ConsoleController {
         switch (userInput.nextInt()) {
 
             case 1 -> System.out.println(carList); //view cars
-//            case 2 -> //change information for car
+            case 2 -> testing.update(statement,carList);
             case 3 -> carService.createCar(statement, userInput, carList);
-            case 4 -> testing.join(statement);
+            case 4 -> carService.delete(statement,carList);
 
 
         }

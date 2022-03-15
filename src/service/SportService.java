@@ -85,11 +85,13 @@ public class SportService {
                 + sportsCar.isOver200HP() + "')");
     }
 
-    public void updateSportCars(Statement statement, ArrayList<Car> carList) throws SQLException {
+
+    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput){
 
         for (int i = 0; i < carList.size(); i++) {
             System.out.println(carList.get(i));
         }
+
         System.out.println("Enter which registration number to be updated");
         String answer = userInput.next();
 
@@ -97,43 +99,109 @@ public class SportService {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
                 System.out.println(carList.get(i));
         }
-        System.out.println("Enter new registration number");
-        String newNumber = userInput.next();
+        System.out.println("what do you want to update?\n" +
+                "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
+                "\n6 for manualGear\n7 for aircondition\n 8 for cruiseControl\n9 for sevenSeatsPlus");
 
-        System.out.println("Enter new brand");
-        String newBrand = userInput.next();
+        int ans = userInput.nextInt();
 
-        System.out.println("Enter new model");
-        String newModel = userInput.next();
+        String statementService = userInput.next();
+        statementService = "cruise_control";
+        String cruise = userInput.next();
 
-        System.out.println("Enter new registration date");
-        String regDate = userInput.next();
+        String newValue = null;
+        String newVariable = null;
 
-        System.out.println("Enter new km");
-        int km = userInput.nextInt();
+        switch (ans){
 
-        System.out.println("Enter if it has Manual gear");
-        String ManualGear = userInput.next();
+            case 1 :
+                System.out.println("Enter new registration number");
+                newValue = userInput.next();
+                newVariable = "registration_number";
+                break;
+            case 2 :
+                System.out.println("Enter new brand");
+                newValue =  userInput.next();
+                newVariable = "brand";
+                break;
+            case 3 :
+                System.out.println("Enter new model");
+                newValue = userInput.next();
+                newVariable = "model";
+                break;
+            case 4 :
+                System.out.println("Enter new registration date");
+                newValue = userInput.next();
+                newVariable = "registration_date";
+                break;
+            case 5 :
+                System.out.println("Enter new km driven");
+                newValue = userInput.next();
+                newVariable = "km_driven";
+                break;
+            case 6 :
+                System.out.println("Enter new gear type - does it have manual gear?");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "manual_gear";
+                break;
+            case 7 :
+                System.out.println("Enter new air condition status - does it have air condition?");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "air_condition";
+                break;
+            case 8 :
+                System.out.println("Enter new cruise control status - does it have cruise control?");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "cruise_control";
+                break;
+            case 9 :
+                System.out.println("Enter new info, does it have more than 7 seats");
+                newValue = userInput.next();
+                if (newValue.equalsIgnoreCase("yes")){
+                    newValue = "true";
+                } else {
+                    newValue = "false";
+                }
+                newVariable = "seven_seats_or_more";
+                break;
 
-        System.out.println("Enter if it has over 200 Horsepower");
-        String Over200HP = userInput.next();
+        }
 
+        try {
+            statement.execute("UPDATE car_table SET " +
+                    newVariable + " = '" + newValue + "' " +
+                    "WHERE registration_number ='" + answer + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Could not update car table");
+        }
 
-        statement.execute("UPDATE car_table SET " +
-                "  registration_number='" + newNumber + "' , "
-                + "brand='" + newBrand + "' , "
-                + "model='" + newModel + "' , "
-                + "registration_date='" + regDate + "' , "
-                + "km_driven ='" + km + "' "
-                + "WHERE registration_number ='" + answer + "'");
-
-        statement.execute("UPDATE sport_cars SET " +
-                "registration_number='" + newNumber + "' , "
-                + "manual_gear='" + ManualGear + "' , "
-                + "Over200Hp='" + Over200HP + "' , "
-                + "WHERE registration_number ='" + answer + "'");
-        statement.close();
+        try {
+            statement.execute("UPDATE family_cars SET " +
+                    newVariable + " = '" + newValue + "' " +
+                    "WHERE registration_number ='" + answer + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Could not update family table");
+        }
+        //statement.close();
     }
+
 
     public void viewSportCars(ArrayList<Car> carList, MoTools tools) {
         System.out.println();

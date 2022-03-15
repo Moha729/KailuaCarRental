@@ -18,7 +18,6 @@ public class MenuHandler {
         while(!scan.hasNextInt()){
             tools.customizedButton(40,1, "Not valid - try again!");
         }
-
         return scan.nextInt();
 
     }
