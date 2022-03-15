@@ -93,7 +93,7 @@ public class ConsoleController {
         }
         int start = userInput.nextInt();
         if (start != 0){
-            run();
+            runMenu(statement);
         }
     }
 
