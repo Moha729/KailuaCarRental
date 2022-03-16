@@ -2,7 +2,7 @@ package UI;
 
 import java.util.Scanner;
 
-public class MoTools {
+public class Buttons {
 
     Scanner scan = new Scanner(System.in);
 

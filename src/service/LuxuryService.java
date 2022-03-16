@@ -1,11 +1,10 @@
 package service;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
 import models.Luxury;
 import repository.LuxuryRepository;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class LuxuryService {
     }
 
 
-    public void viewLuxuryCars(ArrayList<Car> carList, MoTools tools) {
+    public void viewLuxuryCars(ArrayList<Car> carList, Buttons tools) {
         luxuryRepository.viewLuxuryCars(carList,tools);
     }
 

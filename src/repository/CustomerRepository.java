@@ -1,6 +1,6 @@
 package repository;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Customer;
 
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerRepository {
-    MoTools tools = new MoTools();
+    Buttons tools = new Buttons();
     Scanner userInput = new Scanner(System.in);
 
     public void createCustomer(ArrayList<Customer> customerList){
@@ -68,7 +68,7 @@ public class CustomerRepository {
         }
     }
 
-    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, MoTools tools){
+    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, Buttons tools){
         System.out.println();
         tools.customizedButton(50,1, "Customer");
 

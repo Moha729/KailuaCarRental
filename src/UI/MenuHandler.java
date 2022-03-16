@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MenuHandler {
 
     Scanner scan = new Scanner(System.in);
-    public MoTools tools = new MoTools();
+    public Buttons tools = new Buttons();
 
 
 

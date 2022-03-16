@@ -1,12 +1,10 @@
 package service;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
-import models.Luxury;
 import models.Sport;
 import repository.SportRepository;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ public class SportService {
         return sportRepository.createSportsCar(statement,userInput,carList,registrationNumber,brand,model,registrationDate,kmDriven);
     }
 
-    public void viewSportCars(ArrayList<Car> carList, MoTools tools) {
+    public void viewSportCars(ArrayList<Car> carList, Buttons tools) {
         sportRepository.viewSportCars(carList,tools);
     }
 

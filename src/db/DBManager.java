@@ -9,7 +9,7 @@ public class DBManager {
     private static String url;
     private static String user;
     private static String password;
-    private static Connection connection = null;
+    private static Connection connection;
 
     private DBManager(){
 

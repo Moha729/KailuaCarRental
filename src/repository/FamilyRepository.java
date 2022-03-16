@@ -1,6 +1,6 @@
 package repository;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
 import models.Family;
 
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class FamilyRepository {
 
     public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg,
-                                  String br, String mo, String regDate, int kmDr, MoTools tools){
+                                  String br, String mo, String regDate, int kmDr, Buttons tools){
 
         boolean manualGear;
         boolean airCondition;
@@ -108,7 +108,7 @@ public class FamilyRepository {
 
     }
 
-    public void viewFamilyCars(ArrayList<Car> carList, MoTools tools){
+    public void viewFamilyCars(ArrayList<Car> carList, Buttons tools){
         System.out.println();
         tools.customizedButton(50,1, "Family");
 

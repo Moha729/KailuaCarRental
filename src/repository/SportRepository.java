@@ -1,6 +1,6 @@
 package repository;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
 import models.Sport;
 
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class SportRepository {
 
 
-    MoTools tools = new MoTools();
+    Buttons tools = new Buttons();
     Scanner userInput = new Scanner(System.in);
     Sport sport;
 
@@ -188,7 +188,7 @@ for (int i = 0; i < carList.size(); i++) {
     }
 
 
-    public void viewSportCars(ArrayList<Car> carList, MoTools tools) {
+    public void viewSportCars(ArrayList<Car> carList, Buttons tools) {
         System.out.println();
         tools.customizedButton(50, 1, "Sports");
 

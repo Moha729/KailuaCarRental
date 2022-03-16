@@ -1,6 +1,6 @@
 package repository;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
 import models.Customer;
 import models.Rental;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RentalRepository {
-    MoTools tools = new MoTools();
+    Buttons tools = new Buttons();
     Scanner userInput = new Scanner(System.in);
 
     public void createRentalContract(Car car, Customer customer, ArrayList<Rental> rentalList){
@@ -67,7 +67,7 @@ public class RentalRepository {
             System.out.println(e.getMessage() + "\n");
         }
     }
-    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, MoTools tools){
+    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, Buttons tools){
         System.out.println();
         tools.customizedButton(50,1, "Rental Contracts");
 

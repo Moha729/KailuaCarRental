@@ -1,18 +1,16 @@
 package service;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
 import models.Customer;
 import models.Rental;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RentalService {
-    MoTools tools = new MoTools();
+    Buttons tools = new Buttons();
     RentalService rentalService;
 
     public void RentalService(){
@@ -24,7 +22,7 @@ public class RentalService {
     public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList){
         rentalService.populateRentalContractsToArrayList(statement, rentalList);
     }
-    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, MoTools tools){
+    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, Buttons tools){
         rentalService.viewRentalContracts(statement, rentalList, tools);
     }
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput){

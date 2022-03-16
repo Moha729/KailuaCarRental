@@ -1,6 +1,6 @@
 package controller;
 
-import UI.MoTools;
+import UI.Buttons;
 import db.DBManager;
 import models.Car;
 import models.Customer;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class ConsoleController {
 
     final Scanner userInput = new Scanner(System.in);//Scanner
-    final MoTools tools = new MoTools(); //buttons
+    final Buttons tools = new Buttons(); //buttons
     Connection connection = DBManager.getConnection();//returns connection
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here

@@ -1,6 +1,6 @@
 package repository;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
 import models.Luxury;
 
@@ -86,7 +86,7 @@ public class LuxuryRepository {
             System.out.println(e.getMessage() + "\n");
         }
     }
-    public void viewLuxuryCars(ArrayList<Car> carList, MoTools tools){
+    public void viewLuxuryCars(ArrayList<Car> carList, Buttons tools){
         System.out.println();
         tools.customizedButton(50,1, "Luxury");
 

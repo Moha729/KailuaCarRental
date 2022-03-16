@@ -1,13 +1,9 @@
 package service;
 
-import UI.MoTools;
+import UI.Buttons;
 import models.Car;
 import models.Family;
-import models.Sport;
 import repository.FamilyRepository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,12 +17,12 @@ public class FamilyService {
         familyRepository = new FamilyRepository();
     }
 
-    public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String registrationNumber, String brand, String model, String registrationDate, int kmDriven, MoTools tools) {
+    public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String registrationNumber, String brand, String model, String registrationDate, int kmDriven, Buttons tools) {
         return familyRepository.createFamilyCar(statement,userInput,carList,registrationNumber,brand,model,registrationDate,kmDriven,tools);
     }
 
 
-    public void viewFamilyCars(ArrayList<Car> carList, MoTools tools) {
+    public void viewFamilyCars(ArrayList<Car> carList, Buttons tools) {
         familyRepository.viewFamilyCars(carList,tools);
     }
 
