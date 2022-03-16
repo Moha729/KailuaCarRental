@@ -60,7 +60,9 @@ public class CustomerRepository {
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         try {
 
-            String sql = ("SELECT * FROM customer_table");
+            String sql = ("SELECT customer_driver_license_number, customer_driver_since_number,\" +\n" +
+                    "                \"customer_first_name, customer_last_name, customer_zip_code, customer_city, customer_phone_number, \" +\n" +
+                    "                \"customer_mobile_number, customer_email FROM customer_table");
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
