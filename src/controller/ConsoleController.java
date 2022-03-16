@@ -139,10 +139,7 @@ public class ConsoleController {
 
     }
 
-    public void rentalMenu(Statement statement, ArrayList<Rental> rentals) throws SQLException {
-
-        RentalRepository rentalRepository = new RentalRepository();
-
+    public void rentalMenu(Statement statement, ArrayList<Rental> rentalList) throws SQLException {
         System.out.println();
         tools.customizedButton(120, 3, "Rentals menu");
 
@@ -153,10 +150,10 @@ public class ConsoleController {
 
         switch (rentalSwitch) {
 
-            case 1 -> rentalRepository.createRentalContract(rentalList, carList,customerList);
-            case 2 -> rentalRepository.viewRentals(rentalList);
-            case 3 -> rentalRepository.updateRentalContracts(statement, rentalList, userInput);
-            case 4 -> rentalRepository.deleteRentalContract(statement, rentalList, userInput);
+            case 1 -> rentalService.createRentalContract(rentalList, carList,customerList);
+            case 2 -> rentalService.viewRentals(statement, rentalList, tools);
+            case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput);
+            case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
             default -> rentalMenu(statement, rentalList);
         }
     }

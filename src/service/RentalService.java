@@ -15,7 +15,7 @@ public class RentalService {
     UITools tools = new UITools();
     RentalRepository rentalRepository;
 
-    public void RentalService(){
+    public RentalService(){
         rentalRepository = new RentalRepository();
     }
 
@@ -25,8 +25,8 @@ public class RentalService {
     public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList){
         rentalRepository.populateRentalContractsToArrayList(statement, rentalList);//read from db
     }
-    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools){
-        rentalRepository.viewRentalContracts(statement, rentalList, tools);//view
+    public void viewRentals(Statement statement, ArrayList<Rental> rentalList, UITools tools){
+        rentalRepository.viewRentals(rentalList);//view
     }
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput){
         rentalRepository.updateRentalContracts(statement, rentalList, userInput);//update
