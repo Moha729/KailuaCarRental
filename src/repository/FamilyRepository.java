@@ -133,43 +133,42 @@ public class FamilyRepository {
 
         int ans = userInput.nextInt();
 
-        boolean extention = true;
-        boolean superExtention = true;
+        boolean check = false;
         String newValue = null;
         String newVariable = null;
 
         switch (ans) {
 
             case 1:
-                superExtention = true;
+                check = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
                 car.setRegistrationNumber(newValue);
                 break;
             case 2:
-                superExtention = true;
+                check = true;
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
                 newVariable = "brand";
                 car.setBrand(newValue);
                 break;
             case 3:
-                superExtention = true;
+                check = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
                 car.setModel(newValue);
                 break;
             case 4:
-                superExtention = true;
+                check = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
             case 5:
-                superExtention = true;
+                check = true;
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
@@ -177,7 +176,7 @@ public class FamilyRepository {
                 car.setKmDriven(newKm);
                 break;
             case 6:
-                extention = false;
+                check = false;
                 System.out.println("Enter new gear type - does it have manual gear?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
@@ -189,7 +188,7 @@ public class FamilyRepository {
                 car.setManualGear(Boolean.parseBoolean(newValue));
                 break;
             case 7:
-                extention = false;
+                check = false;
                 System.out.println("Enter new air condition status - does it have air condition?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
@@ -201,7 +200,7 @@ public class FamilyRepository {
                 car.setAirCondition(Boolean.parseBoolean(newValue));
                 break;
             case 8:
-                extention = false;
+                check = false;
                 System.out.println("Enter new cruise control status - does it have cruise control?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
@@ -213,7 +212,7 @@ public class FamilyRepository {
                 car.setCruiseControl(Boolean.parseBoolean(newValue));
                 break;
             case 9:
-                extention = false;
+                check = false;
                 System.out.println("Enter new info, does it have more than 7 seats");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
@@ -225,7 +224,7 @@ public class FamilyRepository {
                 car.setSevenSeatsOrMore(Boolean.parseBoolean(newValue));
                 break;
         }
-        if (superExtention == true) {
+        if (check == true) {
             try {
                 statement.execute("UPDATE car_table SET " +
                         newVariable + " = '" + newValue + "' " +
@@ -235,7 +234,7 @@ public class FamilyRepository {
                 System.out.println("Could not update car table");
             }
         }
-        if (extention == false) {
+        if (check == false) {
             try {
                 statement.execute("UPDATE family_cars SET " +
                         newVariable + " = '" + newValue + "' " +
