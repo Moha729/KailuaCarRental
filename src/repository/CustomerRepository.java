@@ -13,14 +13,7 @@ import java.util.Scanner;
 
 public class CustomerRepository {
 
-    CustomerService customerService = new CustomerService();
-
-    public void populateCustomers(Statement statement, ArrayList<Customer> customerList) {
-        customerService.populateCustomerToArrayList(statement, customerList);
-    }
-
     Buttons tools = new Buttons();
-    Scanner userInput = new Scanner(System.in);
 
     public void createCustomer(ArrayList<Customer> customerList){
 
@@ -51,9 +44,10 @@ public class CustomerRepository {
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         try {
 
-            String sql = ("SELECT * FROM car_table " +
+            String sql = ("SELECT * FROM customer_table");
+                    /*("SELECT * FROM car_table " +
                     "INNER JOIN customer_table " +
-                    "ON car_table.registration_number = customer_table.customer_driver_license_number");
+                    "ON car_table.registration_number = customer_table.customer_driver_license_number");*/
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {

@@ -33,10 +33,11 @@ public class ConsoleController {
         }
         if (statement == null) {
             System.out.println("No Connection");
+        } else {
+            carService.populateCars(statement, carList);
+            customerService.populateCustomerToArrayList(statement, customerList);
+            runMenu(statement);
         }
-        carService.populateCars(statement, carList);
-
-        runMenu(statement);
     }
 
     public void runMenu(Statement statement) throws SQLException {

@@ -14,7 +14,8 @@ public class CarService {
     CarRepository carRepository;
 
     public CarService() {
-      carRepository = new CarRepository();
+
+        carRepository = new CarRepository();
     }
 
     public void populateCars(Statement statement, ArrayList<Car> carList) {
