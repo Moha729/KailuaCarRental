@@ -134,52 +134,52 @@ public class CustomerRepository {
         int ans = userInput.nextInt();
 
         String newValue = null;
-        String newVariable = null;
+        String dbColumn = null;
 
         switch (ans){
 
             case 1 :
                 System.out.println("Enter which driver license number to be updated");
                 newValue = userInput.next();
-                newVariable = "customer_driver_license_number";
+                dbColumn = "customer_driver_license_number";
                 customer.setDriverLicenseNumber(newValue);
                 break;
             case 2 :
                 System.out.println("Enter customer driver since number");
                 newValue =  userInput.next();
-                newVariable = "customer_driver_since_number";
+                dbColumn = "customer_driver_since_number";
                 customer.setDriverSinceNumber(newValue);
                 break;
             case 3 :
                 System.out.println("Enter new first name");
                 newValue = userInput.next();
-                newVariable = "customer_first_name";
+                dbColumn = "customer_first_name";
                 customer.setName(newValue);
                 break;
             case 4 :
                 System.out.println("Enter new last name");
                 newValue = userInput.next();
-                newVariable = "customer_last_name";
+                dbColumn = "customer_last_name";
                 customer.setLastName(newValue);
                 break;
             case 5 :
                 System.out.println("Enter new customer zip code");
                 int newZip = userInput.nextInt();
                 newValue = String.valueOf(newZip);
-                newVariable = "customer_zip_code";
+                dbColumn = "customer_zip_code";
                 customer.setZip(newZip);
                 break;
             case 6 :
                 System.out.println("Enter new city");
                 newValue = userInput.next();
-                newVariable = "customer_city";
+                dbColumn = "customer_city";
                 customer.setCity(newValue);
                 break;
             case 7 :
                 System.out.println("Enter new customer phone number");
                 int newPhone = userInput.nextInt();
                 newValue = String.valueOf(newPhone);
-                newVariable = "customer_phone_number";
+                dbColumn = "customer_phone_number";
                 customer.setPhone(newPhone);
 
                 break;
@@ -187,21 +187,21 @@ public class CustomerRepository {
                 System.out.println("Enter new customer mobile number");
                 int newMobile = userInput.nextInt();
                 newValue = String.valueOf(newMobile);
-                newVariable = "customer_mobile_number";
+                dbColumn = "customer_mobile_number";
                 customer.setMobilePhone(newMobile);
 
                 break;
             case 9 :
                 System.out.println("Enter new customer email");
                 newValue = userInput.next();
-                newVariable = "customer_email";
+                dbColumn = "customer_email";
                 customer.setEmail(newValue);
                 break;
         }
 
         try {
             statement.execute("UPDATE customer_table SET " +
-                    newVariable + " = '" + newValue + "' " +
+                    dbColumn + " = '" + newValue + "' " +
                     "WHERE customer_driver_license_number ='" + answer + "'");
 
         } catch (SQLException e) {

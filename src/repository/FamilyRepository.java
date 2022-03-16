@@ -136,7 +136,7 @@ public class FamilyRepository {
 
         boolean check = false;
         String newValue = null;
-        String newVariable = null;
+        String dbColumn = null;
 
         switch (ans) {
 
@@ -144,28 +144,28 @@ public class FamilyRepository {
                 check = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
-                newVariable = "registration_number";
+                dbColumn = "registration_number";
                 car.setRegistrationNumber(newValue);
                 break;
             case 2:
                 check = true;
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
-                newVariable = "brand";
+                dbColumn = "brand";
                 car.setBrand(newValue);
                 break;
             case 3:
                 check = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
-                newVariable = "model";
+                dbColumn = "model";
                 car.setModel(newValue);
                 break;
             case 4:
                 check = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
-                newVariable = "registration_date";
+                dbColumn = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
             case 5:
@@ -173,7 +173,7 @@ public class FamilyRepository {
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
-                newVariable = "km_driven";
+                dbColumn = "km_driven";
                 car.setKmDriven(newKm);
                 break;
             case 6:
@@ -185,7 +185,7 @@ public class FamilyRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "manual_gear";
+                dbColumn = "manual_gear";
                 car.setManualGear(Boolean.parseBoolean(newValue));
                 break;
             case 7:
@@ -197,7 +197,7 @@ public class FamilyRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "air_condition";
+                dbColumn = "air_condition";
                 car.setAirCondition(Boolean.parseBoolean(newValue));
                 break;
             case 8:
@@ -209,7 +209,7 @@ public class FamilyRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "cruise_control";
+                dbColumn = "cruise_control";
                 car.setCruiseControl(Boolean.parseBoolean(newValue));
                 break;
             case 9:
@@ -221,15 +221,15 @@ public class FamilyRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "seven_seats_or_more";
+                dbColumn = "seven_seats_or_more";
                 car.setSevenSeatsOrMore(Boolean.parseBoolean(newValue));
                 break;
         }
         if (check == true) {
-            dbRepo.updateCar(statement,newVariable,newValue,answer);
+            dbRepo.updateCar(statement,dbColumn,newValue,answer);
         }
         if (check == false) {
-          dbRepo.updateFamily(statement,newVariable,newValue,answer);
+          dbRepo.updateFamily(statement,dbColumn,newValue,answer);
         }
     }
 }

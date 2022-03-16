@@ -121,7 +121,7 @@ public class SportRepository {
 
         boolean check = false;
         String newValue = null;
-        String newVariable = null;
+        String dbColumn = null;
 
         switch (ans) {
 
@@ -129,28 +129,28 @@ public class SportRepository {
                 check = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
-                newVariable = "registration_number";
+                dbColumn = "registration_number";
                 car.setRegistrationNumber(newValue);
                 break;
             case 2:
                 check = true;
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
-                newVariable = "brand";
+                dbColumn = "brand";
                 car.setBrand(newValue);
                 break;
             case 3:
                 check = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
-                newVariable = "model";
+                dbColumn = "model";
                 car.setModel(newValue);
                 break;
             case 4:
                 check = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
-                newVariable = "registration_date";
+                dbColumn = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
             case 5:
@@ -158,7 +158,7 @@ public class SportRepository {
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
-                newVariable = "km_driven";
+                dbColumn = "km_driven";
                 car.setKmDriven(newKm);
                 break;
             case 6:
@@ -170,7 +170,7 @@ public class SportRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "manual_gear";
+                dbColumn = "manual_gear";
                 car.setManualGear(Boolean.parseBoolean(newValue));
                 break;
             case 7:
@@ -182,16 +182,16 @@ public class SportRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "over200HP";
+                dbColumn = "over200HP";
                 car.setOver200HP(Boolean.parseBoolean(newValue));
                 break;
         }
         if (check == true) {
-            dbRepo.updateCar(statement, newVariable, newValue, answer);
+            dbRepo.updateCar(statement, dbColumn, newValue, answer);
 
         }
         if (check == false) {
-            dbRepo.updateSportCar(statement, newVariable, newValue, answer);
+            dbRepo.updateSportCar(statement, dbColumn, newValue, answer);
         }
     }
 }

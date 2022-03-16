@@ -124,7 +124,7 @@ public class LuxuryRepository {
 
         boolean check = false;
         String newValue = null;
-        String newVariable = null;
+        String dbColumn = null;
 
         switch (ans){
 
@@ -132,28 +132,28 @@ public class LuxuryRepository {
                 check = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
-                newVariable = "registration_number";
+                dbColumn = "registration_number";
                 car.setRegistrationNumber(newValue);
                 break;
             case 2 :
                 check = true;
                 System.out.println("Enter new brand");
                 newValue =  userInput.next();
-                newVariable = "brand";
+                dbColumn = "brand";
                 car.setBrand(newValue);
                 break;
             case 3 :
                 check = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
-                newVariable = "model";
+                dbColumn = "model";
                 car.setModel(newValue);
                 break;
             case 4 :
                 check = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
-                newVariable = "registration_date";
+                dbColumn = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
             case 5 :
@@ -161,7 +161,7 @@ public class LuxuryRepository {
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
-                newVariable = "km_driven";
+                dbColumn = "km_driven";
                 car.setKmDriven(newKm);
                 break;
             case 6 :
@@ -173,7 +173,7 @@ public class LuxuryRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "ccm";
+                dbColumn = "ccm";
                 car.setOver3000CCM(Boolean.parseBoolean(newValue));
                 break;
             case 7 :
@@ -185,7 +185,7 @@ public class LuxuryRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "automatic_gear";
+                dbColumn = "automatic_gear";
                 car.setAutomaticGear(Boolean.parseBoolean(newValue));
                 break;
             case 8 :
@@ -197,7 +197,7 @@ public class LuxuryRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "cruise_control";
+                dbColumn = "cruise_control";
                 car.setCruiseControl(Boolean.parseBoolean(newValue));
                 break;
             case 9 :
@@ -209,15 +209,15 @@ public class LuxuryRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "leather_seats";
+                dbColumn = "leather_seats";
                 car.setLeatherSeats(Boolean.parseBoolean(newValue)); // gh
                 break;
         }
         if(check == true) {
-            dbRepo.updateCar(statement,newVariable,newValue,answer);
+            dbRepo.updateCar(statement,dbColumn,newValue,answer);
         }
         if (check == false) {
-            dbRepo.updateLuxuryCar(statement,newVariable,newValue,answer);
+            dbRepo.updateLuxuryCar(statement,dbColumn,newValue,answer);
         }
     }
 }
