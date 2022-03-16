@@ -25,6 +25,7 @@ public class ConsoleController {
     ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
     CarService carService = new CarService();//Service class
     CustomerService customerService = new CustomerService(); // Service customer
+    Customer customer = new Customer();
 
     public void run() throws SQLException {
         Statement statement = null;
@@ -115,7 +116,7 @@ public class ConsoleController {
             switch (customerSwitch) {
 
                 case 1 -> customerService.viewCustomer(statement, customerList, tools);
-                case 2 -> customerService.updateCustomer(statement, customerList, userInput);
+                case 2 -> customerService.updateCustomer(statement, customerList, userInput,customer);
                 case 3 -> customerService.createCustomer(statement,customerList);
                 case 4 -> customerService.deleteCustomer(statement, customerList, userInput);
                 case 0 -> customerMenu(statement);

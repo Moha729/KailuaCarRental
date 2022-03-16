@@ -24,8 +24,8 @@ public class CustomerService {
     public void viewCustomer(Statement statement, ArrayList<Customer> customerList, Buttons tools){
         customerRepository.viewCustomer(statement,customerList,tools);
     }
-    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput){
-        customerRepository.updateCustomer(statement, customerList, userInput);
+    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput,Customer customer){
+        customerRepository.updateCustomer(statement, customerList, userInput,customer);
     }
     public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput) throws SQLException {
         customerRepository.deleteCustomer(statement, customerList, userInput);

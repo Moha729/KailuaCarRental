@@ -104,7 +104,7 @@ public class CustomerRepository {
         System.out.println();
     }
 
-    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput){
+    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput,Customer customer){
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println(customerList.get(i));
@@ -132,52 +132,60 @@ public class CustomerRepository {
                 System.out.println("Enter which driver license number to be updated");
                 newValue = userInput.next();
                 newVariable = "customer_driver_license_number";
+                customer.setDriverLicenseNumber(newValue);
                 break;
             case 2 :
                 System.out.println("Enter customer driver since number");
                 newValue =  userInput.next();
                 newVariable = "customer_driver_since_number";
+                customer.setDriverSinceNumber(newValue);
                 break;
             case 3 :
                 System.out.println("Enter new first name");
                 newValue = userInput.next();
                 newVariable = "customer_first_name";
-
-                for (int i = 0; i < customerList.size(); i++) {
-                    if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer))
-                        customerList.get(i).setName(newValue);
-                }
-
+                customer.setName(newValue);
                 break;
             case 4 :
                 System.out.println("Enter new last name");
                 newValue = userInput.next();
                 newVariable = "customer_last_name";
+                customer.setLastName(newValue);
                 break;
             case 5 :
                 System.out.println("Enter new customer zip code");
-                newValue = userInput.next();
+                int newZip = userInput.nextInt();
+                newValue = String.valueOf(newZip);
                 newVariable = "customer_zip_code";
+                customer.setZip(newZip);
                 break;
             case 6 :
                 System.out.println("Enter new city");
                 newValue = userInput.next();
                 newVariable = "customer_city";
+                customer.setCity(newValue);
                 break;
             case 7 :
                 System.out.println("Enter new customer phone number");
-                newValue = userInput.next();
+                int newPhone = userInput.nextInt();
+                newValue = String.valueOf(newPhone);
                 newVariable = "customer_phone_number";
+                customer.setPhone(newPhone);
+
                 break;
             case 8 :
                 System.out.println("Enter new customer mobile number");
-                newValue = userInput.next();
+                int newMobile = userInput.nextInt();
+                newValue = String.valueOf(newMobile);
                 newVariable = "customer_mobile_number";
+                customer.setMobilePhone(newMobile);
+
                 break;
             case 9 :
                 System.out.println("Enter new customer email");
                 newValue = userInput.next();
                 newVariable = "customer_email";
+                customer.setEmail(newValue);
                 break;
         }
 
@@ -187,9 +195,6 @@ public class CustomerRepository {
             statement.execute("UPDATE customer_table SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE customer_driver_license_number ='" + answer + "'");
-
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();

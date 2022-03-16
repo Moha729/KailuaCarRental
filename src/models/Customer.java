@@ -26,6 +26,9 @@ public class Customer {
         this.driverSinceNumber = driverSinceNumber;
     }
 
+    public Customer() {
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -40,6 +43,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 
     public String getName() {
         return name;
