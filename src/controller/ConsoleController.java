@@ -8,6 +8,7 @@ import models.Rental;
 import repository.RentalRepository;
 import service.CarService;
 import service.CustomerService;
+import service.RentalService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,6 +27,7 @@ public class ConsoleController {
     ArrayList<Rental> rentalList = new ArrayList<>();
     CarService carService = new CarService();//Service cars
     CustomerService customerService = new CustomerService(); // Service customer
+    RentalService rentalService = new RentalService(); // Service rentals
     Customer customer = new Customer();
 
     public void run() throws SQLException {
@@ -41,6 +43,7 @@ public class ConsoleController {
         } else {
             carService.populateCars(statement, carList);
             customerService.populateCustomerToArrayList(statement, customerList);
+            rentalService.populateRentalContractsToArrayList(statement, rentalList);
             runMenu(statement);
         }
     }
@@ -57,7 +60,7 @@ public class ConsoleController {
 
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
-            case 3 -> rentalMenu(statement);
+            case 3 -> rentalMenu(statement, rentalList);
             case 4 -> System.exit(4);
 
             case 6 -> carService.createCar(statement, userInput, carList, tools);
@@ -136,7 +139,7 @@ public class ConsoleController {
 
     }
 
-    public void rentalMenu(Statement statement) {
+    public void rentalMenu(Statement statement, ArrayList<Rental> rentals) throws SQLException {
 
         RentalRepository rentalRepository = new RentalRepository();
 
@@ -152,11 +155,9 @@ public class ConsoleController {
 
             case 1 -> rentalRepository.createRentalContract(rentalList, carList,customerList);
             case 2 -> rentalRepository.viewRentals(rentalList);
-            /* case 3 -> customerService.createCustomer(statement,customerList);
-            case 4 -> customerService.deleteCustomer(statement, customerList, userInput);*/
-            //case 0 -> customerMenu(statement);
-
-
+            case 3 -> rentalRepository.updateRentalContracts(statement, rentalList, userInput);
+            case 4 -> rentalRepository.deleteRentalContract(statement, rentalList, userInput);
+            default -> rentalMenu(statement, rentalList);
         }
     }
 }
