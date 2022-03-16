@@ -82,7 +82,6 @@ public class FamilyRepository {
         }
     }
 
-// hello
     private void addFamilyCarToDataBase(Family familyCar, Statement statement){
         try {
             statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
@@ -129,14 +128,6 @@ public class FamilyRepository {
     public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum,
     Car car) {
 
-        /*/for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
-                System.out.println(carList.get(i));
-        }String statementService = userInput.next();
-        statementService = "cruise_control";
-        String cruise = userInput.next();
-        //System.out.println("Enter which registration number to be updated");*/
         String answer = regNum;
 
 
