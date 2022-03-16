@@ -151,8 +151,8 @@ public class ConsoleController {
         switch (rentalSwitch) {
 
             case 1 -> rentalRepository.createRentalContract(rentalList, carList,customerList);
-           /* case 2 -> customerService.updateCustomer(statement, customerList, userInput,customer);
-            case 3 -> customerService.createCustomer(statement,customerList);
+            case 2 -> rentalRepository.viewRentals(rentalList);
+            /* case 3 -> customerService.createCustomer(statement,customerList);
             case 4 -> customerService.deleteCustomer(statement, customerList, userInput);*/
             //case 0 -> customerMenu(statement);
 

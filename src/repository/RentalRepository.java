@@ -19,6 +19,84 @@ public class RentalRepository {
     CustomerRepository customerRepository;
 
 
+    public void viewRentals(ArrayList<Rental> rentalList) {
+        tools.margeTop(120);
+        for (int i = 0; i < rentalList.size(); i++) {
+
+            if (rentalList.get(i).getCar().getClass().getSimpleName().equals("Luxury")) {
+                System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                        "RegNumb", "Brand", "Model", "RegDate", "kmdriven", ">3000CCM", "Auto-gear", "CruiseContr.", "LeatherSeats");
+                System.out.println(rentalList.get(i).getCar().toString());
+
+            } else if (rentalList.get(i).getCar().getClass().getSimpleName().equals("Family")) {
+                System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                        "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Air-Cond.", "CruiseContr.", ">7Seats");
+                System.out.println(rentalList.get(i).getCustomer().toString());
+                tools.margeTop(120);
+
+
+            } else if (rentalList.get(i).getCar().getClass().getSimpleName().equals("Sport")) {
+                System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s |\n",
+                        "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
+                System.out.println(rentalList.get(i).getCustomer().toString());
+                tools.margeTop(80);
+
+            }
+            System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                    "DriverNumb", "DriverSince", "Fname", "Lname", "ZipCode", "CustomCity", "PhoneNumb", "MobileNumb",
+                    "Email");
+            System.out.println(rentalList.get(i).getCustomer().toString());
+            tools.margeTop(120);
+            /*System.out.println("rental_id: " + rentalList.get(i).getRental_id() +
+                    ", fromDateAndTime='" + rentalList.get(i).getFromDateAndTime() + '\'' +
+                    ", toDateAndTime='" + rentalList.get(i).getToDateAndTime() + '\'' +
+                    ", maxKm=" + rentalList.get(i).getMaxKm());
+*/
+            System.out.printf("\n| %-25s %-25s %-25s %-25s   |", "rental_id",
+                    "fromDateAndTime=", "toDateAndTime=", "maxKm");
+            tools.margeTop(120);
+            System.out.printf("\n| %-25s %-25s %-25s %-25s   |\n", rentalList.get(i).getRental_id(),
+                    rentalList.get(i).getFromDateAndTime(), rentalList.get(i).getToDateAndTime(),
+                    rentalList.get(i).getMaxKm());
+        }
+    }
+
+    public void viewRental(Rental rental) {
+        tools.margeTop(120);
+
+        if (rental.getCar().getClass().getSimpleName().equals("Luxury")) {
+            System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                    "RegNumb", "Brand", "Model", "RegDate", "kmdriven", ">3000CCM", "Auto-gear", "CruiseContr.", "LeatherSeats");
+            System.out.println(rental.getCar().toString());
+
+        } else if (rental.getCar().getClass().getSimpleName().equals("Family")) {
+            System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                    "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Air-Cond.", "CruiseContr.", ">7Seats");
+            System.out.println(rental.getCar().toString());
+            tools.margeTop(120);
+
+
+        } else if (rental.getCar().getClass().getSimpleName().equals("Sport")) {
+            System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s |\n",
+                    "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
+            System.out.println(rental.getCar().toString());
+            tools.margeTop(80);
+
+        }
+        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                "DriverNumb", "DriverSince", "Fname", "Lname", "ZipCode", "CustomCity", "PhoneNumb", "MobileNumb",
+                "Email");
+        System.out.println(rental.getCustomer().toString());
+        tools.margeTop(120);
+
+        System.out.printf("\n| %-25s %-25s %-25s %-25s   |", "rental_id",
+                "fromDateAndTime=", "toDateAndTime=", "maxKm");
+        tools.margeTop(120);
+        System.out.printf("\n| %-25s %-25s %-25s %-25s   |", rental.getRental_id(),
+                rental.getFromDateAndTime(), rental.getToDateAndTime(), rental.getMaxKm());
+
+    }
+
     public void createRentalContract(/*Car car, Customer customer,*/ ArrayList<Rental> rentalList,
                                                                      ArrayList<Car> carList,
                                                                      ArrayList<Customer> customerList) {
@@ -42,12 +120,12 @@ public class RentalRepository {
 
             int maxKm = tools.returnIntInfo(50, 1, "Max KM");
 
-            Rental rental = new Rental( car,  customer,  rental_id,  fromDateAndTime,
-                     toDateAndTime,  maxKm);
+            Rental rental = new Rental(car, customer, rental_id, fromDateAndTime,
+                    toDateAndTime, maxKm);
 
-            System.out.println(rental.toString());
+            viewRental(rental);
             rentalList.add(rental);
-        }else {
+        } else {
             System.out.println("Create new customer menu: not live yet!");
         }
     }
@@ -90,7 +168,7 @@ public class RentalRepository {
         }
     }
 
-    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools) {
+    public void viewRentalContracts(Statement statement, ArrayList<Rental> rental, UITools tools) {
         System.out.println();
         tools.customizedButton(50, 1, "Rental Contracts");
 
@@ -99,27 +177,27 @@ public class RentalRepository {
                 "RentFDate", "RentTDate", "RentMaxKm");
         tools.margeTop(120);
 
-        for (int i = 0; i < rentalList.size(); i++) {
-            if (rentalList.get(i).getClass().getSimpleName().equals("Rental")) {
-                System.out.println("\n" + rentalList.get(i).toString());
+        for (int i = 0; i < rental.size(); i++) {
+            if (rental.get(i).getClass().getSimpleName().equals("Rental")) {
+                System.out.println("\n" + rental.get(i).toString());
                 tools.margeTop(120);
             }
         }
         System.out.println();
     }
 
-    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) {
+    public void updateRentalContracts(Statement statement, ArrayList<Rental> rental, Scanner userInput) {
 
-        for (int i = 0; i < rentalList.size(); i++) {
-            System.out.println(rentalList.get(i));
+        for (int i = 0; i < rental.size(); i++) {
+            System.out.println(rental.get(i));
         }
 
         System.out.println("Enter which rental_id needs to be updated");
         int answer = userInput.nextInt();
 
-        for (int i = 0; i < rentalList.size(); i++) {
-            if (rentalList.get(i).getRental_id() == answer)
-                System.out.println(rentalList.get(i));
+        for (int i = 0; i < rental.size(); i++) {
+            if (rental.get(i).getRental_id() == answer)
+                System.out.println(rental.get(i));
         }
         System.out.println("What do you want to update?\n" +
                 "1 for RentFDate\n2 for RentTDate\n3 for RentMaxKm\n4 for lName\n5 for zipCode");
@@ -169,16 +247,16 @@ public class RentalRepository {
         //statement.close();
     }
 
-    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) throws SQLException {
+    public void deleteRentalContract(Statement statement, ArrayList<Rental> rental, Scanner userInput) throws SQLException {
         int answer = userInput.nextInt();
-        System.out.println(rentalList);
+        System.out.println(rental);
         System.out.println("Enter the rental id for the contract you want to delete");
 
         answer = userInput.nextInt();
         statement.execute("DELETE FROM rental_table WHERE rental_id = '" + answer + "'");
-        for (int i = 0; i < rentalList.size() - 1; i++) {
-            if (rentalList.get(i).getRental_id() == answer) {
-                rentalList.remove(i);
+        for (int i = 0; i < rental.size() - 1; i++) {
+            if (rental.get(i).getRental_id() == answer) {
+                rental.remove(i);
             }
         }
     }

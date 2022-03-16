@@ -27,8 +27,18 @@ public class CustomerRepository {
     }
 
     private void viewCustomer(ArrayList<Customer> customerList) {
+        System.out.println();
+        tools.customizedButton(50,1, "Customer");
+        tools.margeTop(70);
+        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                "DriverNumb", "DriverSince", "Fname", "Lname", "ZipCode", "CustomCity", "PhoneNumb", "MobileNumb",
+                "Email");
+
         for (int i = 0; i < customerList.size(); i++) {
-            tools.customizedButton(40,1, customerList.get(i).toString());
+            System.out.println(customerList.get(i).toString());
+            tools.margeTop(120);
+            System.out.println();
+            //tools.customizedButton(40,1, customerList.get(i).toString());
         }
     }
 

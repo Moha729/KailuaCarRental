@@ -31,7 +31,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s ",
+        return String.format("| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |",
                 getDriverLicenseNumber(), getDriverSinceNumber(), getName(), getLastName(),
                 getZip(), getCity(), getPhone(), getMobilePhone(), getEmail());
     }
