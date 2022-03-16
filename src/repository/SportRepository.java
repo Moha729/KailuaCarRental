@@ -91,12 +91,7 @@ public class SportRepository {
 
     public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car) {
 
-        /*for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
-for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
-                System.out.println(carList.get(i));
-        }
-        //System.out.println("Enter which registration number to be updated");*/
+        System.out.println("Enter which registration number to be updated");
         String answer = regNum;
 
 
@@ -105,10 +100,6 @@ for (int i = 0; i < carList.size(); i++) {
                 "\n6 for manualGear\n7 for Over 200 HP");
 
         int ans = userInput.nextInt();
-
-        //String statementService = userInput.next();
-        //statementService = "cruise_control";
-        //String cruise = userInput.next();
 
         boolean extention = true;
         String newValue = null;
@@ -120,26 +111,32 @@ for (int i = 0; i < carList.size(); i++) {
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
+                car.setRegistrationNumber(newValue);
                 break;
             case 2:
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
                 newVariable = "brand";
+                car.setBrand(newValue);
                 break;
             case 3:
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
+                car.setModel(newValue);
                 break;
             case 4:
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
+                car.setRegistrationDate(newValue);
                 break;
             case 5:
                 System.out.println("Enter new km driven");
-                newValue = userInput.next();
+                int newKm = userInput.nextInt();
+                newValue = String.valueOf(newKm);
                 newVariable = "km_driven";
+                car.setKmDriven(newKm);
                 break;
             case 6:
                 extention = false;
