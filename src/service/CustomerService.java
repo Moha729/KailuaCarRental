@@ -15,8 +15,8 @@ public class CustomerService {
     public CustomerService(){
         customerRepository = new CustomerRepository();
     }
-    public void createCustomer(ArrayList<Customer> customerList){
-        customerRepository.createCustomer(customerList);
+    public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
+        customerRepository.createCustomer(statement,customerList);
     }
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         customerRepository.populateCustomerToArrayList(statement, customerList);

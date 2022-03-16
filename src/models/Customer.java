@@ -26,6 +26,20 @@ public class Customer {
         this.driverSinceNumber = driverSinceNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "driverLicenseNumber='" + driverLicenseNumber + '\'' +
+                ", driverSinceNumber='" + driverSinceNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", zip=" + zip +
+                ", city='" + city + '\'' +
+                ", phone=" + phone +
+                ", mobilePhone=" + mobilePhone +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
     public String getName() {
         return name;
@@ -99,3 +113,5 @@ public class Customer {
         this.driverSinceNumber = driverSinceNumber;
     }
 }
+
+
