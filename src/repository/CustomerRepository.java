@@ -60,9 +60,7 @@ public class CustomerRepository {
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         try {
 
-            String sql = ("SELECT customer_driver_license_number, customer_driver_since_number,customer_first_name, " +
-                    "customer_last_name, customer_zip_code, customer_city, customer_phone_number, " +
-                    "customer_mobile_number, customer_email FROM customer_table");
+            String sql = ("SELECT * FROM customer_table");
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
@@ -98,7 +96,7 @@ public class CustomerRepository {
 
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getClass().getSimpleName().equals("Customer")) {
-                System.out.println("\n" + customerList.get(i).toString());
+                System.out.println("\n" + customerList.get(i));
                 tools.margeTop(120);
             }
         }
@@ -188,13 +186,12 @@ public class CustomerRepository {
     }
 
     public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput) throws SQLException{
-        String answer = userInput.next();
-        System.out.println(customerList);
         System.out.println("Enter the driver license number for the customer you want to delete");
+        System.out.println(customerList);
+        String answer = userInput.next();
 
-        answer = userInput.next();
         statement.execute("DELETE FROM customer_table WHERE customer_driver_license_number = '" + answer + "'");
-        for (int i = 0; i < customerList.size() - 1; i++) {
+        for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {
                 customerList.remove(i);
             }
