@@ -60,9 +60,9 @@ public class CustomerRepository {
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         try {
 
-            String sql = ("SELECT * FROM car_table " +
-                    "INNER JOIN customer_table " +
-                    "ON car_table.registration_number = customer_table.customer_driver_license_number");
+            String sql = ("SELECT customer_driver_license_number, customer_driver_since_number,customer_first_name, " +
+                    "customer_last_name, customer_zip_code, customer_city, customer_phone_number, " +
+                    "customer_mobile_number, customer_email FROM customer_table");
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
