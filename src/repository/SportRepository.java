@@ -208,14 +208,4 @@ public class SportRepository {
             }
         }
     }
-    public void deleteSport(Statement statement, ArrayList<Car> carList) throws SQLException {
-        System.out.println("Enter a registration number to delete its car information");
-        String answer = userInput.next();
-        statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-        statement.execute("DELETE FROM sport_cars WHERE registration_number = '" + answer + "'");
-        for (int i = 0; i < carList.size() - 1; i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) ;
-            carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
-        }
-    }
 }

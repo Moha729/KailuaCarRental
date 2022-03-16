@@ -139,10 +139,10 @@ public class CarRepository {
 
                 if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("luxury")){
                     deleteIndex = 1;
+                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Sport")){
+                    deleteIndex = 2;
                 } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Family")){
                     deleteIndex = 3;
-                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("sport")){
-                    deleteIndex = 2;
                 }
             }
         }

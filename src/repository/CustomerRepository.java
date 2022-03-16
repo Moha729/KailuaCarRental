@@ -222,4 +222,25 @@ public class CustomerRepository {
             }
         }
     }
+    /*public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) throws SQLException {
+        String answer;
+        int deleteIndex = 0;
+        viewCars(carList, tools);
+        String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
+        answer = regNum;
+
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)){
+                System.out.println(carList.get(i));
+
+                if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("luxury")){
+                    deleteIndex = 1;
+                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Sport")){
+                    deleteIndex = 2;
+                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Family")){
+                    deleteIndex = 3;
+                }
+            }
+        }*/
 }
