@@ -94,7 +94,7 @@ public class CustomerRepository {
                 + customer.getEmail() + "')");
     }
 
-    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools){
+    public void viewCustomer(ArrayList<Customer> customerList, UITools tools){
         System.out.println();
         tools.customizedButton(50,1, "Customer");
 
@@ -210,37 +210,18 @@ public class CustomerRepository {
         }
     }
 
-    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput) throws SQLException{
-        System.out.println("Enter the driver license number for the customer you want to delete");
-        System.out.println(customerList);
-        String answer = userInput.next();
+    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput, UITools tools) throws SQLException{
+        String answer;
+        viewCustomer(customerList, tools);
+        String DriverNumb = tools.returnStringInfo(50, 1, "Enter the driver license number for the customer you want to delete");
+        answer = DriverNumb;
 
         statement.execute("DELETE FROM customer_table WHERE customer_driver_license_number = '" + answer + "'");
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {
                 customerList.remove(i);
             }
+            System.out.println("Customer deleted!");
         }
     }
-    /*public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) throws SQLException {
-        String answer;
-        int deleteIndex = 0;
-        viewCars(carList, tools);
-        String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
-        answer = regNum;
-
-
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)){
-                System.out.println(carList.get(i));
-
-                if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("luxury")){
-                    deleteIndex = 1;
-                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Sport")){
-                    deleteIndex = 2;
-                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Family")){
-                    deleteIndex = 3;
-                }
-            }
-        }*/
 }

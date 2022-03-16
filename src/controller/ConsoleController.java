@@ -119,7 +119,7 @@ public class ConsoleController {
                 case 1 -> customerService.viewCustomer(statement, customerList, tools);
                 case 2 -> customerService.updateCustomer(statement, customerList, userInput,customer);
                 case 3 -> customerService.createCustomer(statement,customerList);
-                case 4 -> customerService.deleteCustomer(statement, customerList, userInput);
+                case 4 -> customerService.deleteCustomer(statement, customerList, userInput, tools);
                 case 0 -> customerMenu(statement);
 
             }
