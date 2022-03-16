@@ -31,17 +31,9 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "driverLicenseNumber='" + driverLicenseNumber + '\'' +
-                ", driverSinceNumber='" + driverSinceNumber + '\'' +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", zip=" + zip +
-                ", city='" + city + '\'' +
-                ", phone=" + phone +
-                ", mobilePhone=" + mobilePhone +
-                ", email='" + email + '\'' +
-                '}';
+        return String.format("%10s %10s %10s %10s %10s %10s %10s %10s %10s ",
+                getDriverLicenseNumber(), getDriverSinceNumber(), getName(), getLastName(),
+                getZip(), getCity(), getPhone(), getMobilePhone(), getEmail());
     }
 
 

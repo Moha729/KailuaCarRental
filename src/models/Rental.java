@@ -13,7 +13,8 @@ public class Rental {
     private int maxKm;
 
 
-    public Rental(Car car, Customer customer, int rental_id, String fromDateAndTime, String toDateAndTime, int maxKm) {
+    public Rental(Car car, Customer customer, int rental_id, String fromDateAndTime,
+                  String toDateAndTime, int maxKm) {
         this.car = car;
         this.customer = customer;
         this.rental_id = rental_id;
@@ -22,9 +23,34 @@ public class Rental {
         this.maxKm = maxKm;
     }
 
-    public Rental(String registration_number, String brand, String model, String registration_date, int km_driven, String customer_driver_license_number, String customer_driver_since_number, String customer_first_name_, String customer_last_name, int customer_zip_code, String customer_city, int customer_phone_number, int customer_mobile_number, String customer_email, int rental_id, String rental_from_date, String rental_to_date, int rental_max_km) {
+   public Rental(String registration_number, String brand, String model,
+                  String registration_date, int km_driven, String customer_driver_license_number,
+                  String customer_driver_since_number, String customer_first_name_,
+                  String customer_last_name, int customer_zip_code, String customer_city,
+                  int customer_phone_number, int customer_mobile_number, String customer_email,
+                  int rental_id, String rental_from_date, String rental_to_date, int rental_max_km) {
 
     }
+
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "car=" + car +
+                ",\n customer=" + customer +
+                ",\n rental_id=" + rental_id +
+                ", fromDateAndTime='" + fromDateAndTime + '\'' +
+                ", toDateAndTime='" + toDateAndTime + '\'' +
+                ", maxKm=" + maxKm +
+                '}';
+    }
+
+    /*@Override
+    public String toString() {
+        return String.format("%10s %10s\n%10s %10s\n%From: 10s\nTo: %10s\nmax km: %10s\nrent_id: %10s",
+                getCar().getRegistrationNumber(), getCar().getModel(),
+                getCustomer().getDriverLicenseNumber(),getCustomer().getName(),
+                getFromDateAndTime(), getToDateAndTime(), getMaxKm(), getRental_id());
+    }*/
 
     public int getRental_id() { return rental_id; }
 

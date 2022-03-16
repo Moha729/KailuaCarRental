@@ -13,6 +13,26 @@ public class CustomerRepository {
 
     UITools tools = new UITools();
 
+    public Customer getCustomer(ArrayList<Customer> customerList, UITools tools){
+        viewCustomer(customerList);
+        Customer customer = null;
+        String customerDV = tools.returnStringInfo(40, 1, "Enter customer driving licence number");
+
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(customerDV)){
+                customer = customerList.get(i);
+            }
+        }
+        return customer;
+    }
+
+    private void viewCustomer(ArrayList<Customer> customerList) {
+        for (int i = 0; i < customerList.size(); i++) {
+            tools.customizedButton(40,1, customerList.get(i).toString());
+        }
+    }
+
+
     public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
 
         String name = tools.returnStringInfo(50, 1, "Enter first name");

@@ -81,6 +81,20 @@ public class CarRepository {
         sportService.viewSportCars(carList, tools);
     }
 
+    public Car getCar(ArrayList<Car> carList, UITools tools){
+        viewCars(carList, tools);
+
+        String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
+
+        Car car = null;
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)) {
+                car = carList.get(i);
+            }
+            }
+        return car;
+    }
+
     public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) {
         int updateIndex = 0;
         Family familyCar = null;

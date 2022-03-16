@@ -15,22 +15,44 @@ public class RentalRepository {
     UITools tools = new UITools();
     Scanner userInput = new Scanner(System.in);
 
-    public void createRentalContract(Car car, Customer customer, ArrayList<Rental> rentalList){
-
-        int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
-
-        String fromDateAndTime = tools.returnStringInfo(50, 1, "Enter first name");
-
-        String toDateAndTime = tools.returnStringInfo(50, 1, "Enter last name");
-
-        int maxKm = tools.returnIntInfo(50, 1, "Enter zip code ");
-
-        Rental rental = new Rental(car, customer, rental_id, fromDateAndTime, toDateAndTime, maxKm);
-        rentalList.add(rental);
+    CarRepository carRepository;
+    CustomerRepository customerRepository;
 
 
+    public void createRentalContract(/*Car car, Customer customer,*/ ArrayList<Rental> rentalList,
+                                                                     ArrayList<Car> carList,
+                                                                     ArrayList<Customer> customerList) {
+        String newCustomer = tools.returnStringInfo(50, 1, "Are you a returning customer");
+
+        if (newCustomer.equalsIgnoreCase("yes")) {
+
+            carRepository = new CarRepository();
+            customerRepository = new CustomerRepository();
+
+            int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
+            //auto increment?
+
+            Car car = carRepository.getCar(carList, tools);
+
+            Customer customer = customerRepository.getCustomer(customerList, tools);
+
+            String fromDateAndTime = tools.returnStringInfo(50, 1, "Start date");
+
+            String toDateAndTime = tools.returnStringInfo(50, 1, "End date");
+
+            int maxKm = tools.returnIntInfo(50, 1, "Max KM");
+
+            Rental rental = new Rental( car,  customer,  rental_id,  fromDateAndTime,
+                     toDateAndTime,  maxKm);
+
+            System.out.println(rental.toString());
+            rentalList.add(rental);
+        }else {
+            System.out.println("Create new customer menu: not live yet!");
+        }
     }
-    public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList){
+
+    public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList) {
         try {
 
             String sql = ("SELECT * FROM rental_table " +
@@ -67,9 +89,10 @@ public class RentalRepository {
             System.out.println(e.getMessage() + "\n");
         }
     }
-    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools){
+
+    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools) {
         System.out.println();
-        tools.customizedButton(50,1, "Rental Contracts");
+        tools.customizedButton(50, 1, "Rental Contracts");
 
         tools.margeTop(70);
         System.out.printf("\n| %-14s %-14s %-12s |\n",
@@ -84,7 +107,8 @@ public class RentalRepository {
         }
         System.out.println();
     }
-    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput){
+
+    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) {
 
         for (int i = 0; i < rentalList.size(); i++) {
             System.out.println(rentalList.get(i));
@@ -94,7 +118,7 @@ public class RentalRepository {
         int answer = userInput.nextInt();
 
         for (int i = 0; i < rentalList.size(); i++) {
-            if (rentalList.get(i).getRental_id()== answer)
+            if (rentalList.get(i).getRental_id() == answer)
                 System.out.println(rentalList.get(i));
         }
         System.out.println("What do you want to update?\n" +
@@ -105,29 +129,29 @@ public class RentalRepository {
         String newValue = null;
         String newVariable = null;
 
-        switch (ans){
+        switch (ans) {
 
-            case 1 :
+            case 1:
                 System.out.println("Enter which driver license number to be updated");
                 newValue = userInput.next();
                 newVariable = "customer_driver_license_number";
                 break;
-            case 2 :
+            case 2:
                 System.out.println("Enter customer driver since number");
-                newValue =  userInput.next();
+                newValue = userInput.next();
                 newVariable = "customer_driver_since_number";
                 break;
-            case 3 :
+            case 3:
                 System.out.println("Enter new first name");
                 newValue = userInput.next();
                 newVariable = "customer_first_name";
                 break;
-            case 4 :
+            case 4:
                 System.out.println("Enter new last name");
                 newValue = userInput.next();
                 newVariable = "customer_last_name";
                 break;
-            case 5 :
+            case 5:
                 System.out.println("Enter new customer zip code");
                 newValue = userInput.next();
                 newVariable = "customer_zip_code";
@@ -144,7 +168,8 @@ public class RentalRepository {
         }
         //statement.close();
     }
-    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) throws SQLException{
+
+    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) throws SQLException {
         int answer = userInput.nextInt();
         System.out.println(rentalList);
         System.out.println("Enter the rental id for the contract you want to delete");

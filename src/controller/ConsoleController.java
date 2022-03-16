@@ -4,6 +4,8 @@ import UI.UITools;
 import db.DBManager;
 import models.Car;
 import models.Customer;
+import models.Rental;
+import repository.RentalRepository;
 import service.CarService;
 import service.CustomerService;
 
@@ -21,7 +23,8 @@ public class ConsoleController {
     Connection connection = DBManager.getConnection();//returns connection
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
-    CarService carService = new CarService();//Service class
+    ArrayList<Rental> rentalList = new ArrayList<>();
+    CarService carService = new CarService();//Service cars
     CustomerService customerService = new CustomerService(); // Service customer
     Customer customer = new Customer();
 
@@ -46,7 +49,7 @@ public class ConsoleController {
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
 
         System.out.print(tools.doubleButton(">1< Cars", ">2< Customers"));
-        System.out.print(tools.doubleButton(">3< New rental", ">4< Active rentals"));
+        System.out.print(tools.doubleButton(">3< Rentals", ">4< Exit"));
 
         int mainSwitch = userInput.nextInt();
 
@@ -55,7 +58,7 @@ public class ConsoleController {
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
             case 3 -> rentalMenu(statement);
-            //case 4 ->
+            case 4 -> System.exit(4);
 
             case 6 -> carService.createCar(statement, userInput, carList, tools);
             case 8 -> carService.updateCar(statement, userInput, carList, tools);
@@ -134,5 +137,26 @@ public class ConsoleController {
     }
 
     public void rentalMenu(Statement statement) {
+
+        RentalRepository rentalRepository = new RentalRepository();
+
+        System.out.println();
+        tools.customizedButton(120, 3, "Rentals menu");
+
+        System.out.print(tools.doubleButton(">1< New rental", ">2< Active rentals"));
+        System.out.print(tools.doubleButton(">3< Change rental", ">4< End rental"));
+
+        int rentalSwitch = userInput.nextInt();
+
+        switch (rentalSwitch) {
+
+            case 1 -> rentalRepository.createRentalContract(rentalList, carList,customerList);
+           /* case 2 -> customerService.updateCustomer(statement, customerList, userInput,customer);
+            case 3 -> customerService.createCustomer(statement,customerList);
+            case 4 -> customerService.deleteCustomer(statement, customerList, userInput);*/
+            //case 0 -> customerMenu(statement);
+
+
+        }
     }
 }
