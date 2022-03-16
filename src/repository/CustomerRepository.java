@@ -60,16 +60,15 @@ public class CustomerRepository {
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         try {
 
-            String sql = ("SELECT customer_driver_license_number, customer_driver_since_number,\" +\n" +
-                    "                \"customer_first_name, customer_last_name, customer_zip_code, customer_city, customer_phone_number, \" +\n" +
-                    "                \"customer_mobile_number, customer_email FROM customer_table");
+            String sql = ("SELECT customer_driver_license_number, customer_driver_since_number,customer_first_name, customer_last_name, " +
+                    "customer_zip_code, customer_city, customer_phone_number, customer_mobile_number, customer_email FROM customer_table");
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
                     Customer customer = new Customer(
                             resultSet.getString("customer_driver_license_number"),
                             resultSet.getString("customer_driver_since_number"),
-                            resultSet.getString("customer_first_name "),
+                            resultSet.getString("customer_first_name"),
                             resultSet.getString("customer_last_name"),
                             resultSet.getInt("customer_zip_code"),
                             resultSet.getString("customer_city"),
@@ -120,7 +119,7 @@ public class CustomerRepository {
         }
         System.out.println("What do you want to update?\n" +
                 "1 for DrLicNumb\n2 for DrSincDate\n3 for fName\n4 for lName\n5 for zipCode" +
-                "\n6 for city\n7 for pNumb\n 8 for mNumb\n9 for email");
+                "\n6 for city\n7 for pNumb\n8 for mNumb\n9 for email");
 
         int ans = userInput.nextInt();
 
@@ -143,6 +142,12 @@ public class CustomerRepository {
                 System.out.println("Enter new first name");
                 newValue = userInput.next();
                 newVariable = "customer_first_name";
+
+                for (int i = 0; i < customerList.size(); i++) {
+                    if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer))
+                        customerList.get(i).setName(newValue);
+                }
+
                 break;
             case 4 :
                 System.out.println("Enter new last name");
@@ -165,7 +170,7 @@ public class CustomerRepository {
                 newVariable = "customer_phone_number";
                 break;
             case 8 :
-                System.out.println("Enter new ccustomer mobile number");
+                System.out.println("Enter new customer mobile number");
                 newValue = userInput.next();
                 newVariable = "customer_mobile_number";
                 break;
@@ -176,10 +181,16 @@ public class CustomerRepository {
                 break;
         }
 
+
+
         try {
             statement.execute("UPDATE customer_table SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE customer_driver_license_number ='" + answer + "'");
+
+
+
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update customer table");
