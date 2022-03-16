@@ -12,29 +12,27 @@ import java.util.Scanner;
 
 public class LuxuryService {
 
-
     LuxuryRepository luxuryRepository;
 
     public LuxuryService() {
         luxuryRepository = new LuxuryRepository();
     }
 
-    public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String registrationNumber, String brand, String model, String registrationDate, int kmDriven) throws SQLException {
-       return luxuryRepository.createLuxury(statement,carList,userInput,registrationNumber,brand,model,registrationDate,kmDriven);
+    public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String registrationNumber, String brand, String model, String registrationDate, int kmDriven, UITools tools) throws SQLException {
+       return luxuryRepository.createLuxury(statement, carList, userInput, registrationNumber, brand, model, registrationDate, kmDriven, tools);
     }
 
     public void populateLuxuryToArrayList(Statement statement, ArrayList<Car> carList) {
-        luxuryRepository.populateLuxuryToArrayList(statement,carList);
+        luxuryRepository.populateLuxuryToArrayList(statement, carList);
     }
 
 
     public void viewLuxuryCars(ArrayList<Car> carList, UITools tools) {
-        luxuryRepository.viewLuxuryCars(carList,tools);
+        luxuryRepository.viewLuxuryCars(carList, tools);
     }
-
 
     public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Luxury car) {
 
-        luxuryRepository.updateLuxuryCar(statement,carList,userInput, regNum, car);
+        luxuryRepository.updateLuxuryCar(statement, carList, userInput, regNum, car);
     }
 }

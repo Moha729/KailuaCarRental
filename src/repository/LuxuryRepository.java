@@ -14,19 +14,32 @@ public class LuxuryRepository {
 
 
     public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String  reg, String br, String mo,
-                               String regDate, int kmDr) throws SQLException {
+                               String regDate, int kmDr, UITools tools) throws SQLException {
+        boolean ccm;
+        boolean gear;
+        boolean cruiseControl;
+        boolean leatherSeats;
 
-        System.out.println("Enter ccm");
-        boolean ccm = userInput.nextBoolean();
-
-        System.out.println("Enter gear");
-        boolean gear = userInput.nextBoolean();
-
-        System.out.println("Enter cruisecontrol");
-        boolean cruiseControl = userInput.nextBoolean();
-
-        System.out.println("Enter leather seats");
-        boolean leatherSeats = userInput.nextBoolean();
+        if (tools.returnStringInfo(50, 1, "does it have over 3000CCM?").equalsIgnoreCase("yes")){
+            ccm = true;
+        }else {
+            ccm = false;
+        }
+        if (tools.returnStringInfo(50, 1, "does it have automatic gear?").equalsIgnoreCase("yes")){
+            gear = true;
+        }else {
+            gear = false;
+        }
+        if (tools.returnStringInfo(50, 1, "does it have cruise control?").equalsIgnoreCase("yes")){
+            cruiseControl = true;
+        }else {
+            cruiseControl = false;
+        }
+        if (tools.returnStringInfo(50, 1, "does it have leather seats?").equalsIgnoreCase("yes")){
+            leatherSeats = true;
+        }else {
+            leatherSeats = false;
+        }
 
         Luxury luxuryCar = new Luxury(reg, br, mo, regDate, kmDr, ccm, gear, cruiseControl, leatherSeats);
 

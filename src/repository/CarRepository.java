@@ -48,13 +48,13 @@ public class CarRepository {
         if (chooseType == 1) {
 
             Luxury luxuryCar = luxuryService.createLuxury(statement, carList, userInput, registrationNumber, brand, model,
-                    registrationDate, kmDriven);
+                    registrationDate, kmDriven, tools);
             carList.add(luxuryCar);
 
         } else if (chooseType == 3) {
 
             Sport sportsCar = sportService.createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
-                    registrationDate, kmDriven);
+                    registrationDate, kmDriven, tools);
             carList.add(sportsCar);
 
         } else if (chooseType == 2) {
