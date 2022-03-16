@@ -13,6 +13,7 @@ public class DBRepo {
             statement.execute("UPDATE car_table SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update car table");
@@ -25,10 +26,12 @@ public class DBRepo {
             statement.execute("UPDATE luxury_table SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update luxury table");
         }
+
 
     }
 
@@ -39,6 +42,7 @@ public class DBRepo {
             statement.execute("UPDATE sport_table SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update sport car");
@@ -51,6 +55,7 @@ public class DBRepo {
             statement.execute("UPDATE family_table SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update family car");
