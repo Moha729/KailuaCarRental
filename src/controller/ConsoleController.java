@@ -16,8 +16,6 @@ import java.util.Scanner;
 public class ConsoleController {
 
 
-    // Husk at lave high cohesion !!
-    // Husk at dokumentere vores program via UML diagrammer evt. lav sekvens diagram
     final Scanner userInput = new Scanner(System.in);//Scanner
     final UITools tools = new UITools(); //buttons
     Connection connection = DBManager.getConnection();//returns connection
