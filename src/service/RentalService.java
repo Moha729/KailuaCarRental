@@ -4,31 +4,34 @@ import UI.UITools;
 import models.Car;
 import models.Customer;
 import models.Rental;
+import repository.RentalRepository;
 
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RentalService {
     UITools tools = new UITools();
-    RentalService rentalService;
+    RentalRepository rentalRepository;
 
     public void RentalService(){
-        rentalService = new RentalService();
+        rentalRepository = new RentalRepository();
     }
-    public void createRentalContract(Car car, Customer customer, ArrayList<Rental> rentalList){
-        rentalService.createRentalContract(car, customer, rentalList);//new rental
+
+    public void createRentalContract(ArrayList<Rental> rentalList,ArrayList<Car> carList,ArrayList<Customer> customerList){
+        rentalRepository.createRentalContract(rentalList,carList,customerList);//new rental
     }
     public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList){
-        rentalService.populateRentalContractsToArrayList(statement, rentalList);//read from db
+        rentalRepository.populateRentalContractsToArrayList(statement, rentalList);//read from db
     }
     public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools){
-        rentalService.viewRentalContracts(statement, rentalList, tools);//view
+        rentalRepository.viewRentalContracts(statement, rentalList, tools);//view
     }
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput){
-        rentalService.updateRentalContracts(statement, rentalList, userInput);//update
+        rentalRepository.updateRentalContracts(statement, rentalList, userInput);//update
     }
-    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput){
-        rentalService.deleteRentalContract(statement, rentalList, userInput);//end
+    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) throws SQLException {
+        rentalRepository.deleteRentalContract(statement, rentalList, userInput);//end
     }
 }
