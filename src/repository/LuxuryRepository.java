@@ -12,10 +12,6 @@ import java.util.Scanner;
 
 public class LuxuryRepository {
 
-    Scanner userInput = new Scanner(System.in);
-    Luxury luxury = new Luxury();
-
-
 
     public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String  reg, String br, String mo,
                                String regDate, int kmDr) throws SQLException {
@@ -41,33 +37,14 @@ public class LuxuryRepository {
         return luxuryCar;
     }
 
-    public void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) throws SQLException {
-
-        statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
-                "VALUES('"
-                + luxuryCar.getRegistrationNumber()   + "','"
-                + luxuryCar.getBrand()                +  "','"
-                + luxuryCar.getModel()                + "','"
-                + luxuryCar.getRegistrationDate()     + "','"
-                + luxuryCar.getKmDriven()             + "')");
-
-        statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
-                "VALUES('"
-                + luxuryCar.getRegistrationNumber() + "','"
-                + luxuryCar.isOver3000CCM()         + "','"
-                + luxuryCar.isAutomaticGear()       +  "','"
-                + luxuryCar.isCruiseControl()       + "','"
-                + luxuryCar.isLeatherSeats()        + "')");
-    }
-
-    public void populateLuxuryToArrayList(Statement statement,ArrayList<Car> carList) { // table content
+    public void populateLuxuryToArrayList(Statement statement,ArrayList<Car> carList) {
         try {
 
             String sql = ("SELECT * FROM car_table INNER JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
-                    luxury = new Luxury(
+                   Luxury luxury = new Luxury(
                             resultSet.getString("registration_number"),
                             resultSet.getString("brand"),
                             resultSet.getString("model"),
@@ -85,6 +62,24 @@ public class LuxuryRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
         }
+    }
+    public void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) throws SQLException {
+
+        statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
+                "VALUES('"
+                + luxuryCar.getRegistrationNumber()   + "','"
+                + luxuryCar.getBrand()                +  "','"
+                + luxuryCar.getModel()                + "','"
+                + luxuryCar.getRegistrationDate()     + "','"
+                + luxuryCar.getKmDriven()             + "')");
+
+        statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
+                "VALUES('"
+                + luxuryCar.getRegistrationNumber() + "','"
+                + luxuryCar.isOver3000CCM()         + "','"
+                + luxuryCar.isAutomaticGear()       +  "','"
+                + luxuryCar.isCruiseControl()       + "','"
+                + luxuryCar.isLeatherSeats()        + "')");
     }
     public void viewLuxuryCars(ArrayList<Car> carList, UITools tools){
         System.out.println();
@@ -104,59 +99,51 @@ public class LuxuryRepository {
         System.out.println();
     }
 
-    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car){
-
-        /*/for (int i = 0; i < carList.size(); i++) {System.out.println(carList.get(i));}
-        String statementService = userInput.next();
-        statementService = "cruise_control";
-        String cruise = userInput.next();
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer))
-                System.out.println(carList.get(i));
-        }
-        //System.out.println("Enter which registration number to be updated");*/
+    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Luxury car){
         String answer = regNum;
-
-
-
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
-                "\n6 for Over 3000CCM\n7 for aircondition\n 8 for AutomaticGear\n9 for LeatherSeats");
+                "\n6 for Over 3000CCM\n7 for aircondition\n8 for AutomaticGear\n9 for LeatherSeats");
 
         int ans = userInput.nextInt();
 
-
         boolean extention = true;
+        boolean superExtention = true;
         String newValue = null;
         String newVariable = null;
 
         switch (ans){
 
             case 1 :
+                superExtention = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
                 car.setRegistrationNumber(newValue);
                 break;
             case 2 :
+                superExtention = true;
                 System.out.println("Enter new brand");
                 newValue =  userInput.next();
                 newVariable = "brand";
                 car.setBrand(newValue);
                 break;
             case 3 :
+                superExtention = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
                 car.setModel(newValue);
                 break;
             case 4 :
+                superExtention = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
             case 5 :
+                superExtention = true;
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
@@ -173,11 +160,11 @@ public class LuxuryRepository {
                     newValue = "false";
                 }
                 newVariable = "manual_gear";
-
+                car.setOver3000CCM(Boolean.parseBoolean(newValue));
                 break;
             case 7 :
                 extention = false;
-                System.out.println("Enter new air condition status - does it have air condition?");
+                System.out.println("Enter gear status - does it have automatic gear?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")){
                     newValue = "true";
@@ -185,10 +172,11 @@ public class LuxuryRepository {
                     newValue = "false";
                 }
                 newVariable = "air_condition";
+                car.setAutomaticGear(Boolean.parseBoolean(newValue));
                 break;
             case 8 :
                 extention = false;
-                System.out.println("Enter new cruise control status - does it have Automatic Gear?");
+                System.out.println("Enter new cruise control status - does it have cruise control?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")){
                     newValue = "true";
@@ -196,6 +184,7 @@ public class LuxuryRepository {
                     newValue = "false";
                 }
                 newVariable = "cruise_control";
+                car.setCruiseControl(Boolean.parseBoolean(newValue));
                 break;
             case 9 :
                 extention = false;
@@ -206,24 +195,23 @@ public class LuxuryRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "seven_seats_or_more";
+                newVariable = "leather_seats";
+                car.setLeatherSeats(Boolean.parseBoolean(newValue));
                 break;
-
         }
-
-
-        try {
-            statement.execute("UPDATE car_table SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update car table");
+        if(superExtention == true) {
+            try {
+                statement.execute("UPDATE car_table SET " +
+                        newVariable + " = '" + newValue + "' " +
+                        "WHERE registration_number ='" + answer + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Could not update car table");
+            }
         }
-
         if (extention == false) {
             try {
-                statement.execute("UPDATE family_cars SET " +
+                statement.execute("UPDATE luxury_cars SET " +
                         newVariable + " = '" + newValue + "' " +
                         "WHERE registration_number ='" + answer + "'");
             } catch (SQLException e) {
@@ -231,8 +219,5 @@ public class LuxuryRepository {
                 System.out.println("Could not update luxury table");
             }
         }
-        //statement.close();
     }
-
-
 }

@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class FamilyRepository {
 
+
     public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg,
                                   String br, String mo, String regDate, int kmDr, UITools tools){
 
@@ -41,18 +42,14 @@ public class FamilyRepository {
             sevenSeatsOrMore = false;
         }
 
-
-
         Family familyCar = new Family(reg, br , mo, regDate,kmDr,manualGear,airCondition,
                 cruiseControl,sevenSeatsOrMore);
-
 
         addFamilyCarToDataBase(familyCar, statement);
 
         System.out.println("pres 1 to continue");
 
         return familyCar;
-
     }
 
 
@@ -130,44 +127,49 @@ public class FamilyRepository {
 
         String answer = regNum;
 
-
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
-                "\n6 for manualGear\n7 for aircondition\n 8 for cruiseControl\n9 for sevenSeatsPlus");
+                "\n6 for manualGear\n7 for aircondition\n8 for cruiseControl\n9 for sevenSeatsPlus");
 
         int ans = userInput.nextInt();
 
         boolean extention = true;
+        boolean superExtention = true;
         String newValue = null;
         String newVariable = null;
 
         switch (ans) {
 
             case 1:
+                superExtention = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
                 car.setRegistrationNumber(newValue);
                 break;
             case 2:
+                superExtention = true;
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
                 newVariable = "brand";
                 car.setBrand(newValue);
                 break;
             case 3:
+                superExtention = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
                 car.setModel(newValue);
                 break;
             case 4:
+                superExtention = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
             case 5:
+                superExtention = true;
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
@@ -184,6 +186,7 @@ public class FamilyRepository {
                     newValue = "false";
                 }
                 newVariable = "manual_gear";
+                car.setManualGear(Boolean.parseBoolean(newValue));
                 break;
             case 7:
                 extention = false;
@@ -195,6 +198,7 @@ public class FamilyRepository {
                     newValue = "false";
                 }
                 newVariable = "air_condition";
+                car.setAirCondition(Boolean.parseBoolean(newValue));
                 break;
             case 8:
                 extention = false;
@@ -206,6 +210,7 @@ public class FamilyRepository {
                     newValue = "false";
                 }
                 newVariable = "cruise_control";
+                car.setCruiseControl(Boolean.parseBoolean(newValue));
                 break;
             case 9:
                 extention = false;
@@ -217,18 +222,19 @@ public class FamilyRepository {
                     newValue = "false";
                 }
                 newVariable = "seven_seats_or_more";
+                car.setSevenSeatsOrMore(Boolean.parseBoolean(newValue));
                 break;
         }
-
-        try {
-            statement.execute("UPDATE car_table SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update car table");
+        if (superExtention == true) {
+            try {
+                statement.execute("UPDATE car_table SET " +
+                        newVariable + " = '" + newValue + "' " +
+                        "WHERE registration_number ='" + answer + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Could not update car table");
+            }
         }
-
         if (extention == false) {
             try {
                 statement.execute("UPDATE family_cars SET " +
@@ -238,11 +244,6 @@ public class FamilyRepository {
                 e.printStackTrace();
                 System.out.println("Could not update family table");
             }
-            //statement.close();
         }
-
-
     }
-
-
 }

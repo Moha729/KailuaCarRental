@@ -33,7 +33,7 @@ public class LuxuryService {
     }
 
 
-    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car) {
+    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Luxury car) {
 
         luxuryRepository.updateLuxuryCar(statement,carList,userInput, regNum, car);
     }

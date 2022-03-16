@@ -88,6 +88,23 @@ public class SportRepository {
                 + sportsCar.isOver200HP() + "')");
     }
 
+    public void viewSportCars(ArrayList<Car> carList, UITools tools) {
+        System.out.println();
+        tools.customizedButton(50, 1, "Sports");
+
+        tools.margeTop(40);
+        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s |\n",
+                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
+        tools.margeTop(91);
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getClass().getSimpleName().equals("Sport")) {
+                System.out.println("\n" + carList.get(i).toString());
+                tools.margeTop(91);
+            }
+        }
+        System.out.println();
+    }
 
     public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Sport car) {
 
@@ -117,7 +134,6 @@ public class SportRepository {
                 break;
             case 2:
                 superExtention = true;
-
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
                 newVariable = "brand";
@@ -125,7 +141,6 @@ public class SportRepository {
                 break;
             case 3:
                 superExtention = true;
-
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
@@ -169,7 +184,6 @@ public class SportRepository {
                 }
                 newVariable = "over200HP";
                 car.setOver200HP(Boolean.parseBoolean(newValue));
-
                 break;
         }
         if(superExtention == true) {
@@ -192,29 +206,8 @@ public class SportRepository {
                 e.printStackTrace();
                 System.out.println("Could not update sport table");
             }
-            //statement.close();
         }
     }
-
-
-    public void viewSportCars(ArrayList<Car> carList, UITools tools) {
-        System.out.println();
-        tools.customizedButton(50, 1, "Sports");
-
-        tools.margeTop(40);
-        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s |\n",
-                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
-        tools.margeTop(91);
-
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getClass().getSimpleName().equals("Sport")) {
-                System.out.println("\n" + carList.get(i).toString());
-                tools.margeTop(91);
-            }
-        }
-        System.out.println();
-    }
-
     public void deleteSport(Statement statement, ArrayList<Car> carList) throws SQLException {
         System.out.println("Enter a registration number to delete its car information");
         String answer = userInput.next();

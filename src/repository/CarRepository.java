@@ -33,10 +33,7 @@ public class CarRepository {
 
         System.out.print(tools.doubleButton(">1< Luxury", ">2< Family"));
         System.out.print(tools.doubleButton(">3< Sport", ">4< \"Back\""));
-        //int chooseType = tools.returnIntInfo(120, 3, "Which type is it? - Enter 1 for Luxury - Enter 2 for Sport - Enter 3 for Family");
         int chooseType = userInput.nextInt();
-
-        //if (chooseType != 1 || chooseType != 2 || chooseType != 3) {return;}
 
         String registrationNumber = tools.returnStringInfo(60, 1, "Enter registration number");
 
@@ -47,13 +44,12 @@ public class CarRepository {
         String registrationDate = tools.returnStringInfo(60, 1, "Enter date");
 
         int kmDriven = tools.returnIntInfo(60, 1, "Enter km driven");
-        //try {
+
         if (chooseType == 1) {
 
             Luxury luxuryCar = luxuryService.createLuxury(statement, carList, userInput, registrationNumber, brand, model,
                     registrationDate, kmDriven);
             carList.add(luxuryCar);
-
 
         } else if (chooseType == 3) {
 
@@ -71,8 +67,6 @@ public class CarRepository {
             tools.customizedButton(60, 1, "Try again!");
 
         }
-        //} catch (SQLException e) {tools.customizedButton(60, 1, e.getMessage());}
-
     }
 
     public void viewCars(ArrayList<Car> carList, UITools tools) {
@@ -101,7 +95,6 @@ public class CarRepository {
         Sport sportCar = null;
         Luxury luxuryCar = null;
 
-
         viewCars(carList, tools);
 
         String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
@@ -113,14 +106,14 @@ public class CarRepository {
                     updateIndex = 1;
                     luxuryCar = (Luxury) carList.get(i);
                     System.out.println("It's a luxury");
-                } else if (carList.get(i).getClass().getSimpleName().equals("Family")){
-                    updateIndex = 3;
-                    familyCar = (Family) carList.get(i);
-                    System.out.println("It's a family");
                 } else if (carList.get(i).getClass().getSimpleName().equals("Sport")){
                     updateIndex = 2;
                     sportCar = (Sport) carList.get(i);
                     System.out.println("It's a sport");
+                } else if (carList.get(i).getClass().getSimpleName().equals("Family")){
+                    updateIndex = 3;
+                    familyCar = (Family) carList.get(i);
+                    System.out.println("It's a family");
                 }
             }
         }
@@ -129,16 +122,13 @@ public class CarRepository {
             case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum, sportCar);
             case 3 -> familyService.updateFamilyCar(statement, carList, userInput, regNum, familyCar);
         }
-        //tools.customizedButton(40, 1, "Unexpected feature. Restart the program to view changes");
-        System.out.println("De kan kun opdatere de fields der er i super klassen indtil videre");
+        tools.customizedButton(40, 1, "Bilen er opdateret!");
     }
 
     public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) throws SQLException {
         String answer;
         int deleteIndex = 0;
-        //System.out.println(carList);
         viewCars(carList, tools);
-        //System.out.println("Enter 1 - to delete a luxury car\nEnter 2 - to delete a sport car\n Enter 3 - to delete a family car");
         String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
         answer = regNum;
 
@@ -158,38 +148,29 @@ public class CarRepository {
         }
         switch (deleteIndex) {
             case 1 -> {
-                //System.out.println("Enter a registration number to delete its car information");
-                //answer = userInput.next();
                 statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
                 statement.execute("DELETE FROM luxury_cars WHERE registration_number = '" + answer + "'");
                 for (int i = 0; i < carList.size(); i++) {
                     if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
                         carList.remove(carList.get(i));
-                    //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
                     System.out.println("Car " + answer + " is deleted");}
                 }
             }
             case 2 -> {
-                //System.out.println("Enter a registration number to delete its car information");
-                //answer = userInput.next();
                 statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
                 statement.execute("DELETE FROM sport_cars WHERE registration_number = '" + answer + "'");
                 for (int i = 0; i < carList.size(); i++) {
                     if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
                         carList.remove(carList.get(i));
-                    //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
                     System.out.println("Car " + answer + " is deleted");}
                 }
             }
             case 3 -> {
-                //System.out.println("Enter a registration number to delete its car information");
-                //answer = userInput.next();
                 statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
                 statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
                 for (int i = 0; i < carList.size(); i++) {
                     if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
                         carList.remove(carList.get(i));
-                    //carList.remove(i).getRegistrationNumber().equalsIgnoreCase(answer);
                     System.out.println("Car " + answer + "is deleted");
                     }
                 }
