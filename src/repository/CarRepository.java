@@ -31,8 +31,8 @@ public class CarRepository {
         System.out.println();
         tools.customizedButton(120, 1, "What is the type of the new car?");
 
-        System.out.print(tools.doubleButton(">1< Luxury", ">2< Family"));
-        System.out.print(tools.doubleButton(">3< Sport", ">4< \"Back\""));
+        System.out.print(tools.doubleButton(">1< Luxury", ">2< Sport"));
+        System.out.print(tools.doubleButton(">3< Family", ">4< \"Back\""));
         int chooseType = userInput.nextInt();
 
         String registrationNumber = tools.returnStringInfo(60, 1, "Enter registration number");
@@ -51,13 +51,13 @@ public class CarRepository {
                     registrationDate, kmDriven, tools);
             carList.add(luxuryCar);
 
-        } else if (chooseType == 3) {
+        } else if (chooseType == 2) {
 
             Sport sportsCar = sportService.createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
                     registrationDate, kmDriven, tools);
             carList.add(sportsCar);
 
-        } else if (chooseType == 2) {
+        } else if (chooseType == 3) {
 
             Family familyCar = familyService.createFamilyCar(statement, userInput, carList, registrationNumber, brand, model,
                     registrationDate, kmDriven, tools);
