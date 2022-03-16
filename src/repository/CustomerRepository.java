@@ -15,7 +15,7 @@ public class CustomerRepository {
 
     Buttons tools = new Buttons();
 
-    public void createCustomer(ArrayList<Customer> customerList){
+    public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
 
         String name = tools.returnStringInfo(50, 1, "Enter first name");
 
@@ -38,9 +38,25 @@ public class CustomerRepository {
         Customer customer = new Customer(driverLicenseNumber, driverSinceNumber, name, lastName, zip,
                 city, phone, mobilePhone, email);
         customerList.add(customer);
-
+        addCustomerToDB(customer, statement);
 
     }
+    public void addCustomerToDB(Customer customer, Statement statement)throws  SQLException{
+        statement.execute("INSERT INTO customer_table " + "(customer_driver_license_number, customer_driver_since_number," +
+                "customer_first_name, customer_last_name, customer_zip_code, customer_city, customer_phone_number, " +
+                "customer_mobile_number, customer_email)" + ""
+                +"VALUES('"
+                + customer.getDriverLicenseNumber() + "','"
+                + customer.getDriverSinceNumber() + "','"
+                + customer.getName() + "','"
+                + customer.getLastName() + "','"
+                + customer.getZip() + "','"
+                + customer.getCity() + "','"
+                + customer.getPhone() + "','"
+                + customer.getMobilePhone() + "','"
+                + customer.getEmail() + "')");
+    }
+
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         try {
 
@@ -177,8 +193,7 @@ public class CustomerRepository {
         System.out.println("Enter the driver license number for the customer you want to delete");
 
         answer = userInput.next();
-        statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-        statement.execute("DELETE FROM luxury_cars WHERE registration_number = '" + answer + "'");
+        statement.execute("DELETE FROM customer_table WHERE customer_driver_license_number = '" + answer + "'");
         for (int i = 0; i < customerList.size() - 1; i++) {
             if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {
                 customerList.remove(i);
