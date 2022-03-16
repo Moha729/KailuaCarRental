@@ -1,9 +1,7 @@
 package repository;
 
-import UI.Buttons;
-import models.Car;
+import UI.UITools;
 import models.Customer;
-import service.CustomerService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +11,7 @@ import java.util.Scanner;
 
 public class CustomerRepository {
 
-    Buttons tools = new Buttons();
+    UITools tools = new UITools();
 
     public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
 
@@ -39,7 +37,6 @@ public class CustomerRepository {
                 city, phone, mobilePhone, email);
         customerList.add(customer);
         addCustomerToDB(customer, statement);
-
     }
     public void addCustomerToDB(Customer customer, Statement statement)throws  SQLException{
         statement.execute("INSERT INTO customer_table " + "(customer_driver_license_number, customer_driver_since_number," +
@@ -85,7 +82,7 @@ public class CustomerRepository {
         }
     }
 
-    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, Buttons tools){
+    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools){
         System.out.println();
         tools.customizedButton(50,1, "Customer");
 
@@ -116,6 +113,7 @@ public class CustomerRepository {
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer))
                 System.out.println(customerList.get(i));
+            customer = customerList.get(i);
         }
         System.out.println("What do you want to update?\n" +
                 "1 for DrLicNumb\n2 for DrSincDate\n3 for fName\n4 for lName\n5 for zipCode" +

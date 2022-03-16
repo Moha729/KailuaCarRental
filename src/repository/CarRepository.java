@@ -1,6 +1,6 @@
 package repository;
 
-import UI.Buttons;
+import UI.UITools;
 import models.Car;
 import models.Family;
 import models.Luxury;
@@ -26,7 +26,7 @@ public class CarRepository {
         sportService.populateSportToArrayList(statement, carList);
     }
 
-    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, Buttons tools) throws SQLException {
+    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
 
         System.out.println();
         tools.customizedButton(120, 1, "What is the type of the new car?");
@@ -75,15 +75,18 @@ public class CarRepository {
 
     }
 
-    public void viewCars(ArrayList<Car> carList, Buttons tools) {
+    public void viewCars(ArrayList<Car> carList, UITools tools) {
         luxuryService.viewLuxuryCars(carList, tools);
         familyService.viewFamilyCars(carList, tools);
         sportService.viewSportCars(carList, tools);
     }
 
-    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, Buttons tools) {
+    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) {
         int updateIndex = 0;
-        Car car = null;
+        Family familyCar = null;
+        Sport sportCar = null;
+        Luxury luxuryCar = null;
+
 
         viewCars(carList, tools);
 
@@ -92,29 +95,31 @@ public class CarRepository {
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)){
                 System.out.println(carList.get(i));
-                car = carList.get(i);
                 if (carList.get(i).getClass().getSimpleName().equals("Luxury")){
                     updateIndex = 1;
+                    luxuryCar = (Luxury) carList.get(i);
                     System.out.println("It's a luxury");
                 } else if (carList.get(i).getClass().getSimpleName().equals("Family")){
                     updateIndex = 3;
+                    familyCar = (Family) carList.get(i);
                     System.out.println("It's a family");
                 } else if (carList.get(i).getClass().getSimpleName().equals("Sport")){
                     updateIndex = 2;
+                    sportCar = (Sport) carList.get(i);
                     System.out.println("It's a sport");
                 }
             }
         }
         switch (updateIndex) {
-            case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput, regNum, car);
-            case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum, car);
-            case 3 -> familyService.updateFamilyCar(statement, carList, userInput, regNum, car);
+            case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput, regNum, luxuryCar);
+            case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum, sportCar);
+            case 3 -> familyService.updateFamilyCar(statement, carList, userInput, regNum, familyCar);
         }
         //tools.customizedButton(40, 1, "Unexpected feature. Restart the program to view changes");
         System.out.println("De kan kun opdatere de fields der er i super klassen indtil videre");
     }
 
-    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, Buttons tools) throws SQLException {
+    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) throws SQLException {
         String answer;
         int deleteIndex = 0;
         //System.out.println(carList);
@@ -137,10 +142,6 @@ public class CarRepository {
                 }
             }
         }
-
-
-
-
         switch (deleteIndex) {
             case 1 -> {
                 //System.out.println("Enter a registration number to delete its car information");

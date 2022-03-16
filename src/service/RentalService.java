@@ -1,6 +1,6 @@
 package service;
 
-import UI.Buttons;
+import UI.UITools;
 import models.Car;
 import models.Customer;
 import models.Rental;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RentalService {
-    Buttons tools = new Buttons();
+    UITools tools = new UITools();
     RentalService rentalService;
 
     public void RentalService(){
@@ -22,7 +22,7 @@ public class RentalService {
     public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList){
         rentalService.populateRentalContractsToArrayList(statement, rentalList);
     }
-    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, Buttons tools){
+    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools){
         rentalService.viewRentalContracts(statement, rentalList, tools);
     }
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput){

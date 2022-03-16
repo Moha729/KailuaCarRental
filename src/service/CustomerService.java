@@ -1,6 +1,6 @@
 package service;
 
-import UI.Buttons;
+import UI.UITools;
 import models.Customer;
 import repository.CustomerRepository;
 
@@ -21,7 +21,7 @@ public class CustomerService {
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         customerRepository.populateCustomerToArrayList(statement, customerList);
     }
-    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, Buttons tools){
+    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools){
         customerRepository.viewCustomer(statement,customerList,tools);
     }
     public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput,Customer customer){

@@ -1,6 +1,6 @@
 package repository;
 
-import UI.Buttons;
+import UI.UITools;
 import models.Car;
 import models.Sport;
 
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class SportRepository {
 
 
-    Buttons tools = new Buttons();
+    UITools tools = new UITools();
     Scanner userInput = new Scanner(System.in);
     Sport sport;
 
@@ -89,7 +89,7 @@ public class SportRepository {
     }
 
 
-    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car) {
+    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Sport car) {
 
         System.out.println("Enter which registration number to be updated");
         String answer = regNum;
@@ -102,36 +102,44 @@ public class SportRepository {
         int ans = userInput.nextInt();
 
         boolean extention = true;
+        boolean superExtention = false;
         String newValue = null;
         String newVariable = null;
 
         switch (ans) {
 
             case 1:
+                superExtention = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 newVariable = "registration_number";
                 car.setRegistrationNumber(newValue);
                 break;
             case 2:
+                superExtention = true;
+
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
                 newVariable = "brand";
                 car.setBrand(newValue);
                 break;
             case 3:
+                superExtention = true;
+
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 newVariable = "model";
                 car.setModel(newValue);
                 break;
             case 4:
+                superExtention = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 newVariable = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
             case 5:
+                superExtention = true;
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
@@ -148,29 +156,33 @@ public class SportRepository {
                     newValue = "false";
                 }
                 newVariable = "manual_gear";
+                car.setManualGear(Boolean.parseBoolean(newValue));
                 break;
             case 7:
                 extention = false;
-                System.out.println("Enter new air condition status - does it have air condition?");
+                System.out.println("Does it have over 200 hp?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
                 }
-                newVariable = "Over 200 HP";
+                newVariable = "over200HP";
+                car.setOver200HP(Boolean.parseBoolean(newValue));
+
                 break;
         }
+        if(superExtention == true) {
+            try {
+                statement.execute("UPDATE car_table SET " +
+                        newVariable + " = '" + newValue + "' " +
+                        "WHERE registration_number ='" + answer + "'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Could not update sport table");
+            }
 
-        try {
-            statement.execute("UPDATE car_table SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update sport table");
         }
-
         if (extention == false) {
             try {
                 statement.execute("UPDATE sport_cars SET " +
@@ -185,7 +197,7 @@ public class SportRepository {
     }
 
 
-    public void viewSportCars(ArrayList<Car> carList, Buttons tools) {
+    public void viewSportCars(ArrayList<Car> carList, UITools tools) {
         System.out.println();
         tools.customizedButton(50, 1, "Sports");
 

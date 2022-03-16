@@ -1,6 +1,6 @@
 package controller;
 
-import UI.Buttons;
+import UI.UITools;
 import db.DBManager;
 import models.Car;
 import models.Customer;
@@ -19,7 +19,7 @@ public class ConsoleController {
     // Husk at lave high cohesion !!
     // Husk at dokumentere vores program via UML diagrammer evt. lav sekvens diagram
     final Scanner userInput = new Scanner(System.in);//Scanner
-    final Buttons tools = new Buttons(); //buttons
+    final UITools tools = new UITools(); //buttons
     Connection connection = DBManager.getConnection();//returns connection
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here

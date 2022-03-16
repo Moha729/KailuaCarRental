@@ -1,6 +1,6 @@
 package service;
 
-import UI.Buttons;
+import UI.UITools;
 import models.Car;
 import models.Sport;
 import repository.SportRepository;
@@ -28,12 +28,12 @@ public class SportService {
         return sportRepository.createSportsCar(statement,userInput,carList,registrationNumber,brand,model,registrationDate,kmDriven);
     }
 
-    public void viewSportCars(ArrayList<Car> carList, Buttons tools) {
+    public void viewSportCars(ArrayList<Car> carList, UITools tools) {
         sportRepository.viewSportCars(carList,tools);
     }
 
 
-    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Car car) {
+    public void updateSportCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Sport car) {
         sportRepository.updateSportCar(statement,carList,userInput, regNum, car);
     }
 }
