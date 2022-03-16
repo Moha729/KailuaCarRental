@@ -208,7 +208,7 @@ public class LuxuryRepository {
                     newValue = "false";
                 }
                 newVariable = "leather_seats";
-                car.setLeatherSeats(Boolean.parseBoolean(newValue));
+                car.setLeatherSeats(Boolean.parseBoolean(newValue)); // gh
                 break;
         }
         if(check == true) {
