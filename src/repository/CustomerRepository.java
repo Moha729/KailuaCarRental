@@ -1,7 +1,9 @@
 package repository;
 
 import UI.Buttons;
+import models.Car;
 import models.Customer;
+import service.CustomerService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +12,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerRepository {
+
+    CustomerService customerService = new CustomerService();
+
+    public void populateCustomers(Statement statement, ArrayList<Customer> customerList) {
+        customerService.populateCustomerToArrayList(statement, customerList);
+    }
+
     Buttons tools = new Buttons();
     Scanner userInput = new Scanner(System.in);
 
