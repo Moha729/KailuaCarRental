@@ -20,22 +20,22 @@ public class LuxuryRepository {
         boolean cruiseControl;
         boolean leatherSeats;
 
-        if (tools.returnStringInfo(50, 1, "does it have over 3000CCM?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have over 3000CCM?").equalsIgnoreCase("yes")){
             ccm = true;
         }else {
             ccm = false;
         }
-        if (tools.returnStringInfo(50, 1, "does it have automatic gear?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have automatic gear?").equalsIgnoreCase("yes")){
             gear = true;
         }else {
             gear = false;
         }
-        if (tools.returnStringInfo(50, 1, "does it have cruise control?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have cruise control?").equalsIgnoreCase("yes")){
             cruiseControl = true;
         }else {
             cruiseControl = false;
         }
-        if (tools.returnStringInfo(50, 1, "does it have leather seats?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have leather seats?").equalsIgnoreCase("yes")){
             leatherSeats = true;
         }else {
             leatherSeats = false;

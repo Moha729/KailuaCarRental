@@ -21,22 +21,22 @@ public class FamilyRepository {
         boolean cruiseControl;
         boolean sevenSeatsOrMore;
 
-        if (tools.returnStringInfo(50, 1, "does it have manual gear?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have manual gear?").equalsIgnoreCase("yes")){
             manualGear = true;
         }else {
             manualGear = false;
         }
-        if (tools.returnStringInfo(50, 1, "does it have air condition?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have air condition?").equalsIgnoreCase("yes")){
             airCondition = true;
         }else {
             airCondition = false;
         }
-        if (tools.returnStringInfo(50, 1, "does it have cruise control?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have cruise control?").equalsIgnoreCase("yes")){
             cruiseControl = true;
         }else {
             cruiseControl = false;
         }
-        if (tools.returnStringInfo(50, 1, "does it have more then 7 seats?").equalsIgnoreCase("yes")){
+        if (tools.returnStringInfo(60, 1, "does it have more then 7 seats?").equalsIgnoreCase("yes")){
             sevenSeatsOrMore = true;
         }else {
             sevenSeatsOrMore = false;

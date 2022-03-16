@@ -20,7 +20,7 @@ public class SportRepository {
     public Sport createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String reg, String br, String mo,
                                  String regDate, int kmDr, UITools tools) throws SQLException {
 
-        String gear = this.tools.returnStringInfo(50, 1, "does it have a manual gear?");
+        String gear = this.tools.returnStringInfo(60, 1, "does it have a manual gear?");
         boolean gearGear;
         if (gear.equalsIgnoreCase("yes")) {
             gearGear = true;
@@ -28,7 +28,7 @@ public class SportRepository {
             gearGear = false;
         }
 
-        String horsePower = this.tools.returnStringInfo(50, 1, "does it have over 200 hP?");
+        String horsePower = this.tools.returnStringInfo(60, 1, "does it have over 200 hP?");
         boolean hpHp;
         if (horsePower.equalsIgnoreCase("Yes")) {
             hpHp = true;
