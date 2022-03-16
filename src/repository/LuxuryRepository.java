@@ -171,7 +171,7 @@ public class LuxuryRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "automatic_gear";
+                newVariable = "ccm";
                 car.setOver3000CCM(Boolean.parseBoolean(newValue));
                 break;
             case 7 :
@@ -183,7 +183,7 @@ public class LuxuryRepository {
                 } else {
                     newValue = "false";
                 }
-                newVariable = "air_condition";
+                newVariable = "automatic_gear";
                 car.setAutomaticGear(Boolean.parseBoolean(newValue));
                 break;
             case 8 :
