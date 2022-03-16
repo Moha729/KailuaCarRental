@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 public class LuxuryRepository {
 
+    DBRepo dbRepo = new DBRepo();
+
 
     public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String  reg, String br, String mo,
                                String regDate, int kmDr, UITools tools) throws SQLException {
@@ -212,24 +214,10 @@ public class LuxuryRepository {
                 break;
         }
         if(check == true) {
-            try {
-                statement.execute("UPDATE car_table SET " +
-                        newVariable + " = '" + newValue + "' " +
-                        "WHERE registration_number ='" + answer + "'");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Could not update car table");
-            }
+            dbRepo.updateCar(statement,newVariable,newValue,answer);
         }
         if (check == false) {
-            try {
-                statement.execute("UPDATE luxury_cars SET " +
-                        newVariable + " = '" + newValue + "' " +
-                        "WHERE registration_number ='" + answer + "'");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Could not update luxury table");
-            }
+            dbRepo.updateLuxuryCar(statement,newVariable,newValue,answer);
         }
     }
 }

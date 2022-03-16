@@ -89,7 +89,7 @@ public class CarRepository {
         return car;
     }
 
-    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) {
+    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
         int updateIndex = 0;
         Family familyCar = null;
         Sport sportCar = null;

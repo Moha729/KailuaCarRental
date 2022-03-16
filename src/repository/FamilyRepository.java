@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FamilyRepository {
+    DBRepo dbRepo = new DBRepo();
 
 
     public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg,
@@ -225,24 +226,10 @@ public class FamilyRepository {
                 break;
         }
         if (check == true) {
-            try {
-                statement.execute("UPDATE car_table SET " +
-                        newVariable + " = '" + newValue + "' " +
-                        "WHERE registration_number ='" + answer + "'");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Could not update car table");
-            }
+            dbRepo.updateCar(statement,newVariable,newValue,answer);
         }
         if (check == false) {
-            try {
-                statement.execute("UPDATE family_cars SET " +
-                        newVariable + " = '" + newValue + "' " +
-                        "WHERE registration_number ='" + answer + "'");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Could not update family table");
-            }
+          dbRepo.updateFamily(statement,newVariable,newValue,answer);
         }
     }
 }
