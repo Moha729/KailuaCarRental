@@ -5,6 +5,7 @@ import db.DBManager;
 import models.Car;
 import models.Customer;
 import service.CarService;
+import service.CustomerService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ public class ConsoleController {
     ArrayList<Car> carList = new ArrayList<>();//All cars are here
     ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
     CarService carService = new CarService();//Service class
+    CustomerService customerService = new CustomerService(); // Service customer
 
     public void run() throws SQLException {
         Statement statement = null;
@@ -48,6 +50,9 @@ public class ConsoleController {
         switch (mainSwitch) {
 
             case 1 -> runCarMenu(statement);
+            case 2 -> customerMenu(statement);
+            case 3 -> rentalMenu(statement);
+            //case 4 ->
 
             case 6 -> carService.createCar(statement, userInput, carList, tools);
             case 8 -> carService.updateCar(statement, userInput, carList, tools);
@@ -93,10 +98,38 @@ public class ConsoleController {
 
     }
 
-    private void CustomerMenu() {
+    public void customerMenu(Statement statement) throws SQLException {
+        try {
+            System.out.println();
+            tools.customizedButton(120, 3, "Customer menu");
+
+            System.out.print(tools.doubleButton(">1< See customers", ">2< Update a customer"));
+            System.out.print(tools.doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
+
+            int customerSwitch = userInput.nextInt();
+
+            switch (customerSwitch) {
+
+                case 1 -> customerService.viewCustomer(statement, customerList, tools);
+                case 2 -> customerService.updateCustomer(statement, customerList, userInput);
+                case 3 -> customerService.createCustomer(customerList);
+                case 4 -> customerService.deleteCustomer(statement, customerList, userInput);
+                case 0 -> customerMenu(statement);
+
+            }
+        } catch (SQLException sqlEx) {
+            System.out.println("Error in Customer maim menu: " + sqlEx);
+        }
+
+        tools.customizedButton(15, 1, ">1< continue..");
+        System.out.print(" ");
+        int start = userInput.nextInt();
+        if (start != 0) {
+            runMenu(statement);
+        }
 
     }
 
-    private void RentalMenu() {
+    public void rentalMenu(Statement statement) {
     }
 }

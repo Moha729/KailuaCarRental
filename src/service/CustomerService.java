@@ -13,9 +13,12 @@ public class CustomerService {
     public CustomerService () {
        customerService = new CustomerService();
     }
+
     public void createCustomer(ArrayList<Customer> customerList){
+
         customerService.createCustomer(customerList);
     }
+
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         customerService.populateCustomerToArrayList(statement, customerList);
     }
