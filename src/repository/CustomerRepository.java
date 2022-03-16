@@ -14,7 +14,6 @@ public class CustomerRepository {
     UITools tools = new UITools();
 
     public Customer getCustomer(ArrayList<Customer> customerList, UITools tools){
-        viewCustomer(customerList);
         Customer customer = null;
         String customerDV = tools.returnStringInfo(40, 1, "Enter customer driving licence number");
 
@@ -25,23 +24,6 @@ public class CustomerRepository {
         }
         return customer;
     }
-
-    private void viewCustomer(ArrayList<Customer> customerList) {
-        System.out.println();
-        tools.customizedButton(50,1, "Customer");
-        tools.margeTop(70);
-        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
-                "DriverNumb", "DriverSince", "Fname", "Lname", "ZipCode", "CustomCity", "PhoneNumb", "MobileNumb",
-                "Email");
-
-        for (int i = 0; i < customerList.size(); i++) {
-            System.out.println(customerList.get(i).toString());
-            tools.margeTop(120);
-            System.out.println();
-            //tools.customizedButton(40,1, customerList.get(i).toString());
-        }
-    }
-
 
     public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
 
@@ -67,21 +49,6 @@ public class CustomerRepository {
                 city, phone, mobilePhone, email);
         customerList.add(customer);
         addCustomerToDB(customer, statement);
-    }
-    public void addCustomerToDB(Customer customer, Statement statement)throws  SQLException{
-        statement.execute("INSERT INTO customer_table " + "(customer_driver_license_number, customer_driver_since_number," +
-                "customer_first_name, customer_last_name, customer_zip_code, customer_city, customer_phone_number, " +
-                "customer_mobile_number, customer_email)" + ""
-                +"VALUES('"
-                + customer.getDriverLicenseNumber() + "','"
-                + customer.getDriverSinceNumber() + "','"
-                + customer.getName() + "','"
-                + customer.getLastName() + "','"
-                + customer.getZip() + "','"
-                + customer.getCity() + "','"
-                + customer.getPhone() + "','"
-                + customer.getMobilePhone() + "','"
-                + customer.getEmail() + "')");
     }
 
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
@@ -110,6 +77,21 @@ public class CustomerRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
         }
+    }
+    public void addCustomerToDB(Customer customer, Statement statement)throws  SQLException{
+        statement.execute("INSERT INTO customer_table " + "(customer_driver_license_number, customer_driver_since_number," +
+                "customer_first_name, customer_last_name, customer_zip_code, customer_city, customer_phone_number, " +
+                "customer_mobile_number, customer_email)" + ""
+                +"VALUES('"
+                + customer.getDriverLicenseNumber() + "','"
+                + customer.getDriverSinceNumber() + "','"
+                + customer.getName() + "','"
+                + customer.getLastName() + "','"
+                + customer.getZip() + "','"
+                + customer.getCity() + "','"
+                + customer.getPhone() + "','"
+                + customer.getMobilePhone() + "','"
+                + customer.getEmail() + "')");
     }
 
     public void viewCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools){
@@ -217,8 +199,6 @@ public class CustomerRepository {
                 break;
         }
 
-
-
         try {
             statement.execute("UPDATE customer_table SET " +
                     newVariable + " = '" + newValue + "' " +
@@ -228,7 +208,6 @@ public class CustomerRepository {
             e.printStackTrace();
             System.out.println("Could not update customer table");
         }
-        //statement.close();
     }
 
     public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput) throws SQLException{
