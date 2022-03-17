@@ -30,21 +30,17 @@ public class ConsoleController {
     RentalService rentalService = new RentalService(); // Service rentals
     Customer customer = new Customer();
 
-    public void run() throws SQLException {
-        Statement statement = null;
+    public void run() {
+        Statement statement;
         try {
             statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("No connection");
-        }
-        if (statement == null) {
-            System.out.println("No Connection");
-        } else {
             carService.populateCars(statement, carList);
             customerService.populateCustomerToArrayList(statement, customerList);
             rentalService.populateRentalContractsToArrayList(statement, rentalList);
             runMenu(statement);
+        } catch (SQLException e) {
+            System.out.println("No connection"+e.getMessage());
+
         }
     }
 
