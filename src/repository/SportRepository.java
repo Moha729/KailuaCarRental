@@ -39,7 +39,7 @@ public class SportRepository {
 
         Sport sportsCar = new Sport(reg, br, mo, regDate, kmDr, gearGear, hpHp);
 
-        addSportsCarToDB(sportsCar, statement);
+        addSportCarToDB(sportsCar, statement);
 
         System.out.println("pres 1 to continue");
 
@@ -48,45 +48,11 @@ public class SportRepository {
 
 
     public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) { // table content
-        try {
-
-            String sql = ("SELECT * FROM car_table INNER JOIN sport_cars ON car_table.registration_number = sport_cars.registration_number");
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet != null)
-                while (resultSet.next()) {
-                    sport = new Sport(
-                            resultSet.getString("registration_number"),
-                            resultSet.getString("brand"),
-                            resultSet.getString("model"),
-                            resultSet.getString("registration_date"),
-                            resultSet.getInt("km_driven"),
-                            resultSet.getBoolean("manual_gear"),
-                            resultSet.getBoolean("over200HP"));
-
-
-                    carList.add(sport);
-                }
-
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\n");
-        }
+      dbRepo.populateSportToArrayList(statement,carList);
     }
 
-    private void addSportsCarToDB(Sport sportsCar, Statement statement) throws SQLException {
-        statement.execute("INSERT INTO car_table " + "(registration_number, brand, model, registration_date, km_driven)" + "" +
-                "VALUES('"
-                + sportsCar.getRegistrationNumber() + "','"
-                + sportsCar.getBrand() + "','"
-                + sportsCar.getModel() + "','"
-                + sportsCar.getRegistrationDate() + "','"
-                + sportsCar.getKmDriven() + "')");
-
-        statement.execute("INSERT INTO  sport_cars " + "(registration_number, manual_gear, Over200HP)" + "" +
-                "VALUES('"
-                + sportsCar.getRegistrationNumber() + "','"
-                + sportsCar.isManualGear() + "','"
-                + sportsCar.isOver200HP() + "')");
+    private void addSportCarToDB(Sport sportsCar, Statement statement) throws SQLException {
+        dbRepo.addSportCarToDB(sportsCar,statement);
     }
 
     public void viewSportCars(ArrayList<Car> carList, UITools tools) {

@@ -53,49 +53,12 @@ public class LuxuryRepository {
     }
 
     public void populateLuxuryToArrayList(Statement statement,ArrayList<Car> carList) {
-        try {
-
-            String sql = ("SELECT * FROM car_table INNER JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet != null)
-                while (resultSet.next()) {
-                   Luxury luxury = new Luxury(
-                            resultSet.getString("registration_number"),
-                            resultSet.getString("brand"),
-                            resultSet.getString("model"),
-                            resultSet.getString("registration_date"),
-                            resultSet.getInt("km_driven"),
-                            resultSet.getBoolean("ccm"),
-                            resultSet.getBoolean("automatic_gear"),
-                            resultSet.getBoolean("cruise_control"),
-                            resultSet.getBoolean("leather_seats"));
-
-                    carList.add(luxury);
-                }
-
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\n");
-        }
+     dbCarRepo.populateLuxuryCarToDB(statement,carList);
     }
-    public void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) throws SQLException {
-
-        statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
-                "VALUES('"
-                + luxuryCar.getRegistrationNumber()   + "','"
-                + luxuryCar.getBrand()                +  "','"
-                + luxuryCar.getModel()                + "','"
-                + luxuryCar.getRegistrationDate()     + "','"
-                + luxuryCar.getKmDriven()             + "')");
-
-        statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
-                "VALUES('"
-                + luxuryCar.getRegistrationNumber() + "','"
-                + luxuryCar.isOver3000CCM()         + "','"
-                + luxuryCar.isAutomaticGear()       +  "','"
-                + luxuryCar.isCruiseControl()       + "','"
-                + luxuryCar.isLeatherSeats()        + "')");
+    public void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) {
+        dbCarRepo.addLuxuryCarToDB(luxuryCar,statement);
     }
+
     public void viewLuxuryCars(ArrayList<Car> carList, UITools tools){
         System.out.println();
         tools.customizedButton(50,1, "Luxury");
