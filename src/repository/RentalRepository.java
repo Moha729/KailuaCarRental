@@ -13,10 +13,11 @@ import java.util.Scanner;
 
 public class RentalRepository {
     UITools tools = new UITools();
-    Scanner userInput = new Scanner(System.in);
+    //Scanner userInput = new Scanner(System.in);
 
     CarRepository carRepository;
     CustomerRepository customerRepository;
+    DBRentalRepo rentalRepo;
 
 
     public void viewRentals(ArrayList<Rental> rentalList) {
@@ -84,6 +85,9 @@ public class RentalRepository {
 
             viewRental(rental);
             rentalList.add(rental);
+            rentalRepo = new DBRentalRepo();
+            rentalRepo.addRentalToDB(rental);
+
         } else {
             System.out.println("Create new customer menu: not live yet!");
         }
@@ -258,17 +262,46 @@ public class RentalRepository {
     }
     public void viewRentalsInMain (ArrayList<Rental> rentalList, UITools tools){
 
+        System.out.println();
         tools.customizedButton(120, 1, "Active rentals");
 
         for (int i = 0; i < rentalList.size(); i++) {
             System.out.println();
-            tools.margeTop(50);
-            System.out.println();
-            System.out.println(rentalList.get(i));
-            tools.margeTop(80);
+            tools.customizedButton(30,1, "Rental id: "+rentalList.get(i).getRental_id());
+            tools.margeTop(60);
+            System.out.printf("\n| %-15s %-20s %-20s %-20s |\n| %-15s %-20s %-20s %-20s |\n" +
+                            "| %-15s %-20s %-20s %-20s |\n| %-15s %-20s %-20s %-20s |\n" +
+                    "| %-15s %-20s %-20s %-20s |\n| %-15s %-20s %-20s %-20s |\n" +
+                            "| %-15s %-20s %-20s %-20s |\n",
+            " ", "Car brand", "Car model", "Registration number",
+            "Car info: ", rentalList.get(i).getCar().getBrand(), rentalList.get(i).getCar().getModel(), rentalList.get(i).getCar().getRegistrationNumber(),
+            " ", "Customer name ", "Licence number", " ",
+            "Customer info: ", rentalList.get(i).getCustomer().getName(), rentalList.get(i).getCustomer().getDriverLicenseNumber(), " ",
+            "Date start: ", rentalList.get(i).getFromDateAndTime(), " ", " ",
+            "Date end: ", rentalList.get(i).getToDateAndTime(), " ", " ",
+            "Max km: ", rentalList.get(i).getMaxKm(), " ", " ");
+
+            tools.margeTop(90);
+
         }
         System.out.println();
+/*
+        System.out.println();
+        tools.customizedButton(50,1, "Luxury");
 
+        tools.margeTop(70);
+        System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
+                "RegNumb", "Brand", "Model", "RegDate", "kmdriven", ">3000CCM", "Auto-gear", "CruiseContr.", "LeatherSeats");
+        tools.margeTop(120);
+
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getClass().getSimpleName().equals("Luxury")) {
+                System.out.println("\n" + carList.get(i).toString());
+                tools.margeTop(120);
+            }
+        }
+        System.out.println();
+    }*/
     }
 }
 
