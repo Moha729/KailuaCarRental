@@ -128,7 +128,7 @@ public class CarRepository {
         }
         switch (updateIndex) {
             case 1 -> luxuryService.updateLuxuryCar(statement, userInput, regNum, luxuryCar);
-            case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum, sportCar);
+            case 2 -> sportService.updateSportCar(statement, userInput, regNum, sportCar);
             case 3 -> familyService.updateFamilyCar(statement, userInput, regNum, familyCar);
         }
         tools.customizedButton(40, 1, "Bilen er opdateret!");

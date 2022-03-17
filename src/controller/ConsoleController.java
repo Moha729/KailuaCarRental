@@ -50,14 +50,13 @@ public class ConsoleController {
         switch (answer) {
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
-            case 3 -> rentalMenu(statement, rentalList);
+            case 3 -> rentalMenu(statement);
             case 4 -> {
                 statement.close();
                 connection.close();
                 System.exit(0);
             }
         }
-
         int start = userInput.nextInt();
         if (start != 0) {
             runMenu(statement);
@@ -121,7 +120,7 @@ public class ConsoleController {
         }
 
     }
-    public void rentalMenu(Statement statement, ArrayList<Rental> rentalList) throws SQLException {
+    public void rentalMenu(Statement statement) throws SQLException {
         System.out.println();
         tools.customizedButton(120, 3, "Rentals");
         System.out.print(tools.doubleButton(">1< New rental", ">2< Active rentals"));
@@ -133,12 +132,11 @@ public class ConsoleController {
             case 2 -> rentalService.viewRentals(rentalList, tools);
             case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
             case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
-            default -> rentalMenu(statement, rentalList);
+            default -> rentalMenu(statement);
         }
         tools.customizedButton(15, 1, ">1< continue..");
         System.out.print(" ");
     }
-
 }
 
 
