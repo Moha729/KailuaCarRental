@@ -18,8 +18,8 @@ public class RentalService {
         rentalRepository = new RentalRepository();
     }
 
-    public void createRentalContract(ArrayList<Rental> rentalList,ArrayList<Car> carList,ArrayList<Customer> customerList){
-        rentalRepository.createRentalContract(rentalList,carList,customerList);//new rental
+    public void createRentalContract(ArrayList<Rental> rentalList,ArrayList<Car> carList,ArrayList<Customer> customerList, Statement statement){
+        rentalRepository.createRentalContract(rentalList,carList,customerList, statement);//new rental
     }
     public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList){
         rentalRepository.populateRentalContractsToArrayList(statement, rentalList);//read from db

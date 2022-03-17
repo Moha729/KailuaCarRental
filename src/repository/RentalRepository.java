@@ -59,7 +59,7 @@ public class RentalRepository {
     }
 
 
-    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList) {
+    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList, Statement statement) {
         String newCustomer = tools.returnStringInfo(50, 1, "Are you a returning customer");
 
         if (newCustomer.equalsIgnoreCase("yes")) {
@@ -86,7 +86,7 @@ public class RentalRepository {
             viewRental(rental);
             rentalList.add(rental);
             rentalRepo = new DBRentalRepo();
-            rentalRepo.addRentalToDB(rental);
+            rentalRepo.addRentalToDB(rental, statement);
 
         } else {
             System.out.println("Create new customer menu: not live yet!");
