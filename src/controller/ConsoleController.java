@@ -33,7 +33,7 @@ public class ConsoleController {
             statement = connection.createStatement();
             carService.populateCars(statement, carList);
             customerService.populateCustomerToArrayList(statement, customerList);
-            rentalService.populateRentalContractsToArrayList(statement, rentalList);
+            rentalService.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);
             runMenu(statement);
         } catch (SQLException e) {
             System.out.println("No connection" + e.getMessage());

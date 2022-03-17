@@ -17,7 +17,47 @@ public class RentalRepository {
 
     CarRepository carRepository;
     CustomerRepository customerRepository;
-    DBRentalRepo rentalRepo;
+    DBRentalRepo rentalRepo = new DBRentalRepo();
+
+
+    public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList,
+                                        ArrayList<Car> carList, ArrayList<Customer> customerList) {
+        rentalRepo.populateRentals(rentalList, statement, carList, customerList);
+    }
+
+    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList, Statement statement) {
+        String newCustomer = tools.returnStringInfo(50, 1, "Are you a returning customer");
+
+        if (newCustomer.equalsIgnoreCase("yes")) {
+
+            carRepository = new CarRepository();
+            customerRepository = new CustomerRepository();
+
+            int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
+            //auto increment
+
+            Car car = carRepository.getCar(carList, tools);
+
+            Customer customer = customerRepository.getCustomer(customerList, tools);
+
+            String fromDateAndTime = tools.returnStringInfo(50, 1, "Start date");
+
+            String toDateAndTime = tools.returnStringInfo(50, 1, "End date");
+
+            int maxKm = tools.returnIntInfo(50, 1, "Max KM");
+
+            Rental rental = new Rental(car, customer, rental_id, fromDateAndTime,
+                    toDateAndTime, maxKm);
+
+            viewRental(rental);
+            rentalList.add(rental);
+
+            rentalRepo.addRentalToDB(rental, statement);
+
+        } else {
+            System.out.println("Create new customer menu: not live yet!");
+        }
+    }
 
 
     public void viewRentals(ArrayList<Rental> rentalList) {
@@ -59,77 +99,9 @@ public class RentalRepository {
     }
 
 
-    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList, Statement statement) {
-        String newCustomer = tools.returnStringInfo(50, 1, "Are you a returning customer");
 
-        if (newCustomer.equalsIgnoreCase("yes")) {
 
-            carRepository = new CarRepository();
-            customerRepository = new CustomerRepository();
 
-            int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
-            //auto increment
-
-            Car car = carRepository.getCar(carList, tools);
-
-            Customer customer = customerRepository.getCustomer(customerList, tools);
-
-            String fromDateAndTime = tools.returnStringInfo(50, 1, "Start date");
-
-            String toDateAndTime = tools.returnStringInfo(50, 1, "End date");
-
-            int maxKm = tools.returnIntInfo(50, 1, "Max KM");
-
-            Rental rental = new Rental(car, customer, rental_id, fromDateAndTime,
-                    toDateAndTime, maxKm);
-
-            viewRental(rental);
-            rentalList.add(rental);
-            rentalRepo = new DBRentalRepo();
-            rentalRepo.addRentalToDB(rental, statement);
-
-        } else {
-            System.out.println("Create new customer menu: not live yet!");
-        }
-    }
-
-    public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList) {
-        try {
-
-            String sql = ("SELECT * FROM rental_table " +
-                    "INNER JOIN customer_table " +
-                    "ON customer_table.customer_driver_license_number = rental_table.rental_id");
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet != null)
-                while (resultSet.next()) {
-                    Rental rental = new Rental(
-                            resultSet.getString("registration_number"),
-                            resultSet.getString("brand"),
-                            resultSet.getString("model"),
-                            resultSet.getString("registration_date"),
-                            resultSet.getInt("km_driven"),
-                            resultSet.getString("customer_driver_license_number"),
-                            resultSet.getString("customer_driver_since_number"),
-                            resultSet.getString("customer_first_name "),
-                            resultSet.getString("customer_last_name"),
-                            resultSet.getInt("customer_zip_code"),
-                            resultSet.getString("customer_city"),
-                            resultSet.getInt("customer_phone_number"),
-                            resultSet.getInt("customer_mobile_number"),
-                            resultSet.getString("customer_email"),
-                            resultSet.getInt("rental_id"),
-                            resultSet.getString("rental_from_date"),
-                            resultSet.getString("rental_to_date"),
-                            resultSet.getInt("rental_max_km"));
-
-                    rentalList.add(rental);
-                }
-
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\n");
-        }
-    }
 
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) {
 

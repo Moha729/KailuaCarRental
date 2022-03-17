@@ -21,8 +21,8 @@ public class RentalService {
     public void createRentalContract(ArrayList<Rental> rentalList,ArrayList<Car> carList,ArrayList<Customer> customerList, Statement statement){
         rentalRepository.createRentalContract(rentalList,carList,customerList, statement);//new rental
     }
-    public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList){
-        rentalRepository.populateRentalContractsToArrayList(statement, rentalList);//read from db
+    public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList){
+        rentalRepository.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);//read from db
     }
     public void viewRentals(Statement statement, ArrayList<Rental> rentalList, UITools tools){
         rentalRepository.viewRentalsInMain(rentalList, tools);//view

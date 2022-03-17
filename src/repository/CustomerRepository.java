@@ -14,7 +14,7 @@ public class CustomerRepository {
     UITools tools = new UITools();
     DBCustomerRepo dbCustomerRepo = new DBCustomerRepo();
 
-    public Customer getCustomer(ArrayList<Customer> customerList, UITools tools){
+    public Customer getCustomer(ArrayList<Customer> customerList, UITools tools){//MÅ IKKE SLETTES
         viewCustomer(customerList, tools);
         Customer customer = null;
         String customerDV = tools.returnStringInfo(40, 1, "Enter customer driving licence number");
@@ -26,6 +26,16 @@ public class CustomerRepository {
         }
         return customer;
     }
+    public Customer getCustomer(ArrayList<Customer> customerList, String customerDV){//MÅ IKKE SLETTES
+        Customer customer = null;
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(customerDV)){
+                customer = customerList.get(i);
+            }
+        }
+        return customer;
+    }
+
 
     public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
 

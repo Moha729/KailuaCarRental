@@ -76,7 +76,7 @@ public class CarRepository {
         sportService.viewSportCars(carList, tools);
     }
 
-    public Car getCar(ArrayList<Car> carList, UITools tools){
+    public Car getCar(ArrayList<Car> carList, UITools tools){//MÅ IKKE SLETTES
         viewCars(carList, tools);
 
         String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
@@ -86,6 +86,15 @@ public class CarRepository {
                 car = carList.get(i);
             }
             }
+        return car;
+    }
+    public Car getCar(ArrayList<Car> carList, String regNum){//MÅ IKKE SLETTES
+        Car car = null;
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)) {
+                car = carList.get(i);
+            }
+        }
         return car;
     }
 
