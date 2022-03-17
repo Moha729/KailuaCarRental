@@ -20,7 +20,6 @@ public class DBCarRepo {
             statement.execute("UPDATE car_table SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update car table");
@@ -154,10 +153,9 @@ public class DBCarRepo {
 
     public void updateLuxuryCar(Statement statement, String newVariable, String newValue, String answer) {
         try {
-            statement.execute("UPDATE luxury_table SET " +
+            statement.execute("UPDATE luxury_cars SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update luxury table");
@@ -170,10 +168,9 @@ public class DBCarRepo {
     public void updateSportCar(Statement statement, String newVariable, String newValue, String answer) {
 
         try {
-            statement.execute("UPDATE sport_table SET " +
+            statement.execute("UPDATE sport_cars SET " +
                     newVariable + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update sport car");
@@ -183,10 +180,9 @@ public class DBCarRepo {
     public void updateFamily(Statement statement, String dbColumn, String newValue, String answer) {
 
         try {
-            statement.execute("UPDATE family_table SET " +
+            statement.execute("UPDATE family_cars SET " +
                     dbColumn + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update family car");

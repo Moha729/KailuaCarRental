@@ -5,11 +5,9 @@ import db.DBManager;
 import models.Car;
 import models.Customer;
 import models.Rental;
-import repository.RentalRepository;
 import service.CarService;
 import service.CustomerService;
 import service.RentalService;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,17 +16,16 @@ import java.util.Scanner;
 
 public class ConsoleController {
 
-
-    final Scanner userInput = new Scanner(System.in);//Scanner
-    final UITools tools = new UITools(); //buttons
-    Connection connection = DBManager.getConnection();//returns connection
-    ArrayList<Car> carList = new ArrayList<>();//All cars are here
-    ArrayList<Customer> customerList = new ArrayList<>(); // All customers are here
-    ArrayList<Rental> rentalList = new ArrayList<>();
-    CarService carService = new CarService();//Service cars
-    CustomerService customerService = new CustomerService(); // Service customer
-    RentalService rentalService = new RentalService(); // Service rentals
+    UITools tools = new UITools();
+    Scanner userInput = new Scanner(System.in);
+    Connection connection = DBManager.getConnection();
+    CarService carService = new CarService();
+    CustomerService customerService = new CustomerService();
+    RentalService rentalService = new RentalService();
     Customer customer = new Customer();
+    ArrayList<Car> carList = new ArrayList<>();
+    ArrayList<Customer> customerList = new ArrayList<>();
+    ArrayList<Rental> rentalList = new ArrayList<>();
 
     public void run() {
         Statement statement;
@@ -39,30 +36,24 @@ public class ConsoleController {
             rentalService.populateRentalContractsToArrayList(statement, rentalList);
             runMenu(statement);
         } catch (SQLException e) {
-            System.out.println("No connection"+e.getMessage());
+            System.out.println("No connection" + e.getMessage());
 
         }
     }
 
     public void runMenu(Statement statement) throws SQLException {
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
-
         System.out.print(tools.doubleButton(">1< Cars", ">2< Customers"));
         System.out.print(tools.doubleButton(">3< Rentals", ">4< Exit"));
 
         int answer = userInput.nextInt();
-
         switch (answer) {
-
+            case 0 -> System.exit(1);
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
             case 3 -> rentalMenu(statement, rentalList);
             case 4 -> System.exit(4);
-
-            case 6 -> carService.createCar(statement, userInput, carList, tools);
-            case 8 -> carService.updateCar(statement, userInput, carList, tools);
-            case 0 -> System.exit(1);
-            }
+        }
 
         int start = userInput.nextInt();
         if (start != 0) {
@@ -71,7 +62,6 @@ public class ConsoleController {
     }
 
     public void runCarMenu(Statement statement) throws SQLException {
-
         try {
             System.out.println();
             tools.customizedButton(120, 3, "Cars");
@@ -82,7 +72,6 @@ public class ConsoleController {
             int answer = userInput.nextInt();
 
             switch (answer) {
-
                 case 1 -> carService.viewCars(carList, tools);
                 case 2 -> carService.updateCar(statement, userInput, carList, tools);
                 case 3 -> carService.createCar(statement, userInput, carList, tools);
@@ -100,27 +89,22 @@ public class ConsoleController {
         if (start != 0) {
             runMenu(statement);
         }
-
     }
 
     public void customerMenu(Statement statement) throws SQLException {
         try {
             System.out.println();
             tools.customizedButton(120, 3, "Customers");
-
             System.out.print(tools.doubleButton(">1< See customers", ">2< Update a customer"));
             System.out.print(tools.doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
 
             int answer = userInput.nextInt();
-
             switch (answer) {
-
                 case 1 -> customerService.viewCustomer(statement, customerList, tools);
-                case 2 -> customerService.updateCustomer(statement, customerList, userInput,customer);
-                case 3 -> customerService.createCustomer(statement,customerList);
+                case 2 -> customerService.updateCustomer(statement, customerList, userInput, customer);
+                case 3 -> customerService.createCustomer(statement, customerList);
                 case 4 -> customerService.deleteCustomer(statement, customerList, userInput, tools);
                 case 0 -> customerMenu(statement);
-
             }
         } catch (SQLException sqlEx) {
             System.out.println("Error in Customer maim menu: " + sqlEx);
@@ -134,19 +118,15 @@ public class ConsoleController {
         }
 
     }
-
     public void rentalMenu(Statement statement, ArrayList<Rental> rentalList) throws SQLException {
         System.out.println();
         tools.customizedButton(120, 3, "Rentals");
-
         System.out.print(tools.doubleButton(">1< New rental", ">2< Active rentals"));
         System.out.print(tools.doubleButton(">3< Change rental", ">4< End rental"));
 
         int answer = userInput.nextInt();
-
         switch (answer) {
-
-            case 1 -> rentalService.createRentalContract(rentalList, carList,customerList);
+            case 1 -> rentalService.createRentalContract(rentalList, carList, customerList);
             case 2 -> rentalService.viewRentals(statement, rentalList, tools);
             case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput);
             case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
@@ -154,6 +134,10 @@ public class ConsoleController {
         }
         tools.customizedButton(15, 1, ">1< continue..");
         System.out.print(" ");
-        //int start = userInput.nextInt(); if (start != 0) {runMenu(statement);}
     }
+
 }
+
+
+
+
