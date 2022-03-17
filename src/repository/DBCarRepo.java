@@ -57,22 +57,24 @@ public class DBCarRepo {
         }
     }
 
-    public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer){
+    public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer) {
 
-        try{
+        try {
 
-        statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-                statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
-                for (int i = 0; i < carList.size(); i++) {
-                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-                        carList.remove(carList.get(i));
-                        System.out.println("Car " + answer + "is deleted");
+            statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
+            statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
+            for (int i = 0; i < carList.size(); i++) {
+                if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
+                    carList.remove(carList.get(i));
+                    System.out.println("Car " + answer + "is deleted");
 
-                    }
-                    }
-    }catch(SQLException e){
+                }
+            }
+        } catch (SQLException e) {
             System.out.println("No cars deleted");
         }
+
+    }
 
 
     public void updateLuxuryCar(Statement statement, String newVariable, String newValue, String answer) {
