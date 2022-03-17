@@ -35,7 +35,7 @@ public class ConsoleController {
             customerService.populateCustomerToArrayList(statement, customerList);
             rentalService.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);
             runMenu(statement);
-        } catch (SQLException e) {
+        }  catch (SQLException e) {
             System.out.println("No connection" + e.getMessage());
 
         }
@@ -48,11 +48,14 @@ public class ConsoleController {
 
         int answer = userInput.nextInt();
         switch (answer) {
-            case 0 -> System.exit(1);
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
             case 3 -> rentalMenu(statement, rentalList);
-            case 4 -> System.exit(4);
+            case 4 -> {
+                statement.close();
+                connection.close();
+                System.exit(0);
+            }
         }
 
         int start = userInput.nextInt();
@@ -75,7 +78,7 @@ public class ConsoleController {
                 case 1 -> carService.viewCars(carList, tools);
                 case 2 -> carService.updateCar(statement, userInput, carList, tools);
                 case 3 -> carService.createCar(statement, userInput, carList, tools);
-                case 4 -> carService.delete(statement, carList, userInput, tools);
+                case 4 -> carService.delete(statement, carList, tools);
                 case 0 -> runMenu(statement);
 
             }
@@ -100,10 +103,10 @@ public class ConsoleController {
 
             int answer = userInput.nextInt();
             switch (answer) {
-                case 1 -> customerService.viewCustomer(statement, customerList, tools);
+                case 1 -> customerService.viewCustomer(customerList, tools);
                 case 2 -> customerService.updateCustomer(statement, customerList, userInput, customer);
                 case 3 -> customerService.createCustomer(statement, customerList);
-                case 4 -> customerService.deleteCustomer(statement, customerList, userInput, tools);
+                case 4 -> customerService.deleteCustomer(statement, customerList, tools);
                 case 0 -> customerMenu(statement);
             }
         } catch (SQLException sqlEx) {
@@ -127,7 +130,7 @@ public class ConsoleController {
         int answer = userInput.nextInt();
         switch (answer) {
             case 1 -> rentalService.createRentalContract(rentalList, carList, customerList, statement);
-            case 2 -> rentalService.viewRentals(statement, rentalList, tools);
+            case 2 -> rentalService.viewRentals(rentalList, tools);
             case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
             case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
             default -> rentalMenu(statement, rentalList);
