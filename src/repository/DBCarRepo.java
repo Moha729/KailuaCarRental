@@ -4,7 +4,7 @@ package repository;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DBRepo {
+public class DBCarRepo {
 
 
     public void updateCar(Statement statement, String newVariable, String newValue, String answer) {
@@ -49,11 +49,11 @@ public class DBRepo {
         }
     }
 
-    public void updateFamily(Statement statement, String newVariable, String newValue, String answer) {
+    public void updateFamily(Statement statement, String dbColumn, String newValue, String answer) {
 
         try {
             statement.execute("UPDATE family_table SET " +
-                    newVariable + " = '" + newValue + "' " +
+                    dbColumn + " = '" + newValue + "' " +
                     "WHERE registration_number ='" + answer + "'");
             statement.close();
         } catch (SQLException e) {

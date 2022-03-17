@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class LuxuryRepository {
 
-    DBRepo dbRepo = new DBRepo();
+    DBCarRepo dbCarRepo = new DBCarRepo();
 
 
     public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String  reg, String br, String mo,
@@ -214,10 +214,10 @@ public class LuxuryRepository {
                 break;
         }
         if(check == true) {
-            dbRepo.updateCar(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateCar(statement,dbColumn,newValue,answer);
         }
         if (check == false) {
-            dbRepo.updateLuxuryCar(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateLuxuryCar(statement,dbColumn,newValue,answer);
         }
     }
 }

@@ -79,7 +79,6 @@ public class CarRepository {
         viewCars(carList, tools);
 
         String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
-
         Car car = null;
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)) {

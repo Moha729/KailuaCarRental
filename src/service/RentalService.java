@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RentalService {
-    UITools tools = new UITools();
     RentalRepository rentalRepository;
 
     public RentalService(){

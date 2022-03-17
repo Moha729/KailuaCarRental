@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FamilyRepository {
-    DBRepo dbRepo = new DBRepo();
+    DBCarRepo dbCarRepo = new DBCarRepo();
 
 
     public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg,
@@ -226,10 +226,10 @@ public class FamilyRepository {
                 break;
         }
         if (check == true) {
-            dbRepo.updateCar(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateCar(statement,dbColumn,newValue,answer);
         }
         if (check == false) {
-          dbRepo.updateFamily(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateFamily(statement,dbColumn,newValue,answer);
         }
     }
 }

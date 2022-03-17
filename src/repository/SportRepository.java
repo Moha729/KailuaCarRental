@@ -16,7 +16,7 @@ public class SportRepository {
     UITools tools = new UITools();
     Scanner userInput = new Scanner(System.in);
     Sport sport;
-    DBRepo dbRepo = new DBRepo();
+    DBCarRepo dbRepo = new DBCarRepo();
 
     public Sport createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String reg, String br, String mo,
                                  String regDate, int kmDr, UITools tools) throws SQLException {
