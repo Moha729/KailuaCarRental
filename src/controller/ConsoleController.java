@@ -54,9 +54,9 @@ public class ConsoleController {
         System.out.print(tools.doubleButton(">1< Cars", ">2< Customers"));
         System.out.print(tools.doubleButton(">3< Rentals", ">4< Exit"));
 
-        int mainSwitch = userInput.nextInt();
+        int answer = userInput.nextInt();
 
-        switch (mainSwitch) {
+        switch (answer) {
 
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
@@ -83,9 +83,9 @@ public class ConsoleController {
             System.out.print(tools.doubleButton(">1< See cars", ">2< Update car"));
             System.out.print(tools.doubleButton(">3< New car", ">4< \"Delete car\""));
 
-            int carsSwitch = userInput.nextInt();
+            int answer = userInput.nextInt();
 
-            switch (carsSwitch) {
+            switch (answer) {
 
                 case 1 -> carService.viewCars(carList, tools);
                 case 2 -> carService.updateCar(statement, userInput, carList, tools);
@@ -115,9 +115,9 @@ public class ConsoleController {
             System.out.print(tools.doubleButton(">1< See customers", ">2< Update a customer"));
             System.out.print(tools.doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
 
-            int customerSwitch = userInput.nextInt();
+            int answer = userInput.nextInt();
 
-            switch (customerSwitch) {
+            switch (answer) {
 
                 case 1 -> customerService.viewCustomer(statement, customerList, tools);
                 case 2 -> customerService.updateCustomer(statement, customerList, userInput,customer);
@@ -146,9 +146,9 @@ public class ConsoleController {
         System.out.print(tools.doubleButton(">1< New rental", ">2< Active rentals"));
         System.out.print(tools.doubleButton(">3< Change rental", ">4< End rental"));
 
-        int rentalSwitch = userInput.nextInt();
+        int answer = userInput.nextInt();
 
-        switch (rentalSwitch) {
+        switch (answer) {
 
             case 1 -> rentalService.createRentalContract(rentalList, carList,customerList);
             case 2 -> rentalService.viewRentals(statement, rentalList, tools);
