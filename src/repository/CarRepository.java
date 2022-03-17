@@ -19,6 +19,7 @@ public class CarRepository {
     LuxuryService luxuryService = new LuxuryService();
     SportService sportService = new SportService();
     FamilyService familyService = new FamilyService();
+    DBCarRepo dbCarRepo = new DBCarRepo();
 
     public void populateCars(Statement statement, ArrayList<Car> carList) {
         luxuryService.populateLuxuryToArrayList(statement, carList);
@@ -147,32 +148,13 @@ public class CarRepository {
         }
         switch (deleteIndex) {
             case 1 -> {
-                statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-                statement.execute("DELETE FROM luxury_cars WHERE registration_number = '" + answer + "'");
-                for (int i = 0; i < carList.size(); i++) {
-                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
-                        carList.remove(carList.get(i));
-                    System.out.println("Car " + answer + " is deleted");}
-                }
+                dbCarRepo.deleteLuxuryCar(statement,carList,answer);
             }
             case 2 -> {
-                statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-                statement.execute("DELETE FROM sport_cars WHERE registration_number = '" + answer + "'");
-                for (int i = 0; i < carList.size(); i++) {
-                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
-                        carList.remove(carList.get(i));
-                    System.out.println("Car " + answer + " is deleted");}
-                }
+                dbCarRepo.deleteSportCar(statement,carList,answer);
             }
             case 3 -> {
-                statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-                statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
-                for (int i = 0; i < carList.size(); i++) {
-                    if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)){
-                        carList.remove(carList.get(i));
-                    System.out.println("Car " + answer + "is deleted");
-                    }
-                }
+                dbCarRepo.deleteFamilyCar(statement,carList,answer);
             }
             default -> System.out.println("Type in the right number");
         }

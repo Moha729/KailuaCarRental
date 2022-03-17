@@ -123,10 +123,10 @@ public class FamilyRepository {
         System.out.println();
     }
 
-    public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum,
+    public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String answer,
     Family car) {
 
-        String answer = regNum;
+
 
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
