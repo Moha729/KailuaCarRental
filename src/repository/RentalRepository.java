@@ -235,10 +235,10 @@ public class RentalRepository {
 
 
         } else if (rental.getCar().getClass().getSimpleName().equals("Sport")) {
-            System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s |\n",
-                    "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP.");
+            System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %28s|\n",
+                    "RegNumb", "Brand", "Model", "RegDate", "kmdriven", "manu-gear", "Over200HP", " ");
             System.out.println(rental.getCar().toString());
-            tools.margeTop(80);
+            tools.margeTop(120);
 
         }
         System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
@@ -247,11 +247,27 @@ public class RentalRepository {
         System.out.println(rental.getCustomer().toString());
         tools.margeTop(120);
 
-        System.out.printf("\n| %-25s %-25s %-25s %-25s   |", "rental_id",
+        System.out.printf("\n| %-28s %-28s %-28s %-28s    |\n", "rental_id",
                 "fromDateAndTime=", "toDateAndTime=", "maxKm");
-        tools.margeTop(120);
-        System.out.printf("\n| %-25s %-25s %-25s %-25s   |", rental.getRental_id(),
+        //tools.margeTop(120);
+        System.out.printf("| %-28s %-28s %-28s %-28s    |\n", rental.getRental_id(),
                 rental.getFromDateAndTime(), rental.getToDateAndTime(), rental.getMaxKm());
+        tools.margeTop(120);
+        System.out.println();
+
+    }
+    public void viewRentalsInMain (ArrayList<Rental> rentalList, UITools tools){
+
+        tools.customizedButton(120, 1, "Active rentals");
+
+        for (int i = 0; i < rentalList.size(); i++) {
+            System.out.println();
+            tools.margeTop(50);
+            System.out.println();
+            System.out.println(rentalList.get(i));
+            tools.margeTop(80);
+        }
+        System.out.println();
 
     }
 }

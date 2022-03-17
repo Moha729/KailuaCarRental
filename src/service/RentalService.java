@@ -25,7 +25,7 @@ public class RentalService {
         rentalRepository.populateRentalContractsToArrayList(statement, rentalList);//read from db
     }
     public void viewRentals(Statement statement, ArrayList<Rental> rentalList, UITools tools){
-        rentalRepository.viewRentals(rentalList);//view
+        rentalRepository.viewRentalsInMain(rentalList, tools);//view
     }
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput){
         rentalRepository.updateRentalContracts(statement, rentalList, userInput);//update

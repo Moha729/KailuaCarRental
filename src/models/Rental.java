@@ -34,14 +34,12 @@ public class Rental {
 
     @Override
     public String toString() {
-        return "Rental{" +
-                "car=" + car +
-                ",\n customer=" + customer +
-                ",\n rental_id=" + rental_id +
-                ", fromDateAndTime='" + fromDateAndTime + '\'' +
-                ", toDateAndTime='" + toDateAndTime + '\'' +
-                ", maxKm=" + maxKm +
-                '}';
+        return "Rental: " + rental_id  +
+                "\nCar: " + car.getBrand() + " " + car.getModel() + " " + car.getRegistrationNumber() +
+                "\nCustomer: " + customer.getName() + " " +  customer.getDriverLicenseNumber() +
+                "\nFromDateAndTime:'" + fromDateAndTime +
+                "\nToDateAndTime='" + toDateAndTime +
+                "\nMaxKm=" + maxKm;
     }
 
     /*@Override
