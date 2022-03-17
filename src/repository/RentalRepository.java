@@ -5,7 +5,6 @@ import models.Car;
 import models.Customer;
 import models.Rental;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -15,13 +14,13 @@ public class RentalRepository {
     UITools tools = new UITools();
     //Scanner userInput = new Scanner(System.in);
 
-    CarRepository carRepository;
-    CustomerRepository customerRepository;
+    CarRepository carRepository = new CarRepository();
+    CustomerRepository customerRepository = new CustomerRepository();
     DBRentalRepo rentalRepo = new DBRentalRepo();
 
 
     public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList,
-                                        ArrayList<Car> carList, ArrayList<Customer> customerList) {
+                                                   ArrayList<Car> carList, ArrayList<Customer> customerList) {
         rentalRepo.populateRentals(rentalList, statement, carList, customerList);
     }
 
@@ -29,9 +28,6 @@ public class RentalRepository {
         String newCustomer = tools.returnStringInfo(50, 1, "Are you a returning customer");
 
         if (newCustomer.equalsIgnoreCase("yes")) {
-
-            carRepository = new CarRepository();
-            customerRepository = new CustomerRepository();
 
             int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
             //auto increment
@@ -98,26 +94,35 @@ public class RentalRepository {
         }
     }
 
-
-
-
-
-
-    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) {
+    public Rental getRental(ArrayList<Rental> rentalList, UITools tools) {
+        Rental rental = null;
+        viewRentalsInMain(rentalList, tools);
+        int rentalId = tools.returnIntInfo(50, 1, "Enter rental id number x");
 
         for (int i = 0; i < rentalList.size(); i++) {
-            System.out.println(rentalList.get(i));
+            if (rentalList.get(i).getRental_id() == rentalId) {
+                rental = rentalList.get(i);
+                return rental;
+            }
         }
+        return rental;
+    }
 
-        System.out.println("Enter which rental_id needs to be updated");
-        int answer = userInput.nextInt();
 
-        for (int i = 0; i < rentalList.size(); i++) {
-            if (rentalList.get(i).getRental_id() == answer)
-                System.out.println(rentalList.get(i));
-        }
+    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput,
+                                      ArrayList<Car> carList) {
+
+        Rental rental = getRental(rentalList, tools);
+        System.out.println("Is the car null?");
+        //String rentalLL = rentalL.getCustomer().getName();
+        //System.out.println(rentalLL);
+        int answer = rental.getRental_id();
+        //System.out.println(rentalL);
+
+        /*System.out.println("What do you want to update?\n" +
+                "1 for RentFDate\n2 for RentTDate\n3 for RentMaxKm\n");*/
         System.out.println("What do you want to update?\n" +
-                "1 for RentFDate\n2 for RentTDate\n3 for RentMaxKm\n4 for lName\n5 for zipCode");
+                "1 to change car\n2 for new start date\n3 for new end date\n4 for new max KM");
 
         int ans = userInput.nextInt();
 
@@ -127,30 +132,33 @@ public class RentalRepository {
         switch (ans) {
 
             case 1:
-                System.out.println("Enter which driver license number to be updated");
-                newValue = userInput.next();
-                newVariable = "customer_driver_license_number";
+                System.out.println("Choose new car");
+                Car changeCar = carRepository.getCar(carList, tools);
+                //System.out.println(changeCar);
+                newValue = changeCar.getRegistrationNumber();
+                newVariable = "registration_number";
+                rental.setCar(changeCar);
                 break;
             case 2:
-                System.out.println("Enter customer driver since number");
+                System.out.println("Enter new from date");
                 newValue = userInput.next();
-                newVariable = "customer_driver_since_number";
+                newVariable = "rental_from_date";
+                rental.setFromDateAndTime(newValue);
                 break;
             case 3:
-                System.out.println("Enter new first name");
+                System.out.println("Enter new end date");
                 newValue = userInput.next();
-                newVariable = "customer_first_name";
+                newVariable = "rental_to_date";
+                rental.setToDateAndTime(newValue);
                 break;
             case 4:
-                System.out.println("Enter new last name");
-                newValue = userInput.next();
-                newVariable = "customer_last_name";
+                System.out.println("Enter new max KM");
+                int newKm = userInput.nextInt();
+                newValue = String.valueOf(newKm);
+                newVariable = "rental_max_km";
+                rental.setMaxKm(newKm);
                 break;
-            case 5:
-                System.out.println("Enter new customer zip code");
-                newValue = userInput.next();
-                newVariable = "customer_zip_code";
-                break;
+
         }
 
         try {
@@ -232,28 +240,29 @@ public class RentalRepository {
         System.out.println();
 
     }
-    public void viewRentalsInMain (ArrayList<Rental> rentalList, UITools tools){
+
+    public void viewRentalsInMain(ArrayList<Rental> rentalList, UITools tools) {
 
         System.out.println();
         tools.customizedButton(120, 1, "Active rentals");
 
         for (int i = 0; i < rentalList.size(); i++) {
             System.out.println();
-            tools.customizedButton(30,1, "Rental id: "+rentalList.get(i).getRental_id());
-            tools.margeTop(60);
+            tools.customizedButton(30, 1, "Rental id: " + rentalList.get(i).getRental_id());
+            tools.margeTop(50);
             System.out.printf("\n| %-15s %-20s %-20s %-20s |\n| %-15s %-20s %-20s %-20s |\n" +
                             "| %-15s %-20s %-20s %-20s |\n| %-15s %-20s %-20s %-20s |\n" +
-                    "| %-15s %-20s %-20s %-20s |\n| %-15s %-20s %-20s %-20s |\n" +
+                            "| %-15s %-20s %-20s %-20s |\n| %-15s %-20s %-20s %-20s |\n" +
                             "| %-15s %-20s %-20s %-20s |\n",
-            " ", "Car brand", "Car model", "Registration number",
-            "Car info: ", rentalList.get(i).getCar().getBrand(), rentalList.get(i).getCar().getModel(), rentalList.get(i).getCar().getRegistrationNumber(),
-            " ", "Customer name ", "Licence number", " ",
-            "Customer info: ", rentalList.get(i).getCustomer().getName(), rentalList.get(i).getCustomer().getDriverLicenseNumber(), " ",
-            "Date start: ", rentalList.get(i).getFromDateAndTime(), " ", " ",
-            "Date end: ", rentalList.get(i).getToDateAndTime(), " ", " ",
-            "Max km: ", rentalList.get(i).getMaxKm(), " ", " ");
+                    " ", "Car brand", "Car model", "Registration number",
+                    "Car info: ", rentalList.get(i).getCar().getBrand(), rentalList.get(i).getCar().getModel(), rentalList.get(i).getCar().getRegistrationNumber(),
+                    " ", "Customer name ", "Licence number", " ",
+                    "Customer info: ", rentalList.get(i).getCustomer().getName(), rentalList.get(i).getCustomer().getDriverLicenseNumber(), " ",
+                    "Date start: ", rentalList.get(i).getFromDateAndTime(), " ", " ",
+                    "Date end: ", rentalList.get(i).getToDateAndTime(), " ", " ",
+                    "Max km: ", rentalList.get(i).getMaxKm(), " ", " ");
 
-            tools.margeTop(90);
+            tools.margeTop(80);
 
         }
         System.out.println();

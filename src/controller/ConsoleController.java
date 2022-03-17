@@ -128,7 +128,7 @@ public class ConsoleController {
         switch (answer) {
             case 1 -> rentalService.createRentalContract(rentalList, carList, customerList, statement);
             case 2 -> rentalService.viewRentals(statement, rentalList, tools);
-            case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput);
+            case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
             case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
             default -> rentalMenu(statement, rentalList);
         }
