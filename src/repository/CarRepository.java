@@ -125,7 +125,7 @@ public class CarRepository {
         tools.customizedButton(40, 1, "Bilen er opdateret!");
     }
 
-    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) throws SQLException {
+    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) {
         String answer;
         int deleteIndex = 0;
         viewCars(carList, tools);
