@@ -1,6 +1,5 @@
 package models;
 
-import models.Car;
 
 public class Sport extends Car {
     private boolean manualGear;

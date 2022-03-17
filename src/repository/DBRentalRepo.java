@@ -1,12 +1,9 @@
 package repository;
 
-import db.DBManager;
 import models.Car;
 import models.Customer;
 import models.Rental;
-import models.Sport;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

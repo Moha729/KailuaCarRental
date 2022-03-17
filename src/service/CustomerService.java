@@ -21,13 +21,13 @@ public class CustomerService {
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
         customerRepository.populateCustomerToArrayList(statement, customerList);
     }
-    public void viewCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools){
+    public void viewCustomer(ArrayList<Customer> customerList, UITools tools){
         customerRepository.viewCustomer(customerList,tools);
     }
     public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput,Customer customer){
         customerRepository.updateCustomer(statement, customerList, userInput,customer);
     }
-    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput, UITools tools) throws SQLException {
-        customerRepository.deleteCustomer(statement, customerList, userInput, tools);
+    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools) throws SQLException {
+        customerRepository.deleteCustomer(statement, customerList, tools);
     }
 }

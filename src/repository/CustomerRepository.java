@@ -3,7 +3,6 @@ package repository;
 import UI.UITools;
 import models.Customer;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -101,7 +100,7 @@ public class CustomerRepository {
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer))
                 System.out.println(customerList.get(i));
-            customer = customerList.get(i);
+                customer = customerList.get(i);
         }
         System.out.println("What do you want to update?\n" +
                 "1 for DrLicNumb\n2 for DrSincDate\n3 for fName\n4 for lName\n5 for zipCode" +
@@ -174,16 +173,16 @@ public class CustomerRepository {
                 customer.setEmail(newValue);
                 break;
         }
-        dbCustomerRepo.updateCustomer(statement, customerList, userInput, customer, dbColumn, newValue, answer);
+        dbCustomerRepo.updateCustomer(statement, dbColumn, newValue, answer);
     }
 
-    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput, UITools tools) throws SQLException{
+    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools) throws SQLException{
         String answer;
         viewCustomer(customerList, tools);
         String DriverNumb = tools.returnStringInfo(50, 1, "Enter the driver license number for the customer you want to delete");
         answer = DriverNumb;
 
-        dbCustomerRepo.deleteCustomer(statement, customerList, userInput, tools, answer);
+        dbCustomerRepo.deleteCustomer(statement, customerList, answer);
 
         System.out.println("Customer deleted!");
         }

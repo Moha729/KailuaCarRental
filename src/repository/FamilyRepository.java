@@ -4,8 +4,7 @@ import UI.UITools;
 import models.Car;
 import models.Family;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +13,7 @@ public class FamilyRepository {
     DBCarRepo dbCarRepo = new DBCarRepo();
 
 
-    public Family createFamilyCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String  reg,
+    public Family createFamilyCar(Statement statement, String  reg,
                                   String br, String mo, String regDate, int kmDr, UITools tools){
 
         boolean manualGear;
@@ -81,7 +80,7 @@ public class FamilyRepository {
         System.out.println();
     }
 
-    public void updateFamilyCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String answer,
+    public void updateFamilyCar(Statement statement,Scanner userInput, String answer,
     Family car) {
 
 

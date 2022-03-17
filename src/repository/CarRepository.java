@@ -48,19 +48,19 @@ public class CarRepository {
 
         if (chooseType == 1) {
 
-            Luxury luxuryCar = luxuryService.createLuxury(statement, carList, userInput, registrationNumber, brand, model,
+            Luxury luxuryCar = luxuryService.createLuxury(statement, registrationNumber, brand, model,
                     registrationDate, kmDriven, tools);
             carList.add(luxuryCar);
 
         } else if (chooseType == 2) {
 
-            Sport sportsCar = sportService.createSportsCar(statement, userInput, carList, registrationNumber, brand, model,
-                    registrationDate, kmDriven, tools);
+            Sport sportsCar = sportService.createSportsCar(statement, registrationNumber, brand, model,
+                    registrationDate, kmDriven);
             carList.add(sportsCar);
 
         } else if (chooseType == 3) {
 
-            Family familyCar = familyService.createFamilyCar(statement, userInput, carList, registrationNumber, brand, model,
+            Family familyCar = familyService.createFamilyCar(statement,registrationNumber, brand, model,
                     registrationDate, kmDriven, tools);
             carList.add(familyCar);
 
@@ -127,14 +127,14 @@ public class CarRepository {
             }
         }
         switch (updateIndex) {
-            case 1 -> luxuryService.updateLuxuryCar(statement, carList, userInput, regNum, luxuryCar);
+            case 1 -> luxuryService.updateLuxuryCar(statement, userInput, regNum, luxuryCar);
             case 2 -> sportService.updateSportCar(statement, carList, userInput, regNum, sportCar);
-            case 3 -> familyService.updateFamilyCar(statement, carList, userInput, regNum, familyCar);
+            case 3 -> familyService.updateFamilyCar(statement, userInput, regNum, familyCar);
         }
         tools.customizedButton(40, 1, "Bilen er opdateret!");
     }
 
-    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) {
+    public void delete(Statement statement, ArrayList<Car> carList, UITools tools) {
         String answer;
         int deleteIndex = 0;
         viewCars(carList, tools);

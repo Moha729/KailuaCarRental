@@ -4,8 +4,6 @@ import UI.UITools;
 import models.Car;
 import models.Luxury;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,8 +13,8 @@ public class LuxuryRepository {
     DBCarRepo dbCarRepo = new DBCarRepo();
 
 
-    public Luxury createLuxury(Statement statement, ArrayList<Car> carList, Scanner userInput, String  reg, String br, String mo,
-                               String regDate, int kmDr, UITools tools) throws SQLException {
+    public Luxury createLuxury(Statement statement, String  reg, String br, String mo,
+                               String regDate, int kmDr, UITools tools)  {
         boolean ccm;
         boolean gear;
         boolean cruiseControl;
@@ -77,7 +75,7 @@ public class LuxuryRepository {
         System.out.println();
     }
 
-    public void updateLuxuryCar(Statement statement, ArrayList<Car> carList, Scanner userInput, String regNum, Luxury car){
+    public void updateLuxuryCar(Statement statement, Scanner userInput, String regNum, Luxury car){
         String answer = regNum;
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +

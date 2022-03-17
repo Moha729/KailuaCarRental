@@ -1,6 +1,5 @@
 package models;
 
-import models.Car;
 
 public class Family extends Car {
 

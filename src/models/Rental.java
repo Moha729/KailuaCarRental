@@ -1,7 +1,5 @@
 package models;
 
-import models.Car;
-import models.Customer;
 
 public class Rental {
 

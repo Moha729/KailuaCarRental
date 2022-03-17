@@ -18,9 +18,7 @@ public class Luxury extends Car {
         this.leatherSeats = leatherSeats;
     }
 
-    public Luxury() {
-        super();
-    }
+
 
     @Override
     public String toString() {

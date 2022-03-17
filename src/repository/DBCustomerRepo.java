@@ -1,13 +1,11 @@
 package repository;
 
-import UI.UITools;
 import models.Customer;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class DBCustomerRepo {
 
@@ -58,8 +56,7 @@ public class DBCustomerRepo {
 
     }
 
-    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput, Customer customer
-            , String dbColumn, String newValue, String answer) {
+    public void updateCustomer(Statement statement, String dbColumn, String newValue, String answer) {
         try {
             statement.execute("UPDATE customer_table SET " +
                     dbColumn + " = '" + newValue + "' " +
@@ -72,7 +69,7 @@ public class DBCustomerRepo {
 
     }
 
-    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput, UITools tools, String answer) throws SQLException {
+    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, String answer) throws SQLException {
         statement.execute("DELETE FROM customer_table WHERE customer_driver_license_number = '" + answer + "'");
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {

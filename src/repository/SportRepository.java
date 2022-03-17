@@ -4,7 +4,7 @@ import UI.UITools;
 import models.Car;
 import models.Sport;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -14,12 +14,10 @@ public class SportRepository {
 
 
     UITools tools = new UITools();
-    Scanner userInput = new Scanner(System.in);
-    Sport sport;
     DBCarRepo dbRepo = new DBCarRepo();
 
-    public Sport createSportsCar(Statement statement, Scanner userInput, ArrayList<Car> carList, String reg, String br, String mo,
-                                 String regDate, int kmDr, UITools tools) throws SQLException {
+    public Sport createSportsCar(Statement statement, String reg, String br, String mo,
+                                 String regDate, int kmDr) throws SQLException {
 
         String gear = this.tools.returnStringInfo(60, 1, "does it have a manual gear?");
         boolean gearGear;

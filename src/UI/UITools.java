@@ -9,7 +9,6 @@ public class UITools {
     public String returnStringInfo(int width, int height, String text){
         scan = new Scanner(System.in);
         customizedButton(width, height, text);
-        //scan.nextLine();
         String info = scan.next();
         return info;
     }

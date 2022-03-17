@@ -34,7 +34,7 @@ public class CarService {
         carRepository.updateCar(statement, userInput, carList, tools);
     }
 
-    public void delete(Statement statement, ArrayList<Car> carList, Scanner userInput, UITools tools) throws SQLException {
-        carRepository.delete(statement, carList, userInput, tools);
+    public void delete(Statement statement, ArrayList<Car> carList, UITools tools) throws SQLException {
+        carRepository.delete(statement, carList, tools);
     }
 }
