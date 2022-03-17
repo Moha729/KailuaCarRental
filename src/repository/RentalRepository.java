@@ -67,6 +67,7 @@ public class RentalRepository {
             customerRepository = new CustomerRepository();
 
             int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
+            //auto increment
 
             Car car = carRepository.getCar(carList, tools);
 
@@ -81,7 +82,7 @@ public class RentalRepository {
             Rental rental = new Rental(car, customer, rental_id, fromDateAndTime,
                     toDateAndTime, maxKm);
 
-            viewRentals(rentalList);
+            viewRental(rental);
             rentalList.add(rental);
         } else {
             System.out.println("Create new customer menu: not live yet!");
@@ -199,8 +200,26 @@ public class RentalRepository {
             }
         }
     }
-}
-/*public void viewRental(Rental rental) {
+
+    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools) {
+        System.out.println();
+        tools.customizedButton(50, 1, "Rental Contracts");
+
+        tools.margeTop(70);
+        System.out.printf("\n| %-14s %-14s %-12s |\n",
+                "RentFDate", "RentTDate", "RentMaxKm");
+        tools.margeTop(120);
+
+        for (int i = 0; i < rentalList.size(); i++) {
+            if (rentalList.get(i).getClass().getSimpleName().equals("Rental")) {
+                System.out.println("\n" + rentalList.get(i).toString());
+                tools.margeTop(120);
+            }
+        }
+        System.out.println();
+    }
+
+    public void viewRental(Rental rental) {
         tools.margeTop(120);
 
         if (rental.getCar().getClass().getSimpleName().equals("Luxury")) {
@@ -234,22 +253,8 @@ public class RentalRepository {
         System.out.printf("\n| %-25s %-25s %-25s %-25s   |", rental.getRental_id(),
                 rental.getFromDateAndTime(), rental.getToDateAndTime(), rental.getMaxKm());
 
-    }*/
+    }
+}
 
-/*public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools) {
-        System.out.println();
-        tools.customizedButton(50, 1, "Rental Contracts");
 
-        tools.margeTop(70);
-        System.out.printf("\n| %-14s %-14s %-12s |\n",
-                "RentFDate", "RentTDate", "RentMaxKm");
-        tools.margeTop(120);
 
-        for (int i = 0; i < rentalList.size(); i++) {
-            if (rentalList.get(i).getClass().getSimpleName().equals("Rental")) {
-                System.out.println("\n" + rentalList.get(i).toString());
-                tools.margeTop(120);
-            }
-        }
-        System.out.println();
-    }*/

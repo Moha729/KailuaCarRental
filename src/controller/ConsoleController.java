@@ -78,7 +78,7 @@ public class ConsoleController {
 
         try {
             System.out.println();
-            tools.customizedButton(120, 3, "Cars menu");
+            tools.customizedButton(120, 3, "Cars");
 
             System.out.print(tools.doubleButton(">1< See cars", ">2< Update car"));
             System.out.print(tools.doubleButton(">3< New car", ">4< \"Delete car\""));
@@ -110,7 +110,7 @@ public class ConsoleController {
     public void customerMenu(Statement statement) throws SQLException {
         try {
             System.out.println();
-            tools.customizedButton(120, 3, "Customer menu");
+            tools.customizedButton(120, 3, "Customers");
 
             System.out.print(tools.doubleButton(">1< See customers", ">2< Update a customer"));
             System.out.print(tools.doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
@@ -141,7 +141,7 @@ public class ConsoleController {
 
     public void rentalMenu(Statement statement, ArrayList<Rental> rentalList) throws SQLException {
         System.out.println();
-        tools.customizedButton(120, 3, "Rentals menu");
+        tools.customizedButton(120, 3, "Rentals");
 
         System.out.print(tools.doubleButton(">1< New rental", ">2< Active rentals"));
         System.out.print(tools.doubleButton(">3< Change rental", ">4< End rental"));
@@ -156,5 +156,8 @@ public class ConsoleController {
             case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
             default -> rentalMenu(statement, rentalList);
         }
+        tools.customizedButton(15, 1, ">1< continue..");
+        System.out.print(" ");
+        //int start = userInput.nextInt(); if (start != 0) {runMenu(statement);}
     }
 }
