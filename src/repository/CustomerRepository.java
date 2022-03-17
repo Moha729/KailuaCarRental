@@ -14,6 +14,7 @@ public class CustomerRepository {
     UITools tools = new UITools();
 
     public Customer getCustomer(ArrayList<Customer> customerList, UITools tools){
+        viewCustomer(customerList, tools);
         Customer customer = null;
         String customerDV = tools.returnStringInfo(40, 1, "Enter customer driving licence number");
 
