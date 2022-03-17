@@ -35,7 +35,7 @@ public class ConsoleController {
             customerService.populateCustomerToArrayList(statement, customerList);
             rentalService.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);
             runMenu(statement);
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("No connection" + e.getMessage());
 
         }

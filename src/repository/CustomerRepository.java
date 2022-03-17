@@ -98,10 +98,13 @@ public class CustomerRepository {
         String answer = userInput.next();
 
         for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer))
+            if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {
                 System.out.println(customerList.get(i));
                 customer = customerList.get(i);
+
+            }
         }
+
         System.out.println("What do you want to update?\n" +
                 "1 for DrLicNumb\n2 for DrSincDate\n3 for fName\n4 for lName\n5 for zipCode" +
                 "\n6 for city\n7 for pNumb\n8 for mNumb\n9 for email");

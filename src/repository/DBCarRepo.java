@@ -1,11 +1,13 @@
 package repository;
 
 
+import db.DBManager;
 import models.Car;
 import models.Family;
 import models.Luxury;
 import models.Sport;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,6 +29,10 @@ public class DBCarRepo {
 
     public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer) {
         try {
+//            PreparedStatement preparedStatement;
+//            preparedStatement = DBManager.getConnection().prepareStatement("DELETE FROM car_table,sport_cars WHERE registration_number = ?");
+//            preparedStatement.setString(1,answer);
+//            preparedStatement.executeUpdate();
             statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
             statement.execute("DELETE FROM luxury_cars WHERE registration_number = '" + answer + "'");
             for (int i = 0; i < carList.size(); i++) {
