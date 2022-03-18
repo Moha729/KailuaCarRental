@@ -20,16 +20,17 @@ public class RentalRepository {
 
 
     public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList,
-                                                   ArrayList<Car> carList, ArrayList<Customer> customerList) {
+                                        ArrayList<Car> carList, ArrayList<Customer> customerList) {
         rentalRepo.populateRentals(rentalList, statement, carList, customerList);
     }
 
-    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList, Statement statement) {
+    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList,
+                                     ArrayList<Customer> customerList, Statement statement) {
         String newCustomer = tools.returnStringInfo(50, 1, "Are you a returning customer");
 
         if (newCustomer.equalsIgnoreCase("yes")) {
 
-            int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
+//            int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
             //auto increment
 
             Car car = carRepository.getCar(carList, tools);
@@ -42,7 +43,7 @@ public class RentalRepository {
 
             int maxKm = tools.returnIntInfo(50, 1, "Max KM");
 
-            Rental rental = new Rental(car, customer, rental_id, fromDateAndTime,
+            Rental rental = new Rental(car, customer, 44, fromDateAndTime,
                     toDateAndTime, maxKm);
 
             viewRental(rental);
@@ -80,8 +81,8 @@ public class RentalRepository {
 
             }
             System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
-                    "DriverNumb", "DriverSince", "Fname", "Lname", "ZipCode", "CustomCity", "PhoneNumb", "MobileNumb",
-                    "Email");
+                    "DriverNumb", "DriverSince", "Fname", "Lname", "ZipCode", "CustomCity",
+                    "PhoneNumb", "MobileNumb", "Email");
             System.out.println(rentalList.get(i).getCustomer().toString());
             tools.margeTop(120);
 
@@ -109,11 +110,11 @@ public class RentalRepository {
     }
 
 
-    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput,
-                                      ArrayList<Car> carList) {
+    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList,
+                                      Scanner userInput, ArrayList<Car> carList) {
 
         Rental rental = getRental(rentalList, tools);
-        System.out.println("Is the car null?");
+        //System.out.println("Is the car null?");
         //String rentalLL = rentalL.getCustomer().getName();
         //System.out.println(rentalLL);
         int answer = rental.getRental_id();

@@ -14,6 +14,8 @@ public class DBRentalRepo {
     CarRepository carRepository = new CarRepository();
     CustomerRepository customerRepository = new CustomerRepository();
 
+    //public void
+
     public void addRentalToDB(Rental rental, Statement statement){
 
         try {
