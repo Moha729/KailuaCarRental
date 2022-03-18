@@ -8,6 +8,7 @@ import models.Rental;
 import service.CarService;
 import service.CustomerService;
 import service.RentalService;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,48 +23,67 @@ public class ConsoleController {
     CarService carService = new CarService();
     CustomerService customerService = new CustomerService();
     RentalService rentalService = new RentalService();
-    Customer customer = new Customer();
     ArrayList<Car> carList = new ArrayList<>();
     ArrayList<Customer> customerList = new ArrayList<>();
     ArrayList<Rental> rentalList = new ArrayList<>();
 
     public void run() {
+
         Statement statement;
+
         try {
             statement = connection.createStatement();
+
             carService.populateCars(statement, carList);
             customerService.populateCustomerToArrayList(statement, customerList);
             rentalService.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);
+
             runMenu(statement);
         } catch (SQLException e) {
             System.out.println("No connection" + e.getMessage());
-
         }
     }
 
-    public void runMenu(Statement statement) throws SQLException {
+
+    public void runMenu(Statement statement) {
+
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
+
         System.out.print(tools.doubleButton(">1< Cars", ">2< Customers"));
         System.out.print(tools.doubleButton(">3< Rentals", ">4< Exit"));
-
         int answer = userInput.nextInt();
+
         switch (answer) {
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
             case 3 -> rentalMenu(statement);
-            case 4 -> {
-                statement.close();
-                connection.close();
-                System.exit(0);
-            }
+            case 4 -> closeProgram(statement);
+            case 0 -> closeProgram(statement);
         }
+        continueButton(statement);
+    }
+
+    public void closeProgram(Statement statement) {
+        try {
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+        tools.customizedButton(120, 1, "System closed");
+    }
+
+    public void continueButton(Statement statement) {
+        tools.customizedButton(15, 1, ">1< continue..");
+        System.out.print(" ");
         int start = userInput.nextInt();
         if (start != 0) {
             runMenu(statement);
         }
     }
 
-    public void runCarMenu(Statement statement) throws SQLException {
+    public void runCarMenu(Statement statement) {
         try {
             System.out.println();
             tools.customizedButton(120, 3, "Cars");
@@ -84,16 +104,12 @@ public class ConsoleController {
         } catch (SQLException sqlEx) {
             System.out.println("Error in Cars_main_menu: " + sqlEx);
         }
-
-        tools.customizedButton(15, 1, ">1< continue..");
-        System.out.print(" ");
-        int start = userInput.nextInt();
-        if (start != 0) {
-            runMenu(statement);
-        }
+        continueButton(statement);
     }
 
-    public void customerMenu(Statement statement) throws SQLException {
+    public void customerMenu(Statement statement) {
+        Customer customer = new Customer();
+
         try {
             System.out.println();
             tools.customizedButton(120, 3, "Customers");
@@ -106,36 +122,38 @@ public class ConsoleController {
                 case 2 -> customerService.updateCustomer(statement, customerList, userInput, customer);
                 case 3 -> customerService.createCustomer(statement, customerList);
                 case 4 -> customerService.deleteCustomer(statement, customerList, tools);
-                case 0 -> customerMenu(statement);
+                case 0 -> runMenu(statement);
             }
         } catch (SQLException sqlEx) {
             System.out.println("Error in Customer maim menu: " + sqlEx);
         }
-
-        tools.customizedButton(15, 1, ">1< continue..");
-        System.out.print(" ");
-        int start = userInput.nextInt();
-        if (start != 0) {
-            runMenu(statement);
-        }
-
+        continueButton(statement);
     }
-    public void rentalMenu(Statement statement) throws SQLException {
+
+
+    public void rentalMenu(Statement statement) {
+
         System.out.println();
         tools.customizedButton(120, 3, "Rentals");
         System.out.print(tools.doubleButton(">1< New rental", ">2< Active rentals"));
         System.out.print(tools.doubleButton(">3< Change rental", ">4< End rental"));
 
         int answer = userInput.nextInt();
-        switch (answer) {
-            case 1 -> rentalService.createRentalContract(rentalList, carList, customerList, statement);
-            case 2 -> rentalService.viewRentals(rentalList, tools);
-            case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
-            case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
-            default -> rentalMenu(statement);
+
+        try {
+            switch (answer) {
+                case 1 -> rentalService.createRentalContract(rentalList, carList, customerList, statement);
+                case 2 -> rentalService.viewRentals(rentalList, tools);
+                case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
+                case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
+                case 0 -> runMenu(statement);
+                default -> rentalMenu(statement);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        tools.customizedButton(15, 1, ">1< continue..");
-        System.out.print(" ");
+
+        continueButton(statement);
     }
 }
 

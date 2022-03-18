@@ -90,6 +90,7 @@ public class CustomerRepository {
 
     public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput, Customer customer){
 
+
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println(customerList.get(i));
         }
@@ -104,6 +105,9 @@ public class CustomerRepository {
 
             }
         }
+
+        //Customer customer1= getCustomer(customerList, tools);
+
 
         System.out.println("What do you want to update?\n" +
                 "1 for DrLicNumb\n2 for DrSincDate\n3 for fName\n4 for lName\n5 for zipCode" +
