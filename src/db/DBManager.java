@@ -11,9 +11,7 @@ public class DBManager {
     private static String password;
     private static Connection connection;
 
-    private DBManager(){
-
-    }
+    private DBManager(){}
 
     public static Connection getConnection() {
         if(connection == null)
@@ -22,7 +20,6 @@ public class DBManager {
         password = System.getenv("password");
         try {
             connection = DriverManager.getConnection(url,user, password);
-            System.out.println();
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
