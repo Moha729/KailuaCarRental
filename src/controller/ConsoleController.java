@@ -70,8 +70,8 @@ public class ConsoleController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.exit(0);
         tools.customizedButton(120, 1, "System closed");
+        System.exit(0);
     }
 
     public void continueButton(Statement statement) {
