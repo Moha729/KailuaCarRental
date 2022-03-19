@@ -12,8 +12,8 @@ public class Customer {
     private String email;
 
 
-    public Customer(String driverLicenseNumber, String driverSinceNumber, String name, String lastName, int zip,
-                    String city, int phone, int mobilePhone, String email) {
+    public Customer(String driverLicenseNumber, String driverSinceNumber, String name, String lastName,
+                    int zip, String city, int phone, int mobilePhone, String email) {
 
         this.name = name;
         this.lastName = lastName;

@@ -36,3 +36,6 @@ public class LuxuryService {
         luxuryRepository.updateLuxuryCar(statement, userInput, regNum, car);
     }
 }
+//Mangler et delete method
+//den skal kaldes på luxuryRepository og hedde deleteLuxuryCar
+

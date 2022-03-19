@@ -49,16 +49,15 @@ public class ConsoleController {
 
         tools.customizedButton(120, 7, "Welcome to Kailua car rental");
 
-        System.out.print(tools.doubleButton(">1< Cars", ">2< Customers"));
-        System.out.print(tools.doubleButton(">3< Rentals", ">4< Exit"));
+        System.out.print(tools.doubleButton(">1< Rentals", ">2< Cars"));
+        System.out.print(tools.doubleButton(">3< Customers", ">4< Exit"));
         int answer = userInput.nextInt();
 
         switch (answer) {
-            case 1 -> runCarMenu(statement);
-            case 2 -> customerMenu(statement);
-            case 3 -> rentalMenu(statement);
-            case 4 -> closeProgram(statement);
-            case 0 -> closeProgram(statement);
+            case 1 -> rentalMenu(statement);
+            case 2 -> runCarMenu(statement);
+            case 3 -> customerMenu(statement);
+            case 4,0 -> closeProgram(statement);
         }
         continueButton(statement);
     }
@@ -79,17 +78,22 @@ public class ConsoleController {
         System.out.print(" ");
         int start = userInput.nextInt();
         if (start != 0) {
+            whiteSpace();
             runMenu(statement);
         }
+    }
+    private void whiteSpace(){
+        for (int i = 0; i < 7; i++)
+            System.out.println();
     }
 
     public void runCarMenu(Statement statement) {
         try {
-            System.out.println();
+            whiteSpace();
             tools.customizedButton(120, 3, "Cars");
 
             System.out.print(tools.doubleButton(">1< See cars", ">2< Update car"));
-            System.out.print(tools.doubleButton(">3< New car", ">4< \"Delete car\""));
+            System.out.print(tools.doubleButton(">3< New car", ">4< Delete car"));
 
             int answer = userInput.nextInt();
 
@@ -113,14 +117,14 @@ public class ConsoleController {
         try {
             System.out.println();
             tools.customizedButton(120, 3, "Customers");
-            System.out.print(tools.doubleButton(">1< See customers", ">2< Update a customer"));
-            System.out.print(tools.doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
+            System.out.print(tools.doubleButton(">1< Create a new customer", ">2< Update a customer"));
+            System.out.print(tools.doubleButton(">3< See customers", ">4< Delete a customer"));
 
             int answer = userInput.nextInt();
             switch (answer) {
-                case 1 -> customerService.viewCustomer(customerList, tools);
+                case 1 -> customerService.createCustomer(statement, customerList);
                 case 2 -> customerService.updateCustomer(statement, customerList, userInput, customer);
-                case 3 -> customerService.createCustomer(statement, customerList);
+                case 3 -> customerService.viewCustomer(customerList, tools);
                 case 4 -> customerService.deleteCustomer(statement, customerList, tools);
                 case 0 -> runMenu(statement);
             }
@@ -135,19 +139,19 @@ public class ConsoleController {
 
         System.out.println();
         tools.customizedButton(120, 3, "Rentals");
-        System.out.print(tools.doubleButton(">1< New rental", ">2< Active rentals"));
-        System.out.print(tools.doubleButton(">3< Change rental", ">4< End rental"));
+        System.out.print(tools.doubleButton(">1< New rental", ">2< End rental"));
+        System.out.print(tools.doubleButton(">3< Change rental", ">4< Active rentals"));
 
         int answer = userInput.nextInt();
 
         try {
             switch (answer) {
                 case 1 -> rentalService.createRentalContract(rentalList, carList, customerList, statement);
-                case 2 -> rentalService.viewRentals(rentalList, tools);
+                case 2 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
                 case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
-                case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
+                case 4 -> rentalService.viewRentals(rentalList, tools);
                 case 0 -> runMenu(statement);
-                default -> rentalMenu(statement);
+                //default -> rentalMenu(statement);
             }
         } catch (SQLException e) {
             e.printStackTrace();

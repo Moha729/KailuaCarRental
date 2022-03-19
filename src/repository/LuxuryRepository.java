@@ -45,8 +45,6 @@ public class LuxuryRepository {
 
         addLuxuryCarToDB(luxuryCar, statement);
 
-        System.out.println("pres 1 to continue");
-
         return luxuryCar;
     }
 
@@ -90,11 +88,12 @@ public class LuxuryRepository {
         switch (ans){
 
             case 1 :
+                System.out.println("Not valid try again");/*
                 check = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 dbColumn = "registration_number";
-                car.setRegistrationNumber(newValue);
+                car.setRegistrationNumber(newValue);*/
                 break;
             case 2 :
                 check = true;
@@ -181,4 +180,11 @@ public class LuxuryRepository {
             dbCarRepo.updateLuxuryCar(statement,dbColumn,newValue,answer);
         }
     }
+
+    //Her skal der være en metode der hedder deleteLuxuryCar
+    //Den skal 1. kalde på     dbCarRepo.deleteLuxuryCar(statement, carList, answer);
+    //2. Der en Arraylist remove method i dbCarRepo.deleteLuxuryCar
+    //Den skal være her
+    //3. Der er en System.out.println lige under
+    //og bare lægge den text der er i den, i en tools.customizedButtons
 }

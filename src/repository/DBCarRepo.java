@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DBCarRepo {
 
@@ -29,6 +30,8 @@ public class DBCarRepo {
 
     public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer) {
         try {
+            //Mardin Lav en klasse der laver præcis det samme som den her
+            //og se om PreparedStatement virker bedre end det vi har her
 //            PreparedStatement preparedStatement;
 //            preparedStatement = DBManager.getConnection().prepareStatement("DELETE FROM car_table,sport_cars WHERE registration_number = ?");
 //            preparedStatement.setString(1,answer);
@@ -117,8 +120,10 @@ public class DBCarRepo {
             statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
             for (int i = 0; i < carList.size(); i++) {
                 if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-                    carList.remove(carList.get(i));
-                    System.out.println("Car " + answer + "is deleted");
+
+                    //De to statements skal være i LuxuryRepository.delete method
+                    carList.remove(carList.get(i));//Den statement skal indsættes i rette klasse
+                    System.out.println("Car " + answer + " is deleted");
                 }
             }
         } catch (SQLException e) {
@@ -189,7 +194,9 @@ public class DBCarRepo {
                     + luxuryCar.getModel() + "','"
                     + luxuryCar.getRegistrationDate() + "','"
                     + luxuryCar.getKmDriven() + "')");
-
+            /*System.out.println("Stop here");
+            Scanner scanner = new Scanner(System.in);
+            String go = scanner.next();*/
             statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
                     "VALUES('"
                     + luxuryCar.getRegistrationNumber() + "','"
