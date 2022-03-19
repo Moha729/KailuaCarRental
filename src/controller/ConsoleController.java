@@ -49,7 +49,6 @@ public class ConsoleController {
             case 2 -> customerMenu(statement);
             case 3 -> rentalMenu(statement);
             case 4 -> closeProgram(statement);
-            case 0 -> closeProgram(statement);
         }
         continueButton(statement);
     }
