@@ -4,26 +4,23 @@ import java.util.Scanner;
 
 public class UITools {
 
-    Scanner scan = new Scanner(System.in);
+    Scanner userInput = new Scanner(System.in);
+    public static final String red = "\u001B[31m";
 
     public String returnStringInfo(int width, int height, String text){
-        scan = new Scanner(System.in);
         customizedButton(width, height, text);
-        String info = scan.next();
+        String info = userInput.next();
         return info;
     }
     public int returnIntInfo(int width, int height, String text){
-        scan = new Scanner(System.in);
         customizedButton(width, height, text);
-        int info = scan.nextInt();
+        int info = userInput.nextInt();
         return info;
     }
 
-
     public void customizedButton(int width, int height, String text){
-
         margeTop(width);
-        System.out.println();
+        System.out.println(red);
         margingCentre(height, width, text);
         margeTop(width);
 
@@ -54,7 +51,7 @@ public class UITools {
     }
 
     public void margeTop(int width){
-        System.out.print(" ");
+        System.out.print(red+" ");
         for (int i = 0; i <= width - 1; i++)
             System.out.print("_");
     }
@@ -111,5 +108,33 @@ public class UITools {
             }
             System.out.print("|");
         }
+    }
+
+    public void menuOptions(){
+        customizedButton(120, 7, "Welcome to Kailua car rental");
+        System.out.print(doubleButton(">1< Cars", ">2< Customers"));
+        System.out.print(doubleButton(">3< Rentals", ">4< Exit"));
+    }
+
+    public void carMenuOptions(){
+        System.out.println();
+        customizedButton(120, 3, "Cars");
+
+        System.out.print(doubleButton(">1< See cars", ">2< Update car"));
+        System.out.print(doubleButton(">3< New car", ">4< \"Delete car\""));
+    }
+
+    public void customerMenuOptions() {
+        System.out.println();
+        customizedButton(120, 3, "Customers");
+        System.out.print(doubleButton(">1< See customers", ">2< Update a customer"));
+        System.out.print(doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
+    }
+
+    public void rentalMenuOptions(){
+        System.out.println();
+        customizedButton(120, 3, "Rentals");
+        System.out.print(doubleButton(">1< New rental", ">2< Active rentals"));
+        System.out.print(doubleButton(">3< Change rental", ">4< End rental"));
     }
 }

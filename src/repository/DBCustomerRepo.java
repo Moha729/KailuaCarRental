@@ -11,7 +11,6 @@ public class DBCustomerRepo {
 
 
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList) {
-
         try {
 
             String sql = ("SELECT customer_driver_license_number, customer_driver_since_number,customer_first_name, customer_last_name, " +
@@ -53,7 +52,6 @@ public class DBCustomerRepo {
                 + customer.getPhone() + "','"
                 + customer.getMobilePhone() + "','"
                 + customer.getEmail() + "')");
-
     }
 
     public void updateCustomer(Statement statement, String dbColumn, String newValue, String answer) {

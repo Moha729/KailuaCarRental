@@ -88,8 +88,9 @@ public class CustomerRepository {
         System.out.println();
     }
 
-    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput, Customer customer){
+    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput){
 
+        Customer customer = new Customer();
 
         for (int i = 0; i < customerList.size(); i++) {
             System.out.println(customerList.get(i));
