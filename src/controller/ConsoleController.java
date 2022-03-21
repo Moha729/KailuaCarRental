@@ -43,7 +43,7 @@ public class ConsoleController {
     }
 
     public void runMenu(Statement statement) {
-        menuTools.menuOptions();
+        menuTools.menuOptions();//ret
         int answer = userInput.nextInt();
 
         switch (answer) {
@@ -63,18 +63,9 @@ public class ConsoleController {
             e.printStackTrace();
         }
         System.exit(0);
-        tools.customizedButton(120, 1, "System closed");
+        menuTools.customizedButton(120, 1, "System closed");
     }
 
-    public void continueButton(Statement statement) {
-        tools.customizedButton(15, 1, ">1< continue..");
-        System.out.print(" ");
-        int start = userInput.nextInt();
-        if (start != 0) {
-            whiteSpace();
-            runMenu(statement);
-        }
-    }
     private void whiteSpace(){
         for (int i = 0; i < 7; i++)
             System.out.println();
