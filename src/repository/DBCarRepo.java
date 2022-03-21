@@ -104,18 +104,9 @@ public class DBCarRepo {
 
     public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer) {
 
-
         try {
             statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
             statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
-            for (int i = 0; i < carList.size(); i++) {
-                if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-
-                    //De to statements skal være i LuxuryRepository.delete method
-                    carList.remove(carList.get(i));//Den statement skal indsættes i rette klasse
-                    System.out.println("Car " + answer + " is deleted");
-                }
-            }
         } catch (SQLException e) {
             System.out.println("No cars deleted");
         }

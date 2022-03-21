@@ -184,6 +184,15 @@ public class FamilyRepository {
             dbCarRepo.updateFamily(statement,dbColumn,newValue,answer);
         }
     }
+    public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
+        dbCarRepo.deleteFamilyCar(statement, carList, answer);
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
+                carList.remove(carList.get(i));
+                System.out.println("Car " + answer + " is deleted");
+            }
+        }
+    }
 }
 //akitektur
 //design

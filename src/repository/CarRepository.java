@@ -119,13 +119,13 @@ public class CarRepository {
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
 
-            dbCarRepo.deleteLuxuryCar(statement, carList, answer);
+            luxuryService.deleteLuxuryCar(statement, carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
 
-            dbCarRepo.deleteSportCar(statement, carList, answer);
+            sportService.deleteSportCar(statement, carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
 
-            dbCarRepo.deleteFamilyCar(statement, carList, answer);
+            familyService.deleteFamilyCar(statement, carList, answer, tools);
         } else {
             System.out.println("Type in the right number");
         }
