@@ -5,7 +5,7 @@ public class Rental {
 
     private Car car;
     private Customer customer;
-    public int rental_id;
+    private int rental_id;
     private String fromDateAndTime;
     private String toDateAndTime;
     private int maxKm;
