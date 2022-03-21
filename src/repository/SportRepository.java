@@ -39,8 +39,6 @@ public class SportRepository {
 
         addSportCarToDB(sportsCar, statement);
 
-        System.out.println("pres 1 to continue");
-
         return sportsCar;
     }
 
@@ -90,11 +88,12 @@ public class SportRepository {
         switch (ans) {
 
             case 1:
-                check = true;
+                System.out.println("Not valid try again");
+                /*check = true;
                 System.out.println("Enter new registration number");
                 newValue = userInput.next();
                 dbColumn = "registration_number";
-                car.setRegistrationNumber(newValue);
+                car.setRegistrationNumber(newValue);*/
                 break;
             case 2:
                 check = true;

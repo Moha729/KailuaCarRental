@@ -31,9 +31,11 @@ public class ConsoleController {
         try {
             Statement statement;
             statement = connection.createStatement();
+
             carService.populateCars(statement, carList);
             customerService.populateCustomerToArrayList(statement, customerList);
             rentalService.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);
+
             runMenu(statement);
         } catch (SQLException e) {
             System.out.println("No connection" + e.getMessage());
@@ -45,12 +47,37 @@ public class ConsoleController {
         int answer = userInput.nextInt();
 
         switch (answer) {
-            case 1 -> runCarMenu(statement);
-            case 2 -> customerMenu(statement);
-            case 3 -> rentalMenu(statement);
-            case 4 -> menuTools.closeProgram(statement, connection);
+            case 1 -> rentalMenu(statement);
+            case 2 -> runCarMenu(statement);
+            case 3 -> customerMenu(statement);
+            case 4,0 -> closeProgram(statement);
         }
         continueButton(statement);
+    }
+
+    public void closeProgram(Statement statement) {
+        try {
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+        tools.customizedButton(120, 1, "System closed");
+    }
+
+    public void continueButton(Statement statement) {
+        tools.customizedButton(15, 1, ">1< continue..");
+        System.out.print(" ");
+        int start = userInput.nextInt();
+        if (start != 0) {
+            whiteSpace();
+            runMenu(statement);
+        }
+    }
+    private void whiteSpace(){
+        for (int i = 0; i < 7; i++)
+            System.out.println();
     }
 
     public void runCarMenu(Statement statement) {
@@ -58,12 +85,14 @@ public class ConsoleController {
             menuTools.carMenuOptions();
 
             int answer = userInput.nextInt();
+
             switch (answer) {
                 case 1 -> carService.viewCars(carList, menuTools);
                 case 2 -> carService.updateCar(statement, userInput, carList, menuTools);
                 case 3 -> carService.createCar(statement, userInput, carList, menuTools);
                 case 4 -> carService.delete(statement, carList, menuTools);
                 case 0 -> runMenu(statement);
+
             }
         } catch (SQLException sqlEx) {
             System.out.println("Error in Cars_main_menu: " + sqlEx);
@@ -100,11 +129,12 @@ public class ConsoleController {
                 case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
                 case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
                 case 0 -> runMenu(statement);
-                default -> rentalMenu(statement);
+                //default -> rentalMenu(statement);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         continueButton(statement);
     }
 

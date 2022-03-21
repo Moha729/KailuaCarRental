@@ -1,6 +1,5 @@
 package models;
 
-
 public class Sport extends Car {
     private boolean manualGear;
     private boolean over200HP;
@@ -16,8 +15,8 @@ public class Sport extends Car {
     public String toString() {
         return /*getClass().getSimpleName()+" car: "+super.toString()+*/
                 String.format("| %-14s %-14s %-12s %-12s %-12d %-10b %-10b |",
-                        getRegistrationNumber(), getBrand(), getModel(), getRegistrationDate(), getKmDriven(),
-                        isManualGear(),isOver200HP());
+                        getRegistrationNumber(), getBrand(), getModel(), getRegistrationDate(),
+                        getKmDriven(), isManualGear(),isOver200HP());
 
 
     }
