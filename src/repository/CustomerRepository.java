@@ -60,8 +60,6 @@ public class CustomerRepository {
                 city, phone, mobilePhone, email);
         customerList.add(customer);
         addCustomerToDB(customer, statement);
-        dbCustomerRepo.addCustomerToDB(customer, statement);
-
     }
 
     public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
