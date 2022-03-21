@@ -177,12 +177,12 @@ public class LuxuryRepository {
             dbCarRepo.updateCar(statement,dbColumn,newValue,answer);
         }
         if (check == false) {
-            dbCarRepo.updateLuxuryCar(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateAllCar(statement,dbColumn,newValue,answer, "luxury_cars");
         }
     }
 
     public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbCarRepo.deleteLuxuryCar(statement, carList, answer);
+        dbCarRepo.deleteAllCar(statement, carList, answer, "luxury_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));

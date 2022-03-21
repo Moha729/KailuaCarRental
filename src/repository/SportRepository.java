@@ -154,12 +154,12 @@ public class SportRepository {
 
         }
         if (check == false) {
-            dbRepo.updateSportCar(statement, dbColumn, newValue, answer);
+            dbRepo.updateAllCar(statement, dbColumn, newValue, answer, "sport_cars");
         }
     }
 
     public void deleteSportCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbRepo.deleteSportCar(statement, carList, answer);
+        dbRepo.deleteAllCar(statement, carList, answer, "sport_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));

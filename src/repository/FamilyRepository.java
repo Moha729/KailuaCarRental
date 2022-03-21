@@ -181,11 +181,11 @@ public class FamilyRepository {
             dbCarRepo.updateCar(statement,dbColumn,newValue,answer);
         }
         if (check == false) {
-            dbCarRepo.updateFamily(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateAllCar(statement,dbColumn,newValue,answer, "family_cars");
         }
     }
     public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbCarRepo.deleteFamilyCar(statement, carList, answer);
+        dbCarRepo.deleteAllCar(statement, carList, answer, "family_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));

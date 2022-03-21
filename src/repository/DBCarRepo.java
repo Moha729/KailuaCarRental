@@ -159,38 +159,13 @@ public class DBCarRepo {
         }
     }
 
-    public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer) {
-
+    public void deleteAllCar(Statement statement, ArrayList<Car> carList, String answer,
+                             String sqlTable_name){
         try {
             statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-            statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
+            statement.execute("DELETE FROM "+ sqlTable_name +" WHERE registration_number = '" + answer + "'");
         } catch (SQLException e) {
             System.out.println("No cars deleted");
-        }
-    }
-
-    public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer) {
-        try {
-            //Mardin Lav en klasse der laver præcis det samme som den her
-            //og se om PreparedStatement virker bedre end det vi har her
-//            PreparedStatement preparedStatement;
-//            preparedStatement = DBManager.getConnection().prepareStatement("DELETE FROM car_table,sport_cars WHERE registration_number = ?");
-//            preparedStatement.setString(1,answer);
-//            preparedStatement.executeUpdate();
-            statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-            statement.execute("DELETE FROM luxury_cars WHERE registration_number = '" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not delete the car");
-        }
-    }
-
-    public void deleteSportCar(Statement statement, ArrayList<Car> carList, String answer) {
-        try {
-            statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-            statement.execute("DELETE FROM sport_cars WHERE registration_number = '" + answer + "'");
-        } catch (SQLException e) {
-            System.out.println("no cars deleted: " + e.getMessage());
         }
     }
 
@@ -202,39 +177,6 @@ public class DBCarRepo {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update car table");
-        }
-    }
-
-    public void updateFamily(Statement statement, String dbColumn, String newValue, String answer) {
-        try {
-            statement.execute("UPDATE family_cars SET " +
-                    dbColumn + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update family car");
-        }
-    }
-
-    public void updateLuxuryCar(Statement statement, String newVariable, String newValue, String answer) {
-        try {
-            statement.execute("UPDATE luxury_cars SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update luxury table");
-        }
-    }
-
-    public void updateSportCar(Statement statement, String newVariable, String newValue, String answer) {
-        try {
-            statement.execute("UPDATE sport_cars SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update sport car");
         }
     }
 
