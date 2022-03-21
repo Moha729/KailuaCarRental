@@ -28,7 +28,7 @@ public class CarRepository {
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) {
 
-        printHeadline("New car", tools);
+        printHeadline("New car");
 
         tools.customizedButton(120, 1, "What is the type of the new car?");
 
@@ -82,15 +82,13 @@ public class CarRepository {
     }
 
     public void viewCars(ArrayList<Car> carList, UITools tools) {
-        printHeadline("Cars", tools);
+        printHeadline("Cars");
         viewCarsS(carList, tools);
     }
 
-
     public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
 
-        printHeadline("Edit car", tools);
-
+        printHeadline("Update car");
         Car car = getCar(carList, tools);
         String regNum = car.getRegistrationNumber();
 
@@ -108,28 +106,20 @@ public class CarRepository {
         System.out.println();
     }
 
-
     public void delete(Statement statement, ArrayList<Car> carList, UITools tools) {
 
-        printHeadline("Delete car", tools);
+        printHeadline("Delete car");
         Car car = getCar(carList, tools);
         String answer = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-
             luxuryService.deleteLuxuryCar(statement, carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
-
             sportService.deleteSportCar(statement, carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
-
             familyService.deleteFamilyCar(statement, carList, answer, tools);
-        } else {
-            System.out.println("Type in the right number");
         }
     }
-
-
 
     private void viewCarsS(ArrayList<Car> carList, UITools tools) {
         luxuryService.viewLuxuryCars(carList, tools);
@@ -137,15 +127,14 @@ public class CarRepository {
         sportService.viewSportCars(carList, tools);
     }
 
-    private void printHeadline(String text, UITools tools) {
+    private void printHeadline(String text) {
         menuTools.whiteSpace();
         menuTools.whiteSpace();
-        tools.customizedButton(120, 3, text);
+        menuTools.customizedButton(120, 3, text);
         System.out.println();
     }
 
-
-    public Car getCar(ArrayList<Car> carList, String regNum) {//MÅ IKKE SLETTES
+    public Car getCar(ArrayList<Car> carList, String regNum) {//Overload example
         Car car = null;
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)) {
@@ -155,7 +144,7 @@ public class CarRepository {
         return car;
     }
 
-    public Car getCar(ArrayList<Car> carList, UITools tools) {//MÅ IKKE SLETTES
+    public Car getCar(ArrayList<Car> carList, UITools tools) {//Overload example
         viewCarsS(carList, tools);
         String regNum = tools.returnStringInfo(50, 1, "Enter registration number");
         Car car = null;

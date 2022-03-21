@@ -2,18 +2,10 @@ package controller;
 
 import UI.UITools;
 import db.DBManager;
-import models.Car;
-import models.Customer;
-import models.Rental;
-import service.CarService;
-import service.CustomerService;
-import service.RentalService;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Scanner;
+import models.*;
+import service.*;
+import java.sql.*;
+import java.util.*;
 
 public class ConsoleController {
 
@@ -46,7 +38,8 @@ public class ConsoleController {
 
     public void runMenu(Statement statement) {
 
-        switch (menuTools.menuOptions()) {
+        switch (menuTools.menuOptions("Welcome to Kailua car rental",
+                ">1< Rentals", ">2< Cars", ">3< Customers", ">4< Exit")) {
             case 1 -> rentalMenu(statement);
             case 2 -> CarMenu(statement);
             case 3 -> customerMenu(statement);
@@ -58,14 +51,13 @@ public class ConsoleController {
     public void CarMenu(Statement statement) {
         try {
             menuTools.carMenuOptions();
-            int bugabuga = userInput.nextInt();
-            switch (bugabuga) {
+            int intType = userInput.nextInt();
+            switch (intType) {
                 case 1 -> carService.viewCars(carList, menuTools);
                 case 2 -> carService.updateCar(statement, userInput, carList, menuTools);
                 case 3 -> carService.createCar(statement, userInput, carList, menuTools);
                 case 4 -> carService.delete(statement, carList, menuTools);
                 case 0 -> runMenu(statement);
-
             }
         } catch (SQLException sqlEx) {
             System.out.println("Error in Cars_main_menu: " + sqlEx);
@@ -100,12 +92,10 @@ public class ConsoleController {
                 case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
                 case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
                 case 0 -> runMenu(statement);
-                //default -> rentalMenu(statement);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
        continueButton(statement);
     }
 
@@ -117,9 +107,4 @@ public class ConsoleController {
             runMenu(statement);
         }
     }
-
 }
-
-
-
-

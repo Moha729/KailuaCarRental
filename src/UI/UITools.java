@@ -61,13 +61,6 @@ public class UITools {
             System.out.print("_");
     }
 
-    public String welcomeText(String INTROTEXT) {
-        String BOX1_1 = " ------------------------------------------------------------------------------------------------";
-        String BOX1_2 = "|                                                                                                |";
-        String centerText = centerString(96, INTROTEXT);
-
-        return BOX1_1 + "\n" + BOX1_2 + "\n" + centerText + "\n" + BOX1_2 + "\n" + BOX1_1;
-    }//return String.format("%s\n%s\n|\t\t\t\t\t\t\t\t%35s\t\t\t\t\t\t\t\t |\n%s\n%s\n", BOX1_1, BOX1_2, INTROTEXT, BOX1_2, BOX1_1);
 
     public static String centerString(int width, String s) {
         return String.format("|%-" + width + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s)) + "|";
@@ -115,13 +108,18 @@ public class UITools {
         }
     }
 
-    public int menuOptions(){
+    public int menuOptions(String headText, String menu1, String menu2, String menu3, String menu4){
+        customizedButton(120, 7, headText);
+        System.out.print(doubleButton(menu1, menu2));
+        System.out.print(doubleButton(menu3, menu4));
+        return userInput.nextInt();
+    }
+    public int menuOptionsS(){
         customizedButton(120, 7, "Welcome to Kailua car rental");
         System.out.print(doubleButton(">1< Rentals", ">2< Cars"));
         System.out.print(doubleButton(">3< Customers", ">4< Exit"));
         return userInput.nextInt();
     }
-
     public void carMenuOptions(){
         whiteSpace();
         whiteSpace();
