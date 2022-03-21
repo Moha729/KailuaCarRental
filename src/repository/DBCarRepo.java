@@ -175,7 +175,7 @@ public class DBCarRepo {
                     "WHERE registration_number ='" + answer + "'");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Could not update car table");
+            System.out.println("Could not update car");
         }
     }
 
@@ -187,7 +187,7 @@ public class DBCarRepo {
                     "WHERE registration_number ='" + answer + "'");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Could not update sport car");
+            System.out.println("Could not update car");
         }
     }
 }
