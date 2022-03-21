@@ -52,7 +52,7 @@ public class FamilyRepository {
 
 
     public void populateFamilyToArrayList(Statement statement, ArrayList<Car> carList) {
-            dbCarRepo.populateFamilyCarToDB(statement,carList);
+            dbCarRepo.populateFamilyCarFromArraylist(statement,carList);
     }
 
     public void addFamilyCarToDataBase(Family familyCar, Statement statement){
