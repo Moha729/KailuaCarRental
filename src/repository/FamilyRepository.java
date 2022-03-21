@@ -194,5 +194,3 @@ public class FamilyRepository {
         }
     }
 }
-//akitektur
-//design

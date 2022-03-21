@@ -19,7 +19,6 @@ public class CarRepository {
     LuxuryService luxuryService = new LuxuryService();
     SportService sportService = new SportService();
     FamilyService familyService = new FamilyService();
-    DBCarRepo dbCarRepo = new DBCarRepo();
 
     public void populateCars(ArrayList<Car> carList) {
         luxuryService.populateLuxuryToArrayList(carList);
@@ -168,82 +167,3 @@ public class CarRepository {
         return car;
     }
 }
-/*
-                /*int updateIndex = 0;
-        Family familyCar = null;
-        Sport sportCar = null;
-        Luxury luxuryCar = null;
-
-        viewCars(carList, tools);
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)) {
-                //System.out.println(carList.get(i));
-                if (carList.get(i).getClass().getSimpleName().equals("Luxury")) {
-                    updateIndex = 1;
-                    luxuryCar = (Luxury) carList.get(i);
-                    //System.out.println("It's a luxury");//statement to locate potential error
-                } else if (carList.get(i).getClass().getSimpleName().equals("Sport")) {
-
-                    //System.out.println("It's a sport");//statement to locate potential error
-                } else if (carList.get(i).getClass().getSimpleName().equals("Family")) {
-
-                    //System.out.println("It's a family");//statement to locate potential error
-                }
-            }
-        }
-       switch (updateIndex) {
-            case 1 -> luxuryService.updateLuxuryCar(statement, userInput, regNum, luxuryCar);
-            case 2 -> sportService.updateSportCar(statement, userInput, regNum, sportCar);
-            case 3 -> familyService.updateFamilyCar(statement, userInput, regNum, familyCar);
-        }*/
- /*       switch (deleteIndex) {
-            case 1 -> dbCarRepo.deleteLuxuryCar(statement, carList, answer);
-            case 2 -> dbCarRepo.deleteSportCar(statement, carList, answer);
-            case 3 -> dbCarRepo.deleteFamilyCar(statement, carList, answer);
-            default -> System.out.println("Type in the right number");
-        }
-
-        if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            deleteIndex = 1;
-        } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
-            deleteIndex = 2;
-        } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
-            deleteIndex = 3;
-        }
- viewCars(carList, tools);
-        System.out.println();
-        String answer = tools.returnStringInfo(50, 1, "Enter registration number");
-        String simpleName = getSimpleName(carList, answer);
-        String carInfo = getCar(carList, answer).toString();
-        switch (deleteIndex) {
-            case 1 -> dbCarRepo.deleteLuxuryCar(statement, carList, answer);
-            case 2 -> dbCarRepo.deleteSportCar(statement, carList, answer);
-            case 3 -> dbCarRepo.deleteFamilyCar(statement, carList, answer);
-            default -> System.out.println("Type in the right number");
-        }
-        //tools.customizedButton(80, 1, carInfo + " is deleted");
-
-
-    }
-
-    private String getSimpleName(ArrayList<Car> carList, String regNum) {
-        String simpleName = null;
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(regNum)) {
-                System.out.println(carList.get(i));
-
-                if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-                    simpleName = "Luxury";
-                    return simpleName;
-                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Sport")) {
-                    simpleName = "Sport";
-                    return simpleName;
-                } else if (carList.get(i).getClass().getSimpleName().equalsIgnoreCase("Family")) {
-                    simpleName = "Family";
-                    return simpleName;
-                }
-            }
-        }
-        return simpleName;
-    }
- */

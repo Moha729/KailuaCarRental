@@ -17,7 +17,7 @@ public class SportRepository {
     DBCarRepo dbRepo = new DBCarRepo();
 
     public Sport createSportsCar(Statement statement, String reg, String br, String mo,
-                                 String regDate, int kmDr) throws SQLException {
+                                 String regDate, int kmDr) {
 
         String gear = this.tools.returnStringInfo(60, 1, "does it have a manual gear?");
         boolean gearGear;
@@ -47,7 +47,7 @@ public class SportRepository {
       dbRepo.populateSportToArrayList(carList);
     }
 
-    private void addSportCarToDB(Sport sportsCar, Statement statement) throws SQLException {
+    private void addSportCarToDB(Sport sportsCar, Statement statement) {
         dbRepo.addSportCarToDB(sportsCar,statement);
     }
 

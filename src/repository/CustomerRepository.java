@@ -107,9 +107,6 @@ public class CustomerRepository {
             }
         }
 
-        //Customer customer1= getCustomer(customerList, tools);
-
-
         System.out.println("What do you want to update?\n" +
                 "1 for DrLicNumb\n2 for DrSincDate\n3 for fName\n4 for lName\n5 for zipCode" +
                 "\n6 for city\n7 for pNumb\n8 for mNumb\n9 for email");
@@ -123,10 +120,6 @@ public class CustomerRepository {
 
             case 1 :
                 System.out.println("Not available");
-                /*System.out.println("Enter which driver license number to be updated");
-                newValue = userInput.next();
-                dbColumn = "customer_driver_license_number";
-                customer.setDriverLicenseNumber(newValue);*/
                 break;
             case 2 :
                 System.out.println("Enter customer driver since number");
