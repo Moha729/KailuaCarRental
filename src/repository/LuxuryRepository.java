@@ -181,10 +181,13 @@ public class LuxuryRepository {
         }
     }
 
-    //Her skal der være en metode der hedder deleteLuxuryCar
-    //Den skal 1. kalde på     dbCarRepo.deleteLuxuryCar(statement, carList, answer);
-    //2. Der en Arraylist remove method i dbCarRepo.deleteLuxuryCar
-    //Den skal være her
-    //3. Der er en System.out.println lige under
-    //og bare lægge den text der er i den, i en tools.customizedButtons
+    public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
+        dbCarRepo.deleteLuxuryCar(statement, carList, answer);
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
+                carList.remove(carList.get(i));
+                tools.customizedButton(60, 1, "Car \" + answer + \" is deleted");
+            }
+        }
+    }
 }

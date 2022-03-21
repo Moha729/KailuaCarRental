@@ -35,7 +35,9 @@ public class LuxuryService {
 
         luxuryRepository.updateLuxuryCar(statement, userInput, regNum, car);
     }
+    public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
+        luxuryRepository.deleteLuxuryCar(statement, carList, answer, tools);
+    }
 }
-//Mangler et delete method
-//den skal kaldes på luxuryRepository og hedde deleteLuxuryCar
+
 

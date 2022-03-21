@@ -157,4 +157,14 @@ public class SportRepository {
             dbRepo.updateSportCar(statement, dbColumn, newValue, answer);
         }
     }
+
+    public void deleteSportCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
+        dbRepo.deleteSportCar(statement, carList, answer);
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
+                carList.remove(carList.get(i));
+                tools.customizedButton(60, 1, "Car \" + answer + \" is deleted");
+            }
+        }
+    }
 }

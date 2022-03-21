@@ -38,12 +38,6 @@ public class DBCarRepo {
 //            preparedStatement.executeUpdate();
             statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
             statement.execute("DELETE FROM luxury_cars WHERE registration_number = '" + answer + "'");
-            for (int i = 0; i < carList.size(); i++) {
-                if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-                    carList.remove(carList.get(i));
-                    System.out.println("Car " + answer + " is deleted");
-                }
-            }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not delete the car");
@@ -54,12 +48,6 @@ public class DBCarRepo {
         try {
             statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
             statement.execute("DELETE FROM sport_cars WHERE registration_number = '" + answer + "'");
-            for (int i = 0; i < carList.size(); i++) {
-                if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-                    carList.remove(carList.get(i));
-                    System.out.println("Car " + answer + " is deleted");
-                }
-            }
         } catch (SQLException e) {
             System.out.println("no cars deleted: " + e.getMessage());
         }
