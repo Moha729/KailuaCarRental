@@ -1,5 +1,10 @@
 package UI;
 
+import controller.ConsoleController;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class UITools {
@@ -131,10 +136,29 @@ public class UITools {
         System.out.print(doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
     }
 
-    public void rentalMenuOptions(){
+    public void rentalMenuOptions() {
         System.out.println();
         customizedButton(120, 3, "Rentals");
         System.out.print(doubleButton(">1< New rental", ">2< Active rentals"));
         System.out.print(doubleButton(">3< Change rental", ">4< End rental"));
+    }
+
+
+    public void closeProgram(Statement statement, Connection connection) {
+        try {
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("Closing the application...");
+            Thread.sleep(1000);
+            customizedButton(120, 1, "System closed");
+            System.exit(0);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

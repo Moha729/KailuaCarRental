@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class ConsoleController {
 
-    UITools tools = new UITools();
+    UITools menuTools = new UITools();
     Scanner userInput = new Scanner(System.in);
     Connection connection = DBManager.getConnection();
     CarService carService = new CarService();
@@ -41,28 +41,28 @@ public class ConsoleController {
     }
 
     public void runMenu(Statement statement) {
-        tools.menuOptions();
+        menuTools.menuOptions();
         int answer = userInput.nextInt();
 
         switch (answer) {
             case 1 -> runCarMenu(statement);
             case 2 -> customerMenu(statement);
             case 3 -> rentalMenu(statement);
-            case 4 -> closeProgram(statement);
+            case 4 -> menuTools.closeProgram(statement, connection);
         }
         continueButton(statement);
     }
 
     public void runCarMenu(Statement statement) {
         try {
-            tools.carMenuOptions();
+            menuTools.carMenuOptions();
 
             int answer = userInput.nextInt();
             switch (answer) {
-                case 1 -> carService.viewCars(carList, tools);
-                case 2 -> carService.updateCar(statement, userInput, carList, tools);
-                case 3 -> carService.createCar(statement, userInput, carList, tools);
-                case 4 -> carService.delete(statement, carList, tools);
+                case 1 -> carService.viewCars(carList, menuTools);
+                case 2 -> carService.updateCar(statement, userInput, carList, menuTools);
+                case 3 -> carService.createCar(statement, userInput, carList, menuTools);
+                case 4 -> carService.delete(statement, carList, menuTools);
                 case 0 -> runMenu(statement);
             }
         } catch (SQLException sqlEx) {
@@ -73,14 +73,14 @@ public class ConsoleController {
 
     public void customerMenu(Statement statement) {
         try {
-           tools.customerMenuOptions();
+            menuTools.customerMenuOptions();
 
             int answer = userInput.nextInt();
             switch (answer) {
-                case 1 -> customerService.viewCustomer(customerList, tools);
+                case 1 -> customerService.viewCustomer(customerList, menuTools);
                 case 2 -> customerService.updateCustomer(statement, customerList, userInput);
                 case 3 -> customerService.createCustomer(statement, customerList);
-                case 4 -> customerService.deleteCustomer(statement, customerList, tools);
+                case 4 -> customerService.deleteCustomer(statement, customerList, menuTools);
                 case 0 -> runMenu(statement);
             }
         } catch (SQLException sqlEx) {
@@ -90,13 +90,13 @@ public class ConsoleController {
     }
 
     public void rentalMenu(Statement statement) {
-        tools.rentalMenuOptions();
+        menuTools.rentalMenuOptions();
 
         int answer = userInput.nextInt();
         try {
             switch (answer) {
                 case 1 -> rentalService.createRentalContract(rentalList, carList, customerList, statement);
-                case 2 -> rentalService.viewRentals(rentalList, tools);
+                case 2 -> rentalService.viewRentals(rentalList, menuTools);
                 case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
                 case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
                 case 0 -> runMenu(statement);
@@ -108,27 +108,8 @@ public class ConsoleController {
         continueButton(statement);
     }
 
-
-    public void closeProgram(Statement statement)  {
-        try {
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            System.out.println("Closing the application...");
-            Thread.sleep(1000);
-            tools.customizedButton(120, 1,"System closed");
-            System.exit(0);
-        }catch (InterruptedException e){
-            System.out.println(e.getMessage());
-        }
-
-    }
-
     public void continueButton(Statement statement) {
-        tools.customizedButton(15, 1, ">1< continue..");
+        menuTools.customizedButton(15, 1, ">1< continue..");
         System.out.print(" ");
         int start = userInput.nextInt();
         if (start != 0) {
