@@ -32,8 +32,8 @@ public class FamilyService {
     }
 
 
-    public void populateFamilyToArrayList(Statement statement, ArrayList<Car> carList) {
-        familyRepository.populateFamilyToArrayList(statement, carList);
+    public void populateFamilyToArrayList( ArrayList<Car> carList) {
+        familyRepository.populateFamilyToArrayList( carList);
     }
     public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
         familyRepository.deleteFamilyCar(statement, carList, answer, tools);

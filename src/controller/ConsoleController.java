@@ -34,7 +34,7 @@ public class ConsoleController {
             Statement statement;
             statement = connection.createStatement();
 
-            carService.populateCars(statement, carList);
+            carService.populateCars(carList);
             customerService.populateCustomerToArrayList(statement, customerList);
             rentalService.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);
 
@@ -106,7 +106,7 @@ public class ConsoleController {
             e.printStackTrace();
         }
 
-        continueButton(statement);
+       continueButton(statement);
     }
 
     public void continueButton(Statement statement) {

@@ -21,10 +21,10 @@ public class CarRepository {
     FamilyService familyService = new FamilyService();
     DBCarRepo dbCarRepo = new DBCarRepo();
 
-    public void populateCars(Statement statement, ArrayList<Car> carList) {
-        luxuryService.populateLuxuryToArrayList(statement, carList);
-        familyService.populateFamilyToArrayList(statement, carList);
-        sportService.populateSportToArrayList(statement, carList);
+    public void populateCars(ArrayList<Car> carList) {
+        luxuryService.populateLuxuryToArrayList(carList);
+        familyService.populateFamilyToArrayList(carList);
+        sportService.populateSportToArrayList(carList);
     }
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) {
@@ -44,8 +44,7 @@ public class CarRepository {
 
         tools.customizedButton(120, 1, "Register car");
         System.out.println();
-        String registrationNumber =
-                tools.returnStringInfo(60, 1, "Enter registration number");
+        String registrationNumber = tools.returnStringInfo(60, 1, "Enter registration number");
 
         String brand = tools.returnStringInfo(60, 1, "Enter brand");
 

@@ -22,8 +22,8 @@ public class LuxuryService {
        return luxuryRepository.createLuxury(statement, registrationNumber, brand, model, registrationDate, kmDriven, tools);
     }
 
-    public void populateLuxuryToArrayList(Statement statement, ArrayList<Car> carList) {
-        luxuryRepository.populateLuxuryToArrayList(statement, carList);
+    public void populateLuxuryToArrayList(ArrayList<Car> carList) {
+        luxuryRepository.populateLuxuryToArrayList(carList);
     }
 
 

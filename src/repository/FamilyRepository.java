@@ -51,8 +51,8 @@ public class FamilyRepository {
     }
 
 
-    public void populateFamilyToArrayList(Statement statement, ArrayList<Car> carList) {
-            dbCarRepo.populateFamilyCarToArraylist(statement,carList);
+    public void populateFamilyToArrayList(ArrayList<Car> carList) {
+            dbCarRepo.populateFamilyCarToArraylist(carList);
     }
 
     public void addFamilyCarToDataBase(Family familyCar, Statement statement){

@@ -18,8 +18,8 @@ public class SportService {
         sportRepository = new SportRepository();
     }
 
-    public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) {
-        sportRepository.populateSportToArrayList(statement, carList);
+    public void populateSportToArrayList( ArrayList<Car> carList) {
+        sportRepository.populateSportToArrayList(carList);
     }
 
     public Sport createSportsCar(Statement statement,String registrationNumber, String brand, String model, String registrationDate, int kmDriven) throws SQLException {

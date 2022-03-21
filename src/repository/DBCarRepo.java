@@ -7,19 +7,19 @@ import models.Family;
 import models.Luxury;
 import models.Sport;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DBCarRepo {
+    Connection connection = DBManager.getConnection();
 
-    public void populateFamilyCarToArraylist(Statement statement, ArrayList<Car> carList) {
+
+    public void populateFamilyCarToArraylist(ArrayList<Car> carList) {
         try {
             String sql = ("SELECT * FROM car_table INNER JOIN family_cars ON car_table.registration_number = family_cars.registration_number");
-            ResultSet resultSet = statement.executeQuery(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
                     Family family = new Family(
@@ -34,16 +34,18 @@ public class DBCarRepo {
                             resultSet.getBoolean("seven_seats_or_more"));
                     carList.add(family);
                 }
+            preparedStatement.executeUpdate();
             resultSet.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
         }
     }
 
-    public void populateLuxuryCarToArraylist(Statement statement, ArrayList<Car> carList) {
+    public void populateLuxuryCarToArraylist(ArrayList<Car> carList) {
         try {
             String sql = ("SELECT * FROM car_table INNER JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
-            ResultSet resultSet = statement.executeQuery(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
                     Luxury luxury = new Luxury(
@@ -58,16 +60,18 @@ public class DBCarRepo {
                             resultSet.getBoolean("leather_seats"));
                     carList.add(luxury);
                 }
+            preparedStatement.executeUpdate();
             resultSet.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
         }
     }
 
-    public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) {
+    public void populateSportToArrayList(ArrayList<Car> carList) {
         try {
             String sql = ("SELECT * FROM car_table INNER JOIN sport_cars ON car_table.registration_number = sport_cars.registration_number");
-            ResultSet resultSet = statement.executeQuery(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
                     Sport sport = new Sport(
@@ -80,6 +84,7 @@ public class DBCarRepo {
                             resultSet.getBoolean("over200HP"));
                     carList.add(sport);
                 }
+            preparedStatement.executeUpdate();
             resultSet.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");

@@ -18,8 +18,8 @@ public class CarService {
         carRepository = new CarRepository();
     }
 
-    public void populateCars(Statement statement, ArrayList<Car> carList) {
-        carRepository.populateCars(statement, carList);
+    public void populateCars(ArrayList<Car> carList) {
+        carRepository.populateCars(carList);
     }
 
     public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
