@@ -122,10 +122,11 @@ public class CustomerRepository {
         switch (ans){
 
             case 1 :
-                System.out.println("Enter which driver license number to be updated");
+                System.out.println("Not available");
+                /*System.out.println("Enter which driver license number to be updated");
                 newValue = userInput.next();
                 dbColumn = "customer_driver_license_number";
-                customer.setDriverLicenseNumber(newValue);
+                customer.setDriverLicenseNumber(newValue);*/
                 break;
             case 2 :
                 System.out.println("Enter customer driver since number");

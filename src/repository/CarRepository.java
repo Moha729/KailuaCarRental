@@ -97,8 +97,6 @@ public class CarRepository {
         String regNum = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            //Luxury luxuryCar = (Luxury) car;
-            //luxuryService.updateLuxuryCar(statement, userInput, regNum, luxuryCar);
             luxuryService.updateLuxuryCar(statement, userInput, regNum, (Luxury) car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("sport")) {
             Sport sportCar = (Sport) car;
@@ -121,15 +119,12 @@ public class CarRepository {
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
 
-            //luxuryService.deleteLuxuryCar(/*insert necessary parameters*/);
             dbCarRepo.deleteLuxuryCar(statement, carList, answer);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
 
-            //sportService.delete
             dbCarRepo.deleteSportCar(statement, carList, answer);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
 
-            //familyService.delete
             dbCarRepo.deleteFamilyCar(statement, carList, answer);
         } else {
             System.out.println("Type in the right number");

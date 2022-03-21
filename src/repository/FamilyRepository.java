@@ -59,7 +59,6 @@ public class FamilyRepository {
             dbCarRepo.addFamilyCarToDB(familyCar,statement);
     }
 
-
     public void viewFamilyCars(ArrayList<Car> carList, UITools tools){
         System.out.println();
         tools.customizedButton(50,1, "Family");

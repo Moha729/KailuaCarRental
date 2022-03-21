@@ -45,10 +45,8 @@ public class ConsoleController {
     }
 
     public void runMenu(Statement statement) {
-        menuTools.menuOptions();//ret
-        int answer = userInput.nextInt();
 
-        switch (answer) {
+        switch (menuTools.menuOptions()) {
             case 1 -> rentalMenu(statement);
             case 2 -> CarMenu(statement);
             case 3 -> customerMenu(statement);
@@ -60,8 +58,8 @@ public class ConsoleController {
     public void CarMenu(Statement statement) {
         try {
             menuTools.carMenuOptions();
-            int answer = userInput.nextInt();
-            switch (answer) {
+            int bugabuga = userInput.nextInt();
+            switch (bugabuga) {
                 case 1 -> carService.viewCars(carList, menuTools);
                 case 2 -> carService.updateCar(statement, userInput, carList, menuTools);
                 case 3 -> carService.createCar(statement, userInput, carList, menuTools);

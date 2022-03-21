@@ -1,5 +1,7 @@
 package UI;
 
+import repository.CarRepository;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -113,28 +115,35 @@ public class UITools {
         }
     }
 
-    public void menuOptions(){
+    public int menuOptions(){
         customizedButton(120, 7, "Welcome to Kailua car rental");
         System.out.print(doubleButton(">1< Rentals", ">2< Cars"));
         System.out.print(doubleButton(">3< Customers", ">4< Exit"));
+        return userInput.nextInt();
     }
 
     public void carMenuOptions(){
+        whiteSpace();
+        whiteSpace();
         System.out.println();
         customizedButton(120, 3, "Cars");
 
         System.out.print(doubleButton(">1< See cars", ">2< Update car"));
-        System.out.print(doubleButton(">3< New car", ">4< \"Delete car\""));
+        System.out.print(doubleButton(">3< New car", ">4< Delete car"));
     }
 
     public void customerMenuOptions() {
+        whiteSpace();
+        whiteSpace();
         System.out.println();
         customizedButton(120, 3, "Customers");
         System.out.print(doubleButton(">1< See customers", ">2< Update a customer"));
-        System.out.print(doubleButton(">3< Create a new customer", ">4< \"Delete a customer\""));
+        System.out.print(doubleButton(">3< Create a new customer", ">4< Delete a customer"));
     }
 
     public void rentalMenuOptions() {
+        whiteSpace();
+        whiteSpace();
         System.out.println();
         customizedButton(120, 3, "Rentals");
         System.out.print(doubleButton(">1< New rental", ">2< Active rentals"));

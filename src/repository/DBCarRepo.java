@@ -115,6 +115,8 @@ public class DBCarRepo {
     }
 
     public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer) {
+
+
         try {
             statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
             statement.execute("DELETE FROM family_cars WHERE registration_number = '" + answer + "'");
