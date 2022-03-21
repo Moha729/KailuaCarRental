@@ -182,7 +182,7 @@ public class LuxuryRepository {
     }
 
     public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbCarRepo.deleteAllCar(statement, carList, answer, "luxury_cars");
+        dbCarRepo.deleteAllCar(statement, answer, "luxury_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));

@@ -185,7 +185,7 @@ public class FamilyRepository {
         }
     }
     public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbCarRepo.deleteAllCar(statement, carList, answer, "family_cars");
+        dbCarRepo.deleteAllCar(statement, answer, "family_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));

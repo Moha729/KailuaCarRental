@@ -159,8 +159,7 @@ public class DBCarRepo {
         }
     }
 
-    public void deleteAllCar(Statement statement, ArrayList<Car> carList, String answer,
-                             String sqlTable_name){
+    public void deleteAllCar(Statement statement, String answer, String sqlTable_name){
         try {
             statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
             statement.execute("DELETE FROM "+ sqlTable_name +" WHERE registration_number = '" + answer + "'");

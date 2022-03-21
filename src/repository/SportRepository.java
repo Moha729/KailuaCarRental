@@ -159,7 +159,7 @@ public class SportRepository {
     }
 
     public void deleteSportCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbRepo.deleteAllCar(statement, carList, answer, "sport_cars");
+        dbRepo.deleteAllCar(statement, answer, "sport_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));
