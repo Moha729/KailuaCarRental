@@ -14,25 +14,6 @@ public class DBRentalRepo {
     CarRepository carRepository = new CarRepository();
     CustomerRepository customerRepository = new CustomerRepository();
 
-    //public void
-
-    public void addRentalToDB(Rental rental, Statement statement){
-
-        try {
-            statement.execute("INSERT INTO rental_table " + "(registration_number, customer_driver_license_number," +
-                    "rental_from_date, rental_to_date, rental_max_km)" + ""
-                    + "VALUES('"
-                    + rental.getCar().getRegistrationNumber() + "','"
-                    + rental.getCustomer().getDriverLicenseNumber() + "','"
-                    + rental.getFromDateAndTime() + "','"
-                    + rental.getToDateAndTime() + "','"
-                    + rental.getMaxKm() +  "')");
-        } catch (SQLException e) {
-            System.out.println("Error not added rental to db:\n" + e);
-        }
-
-    }
-
     public void populateRentals (ArrayList<Rental> rentalList, Statement statement,
                                  ArrayList<Car> carList, ArrayList<Customer> customerList){
 
@@ -62,6 +43,23 @@ public class DBRentalRepo {
         } catch (SQLException e) {
             System.out.println("Error in populating rentals: "+e.getMessage() + "\n");
         }
+    }
+
+    public void addRentalToDB(Rental rental, Statement statement){
+
+        try {
+            statement.execute("INSERT INTO rental_table " + "(registration_number, customer_driver_license_number," +
+                    "rental_from_date, rental_to_date, rental_max_km)" + ""
+                    + "VALUES('"
+                    + rental.getCar().getRegistrationNumber() + "','"
+                    + rental.getCustomer().getDriverLicenseNumber() + "','"
+                    + rental.getFromDateAndTime() + "','"
+                    + rental.getToDateAndTime() + "','"
+                    + rental.getMaxKm() +  "')");
+        } catch (SQLException e) {
+            System.out.println("Error not added rental to db:\n" + e);
+        }
 
     }
+
 }

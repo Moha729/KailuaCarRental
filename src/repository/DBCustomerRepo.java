@@ -54,6 +54,15 @@ public class DBCustomerRepo {
                 + customer.getEmail() + "')");
     }
 
+    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, String answer) throws SQLException {
+        statement.execute("DELETE FROM customer_table WHERE customer_driver_license_number = '" + answer + "'");
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {
+                customerList.remove(i);
+            }
+        }
+    }
+
     public void updateCustomer(Statement statement, String dbColumn, String newValue, String answer) {
         try {
             statement.execute("UPDATE customer_table SET " +
@@ -67,12 +76,4 @@ public class DBCustomerRepo {
 
     }
 
-    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, String answer) throws SQLException {
-        statement.execute("DELETE FROM customer_table WHERE customer_driver_license_number = '" + answer + "'");
-        for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {
-                customerList.remove(i);
-            }
-        }
-    }
 }

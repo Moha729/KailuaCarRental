@@ -56,7 +56,6 @@ public class RentalRepository {
         }
     }
 
-
     public void viewRentals(ArrayList<Rental> rentalList) {
         tools.margeTop(120);
         for (int i = 0; i < rentalList.size(); i++) {
