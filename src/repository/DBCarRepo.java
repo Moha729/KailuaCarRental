@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class DBCarRepo {
 
-    public void populateFamilyCarFromArraylist(Statement statement, ArrayList<Car> carList) {
+    public void populateFamilyCarToArraylist(Statement statement, ArrayList<Car> carList) {
         try {
             String sql = ("SELECT * FROM car_table INNER JOIN family_cars ON car_table.registration_number = family_cars.registration_number");
             ResultSet resultSet = statement.executeQuery(sql);
@@ -40,7 +40,7 @@ public class DBCarRepo {
         }
     }
 
-    public void populateLuxuryCarFromArraylist(Statement statement, ArrayList<Car> carList) {
+    public void populateLuxuryCarToArraylist(Statement statement, ArrayList<Car> carList) {
         try {
             String sql = ("SELECT * FROM car_table INNER JOIN luxury_cars ON car_table.registration_number = luxury_cars.registration_number");
             ResultSet resultSet = statement.executeQuery(sql);
@@ -64,7 +64,7 @@ public class DBCarRepo {
         }
     }
 
-    public void populateSportFromArrayList(Statement statement, ArrayList<Car> carList) {
+    public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) {
         try {
             String sql = ("SELECT * FROM car_table INNER JOIN sport_cars ON car_table.registration_number = sport_cars.registration_number");
             ResultSet resultSet = statement.executeQuery(sql);

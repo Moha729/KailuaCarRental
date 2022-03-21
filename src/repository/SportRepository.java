@@ -44,7 +44,7 @@ public class SportRepository {
 
 
     public void populateSportToArrayList(Statement statement, ArrayList<Car> carList) { // table content
-      dbRepo.populateSportFromArrayList(statement,carList);
+      dbRepo.populateSportToArrayList(statement,carList);
     }
 
     private void addSportCarToDB(Sport sportsCar, Statement statement) throws SQLException {

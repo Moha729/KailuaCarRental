@@ -49,7 +49,7 @@ public class LuxuryRepository {
     }
 
     public void populateLuxuryToArrayList(Statement statement,ArrayList<Car> carList) {
-     dbCarRepo.populateLuxuryCarFromArraylist(statement,carList);
+     dbCarRepo.populateLuxuryCarToArraylist(statement,carList);
     }
     public void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) {
         dbCarRepo.addLuxuryCarToDB(luxuryCar,statement);
