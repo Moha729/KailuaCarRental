@@ -233,4 +233,15 @@ public class DBCarRepo {
         }
     }
 
+    public void updateAllCar(Statement statement, String newVariable, String newValue, String answer,
+                             String sqlTable_name) {
+        try {
+            statement.execute("UPDATE " + sqlTable_name +" SET " +
+                    newVariable + " = '" + newValue + "' " +
+                    "WHERE registration_number ='" + answer + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Could not update sport car");
+        }
+    }
 }
