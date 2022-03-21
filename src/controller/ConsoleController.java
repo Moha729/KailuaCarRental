@@ -17,15 +17,17 @@ import java.util.Scanner;
 
 public class ConsoleController {
 
-    UITools menuTools = new UITools();
-    Scanner userInput = new Scanner(System.in);
-    Connection connection = DBManager.getConnection();
-    CarService carService = new CarService();
-    CustomerService customerService = new CustomerService();
-    RentalService rentalService = new RentalService();
     ArrayList<Car> carList = new ArrayList<>();
     ArrayList<Customer> customerList = new ArrayList<>();
     ArrayList<Rental> rentalList = new ArrayList<>();
+
+    CarService carService = new CarService();
+    CustomerService customerService = new CustomerService();
+    RentalService rentalService = new RentalService();
+
+    UITools menuTools = new UITools();
+    Scanner userInput = new Scanner(System.in);
+    Connection connection = DBManager.getConnection();
 
     public void run() {
         try {
@@ -48,35 +50,17 @@ public class ConsoleController {
 
         switch (answer) {
             case 1 -> rentalMenu(statement);
-            case 2 -> runCarMenu(statement);
+            case 2 -> CarMenu(statement);
             case 3 -> customerMenu(statement);
-            case 4,0 -> closeProgram(statement);
+            case 4,0 -> menuTools.closeProgram(statement,connection);
         }
         continueButton(statement);
     }
 
-    public void closeProgram(Statement statement) {
-        try {
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-        menuTools.customizedButton(120, 1, "System closed");
-    }
-
-    private void whiteSpace(){
-        for (int i = 0; i < 7; i++)
-            System.out.println();
-    }
-
-    public void runCarMenu(Statement statement) {
+    public void CarMenu(Statement statement) {
         try {
             menuTools.carMenuOptions();
-
             int answer = userInput.nextInt();
-
             switch (answer) {
                 case 1 -> carService.viewCars(carList, menuTools);
                 case 2 -> carService.updateCar(statement, userInput, carList, menuTools);
@@ -94,7 +78,6 @@ public class ConsoleController {
     public void customerMenu(Statement statement) {
         try {
             menuTools.customerMenuOptions();
-
             int answer = userInput.nextInt();
             switch (answer) {
                 case 1 -> customerService.viewCustomer(customerList, menuTools);
@@ -111,7 +94,6 @@ public class ConsoleController {
 
     public void rentalMenu(Statement statement) {
         menuTools.rentalMenuOptions();
-
         int answer = userInput.nextInt();
         try {
             switch (answer) {
@@ -137,6 +119,7 @@ public class ConsoleController {
             runMenu(statement);
         }
     }
+
 }
 
 

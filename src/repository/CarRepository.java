@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CarRepository {
-
+    UITools menuTools = new UITools();
     LuxuryService luxuryService = new LuxuryService();
     SportService sportService = new SportService();
     FamilyService familyService = new FamilyService();
@@ -116,7 +116,6 @@ public class CarRepository {
     public void delete(Statement statement, ArrayList<Car> carList, UITools tools) {
 
         printHeadline("Delete car", tools);
-
         Car car = getCar(carList, tools);
         String answer = car.getRegistrationNumber();
 
@@ -146,16 +145,12 @@ public class CarRepository {
     }
 
     private void printHeadline(String text, UITools tools) {
-        whiteSpace();
-        whiteSpace();
+        menuTools.whiteSpace();
+        menuTools.whiteSpace();
         tools.customizedButton(120, 3, text);
         System.out.println();
     }
 
-    private void whiteSpace() {
-        for (int i = 0; i < 6; i++)
-            System.out.println();
-    }
 
     public Car getCar(ArrayList<Car> carList, String regNum) {//MÅ IKKE SLETTES
         Car car = null;

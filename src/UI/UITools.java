@@ -1,7 +1,5 @@
 package UI;
 
-import controller.ConsoleController;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -117,8 +115,8 @@ public class UITools {
 
     public void menuOptions(){
         customizedButton(120, 7, "Welcome to Kailua car rental");
-        System.out.print(doubleButton(">1< Cars", ">2< Customers"));
-        System.out.print(doubleButton(">3< Rentals", ">4< Exit"));
+        System.out.print(doubleButton(">1< Rentals", ">2< Cars"));
+        System.out.print(doubleButton(">3< Customers", ">4< Exit"));
     }
 
     public void carMenuOptions(){
@@ -160,5 +158,10 @@ public class UITools {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void whiteSpace() {
+        for (int i = 0; i < 6; i++)
+            System.out.println();
     }
 }
