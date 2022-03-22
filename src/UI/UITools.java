@@ -113,12 +113,15 @@ public class UITools {
             return menuOptions("Welcome to Kailua car rental",
                     ">1< Rentals", ">2< Cars", ">3< Customers", ">4< Exit");
         } if(menuOrder.equalsIgnoreCase("carMenuOptions")){
+            whiteSpace(10);
             return menuOptions("Cars",">1< See cars", ">2< Update car",
                     ">3< New car", ">4< Delete car");
         } if(menuOrder.equalsIgnoreCase("customerMenuOptions")){
+            whiteSpace(10);
             return menuOptions("Customers", ">1< See customers", ">2< Update a customer",
                     ">3< Create a new customer", ">4< Delete a customer");
         } if(menuOrder.equalsIgnoreCase("rentalMenuOptions")){
+            whiteSpace(10);
             return menuOptions("Rentals", ">1< New rental", ">2< Active rentals",
                     ">3< Change rental", ">4< End rental");
         }
@@ -137,6 +140,7 @@ public class UITools {
         System.out.print(" ");
         int start = userInput.nextInt();
         if (start != 0) {
+            whiteSpace(10);
             return true;
         }
         return false;
@@ -163,6 +167,10 @@ public class UITools {
 
     public void whiteSpace() {
         for (int i = 0; i < 6; i++)
+            System.out.println();
+    }
+    public void whiteSpace(int j) {
+        for (int i = 0; i < j; i++)
             System.out.println();
     }
 
