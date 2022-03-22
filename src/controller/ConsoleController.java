@@ -56,7 +56,7 @@ public class ConsoleController {
                 case 2 -> carService.updateCar(statement, userInput, carList, menuTools);
                 case 3 -> carService.createCar(statement, userInput, carList, menuTools);
                 case 4 -> carService.delete(carList, menuTools);
-                case 0 -> runMenu(statement);
+                case 0 -> {menuTools.whiteSpace(10);runMenu(statement);}
             }
         } catch (SQLException sqlEx) {
             System.out.println("Error in Cars_main_menu: " + sqlEx);
@@ -73,7 +73,7 @@ public class ConsoleController {
                 case 2 -> customerService.updateCustomer(statement, customerList, userInput);
                 case 3 -> customerService.createCustomer(statement, customerList);
                 case 4 -> customerService.deleteCustomer(statement, customerList, menuTools);
-                case 0 -> runMenu(statement);
+                case 0 -> {menuTools.whiteSpace(10);runMenu(statement);}
             }
         } catch (SQLException sqlEx) {
             System.out.println("Error in Customer maim menu: " + sqlEx);
@@ -90,7 +90,7 @@ public class ConsoleController {
                 case 2 -> rentalService.viewRentals(rentalList, menuTools);
                 case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
                 case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
-                case 0 -> runMenu(statement);
+                case 0 -> {menuTools.whiteSpace(10);runMenu(statement);}
             }
         } catch (SQLException e) {
             e.printStackTrace();
