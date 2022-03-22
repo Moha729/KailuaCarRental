@@ -93,14 +93,11 @@ public class CarRepository {
         String regNum = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            Luxury luxuryCar = (Luxury) car;
-            luxuryService.updateLuxuryCar(statement, userInput, regNum, luxuryCar);
+            luxuryService.updateLuxuryCar(statement, userInput, regNum, (Luxury) car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("sport")) {
-            Sport sportCar = (Sport) car;
-            sportService.updateSportCar(statement, userInput, regNum, sportCar);
+            sportService.updateSportCar(statement, userInput, regNum, (Sport) car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("family")) {
-            Family familyCar = (Family) car;
-            familyService.updateFamilyCar(statement, userInput, regNum, familyCar);
+            familyService.updateFamilyCar(statement, userInput, regNum,(Family) car);
         }
         System.out.println();
         tools.customizedButton(40, 1, "Car is updated");
