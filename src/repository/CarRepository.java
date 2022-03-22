@@ -26,7 +26,7 @@ public class CarRepository {
         sportService.populateSportToArrayList(carList);
     }
 
-    public void createCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) {
+    public void createCar(Scanner userInput, ArrayList<Car> carList, UITools tools) {
 
         printHeadline("New car");
 
@@ -56,7 +56,7 @@ public class CarRepository {
         try {
             if (chooseType == 1) {
 
-                Luxury luxuryCar = luxuryService.createLuxury(statement, registrationNumber, brand, model,
+                Luxury luxuryCar = luxuryService.createLuxury(registrationNumber, brand, model,
                         registrationDate, kmDriven, tools);
                 carList.add(luxuryCar);
 
@@ -68,7 +68,7 @@ public class CarRepository {
 
             } else if (chooseType == 3) {
 
-                Family familyCar = familyService.createFamilyCar(statement, registrationNumber, brand, model,
+                Family familyCar = familyService.createFamilyCar(registrationNumber, brand, model,
                         registrationDate, kmDriven, tools);
                 carList.add(familyCar);
 
@@ -86,7 +86,7 @@ public class CarRepository {
         viewCarsS(carList, tools);
     }
 
-    public void updateCar(Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
+    public void updateCar(Scanner userInput, ArrayList<Car> carList, UITools tools) {
 
         printHeadline("Update car");
         Car car = getCar(carList, tools);
@@ -108,14 +108,13 @@ public class CarRepository {
 
         printHeadline("Delete car");
         Car car = getCar(carList, tools);
-        String answer = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            luxuryService.deleteLuxuryCar(carList, answer, tools);
+            luxuryService.deleteLuxuryCar(carList, tools, car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
             sportService.deleteSportCar(carList, tools, car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
-            familyService.deleteFamilyCar(carList, answer, tools);
+            familyService.deleteFamilyCar(carList, tools, car);
         }
     }
 

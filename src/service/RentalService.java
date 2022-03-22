@@ -30,7 +30,7 @@ public class RentalService {
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput, ArrayList<Car> carList){
         rentalRepository.updateRentalContracts(statement, rentalList, userInput, carList);
     }
-    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) throws SQLException {
-        rentalRepository.deleteRentalContract(statement, rentalList, userInput);
+    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList) throws SQLException {
+        rentalRepository.deleteRentalContract(statement, rentalList);
     }
 }

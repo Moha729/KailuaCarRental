@@ -13,7 +13,7 @@ public class FamilyRepository {
     DBCarRepo dbCarRepo = new DBCarRepo();
 
 
-    public Family createFamilyCar(Statement statement, String  reg,
+    public Family createFamilyCar(String  reg,
                                   String br, String mo, String regDate, int kmDr, UITools tools){
 
         boolean manualGear;
@@ -179,13 +179,11 @@ public class FamilyRepository {
             dbCarRepo.updateAllCar(dbColumn,newValue,answer, "family_cars");
         }
     }
-    public void deleteFamilyCar(ArrayList<Car> carList, String answer, UITools tools){
-        dbCarRepo.deleteAllCar(answer, "family_cars");
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-                carList.remove(carList.get(i));
-                System.out.println("Car " + answer + " is deleted");
-            }
-        }
+    public void deleteFamilyCar(ArrayList<Car> carList, UITools tools, Car car){
+        dbCarRepo.deleteAllCar(car.getRegistrationNumber(), "family_cars");
+                carList.remove(car);
+        tools.customizedButton(60, 1, "Car " + car.getRegistrationNumber() +" is deleted");
+
     }
-}
+
+    }

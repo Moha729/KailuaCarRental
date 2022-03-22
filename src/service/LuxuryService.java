@@ -18,8 +18,8 @@ public class LuxuryService {
         luxuryRepository = new LuxuryRepository();
     }
 
-    public Luxury createLuxury(Statement statement, String registrationNumber, String brand, String model, String registrationDate, int kmDriven, UITools tools) throws SQLException {
-       return luxuryRepository.createLuxury(statement, registrationNumber, brand, model, registrationDate, kmDriven, tools);
+    public Luxury createLuxury(String registrationNumber, String brand, String model, String registrationDate, int kmDriven, UITools tools) throws SQLException {
+       return luxuryRepository.createLuxury(registrationNumber, brand, model, registrationDate, kmDriven, tools);
     }
 
     public void populateLuxuryToArrayList(ArrayList<Car> carList) {
@@ -35,8 +35,8 @@ public class LuxuryService {
 
         luxuryRepository.updateLuxuryCar(userInput, regNum, car);
     }
-    public void deleteLuxuryCar(ArrayList<Car> carList, String answer, UITools tools){
-        luxuryRepository.deleteLuxuryCar(carList, answer, tools);
+    public void deleteLuxuryCar(ArrayList<Car> carList, UITools tools, Car car){
+        luxuryRepository.deleteLuxuryCar(carList, tools,car);
     }
 }
 

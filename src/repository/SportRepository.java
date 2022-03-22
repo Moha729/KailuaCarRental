@@ -5,7 +5,6 @@ import models.Car;
 import models.Sport;
 
 
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ public class SportRepository {
 
 
     UITools tools = new UITools();
-    DBCarRepo dbRepo = new DBCarRepo();
+    DBCarRepo dbCarRepo = new DBCarRepo();
 
     public Sport createSportsCar(String reg, String br, String mo,
                                  String regDate, int kmDr) {
@@ -43,11 +42,11 @@ public class SportRepository {
 
 
     public void populateSportToArrayList(ArrayList<Car> carList) { // table content
-      dbRepo.populateSportToArrayList(carList);
+      dbCarRepo.populateSportToArrayList(carList);
     }
 
     private void addSportCarToDB(Sport sportsCar) {
-        dbRepo.addSportCarToDB(sportsCar);
+        dbCarRepo.addSportCarToDB(sportsCar);
     }
 
     public void viewSportCars(ArrayList<Car> carList, UITools tools) {
@@ -149,19 +148,19 @@ public class SportRepository {
                 break;
         }
         if (check == true) {
-            dbRepo.updateCar(dbColumn, newValue, answer);
+            dbCarRepo.updateCar(dbColumn, newValue, answer);
 
         }
         if (check == false) {
-            dbRepo.updateAllCar(dbColumn, newValue, answer, "sport_cars");
+            dbCarRepo.updateAllCar(dbColumn, newValue, answer, "sport_cars");
         }
     }
 
     public void deleteSportCar(ArrayList<Car> carList ,UITools tools, Car car){
 
-        dbRepo.deleteAllCar(car.getRegistrationNumber(), "sport_cars");
+        dbCarRepo.deleteAllCar(car.getRegistrationNumber(), "sport_cars");
                 carList.remove(car);
-                tools.customizedButton(60, 1, "Car \" + answer + \" is deleted");
+                tools.customizedButton(60, 1, "Car " + car.getRegistrationNumber() +" is deleted");
 
     }
 }

@@ -17,8 +17,8 @@ public class FamilyService {
         familyRepository = new FamilyRepository();
     }
 
-    public Family createFamilyCar(Statement statement, String registrationNumber, String brand, String model, String registrationDate, int kmDriven, UITools tools) {
-        return familyRepository.createFamilyCar(statement, registrationNumber, brand, model, registrationDate, kmDriven, tools);
+    public Family createFamilyCar(String registrationNumber, String brand, String model, String registrationDate, int kmDriven, UITools tools) {
+        return familyRepository.createFamilyCar(registrationNumber, brand, model, registrationDate, kmDriven, tools);
     }
 
 
@@ -35,7 +35,7 @@ public class FamilyService {
     public void populateFamilyToArrayList( ArrayList<Car> carList) {
         familyRepository.populateFamilyToArrayList( carList);
     }
-    public void deleteFamilyCar(ArrayList<Car> carList, String answer, UITools tools){
-        familyRepository.deleteFamilyCar(carList, answer, tools);
+    public void deleteFamilyCar(ArrayList<Car> carList, UITools tools, Car car){
+        familyRepository.deleteFamilyCar(carList, tools, car);
     }
 }

@@ -54,7 +54,7 @@ public class ConsoleController {
             switch (menuTools.menuOptions("carMenuOptions")) {
                 case 1 -> carService.viewCars(carList, menuTools);
                 case 2 -> carService.updateCar(userInput, carList, menuTools);
-                case 3 -> carService.createCar(statement, userInput, carList, menuTools);
+                case 3 -> carService.createCar(userInput, carList, menuTools);
                 case 4 -> carService.delete(carList, menuTools);
                 case 0 -> {menuTools.whiteSpace(10);runMenu(statement);}
             }
@@ -89,7 +89,7 @@ public class ConsoleController {
                 case 1 -> rentalService.createRentalContract(rentalList, carList, customerList, statement);
                 case 2 -> rentalService.viewRentals(rentalList, menuTools);
                 case 3 -> rentalService.updateRentalContracts(statement, rentalList, userInput, carList);
-                case 4 -> rentalService.deleteRentalContract(statement, rentalList, userInput);
+                case 4 -> rentalService.deleteRentalContract(statement, rentalList);
                 case 0 -> {menuTools.whiteSpace(10);runMenu(statement);}
             }
         } catch (SQLException e) {

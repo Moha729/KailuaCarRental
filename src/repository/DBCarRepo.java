@@ -15,10 +15,7 @@ public class DBCarRepo {
 
 
     public void populateFamilyCarToArraylist(ArrayList<Car> carList) {
-        if (connection != null) {
         try {
-
-
 
                 String sql = ("SELECT * FROM car_table INNER JOIN family_cars ON car_table.registration_number = family_cars.registration_number");
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -43,7 +40,7 @@ public class DBCarRepo {
                 System.out.println(e.getMessage() + "\n");
             }
         }
-    }
+
 
     public void populateLuxuryCarToArraylist(ArrayList<Car> carList) {
         try {

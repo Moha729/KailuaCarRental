@@ -13,33 +13,17 @@ public class LuxuryRepository {
     DBCarRepo dbCarRepo = new DBCarRepo();
 
 
-    public Luxury createLuxury(Statement statement, String  reg, String br, String mo,
-                               String regDate, int kmDr, UITools tools)  {
+    public Luxury createLuxury(String reg, String br, String mo,
+                               String regDate, int kmDr, UITools tools) {
         boolean ccm;
         boolean gear;
         boolean cruiseControl;
         boolean leatherSeats;
 
-        if (tools.returnStringInfo(60, 1, "does it have over 3000CCM?").equalsIgnoreCase("yes")){
-            ccm = true;
-        }else {
-            ccm = false;
-        }
-        if (tools.returnStringInfo(60, 1, "does it have automatic gear?").equalsIgnoreCase("yes")){
-            gear = true;
-        }else {
-            gear = false;
-        }
-        if (tools.returnStringInfo(60, 1, "does it have cruise control?").equalsIgnoreCase("yes")){
-            cruiseControl = true;
-        }else {
-            cruiseControl = false;
-        }
-        if (tools.returnStringInfo(60, 1, "does it have leather seats?").equalsIgnoreCase("yes")){
-            leatherSeats = true;
-        }else {
-            leatherSeats = false;
-        }
+        ccm = tools.returnStringInfo(60, 1, "does it have over 3000CCM?").equalsIgnoreCase("yes");
+        gear = tools.returnStringInfo(60, 1, "does it have automatic gear?").equalsIgnoreCase("yes");
+        cruiseControl = tools.returnStringInfo(60, 1, "does it have cruise control?").equalsIgnoreCase("yes");
+        leatherSeats = tools.returnStringInfo(60, 1, "does it have leather seats?").equalsIgnoreCase("yes");
 
         Luxury luxuryCar = new Luxury(reg, br, mo, regDate, kmDr, ccm, gear, cruiseControl, leatherSeats);
 
@@ -49,15 +33,16 @@ public class LuxuryRepository {
     }
 
     public void populateLuxuryToArrayList(ArrayList<Car> carList) {
-     dbCarRepo.populateLuxuryCarToArraylist(carList);
+        dbCarRepo.populateLuxuryCarToArraylist(carList);
     }
+
     public void addLuxuryCarToDB(Luxury luxuryCar) {
         dbCarRepo.addLuxuryCarToDB(luxuryCar);
     }
 
-    public void viewLuxuryCars(ArrayList<Car> carList, UITools tools){
+    public void viewLuxuryCars(ArrayList<Car> carList, UITools tools) {
         System.out.println();
-        tools.customizedButton(50,1, "Luxury");
+        tools.customizedButton(50, 1, "Luxury");
 
         tools.margeTop(70);
         System.out.printf("\n| %-14s %-14s %-12s %-12s %-12s %-10s %-10s %-13s %-13s |\n",
@@ -73,7 +58,7 @@ public class LuxuryRepository {
         System.out.println();
     }
 
-    public void updateLuxuryCar(Scanner userInput, String regNum, Luxury car){
+    public void updateLuxuryCar(Scanner userInput, String regNum, Luxury car) {
         String answer = regNum;
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
@@ -85,33 +70,33 @@ public class LuxuryRepository {
         String newValue = null;
         String dbColumn = null;
 
-        switch (ans){
+        switch (ans) {
 
-            case 1 :
+            case 1:
                 System.out.println("Not valid try again");
                 break;
-            case 2 :
+            case 2:
                 check = true;
                 System.out.println("Enter new brand");
-                newValue =  userInput.next();
+                newValue = userInput.next();
                 dbColumn = "brand";
                 car.setBrand(newValue);
                 break;
-            case 3 :
+            case 3:
                 check = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 dbColumn = "model";
                 car.setModel(newValue);
                 break;
-            case 4 :
+            case 4:
                 check = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 dbColumn = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
-            case 5 :
+            case 5:
                 check = true;
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
@@ -119,11 +104,11 @@ public class LuxuryRepository {
                 dbColumn = "km_driven";
                 car.setKmDriven(newKm);
                 break;
-            case 6 :
+            case 6:
                 check = false;
                 System.out.println("Enter new gear type - does it have Over 3000CCM");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
@@ -131,11 +116,11 @@ public class LuxuryRepository {
                 dbColumn = "ccm";
                 car.setOver3000CCM(Boolean.parseBoolean(newValue));
                 break;
-            case 7 :
+            case 7:
                 check = false;
                 System.out.println("Enter gear status - does it have automatic gear?");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
@@ -143,11 +128,11 @@ public class LuxuryRepository {
                 dbColumn = "automatic_gear";
                 car.setAutomaticGear(Boolean.parseBoolean(newValue));
                 break;
-            case 8 :
+            case 8:
                 check = false;
                 System.out.println("Enter new cruise control status - does it have cruise control?");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
@@ -155,11 +140,11 @@ public class LuxuryRepository {
                 dbColumn = "cruise_control";
                 car.setCruiseControl(Boolean.parseBoolean(newValue));
                 break;
-            case 9 :
+            case 9:
                 check = false;
                 System.out.println("Enter new info, does it have Leather Seats");
                 newValue = userInput.next();
-                if (newValue.equalsIgnoreCase("yes")){
+                if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
                 } else {
                     newValue = "false";
@@ -168,21 +153,17 @@ public class LuxuryRepository {
                 car.setLeatherSeats(Boolean.parseBoolean(newValue)); // gh
                 break;
         }
-        if(check == true) {
-            dbCarRepo.updateCar(dbColumn,newValue,answer);
+        if (check == true) {
+            dbCarRepo.updateCar(dbColumn, newValue, answer);
         }
         if (check == false) {
-            dbCarRepo.updateAllCar(dbColumn,newValue,answer, "luxury_cars");
+            dbCarRepo.updateAllCar(dbColumn, newValue, answer, "luxury_cars");
         }
     }
 
-    public void deleteLuxuryCar(ArrayList<Car> carList, String answer, UITools tools){
-        dbCarRepo.deleteAllCar(answer, "luxury_cars");
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-                carList.remove(carList.get(i));
-                tools.customizedButton(60, 1, "Car \" + answer + \" is deleted");
-            }
-        }
+    public void deleteLuxuryCar(ArrayList<Car> carList, UITools tools, Car car) {
+        dbCarRepo.deleteAllCar(car.getRegistrationNumber(), "luxury_cars");
+        carList.remove(car);
+        tools.customizedButton(60, 1, "Car " + car.getRegistrationNumber() + " is deleted");
     }
 }

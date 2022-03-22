@@ -97,10 +97,6 @@ public class Customer {
         return driverLicenseNumber;
     }
 
-    public void setDriverLicenseNumber(String driverLicenseNumber) {
-        this.driverLicenseNumber = driverLicenseNumber;
-    }
-
     public String getDriverSinceNumber() {
         return driverSinceNumber;
     }

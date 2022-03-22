@@ -158,7 +158,7 @@ public class RentalRepository {
 
     }
 
-    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) throws SQLException {
+    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList) {
 
         Rental rental = getRental(rentalList, tools);
         int answer = rental.getRental_id();
@@ -170,7 +170,7 @@ public class RentalRepository {
 
     }
 
-    public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools) {
+    public void viewRentalContracts(ArrayList<Rental> rentalList, UITools tools) {
         System.out.println();
         tools.customizedButton(50, 1, "Rental Contracts");
 
