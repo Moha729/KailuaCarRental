@@ -113,14 +113,8 @@ public class RentalRepository {
                                       Scanner userInput, ArrayList<Car> carList) {
 
         Rental rental = getRental(rentalList, tools);
-        //System.out.println("Is the car null?");
-        //String rentalLL = rentalL.getCustomer().getName();
-        //System.out.println(rentalLL);
         int answer = rental.getRental_id();
-        //System.out.println(rentalL);
 
-        /*System.out.println("What do you want to update?\n" +
-                "1 for RentFDate\n2 for RentTDate\n3 for RentMaxKm\n");*/
         System.out.println("What do you want to update?\n" +
                 "1 to change car\n2 for new start date\n3 for new end date\n4 for new max KM");
 
@@ -160,29 +154,20 @@ public class RentalRepository {
                 break;
 
         }
+        rentalRepo.updateRental(statement, newVariable, newValue, answer);
 
-        try {
-            statement.execute("UPDATE rental_table SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE rental_id ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update rentals contract table");
-        }
     }
 
     public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList, Scanner userInput) throws SQLException {
-        int answer = userInput.nextInt();
-        System.out.println(rentalList);
-        System.out.println("Enter the rental id for the contract you want to delete");
 
-        answer = userInput.nextInt();
-        statement.execute("DELETE FROM rental_table WHERE rental_id = '" + answer + "'");
-        for (int i = 0; i < rentalList.size() - 1; i++) {
-            if (rentalList.get(i).getRental_id() == answer) {
-                rentalList.remove(i);
-            }
-        }
+        Rental rental = getRental(rentalList, tools);
+        int answer = rental.getRental_id();
+
+        rentalRepo.deleteRental(statement, answer);
+                tools.customizedButton(30, 1, "Rental id: "+ answer + " is deleted");
+                rentalList.remove(rental);
+
+
     }
 
     public void viewRentalContracts(Statement statement, ArrayList<Rental> rentalList, UITools tools) {
