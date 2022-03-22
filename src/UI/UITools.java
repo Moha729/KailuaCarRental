@@ -35,8 +35,8 @@ public class UITools {
     public int returnIntInfo(int width, int height, String text) {
         customizedButton(width, height, text);
         while (!userInput.hasNextInt()){
-            System.out.println("Not Valid Input - Pleaser enter a number!");
-            customizedButton(width, height, text);
+            userInput.next();
+            customizedButton(120, 1, "Not Valid Input - Pleaser enter a number!");
         }
         int info = userInput.nextInt();
         return info;
@@ -82,7 +82,6 @@ public class UITools {
         return ("\n" + margeTop + margeTop + "\n" + middleSpace + middleSpace + "\n" + margeCenter + margeCenter2 + "\n" + middleSpace + middleSpace + "\n" + margeBottom + margeBottom);
     }
 
-    //Ikke pille mere her uden at give besked!
     public int menuOptions(String menuOrder) {
         if (menuOrder.equalsIgnoreCase("menuOptions")) {
             return menuOptions("Welcome to Kailua car rental",
@@ -111,11 +110,10 @@ public class UITools {
         System.out.print(doubleButton(menu1, menu2));
         System.out.print(doubleButton(menu3, menu4));
         while (!userInput.hasNextInt()){
-            System.out.println("Not Valid Input - Pleaser enter a number!");
             userInput.next();
-            //customizedButton(120, 7, headText);
-            //System.out.print(doubleButton(menu1, menu2));
-            //System.out.print(doubleButton(menu3, menu4));
+            customizedButton(120, 1, "Not Valid Input - Pleaser enter a number!");
+            System.out.print(doubleButton(menu1, menu2));
+            System.out.print(doubleButton(menu3, menu4));
 
         }
         return userInput.nextInt();

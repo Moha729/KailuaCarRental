@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 public class RentalRepository {
     UITools tools = new UITools();
-    //Scanner userInput = new Scanner(System.in);
 
     CarRepository carRepository = new CarRepository();
     CustomerRepository customerRepository = new CustomerRepository();
@@ -52,7 +51,11 @@ public class RentalRepository {
             rentalRepo.addRentalToDB(rental, statement);
 
         } else {
-            System.out.println("Create new customer menu: not live yet!");
+            try {
+                customerRepository.createCustomer(statement, customerList);
+            } catch (SQLException e) {
+                System.out.println("Create new customer menu: not live yet!");
+            }
         }
     }
 
