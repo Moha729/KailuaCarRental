@@ -30,8 +30,8 @@ public class CarService {
         carRepository.viewCars(carList, tools);
     }
 
-    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
-        carRepository.updateCar(statement, userInput, carList, tools);
+    public void updateCar(Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
+        carRepository.updateCar(userInput, carList, tools);
     }
 
     public void delete(ArrayList<Car> carList, UITools tools) throws SQLException {

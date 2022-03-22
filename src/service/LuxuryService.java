@@ -31,9 +31,9 @@ public class LuxuryService {
         luxuryRepository.viewLuxuryCars(carList, tools);
     }
 
-    public void updateLuxuryCar(Statement statement, Scanner userInput, String regNum, Luxury car) throws SQLException {
+    public void updateLuxuryCar(Scanner userInput, String regNum, Luxury car){
 
-        luxuryRepository.updateLuxuryCar(statement, userInput, regNum, car);
+        luxuryRepository.updateLuxuryCar(userInput, regNum, car);
     }
     public void deleteLuxuryCar(ArrayList<Car> carList, String answer, UITools tools){
         luxuryRepository.deleteLuxuryCar(carList, answer, tools);

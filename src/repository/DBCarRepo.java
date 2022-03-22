@@ -15,28 +15,33 @@ public class DBCarRepo {
 
 
     public void populateFamilyCarToArraylist(ArrayList<Car> carList) {
+        if (connection != null) {
         try {
-            String sql = ("SELECT * FROM car_table INNER JOIN family_cars ON car_table.registration_number = family_cars.registration_number");
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery(sql);
-            if (resultSet != null)
 
-                while (resultSet.next()) {
-                    Family family = new Family(
-                            resultSet.getString("registration_number"),
-                            resultSet.getString("brand"),
-                            resultSet.getString("model"),
-                            resultSet.getString("registration_date"),
-                            resultSet.getInt("km_driven"),
-                            resultSet.getBoolean("manual_gear"),
-                            resultSet.getBoolean("air_condition"),
-                            resultSet.getBoolean("cruise_control"),
-                            resultSet.getBoolean("seven_seats_or_more"));
-                    carList.add(family);
-                }
-            resultSet.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage() + "\n");
+
+
+                String sql = ("SELECT * FROM car_table INNER JOIN family_cars ON car_table.registration_number = family_cars.registration_number");
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery(sql);
+                if (resultSet != null)
+
+                    while (resultSet.next()) {
+                        Family family = new Family(
+                                resultSet.getString("registration_number"),
+                                resultSet.getString("brand"),
+                                resultSet.getString("model"),
+                                resultSet.getString("registration_date"),
+                                resultSet.getInt("km_driven"),
+                                resultSet.getBoolean("manual_gear"),
+                                resultSet.getBoolean("air_condition"),
+                                resultSet.getBoolean("cruise_control"),
+                                resultSet.getBoolean("seven_seats_or_more"));
+                        carList.add(family);
+                    }
+                resultSet.close();
+            } catch(SQLException e){
+                System.out.println(e.getMessage() + "\n");
+            }
         }
     }
 
@@ -102,7 +107,7 @@ public class DBCarRepo {
             preparedStatement.executeUpdate();
 
 
-            preparedStatement = connection.prepareStatement("INSERT INTO luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
+            preparedStatement = connection.prepareStatement("INSERT INTO family_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
                     "VALUES(?,?,?,?,?)");
 
             preparedStatement.setString(1,familyCar.getRegistrationNumber());
@@ -190,10 +195,10 @@ public class DBCarRepo {
         }
     }
 
-    public void updateCar(String newVariable, String newValue, String answer) {
+    public void updateCar(String dbColumn, String newValue, String answer) {
         try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE car_table SET "+newVariable+" =? "+ " WHERE registration_number =?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE car_table SET "+dbColumn+" =? "+ " WHERE registration_number =?");
             preparedStatement.setString(1,newValue);
             preparedStatement.setString(2,answer);
             preparedStatement.executeUpdate();
@@ -205,10 +210,10 @@ public class DBCarRepo {
         }
     }
 
-    public void updateAllCar(String newVariable, String newValue, String answer,
+    public void updateAllCar(String dbColumn, String newValue, String answer,
                              String sqlTable_name) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE "+sqlTable_name+" SET "+newVariable+" =? "+ " WHERE registration_number =?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE "+sqlTable_name+" SET "+dbColumn+" =? "+ " WHERE registration_number =?");
             preparedStatement.setString(1,newValue);
             preparedStatement.setString(2,answer);
             preparedStatement.executeUpdate();

@@ -77,7 +77,7 @@ public class FamilyRepository {
         System.out.println();
     }
 
-    public void updateFamilyCar(Statement statement,Scanner userInput, String answer, Family car) {
+    public void updateFamilyCar(Scanner userInput, String answer, Family car) {
 
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +

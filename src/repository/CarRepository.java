@@ -86,18 +86,18 @@ public class CarRepository {
         viewCarsS(carList, tools);
     }
 
-    public void updateCar(Statement statement, Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
+    public void updateCar(Scanner userInput, ArrayList<Car> carList, UITools tools) throws SQLException {
 
         printHeadline("Update car");
         Car car = getCar(carList, tools);
         String regNum = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            luxuryService.updateLuxuryCar(statement, userInput, regNum, (Luxury) car);
+            luxuryService.updateLuxuryCar(userInput, regNum, (Luxury) car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("sport")) {
-            sportService.updateSportCar(statement, userInput, regNum, (Sport) car);
+            sportService.updateSportCar(userInput, regNum, (Sport) car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("family")) {
-            familyService.updateFamilyCar(statement, userInput, regNum,(Family) car);
+            familyService.updateFamilyCar(userInput, regNum,(Family) car);
         }
         System.out.println();
         tools.customizedButton(40, 1, "Car is updated");

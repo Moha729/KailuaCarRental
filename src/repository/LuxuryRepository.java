@@ -73,7 +73,7 @@ public class LuxuryRepository {
         System.out.println();
     }
 
-    public void updateLuxuryCar(Statement statement, Scanner userInput, String regNum, Luxury car){
+    public void updateLuxuryCar(Scanner userInput, String regNum, Luxury car){
         String answer = regNum;
         System.out.println("what do you want to update?\n" +
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +

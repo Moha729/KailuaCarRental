@@ -68,7 +68,7 @@ public class SportRepository {
         System.out.println();
     }
 
-    public void updateSportCar(Statement statement, Scanner userInput, String regNum, Sport car) {
+    public void updateSportCar(Scanner userInput, String regNum, Sport car) {
 
         System.out.println("Enter which registration number to be updated");
         String answer = regNum;

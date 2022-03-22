@@ -32,8 +32,8 @@ public class SportService {
     }
 
 
-    public void updateSportCar(Statement statement, Scanner userInput, String regNum, Sport car) {
-        sportRepository.updateSportCar(statement, userInput, regNum, car);
+    public void updateSportCar(Scanner userInput, String regNum, Sport car) {
+        sportRepository.updateSportCar(userInput, regNum, car);
     }
     public void deleteSportCar(ArrayList<Car> carList, UITools tools, Car car){
         sportRepository.deleteSportCar(carList, tools, car);
