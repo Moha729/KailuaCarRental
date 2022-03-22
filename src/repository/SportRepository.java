@@ -72,11 +72,6 @@ public class SportRepository {
         System.out.println("Enter which registration number to be updated");
         String answer = regNum;
 
-
-        System.out.println("what do you want to update?\n" +
-                "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
-                "\n6 for manualGear\n7 for Over 200 HP");
-
         tools.customizedButton(60,2, "What do you want to update?");
         System.out.println();
         tools.customizedButton(39,3,"" +

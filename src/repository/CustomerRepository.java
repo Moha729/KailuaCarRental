@@ -154,7 +154,7 @@ public class CustomerRepository {
                 customer.setEmail(newValue);
                 break;
         }
-        dbCustomerRepo.updateCustomer(dbColumn, newValue, answer);
+        dbCustomerRepo.updateCustomer(dbColumn, newValue, customer.getDriverLicenseNumber());
     }
 
     public void deleteCustomer(ArrayList<Customer> customerList, UITools tools) throws SQLException{
