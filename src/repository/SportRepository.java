@@ -158,9 +158,9 @@ public class SportRepository {
         }
     }
 
-    public void deleteSportCar(Statement statement, ArrayList<Car> carList ,UITools tools, Car car){
+    public void deleteSportCar(ArrayList<Car> carList ,UITools tools, Car car){
 
-        dbRepo.deleteAllCar(statement, car.getRegistrationNumber(), "sport_cars");
+        dbRepo.deleteAllCar(car.getRegistrationNumber(), "sport_cars");
                 carList.remove(car);
                 tools.customizedButton(60, 1, "Car \" + answer + \" is deleted");
 

@@ -173,7 +173,7 @@ public class FamilyRepository {
                 break;
         }
         if (check == true) {
-            dbCarRepo.updateCar(dbColumn,newValue,answer);
+            dbCarRepo.updateCar(statement,dbColumn,newValue,answer);
         }
         if (check == false) {
             dbCarRepo.updateAllCar(statement,dbColumn,newValue,answer, "family_cars");

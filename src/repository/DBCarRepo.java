@@ -167,16 +167,16 @@ public class DBCarRepo {
 
 
 
-    public void updateCar(String newVariable, String newValue, String answer) {
+    public void updateCar(Statement statement, String newVariable, String newValue, String answer) {
         try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE car_table SET '"+newVariable+"' '"+newValue + "' WHERE registration_number =?");
-            preparedStatement.setString(1,answer);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
+//            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE car_table SET '"+newVariable+"' '"+newValue + "' WHERE registration_number =?");
+//            preparedStatement.setString(1,answer);
+//            preparedStatement.executeUpdate();
+//            preparedStatement.close();
 
-//            statement.execute("UPDATE car_table SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
-//            statement.execute("UPDATE luxury_cars SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
+            statement.execute("UPDATE car_table SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
+            statement.execute("UPDATE luxury_cars SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update car");

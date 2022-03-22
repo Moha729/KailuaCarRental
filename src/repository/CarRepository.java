@@ -106,18 +106,18 @@ public class CarRepository {
         System.out.println();
     }
 
-    public void delete(Statement statement, ArrayList<Car> carList, UITools tools) {
+    public void delete(ArrayList<Car> carList, UITools tools) {
 
         printHeadline("Delete car");
         Car car = getCar(carList, tools);
         String answer = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            luxuryService.deleteLuxuryCar(statement, carList, answer, tools);
+            luxuryService.deleteLuxuryCar(carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
-            sportService.deleteSportCar(statement,carList, tools, car);
+            sportService.deleteSportCar(carList, tools, car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
-            familyService.deleteFamilyCar(statement, carList, answer, tools);
+            familyService.deleteFamilyCar(carList, answer, tools);
         }
     }
 
