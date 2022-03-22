@@ -158,13 +158,11 @@ public class SportRepository {
         }
     }
 
-    public void deleteSportCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbRepo.deleteAllCar(statement, answer, "sport_cars");
-        for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
-                carList.remove(carList.get(i));
+    public void deleteSportCar(Statement statement, ArrayList<Car> carList ,UITools tools, Car car){
+
+        dbRepo.deleteAllCar(statement, car.getRegistrationNumber(), "sport_cars");
+                carList.remove(car);
                 tools.customizedButton(60, 1, "Car \" + answer + \" is deleted");
-            }
-        }
+
     }
 }

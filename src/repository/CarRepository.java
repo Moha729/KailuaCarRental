@@ -115,7 +115,7 @@ public class CarRepository {
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
             luxuryService.deleteLuxuryCar(statement, carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
-            sportService.deleteSportCar(statement, carList, answer, tools);
+            sportService.deleteSportCar(statement,carList, tools, car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
             familyService.deleteFamilyCar(statement, carList, answer, tools);
         }
