@@ -26,6 +26,7 @@ public class RentalService {
     }
     public void viewRentals(ArrayList<Rental> rentalList, UITools tools){
         rentalRepository.viewRentalsInMain(rentalList, tools);
+        rentalRepository.chooseRental(rentalList);
     }
     public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput, ArrayList<Car> carList){
         rentalRepository.updateRentalContracts(statement, rentalList, userInput, carList);
