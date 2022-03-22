@@ -107,7 +107,7 @@ public class DBCarRepo {
             preparedStatement.executeUpdate();
 
 
-            preparedStatement = connection.prepareStatement("INSERT INTO family_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
+            preparedStatement = connection.prepareStatement("INSERT INTO family_cars " + "(registration_number, air_condition, cruise_control, seven_seats_or_more)" + "" +
                     "VALUES(?,?,?,?,?)");
 
             preparedStatement.setString(1,familyCar.getRegistrationNumber());
@@ -138,10 +138,10 @@ public class DBCarRepo {
             preparedStatement.executeUpdate();
 
 
-            preparedStatement = connection.prepareStatement("INSERT INTO luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
+            preparedStatement = connection.prepareStatement("INSERT INTO luxury_cars " + "(registration_number, ccm, automatic_gear,cruise_control,leather_seats)" + "" +
                     "VALUES(?,?,?,?,?)");
 
-            preparedStatement.setString(1,luxuryCar.getRegistrationNumber());
+            preparedStatement.setString(1, luxuryCar.getRegistrationNumber());
             preparedStatement.setBoolean(2,luxuryCar.isOver3000CCM());
             preparedStatement.setBoolean(3,luxuryCar.isAutomaticGear());
             preparedStatement.setBoolean(4,luxuryCar.isCruiseControl());
@@ -165,7 +165,6 @@ public class DBCarRepo {
             preparedStatement.setString(4,sportsCar.getRegistrationDate());
             preparedStatement.setInt(5,sportsCar.getKmDriven());
             preparedStatement.executeUpdate();
-
 
             preparedStatement = connection.prepareStatement("INSERT INTO sport_cars (registration_number, manual_gear, over200HP)" +
                     "VALUES(?,?,?)");
