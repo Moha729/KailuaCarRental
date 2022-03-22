@@ -18,8 +18,8 @@ public class CustomerService {
     public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
         customerRepository.createCustomer(statement,customerList);
     }
-    public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
-        customerRepository.populateCustomerToArrayList(statement, customerList);
+    public void populateCustomerToArrayList(ArrayList<Customer> customerList){
+        customerRepository.populateCustomerToArrayList(customerList);
     }
     public void viewCustomer(ArrayList<Customer> customerList, UITools tools){
         customerRepository.viewCustomer(customerList,tools);

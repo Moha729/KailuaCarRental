@@ -1,26 +1,24 @@
 package repository;
 
+import db.DBManager;
 import models.Car;
 import models.Customer;
 import models.Rental;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DBRentalRepo {
 
     CarRepository carRepository = new CarRepository();
     CustomerRepository customerRepository = new CustomerRepository();
-
-    public void populateRentals (ArrayList<Rental> rentalList, Statement statement,
-                                 ArrayList<Car> carList, ArrayList<Customer> customerList){
+    Connection connection = DBManager.getConnection();
+    public void populateRentals(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList){
 
         try {
-
             String sql = ("SELECT * FROM rental_table");
-            ResultSet resultSet = statement.executeQuery(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
                     int rentalId = resultSet.getInt("rental_id");

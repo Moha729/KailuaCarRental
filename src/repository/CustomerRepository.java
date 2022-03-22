@@ -62,8 +62,8 @@ public class CustomerRepository {
         addCustomerToDB(customer, statement);
     }
 
-    public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList){
-        dbCustomerRepo.populateCustomerToArrayList(statement, customerList);
+    public void populateCustomerToArrayList(ArrayList<Customer> customerList){
+        dbCustomerRepo.populateCustomerToArrayList(customerList);
     }
     public void addCustomerToDB(Customer customer, Statement statement)throws  SQLException{
         dbCustomerRepo.addCustomerToDB(customer, statement);

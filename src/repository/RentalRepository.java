@@ -19,9 +19,9 @@ public class RentalRepository {
     DBRentalRepo rentalRepo = new DBRentalRepo();
 
 
-    public void populateRentalContractsToArrayList(Statement statement, ArrayList<Rental> rentalList,
+    public void populateRentalContractsToArrayList(ArrayList<Rental> rentalList,
                                         ArrayList<Car> carList, ArrayList<Customer> customerList) {
-        rentalRepo.populateRentals(rentalList, statement, carList, customerList);
+        rentalRepo.populateRentals(rentalList, carList, customerList);
     }
 
     public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList,

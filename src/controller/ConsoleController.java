@@ -27,8 +27,8 @@ public class ConsoleController {
             statement = connection.createStatement();
 
             carService.populateCars(carList);
-            customerService.populateCustomerToArrayList(statement, customerList);
-            rentalService.populateRentalContractsToArrayList(statement, rentalList, carList, customerList);
+            customerService.populateCustomerToArrayList(customerList);
+            rentalService.populateRentalContractsToArrayList(rentalList, carList, customerList);
 
             runMenu(statement);
         } catch (SQLException e) {

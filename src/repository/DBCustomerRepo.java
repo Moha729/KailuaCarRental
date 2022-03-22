@@ -1,21 +1,22 @@
 package repository;
 
+import db.DBManager;
 import models.Customer;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 
 public class DBCustomerRepo {
 
+    Connection connection = DBManager.getConnection();
 
-    public void populateCustomerToArrayList(Statement statement, ArrayList<Customer> customerList) {
+    public void populateCustomerToArrayList(ArrayList<Customer> customerList) {
         try {
-
             String sql = ("SELECT customer_driver_license_number, customer_driver_since_number,customer_first_name, customer_last_name, " +
-                    "customer_zip_code, customer_city, customer_phone_number, customer_mobile_number, customer_email FROM customer_table");
-            ResultSet resultSet = statement.executeQuery(sql);
+                        "customer_zip_code, customer_city, customer_phone_number, customer_mobile_number, customer_email FROM customer_table");
+                  PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                  ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null)
                 while (resultSet.next()) {
                     Customer customer = new Customer(
