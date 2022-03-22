@@ -63,7 +63,7 @@ public class ConsoleController {
                 case 1 -> carService.viewCars(carList, menuTools);
                 case 2 -> carService.updateCar(statement, userInput, carList, menuTools);
                 case 3 -> carService.createCar(statement, userInput, carList, menuTools);
-                case 4 -> carService.delete(statement, carList, menuTools);
+                case 4 -> carService.delete(carList, menuTools);
                 case 0 -> runMenu(statement);
 
             }

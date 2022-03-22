@@ -150,7 +150,7 @@ public class SportRepository {
                 break;
         }
         if (check == true) {
-            dbRepo.updateCar(statement, dbColumn, newValue, answer);
+            dbRepo.updateCar(dbColumn, newValue, answer);
 
         }
         if (check == false) {
@@ -158,12 +158,12 @@ public class SportRepository {
         }
     }
 
-    public void deleteSportCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbRepo.deleteAllCar(statement, answer, "sport_cars");
+    public void deleteSportCar(ArrayList<Car> carList, String answer, UITools tools){
+        dbRepo.deleteAllCar(answer, "sport_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));
-                tools.customizedButton(60, 1, "Car \" + answer + \" is deleted");
+                tools.customizedButton(60, 1, "Car deleted in arrayList \" + answer + \" is deleted");
             }
         }
     }

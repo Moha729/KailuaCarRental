@@ -34,7 +34,6 @@ public class DBCarRepo {
                             resultSet.getBoolean("seven_seats_or_more"));
                     carList.add(family);
                 }
-            preparedStatement.executeUpdate();
             resultSet.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
@@ -60,7 +59,6 @@ public class DBCarRepo {
                             resultSet.getBoolean("leather_seats"));
                     carList.add(luxury);
                 }
-            preparedStatement.executeUpdate();
             resultSet.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
@@ -84,7 +82,6 @@ public class DBCarRepo {
                             resultSet.getBoolean("over200HP"));
                     carList.add(sport);
                 }
-            preparedStatement.executeUpdate();
             resultSet.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
@@ -124,9 +121,7 @@ public class DBCarRepo {
                     + luxuryCar.getModel() + "','"
                     + luxuryCar.getRegistrationDate() + "','"
                     + luxuryCar.getKmDriven() + "')");
-            /*System.out.println("Stop here");
-            Scanner scanner = new Scanner(System.in);
-            String go = scanner.next();*/
+
             statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
                     "VALUES('"
                     + luxuryCar.getRegistrationNumber() + "','"
@@ -159,20 +154,29 @@ public class DBCarRepo {
         }
     }
 
-    public void deleteAllCar(Statement statement, String answer, String sqlTable_name){
+    public void deleteAllCar(String answer, String sqlTable_name){
         try {
-            statement.execute("DELETE FROM car_table WHERE registration_number = '" + answer + "'");
-            statement.execute("DELETE FROM "+ sqlTable_name +" WHERE registration_number = '" + answer + "'");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM car_table "+sqlTable_name+" WHERE registration_number = ?");
+            preparedStatement.setString(1,answer);
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
-            System.out.println("No cars deleted");
+            System.out.println("No cars deleted in Database");
         }
     }
 
-    public void updateCar(Statement statement, String newVariable, String newValue, String answer) {
+
+
+    public void updateCar(String newVariable, String newValue, String answer) {
         try {
-            statement.execute("UPDATE car_table SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
+
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE car_table SET '"+newVariable+"' '"+newValue + "' WHERE registration_number =?");
+            preparedStatement.setString(1,answer);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+//            statement.execute("UPDATE car_table SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
+//            statement.execute("UPDATE luxury_cars SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update car");

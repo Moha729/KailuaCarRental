@@ -35,8 +35,8 @@ public class LuxuryService {
 
         luxuryRepository.updateLuxuryCar(statement, userInput, regNum, car);
     }
-    public void deleteLuxuryCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        luxuryRepository.deleteLuxuryCar(statement, carList, answer, tools);
+    public void deleteLuxuryCar(ArrayList<Car> carList, String answer, UITools tools){
+        luxuryRepository.deleteLuxuryCar(carList, answer, tools);
     }
 }
 

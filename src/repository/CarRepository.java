@@ -109,7 +109,7 @@ public class CarRepository {
     }
 
 
-    public void delete(Statement statement, ArrayList<Car> carList, UITools tools) {
+    public void delete(ArrayList<Car> carList, UITools tools) {
 
         printHeadline("Delete car", tools);
         Car car = getCar(carList, tools);
@@ -117,13 +117,13 @@ public class CarRepository {
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
 
-            luxuryService.deleteLuxuryCar(statement, carList, answer, tools);
+            luxuryService.deleteLuxuryCar(carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Sport")) {
 
-            sportService.deleteSportCar(statement, carList, answer, tools);
+            sportService.deleteSportCar(carList, answer, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("Family")) {
 
-            familyService.deleteFamilyCar(statement, carList, answer, tools);
+            familyService.deleteFamilyCar(carList, answer, tools);
         } else {
             System.out.println("Type in the right number");
         }

@@ -178,14 +178,14 @@ public class FamilyRepository {
                 break;
         }
         if (check == true) {
-            dbCarRepo.updateCar(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateCar(dbColumn,newValue,answer);
         }
         if (check == false) {
             dbCarRepo.updateAllCar(statement,dbColumn,newValue,answer, "family_cars");
         }
     }
-    public void deleteFamilyCar(Statement statement, ArrayList<Car> carList, String answer, UITools tools){
-        dbCarRepo.deleteAllCar(statement, answer, "family_cars");
+    public void deleteFamilyCar(ArrayList<Car> carList, String answer, UITools tools){
+        dbCarRepo.deleteAllCar(answer, "family_cars");
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getRegistrationNumber().equalsIgnoreCase(answer)) {
                 carList.remove(carList.get(i));
