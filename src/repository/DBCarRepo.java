@@ -176,7 +176,11 @@ public class DBCarRepo {
 
     public void deleteAllCar(String answer, String sqlTable_name){
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM car_table "+sqlTable_name+" WHERE registration_number = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM car_table WHERE registration_number = ?");
+            preparedStatement.setString(1,answer);
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("DELETE FROM "+sqlTable_name+" WHERE registration_number = ?");
             preparedStatement.setString(1,answer);
             preparedStatement.executeUpdate();
 
