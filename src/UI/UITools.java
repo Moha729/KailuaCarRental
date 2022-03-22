@@ -121,6 +121,7 @@ public class UITools {
         System.out.print(doubleButton(menu1, menu2));
         System.out.print(doubleButton(menu3, menu4));
         while (!userInput.hasNextInt()){
+            whiteSpace(15);
             userInput.next();
             customizedButton(120, 1, "Not Valid Input - Pleaser enter a number!");
             System.out.print(doubleButton(menu1, menu2));
@@ -133,6 +134,10 @@ public class UITools {
     public boolean continueButton() {
         customizedButton(15, 1, ">1< continue..");
         System.out.print(" ");
+        while (!userInput.hasNextInt()){
+            userInput.next();
+            customizedButton(15, 1, ">1< continue..");
+        }
         int start = userInput.nextInt();
         if (start != 0) {
             whiteSpace(10);
