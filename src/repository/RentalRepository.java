@@ -42,7 +42,7 @@ public class RentalRepository {
             rentalList.add(rental);
             rentalRepo.addRentalToDB(rental, statement);
             rentalList.clear();
-            rentalRepo.populateRentals(rentalList,carList,customerList);
+            populateRentalContractsToArrayList(rentalList,carList,customerList);
             viewRental(rentalList.get(rentalList.size() - 1));
         } else {
             try {
