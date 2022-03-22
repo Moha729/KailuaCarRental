@@ -92,12 +92,7 @@ public class FamilyRepository {
         switch (ans) {
 
             case 1:
-                System.out.println("Not valid try again");/*
-                check = true;
-                System.out.println("Enter new registration number");
-                newValue = userInput.next();
-                dbColumn = "registration_number";
-                car.setRegistrationNumber(newValue);*/
+                System.out.println("Not valid try again");
                 break;
             case 2:
                 check = true;

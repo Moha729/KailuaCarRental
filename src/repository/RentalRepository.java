@@ -242,8 +242,8 @@ public class RentalRepository {
     }
 
     public void viewRentalsInMain(ArrayList<Rental> rentalList, UITools tools) {
-
-        System.out.println();
+        tools.whiteSpace();
+        tools.whiteSpace();
         tools.customizedButton(120, 1, "Active rentals");
 
         for (int i = 0; i < rentalList.size(); i++) {
