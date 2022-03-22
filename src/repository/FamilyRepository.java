@@ -45,7 +45,7 @@ public class FamilyRepository {
         Family familyCar = new Family(reg, br , mo, regDate,kmDr,manualGear,airCondition,
                 cruiseControl,sevenSeatsOrMore);
 
-        addFamilyCarToDataBase(familyCar, statement);
+        addFamilyCarToDataBase(familyCar);
 
         return familyCar;
     }
@@ -55,8 +55,8 @@ public class FamilyRepository {
             dbCarRepo.populateFamilyCarToArraylist(carList);
     }
 
-    public void addFamilyCarToDataBase(Family familyCar, Statement statement){
-            dbCarRepo.addFamilyCarToDB(familyCar,statement);
+    public void addFamilyCarToDataBase(Family familyCar){
+            dbCarRepo.addFamilyCarToDB(familyCar);
     }
 
     public void viewFamilyCars(ArrayList<Car> carList, UITools tools){

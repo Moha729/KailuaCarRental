@@ -22,9 +22,9 @@ public class SportService {
         sportRepository.populateSportToArrayList(carList);
     }
 
-    public Sport createSportsCar(Statement statement,String registrationNumber, String brand, String model, String registrationDate, int kmDriven) throws SQLException {
+    public Sport createSportsCar(String registrationNumber, String brand, String model, String registrationDate, int kmDriven) throws SQLException {
 
-        return sportRepository.createSportsCar(statement, registrationNumber, brand, model, registrationDate, kmDriven);
+        return sportRepository.createSportsCar(registrationNumber, brand, model, registrationDate, kmDriven);
     }
 
     public void viewSportCars(ArrayList<Car> carList, UITools tools) {

@@ -62,7 +62,7 @@ public class CarRepository {
 
             } else if (chooseType == 2) {
 
-                Sport sportsCar = sportService.createSportsCar(statement, registrationNumber, brand, model,
+                Sport sportsCar = sportService.createSportsCar(registrationNumber, brand, model,
                         registrationDate, kmDriven);
                 carList.add(sportsCar);
 

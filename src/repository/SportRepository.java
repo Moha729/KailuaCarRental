@@ -16,7 +16,7 @@ public class SportRepository {
     UITools tools = new UITools();
     DBCarRepo dbRepo = new DBCarRepo();
 
-    public Sport createSportsCar(Statement statement, String reg, String br, String mo,
+    public Sport createSportsCar(String reg, String br, String mo,
                                  String regDate, int kmDr) {
 
         String gear = this.tools.returnStringInfo(60, 1, "does it have a manual gear?");
@@ -37,7 +37,7 @@ public class SportRepository {
 
         Sport sportsCar = new Sport(reg, br, mo, regDate, kmDr, gearGear, hpHp);
 
-        addSportCarToDB(sportsCar, statement);
+        addSportCarToDB(sportsCar);
 
         return sportsCar;
     }
@@ -47,8 +47,8 @@ public class SportRepository {
       dbRepo.populateSportToArrayList(carList);
     }
 
-    private void addSportCarToDB(Sport sportsCar, Statement statement) {
-        dbRepo.addSportCarToDB(sportsCar,statement);
+    private void addSportCarToDB(Sport sportsCar) {
+        dbRepo.addSportCarToDB(sportsCar);
     }
 
     public void viewSportCars(ArrayList<Car> carList, UITools tools) {

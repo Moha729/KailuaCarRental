@@ -9,7 +9,6 @@ import models.Sport;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DBCarRepo {
     Connection connection = DBManager.getConnection();
@@ -88,23 +87,29 @@ public class DBCarRepo {
         }
     }
 
-    public void addFamilyCarToDB(Family familyCar, Statement statement) {
+    public void addFamilyCarToDB(Family familyCar) {
         try {
-            statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
-                    "VALUES('"
-                    + familyCar.getRegistrationNumber() + "','"
-                    + familyCar.getBrand() + "','"
-                    + familyCar.getModel() + "','"
-                    + familyCar.getRegistrationDate() + "','"
-                    + familyCar.getKmDriven() + "')");
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement("INSERT INTO car_table " + "(registration_number, brand, model, registration_date, km_driven)" + "" +
+                    "VALUES(?,?,?,?,?)");
 
-            statement.execute("INSERT INTO  family_cars " + "(registration_number, manual_gear ,air_condition , cruise_control, seven_seats_or_more)" + "" +
-                    "VALUES('"
-                    + familyCar.getRegistrationNumber() + "','"
-                    + familyCar.isManualGear() + "','"
-                    + familyCar.isAirCondition() + "','"
-                    + familyCar.isCruiseControl() + "','"
-                    + familyCar.isSevenSeatsOrMore() + "')");
+            preparedStatement.setString(1,familyCar.getRegistrationNumber());
+            preparedStatement.setString(2,familyCar.getBrand());
+            preparedStatement.setString(3,familyCar.getModel());
+            preparedStatement.setString(4,familyCar.getRegistrationDate());
+            preparedStatement.setInt(5,familyCar.getKmDriven());
+            preparedStatement.executeUpdate();
+
+
+            preparedStatement = connection.prepareStatement("INSERT INTO luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
+                    "VALUES(?,?,?,?,?)");
+
+            preparedStatement.setString(1,familyCar.getRegistrationNumber());
+            preparedStatement.setBoolean(2,familyCar.isManualGear());
+            preparedStatement.setBoolean(3,familyCar.isAirCondition());
+            preparedStatement.setBoolean(4,familyCar.isCruiseControl());
+            preparedStatement.setBoolean(5,familyCar.isSevenSeatsOrMore());
+            preparedStatement.executeUpdate();
 
         } catch (SQLException sqlException) {
             System.out.println("Error adding family to database: " + sqlException);
@@ -112,43 +117,58 @@ public class DBCarRepo {
         }
     }
 
-    public void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) {
+    public void addLuxuryCarToDB(Luxury luxuryCar) {
         try {
-            statement.execute("INSERT INTO car_table " + "(registration_number,brand,model, registration_date, km_driven)" + "" +
-                    "VALUES('"
-                    + luxuryCar.getRegistrationNumber() + "','"
-                    + luxuryCar.getBrand() + "','"
-                    + luxuryCar.getModel() + "','"
-                    + luxuryCar.getRegistrationDate() + "','"
-                    + luxuryCar.getKmDriven() + "')");
 
-            statement.execute("INSERT INTO  luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
-                    "VALUES('"
-                    + luxuryCar.getRegistrationNumber() + "','"
-                    + luxuryCar.isOver3000CCM() + "','"
-                    + luxuryCar.isAutomaticGear() + "','"
-                    + luxuryCar.isCruiseControl() + "','"
-                    + luxuryCar.isLeatherSeats() + "')");
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement("INSERT INTO car_table " + "(registration_number, brand, model, registration_date, km_driven)" + "" +
+                    "VALUES(?,?,?,?,?)");
+
+            preparedStatement.setString(1,luxuryCar.getRegistrationNumber());
+            preparedStatement.setString(2,luxuryCar.getBrand());
+            preparedStatement.setString(3,luxuryCar.getModel());
+            preparedStatement.setString(4,luxuryCar.getRegistrationDate());
+            preparedStatement.setInt(5,luxuryCar.getKmDriven());
+            preparedStatement.executeUpdate();
+
+
+            preparedStatement = connection.prepareStatement("INSERT INTO luxury_cars " + "(registration_number, ccm, automatic_gear, cruise_control, leather_seats)" + "" +
+                    "VALUES(?,?,?,?,?)");
+
+            preparedStatement.setString(1,luxuryCar.getRegistrationNumber());
+            preparedStatement.setBoolean(2,luxuryCar.isOver3000CCM());
+            preparedStatement.setBoolean(3,luxuryCar.isAutomaticGear());
+            preparedStatement.setBoolean(4,luxuryCar.isCruiseControl());
+            preparedStatement.setBoolean(5,luxuryCar.isLeatherSeats());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
         } catch (SQLException e) {
             System.out.println("No cars added");
         }
     }
 
-    public void addSportCarToDB(Sport sportsCar, Statement statement) {
+    public void addSportCarToDB(Sport sportsCar) {
         try {
-            statement.execute("INSERT INTO car_table " + "(registration_number, brand, model, registration_date, km_driven)" + "" +
-                    "VALUES('"
-                    + sportsCar.getRegistrationNumber() + "','"
-                    + sportsCar.getBrand() + "','"
-                    + sportsCar.getModel() + "','"
-                    + sportsCar.getRegistrationDate() + "','"
-                    + sportsCar.getKmDriven() + "')");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO car_table " +
+                    "(registration_number, brand, model, registration_date, km_driven)" + "" + "VALUES(?,?,?,?,?)");
 
-            statement.execute("INSERT INTO  sport_cars " + "(registration_number, manual_gear, Over200HP)" + "" +
-                    "VALUES('"
-                    + sportsCar.getRegistrationNumber() + "','"
-                    + sportsCar.isManualGear() + "','"
-                    + sportsCar.isOver200HP() + "')");
+            preparedStatement.setString(1,sportsCar.getRegistrationNumber());
+            preparedStatement.setString(2,sportsCar.getBrand());
+            preparedStatement.setString(3,sportsCar.getModel());
+            preparedStatement.setString(4,sportsCar.getRegistrationDate());
+            preparedStatement.setInt(5,sportsCar.getKmDriven());
+            preparedStatement.executeUpdate();
+
+
+            preparedStatement = connection.prepareStatement("INSERT INTO sport_cars (registration_number, manual_gear, over200HP)" +
+                    "VALUES(?,?,?)");
+
+            preparedStatement.setString(1,sportsCar.getRegistrationNumber());
+            preparedStatement.setBoolean(2,sportsCar.isManualGear());
+            preparedStatement.setBoolean(3,sportsCar.isOver200HP());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.out.println("No cars added");
         }

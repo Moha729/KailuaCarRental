@@ -43,7 +43,7 @@ public class LuxuryRepository {
 
         Luxury luxuryCar = new Luxury(reg, br, mo, regDate, kmDr, ccm, gear, cruiseControl, leatherSeats);
 
-        addLuxuryCarToDB(luxuryCar, statement);
+        addLuxuryCarToDB(luxuryCar);
 
         return luxuryCar;
     }
@@ -51,8 +51,8 @@ public class LuxuryRepository {
     public void populateLuxuryToArrayList(ArrayList<Car> carList) {
      dbCarRepo.populateLuxuryCarToArraylist(carList);
     }
-    public void addLuxuryCarToDB(Luxury luxuryCar, Statement statement) {
-        dbCarRepo.addLuxuryCarToDB(luxuryCar,statement);
+    public void addLuxuryCarToDB(Luxury luxuryCar) {
+        dbCarRepo.addLuxuryCarToDB(luxuryCar);
     }
 
     public void viewLuxuryCars(ArrayList<Car> carList, UITools tools){
