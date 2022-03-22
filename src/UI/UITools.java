@@ -1,7 +1,5 @@
 package UI;
 
-import repository.CarRepository;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,14 +32,6 @@ public class UITools {
         margingCentre(height, width, text);
         margeTop(width);
 
-    }
-
-    public void margingCentre(int height, int width, String text1, String text2) {
-
-        margeMiddlSpace(height, width);
-        System.out.print(centerString(width / 2, text1));
-        System.out.println(centerString(width / 2, text2));
-        margeMiddlSpace(height, width);
     }
 
     public void margingCentre(int height, int width, String text) {

@@ -173,10 +173,10 @@ public class FamilyRepository {
                 break;
         }
         if (check == true) {
-            dbCarRepo.updateCar(statement,dbColumn,newValue,answer);
+            dbCarRepo.updateCar(dbColumn,newValue,answer);
         }
         if (check == false) {
-            dbCarRepo.updateAllCar(statement,dbColumn,newValue,answer, "family_cars");
+            dbCarRepo.updateAllCar(dbColumn,newValue,answer, "family_cars");
         }
     }
     public void deleteFamilyCar(ArrayList<Car> carList, String answer, UITools tools){

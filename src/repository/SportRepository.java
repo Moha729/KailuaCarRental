@@ -149,11 +149,11 @@ public class SportRepository {
                 break;
         }
         if (check == true) {
-            dbRepo.updateCar(statement, dbColumn, newValue, answer);
+            dbRepo.updateCar(dbColumn, newValue, answer);
 
         }
         if (check == false) {
-            dbRepo.updateAllCar(statement, dbColumn, newValue, answer, "sport_cars");
+            dbRepo.updateAllCar(dbColumn, newValue, answer, "sport_cars");
         }
     }
 

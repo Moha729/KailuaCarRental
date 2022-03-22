@@ -189,9 +189,7 @@ public class DBCarRepo {
         }
     }
 
-
-
-    public void updateCar(Statement statement, String newVariable, String newValue, String answer) {
+    public void updateCar(String newVariable, String newValue, String answer) {
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE car_table SET "+newVariable+" =? "+ " WHERE registration_number =?");
@@ -200,21 +198,20 @@ public class DBCarRepo {
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
-//            statement.execute("UPDATE car\n" +
-//                    "            statement.execute(\"UPDATE car_table SET \" +newVariable + \" = '\" + newValue + \"' \" + \"WHERE registration_number ='\" + answer + \"'\");\n_table SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
-//            statement.execute("UPDATE luxury_cars SET " +newVariable + " = '" + newValue + "' " + "WHERE registration_number ='" + answer + "'");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update car");
         }
     }
 
-    public void updateAllCar(Statement statement, String newVariable, String newValue, String answer,
+    public void updateAllCar(String newVariable, String newValue, String answer,
                              String sqlTable_name) {
         try {
-            statement.execute("UPDATE " + sqlTable_name +" SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE registration_number ='" + answer + "'");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE "+sqlTable_name+" SET "+newVariable+" =? "+ " WHERE registration_number =?");
+            preparedStatement.setString(1,newValue);
+            preparedStatement.setString(2,answer);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not update car");
