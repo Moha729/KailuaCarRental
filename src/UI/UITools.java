@@ -22,6 +22,10 @@ public class UITools {
 
     public int returnIntInfo(int width, int height, String text) {
         customizedButton(width, height, text);
+        while (!userInput.hasNextInt()){
+            System.out.println("Not Valid Input - Pleaser enter a number!");
+            customizedButton(width, height, text);
+        }
         int info = userInput.nextInt();
         return info;
     }
@@ -94,6 +98,14 @@ public class UITools {
         customizedButton(120, 7, headText);
         System.out.print(doubleButton(menu1, menu2));
         System.out.print(doubleButton(menu3, menu4));
+        while (!userInput.hasNextInt()){
+            System.out.println("Not Valid Input - Pleaser enter a number!");
+            userInput.next();
+            //customizedButton(120, 7, headText);
+            //System.out.print(doubleButton(menu1, menu2));
+            //System.out.print(doubleButton(menu3, menu4));
+
+        }
         return userInput.nextInt();
     }
 
@@ -107,7 +119,6 @@ public class UITools {
         }
         return false;
     }
-
 
     public void closeProgram(Statement statement, Connection connection) {
         try {
