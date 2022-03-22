@@ -19,9 +19,11 @@ public class RentalRepository {
 
 
     public void populateRentalContractsToArrayList(ArrayList<Rental> rentalList,
-                                        ArrayList<Car> carList, ArrayList<Customer> customerList) {
+                                                   ArrayList<Car> carList, ArrayList<Customer> customerList) {
         rentalRepo.populateRentals(rentalList, carList, customerList);
     }
+
+
 
     public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList,
                                      ArrayList<Customer> customerList, Statement statement) {
@@ -167,8 +169,8 @@ public class RentalRepository {
         int answer = rental.getRental_id();
 
         rentalRepo.deleteRental(statement, answer);
-                tools.customizedButton(30, 1, "Rental id: "+ answer + " is deleted");
-                rentalList.remove(rental);
+        tools.customizedButton(30, 1, "Rental id: " + answer + " is deleted");
+        rentalList.remove(rental);
 
 
     }

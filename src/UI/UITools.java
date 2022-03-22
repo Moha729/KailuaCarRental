@@ -29,6 +29,7 @@ public class UITools {
     public String returnStringInfo(int width, int height, String text) {
         customizedButton(width, height, text);
         String info = userInput.next();
+        escapeButton(info, 0);
         return info;
     }
 
@@ -39,6 +40,7 @@ public class UITools {
             customizedButton(120, 1, "Not Valid Input - Pleaser enter a number!");
         }
         int info = userInput.nextInt();
+        escapeButton(null, info);
         return info;
     }
 
@@ -103,6 +105,15 @@ public class UITools {
                     ">3< Change rental", ">4< End rental");
         }
         return 0;
+    }
+    public void escapeButton(String stringValue, int intValue) {
+        if (intValue != 0) {
+            stringValue = String.valueOf(intValue);
+        }
+        if (stringValue.equalsIgnoreCase("-1")) {
+            whiteSpace(10);
+            menuOptions("menuOptions");
+        }
     }
 
     private int menuOptions(String headText, String menu1, String menu2, String menu3, String menu4) {
