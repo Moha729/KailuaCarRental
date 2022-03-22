@@ -8,6 +8,8 @@ import models.Rental;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class RentalRepository {
@@ -31,9 +33,15 @@ public class RentalRepository {
 
         if (newCustomer.equalsIgnoreCase("yes")) {
 
-//            int rental_id = tools.returnIntInfo(50, 1, "Enter rental id");
-            //auto increment
 
+            int rental_id = 0;
+            /*for (int i = 0; i < rentalList.size(); i++) {
+                if (rentalList.get(i).getRental_id() > rental_id){
+                    rental_id = rentalList.get(i).getRental_id();
+                }
+            }
+            rental_id ++;
+*/
             Car car = carRepository.getCar(carList, tools);
 
             Customer customer = customerRepository.getCustomer(customerList, tools);
@@ -44,19 +52,19 @@ public class RentalRepository {
 
             int maxKm = tools.returnIntInfo(50, 1, "Max KM");
 
-            Rental rental = new Rental(car, customer, 44, fromDateAndTime,
+            Rental rental = new Rental(car, customer, rental_id, fromDateAndTime,
                     toDateAndTime, maxKm);
 
-            viewRental(rental);
+
             rentalList.add(rental);
-
             rentalRepo.addRentalToDB(rental, statement);
-
+            rentalRepo.populateRentals(rentalList, carList, customerList);
+            viewRental(rentalList.get(rentalList.size()-1));
         } else {
             try {
                 customerRepository.createCustomer(statement, customerList);
             } catch (SQLException e) {
-                System.out.println("Create new customer menu: not live yet!");
+                System.out.println("Customer not created");
             }
         }
     }
@@ -102,7 +110,7 @@ public class RentalRepository {
     public Rental getRental(ArrayList<Rental> rentalList, UITools tools) {
         Rental rental = null;
         viewRentalsInMain(rentalList, tools);
-        int rentalId = tools.returnIntInfo(50, 1, "Enter rental id number x");
+        int rentalId = tools.returnIntInfo(50, 1, "Enter rental id number:");
 
         for (int i = 0; i < rentalList.size(); i++) {
             if (rentalList.get(i).getRental_id() == rentalId) {

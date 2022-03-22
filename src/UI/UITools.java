@@ -111,8 +111,7 @@ public class UITools {
             stringValue = String.valueOf(intValue);
         }
         if (stringValue.equalsIgnoreCase("-1")) {
-            whiteSpace(10);
-            menuOptions("menuOptions");
+            System.exit(1);
         }
     }
 
