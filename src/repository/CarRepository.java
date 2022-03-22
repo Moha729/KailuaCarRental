@@ -93,7 +93,8 @@ public class CarRepository {
         String regNum = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            luxuryService.updateLuxuryCar(statement, userInput, regNum, (Luxury) car);
+            Luxury luxuryCar = (Luxury) car;
+            luxuryService.updateLuxuryCar(statement, userInput, regNum, luxuryCar);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("sport")) {
             Sport sportCar = (Sport) car;
             sportService.updateSportCar(statement, userInput, regNum, sportCar);

@@ -40,7 +40,7 @@ public class ConsoleController {
 
         switch (menuTools.menuOptions("menuOptions")) {
             case 1 -> rentalMenu(statement);
-            case 2 -> CarMenu(statement);
+            case 2 -> carMenu(statement);
             case 3 -> customerMenu(statement);
             case 4,0 -> menuTools.closeProgram(statement,connection);
         }
@@ -48,7 +48,7 @@ public class ConsoleController {
             runMenu(statement);
         }    }
 
-    public void CarMenu(Statement statement) {
+    public void carMenu(Statement statement) {
         try {
 
             switch (menuTools.menuOptions("carMenuOptions")) {
@@ -100,23 +100,4 @@ public class ConsoleController {
             runMenu(statement);
         }
     }
-    /*
-    public boolean continueButton2(){
-        menuTools.customizedButton(15, 1, ">1< continue..");
-        System.out.print(" ");
-        int start = userInput.nextInt();
-        if (start != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public void continueButton(Statement statement) {
-        menuTools.customizedButton(15, 1, ">1< continue..");
-        System.out.print(" ");
-        int start = userInput.nextInt();
-        if (start != 0) {
-            runMenu(statement);
-        }
-    }*/
 }
