@@ -96,7 +96,7 @@ public class CarRepository {
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("sport")) {
             sportService.updateSportCar(userInput, regNum, (Sport) car);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("family")) {
-            familyService.updateFamilyCar(userInput, regNum,(Family) car);
+            familyService.updateFamilyCar(userInput, regNum, (Family) car);
         }
         System.out.println();
         tools.customizedButton(40, 1, "Car is updated");

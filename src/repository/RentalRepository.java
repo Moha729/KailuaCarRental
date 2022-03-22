@@ -41,7 +41,8 @@ public class RentalRepository {
 
             rentalList.add(rental);
             rentalRepo.addRentalToDB(rental, statement);
-            rentalRepo.populateRentals(rentalList, carList, customerList);
+            rentalList.clear();
+            rentalRepo.populateRentals(rentalList,carList,customerList);
             viewRental(rentalList.get(rentalList.size() - 1));
         } else {
             try {
