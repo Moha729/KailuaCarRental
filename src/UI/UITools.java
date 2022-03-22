@@ -108,12 +108,66 @@ public class UITools {
         }
     }
 
-    public int menuOptions(String headText, String menu1, String menu2, String menu3, String menu4){
+    public int menuOptions(String menuOrder){
+        if (menuOrder.equalsIgnoreCase("menuOptions")){
+            return menuOptions("Welcome to Kailua car rental",
+                    ">1< Rentals", ">2< Cars", ">3< Customers", ">4< Exit");
+        } if(menuOrder.equalsIgnoreCase("carMenuOptions")){
+            return menuOptions("Cars",">1< See cars", ">2< Update car",
+                    ">3< New car", ">4< Delete car");
+        } if(menuOrder.equalsIgnoreCase("customerMenuOptions")){
+            return menuOptions("Customers", ">1< See customers", ">2< Update a customer",
+                    ">3< Create a new customer", ">4< Delete a customer");
+        } if(menuOrder.equalsIgnoreCase("rentalMenuOptions")){
+            return menuOptions("Rentals", ">1< New rental", ">2< Active rentals",
+                    ">3< Change rental", ">4< End rental");
+        }
+        return 0;
+    }
+
+    private int menuOptions(String headText, String menu1, String menu2, String menu3, String menu4){
         customizedButton(120, 7, headText);
         System.out.print(doubleButton(menu1, menu2));
         System.out.print(doubleButton(menu3, menu4));
         return userInput.nextInt();
     }
+
+    public boolean continueButton(){
+        customizedButton(15, 1, ">1< continue..");
+        System.out.print(" ");
+        int start = userInput.nextInt();
+        if (start != 0) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public void closeProgram(Statement statement, Connection connection) {
+        try {
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("Closing the application...");
+            Thread.sleep(1000);
+            customizedButton(120, 1, "System closed");
+            System.exit(0);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void whiteSpace() {
+        for (int i = 0; i < 6; i++)
+            System.out.println();
+    }
+
+}
+/*
     public int menuOptionsS(){
         customizedButton(120, 7, "Welcome to Kailua car rental");
         System.out.print(doubleButton(">1< Rentals", ">2< Cars"));
@@ -148,28 +202,4 @@ public class UITools {
         System.out.print(doubleButton(">3< Change rental", ">4< End rental"));
     }
 
-
-    public void closeProgram(Statement statement, Connection connection) {
-        try {
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            System.out.println("Closing the application...");
-            Thread.sleep(1000);
-            customizedButton(120, 1, "System closed");
-            System.exit(0);
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    public void whiteSpace() {
-        for (int i = 0; i < 6; i++)
-            System.out.println();
-    }
-
-}
+ */
