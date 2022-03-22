@@ -20,6 +20,7 @@ public class DBCarRepo {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery(sql);
             if (resultSet != null)
+
                 while (resultSet.next()) {
                     Family family = new Family(
                             resultSet.getString("registration_number"),

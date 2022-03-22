@@ -60,4 +60,24 @@ public class DBRentalRepo {
 
     }
 
+    public void updateRental(Statement statement, String newVariable, String newValue, int answer){
+        try {
+            statement.execute("UPDATE rental_table SET " +
+                    newVariable + " = '" + newValue + "' " +
+                    "WHERE rental_id ='" + answer + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Could not update rentals contract table");
+        }
+    }
+    public void deleteRental(Statement statement, int answer){
+        try {
+            statement.execute("DELETE FROM rental_table WHERE rental_id = '" + answer + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }
