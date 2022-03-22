@@ -77,11 +77,17 @@ public class FamilyRepository {
         System.out.println();
     }
 
-    public void updateFamilyCar(Scanner userInput, String answer, Family car) {
+    public void updateFamilyCar(Scanner userInput, String answer, Family car, UITools tools) {
 
-        System.out.println("what do you want to update?\n" +
-                "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
-                "\n6 for manualGear\n7 for aircondition\n8 for cruiseControl\n9 for sevenSeatsPlus");
+        tools.customizedButton(60,2, "What do you want to update?");
+        System.out.println();
+        tools.customizedButton(39,3,"" +
+                "\t\t1 for Brand\t\t\t\t\t\t|" +
+                "\n|\t\t2 for Model\t\t\t\t\t\t|" +
+                "\n|\t\t3 for Registration date\t\t\t|\n|\t\t4 KM driven\t\t\t\t\t\t|"+
+                "\n|\t\t5 for Manual gear\t\t\t\t|\n|\t\t6 for Air-condition\t\t\t\t|"+
+                "\n|\t\t7 for Cruise control\t\t\t|\n|\t\t6 for Amount of seats\t\t\t");
+
 
         int ans = userInput.nextInt();
 
@@ -92,30 +98,27 @@ public class FamilyRepository {
         switch (ans) {
 
             case 1:
-                System.out.println("Not valid try again");
-                break;
-            case 2:
                 check = true;
                 System.out.println("Enter new brand");
                 newValue = userInput.next();
                 dbColumn = "brand";
                 car.setBrand(newValue);
                 break;
-            case 3:
+            case 2:
                 check = true;
                 System.out.println("Enter new model");
                 newValue = userInput.next();
                 dbColumn = "model";
                 car.setModel(newValue);
                 break;
-            case 4:
+            case 3:
                 check = true;
                 System.out.println("Enter new registration date");
                 newValue = userInput.next();
                 dbColumn = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
-            case 5:
+            case 4:
                 check = true;
                 System.out.println("Enter new km driven");
                 int newKm = userInput.nextInt();
@@ -123,7 +126,7 @@ public class FamilyRepository {
                 dbColumn = "km_driven";
                 car.setKmDriven(newKm);
                 break;
-            case 6:
+            case 5:
                 check = false;
                 System.out.println("Enter new gear type - does it have manual gear?");
                 newValue = userInput.next();
@@ -135,7 +138,7 @@ public class FamilyRepository {
                 dbColumn = "manual_gear";
                 car.setManualGear(Boolean.parseBoolean(newValue));
                 break;
-            case 7:
+            case 6:
                 check = false;
                 System.out.println("Enter new air condition status - does it have air condition?");
                 newValue = userInput.next();
@@ -147,7 +150,7 @@ public class FamilyRepository {
                 dbColumn = "air_condition";
                 car.setAirCondition(Boolean.parseBoolean(newValue));
                 break;
-            case 8:
+            case 7:
                 check = false;
                 System.out.println("Enter new cruise control status - does it have cruise control?");
                 newValue = userInput.next();
@@ -159,7 +162,7 @@ public class FamilyRepository {
                 dbColumn = "cruise_control";
                 car.setCruiseControl(Boolean.parseBoolean(newValue));
                 break;
-            case 9:
+            case 8:
                 check = false;
                 System.out.println("Enter new info, does it have more than 7 seats");
                 newValue = userInput.next();

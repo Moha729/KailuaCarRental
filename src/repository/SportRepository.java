@@ -77,6 +77,15 @@ public class SportRepository {
                 "1 for regNumb\n2 for brand\n3 for model\n4 for regDate\n5 for kmDriven" +
                 "\n6 for manualGear\n7 for Over 200 HP");
 
+        tools.customizedButton(60,2, "What do you want to update?");
+        System.out.println();
+        tools.customizedButton(39,3,"" +
+                "\t\t1 for Brand\t\t\t\t\t\t|" +
+                "\n|\t\t2 for Model\t\t\t\t\t\t|" +
+                "\n|\t\t3 for Registration date\t\t\t|\n|\t\t4 KM driven\t\t\t\t\t\t|"+
+                "\n|\t\t5 for Manual gear\t\t\t\t|\n|\t\t6 for Hp status\t\t\t\t\t");
+
+
         int ans = userInput.nextInt();
 
         boolean check = false;
@@ -86,45 +95,37 @@ public class SportRepository {
         switch (ans) {
 
             case 1:
-                System.out.println("Not valid try again");
-                /*check = true;
-                System.out.println("Enter new registration number");
-                newValue = userInput.next();
-                dbColumn = "registration_number";
-                car.setRegistrationNumber(newValue);*/
-                break;
-            case 2:
                 check = true;
-                System.out.println("Enter new brand");
+                tools.customizedButton(60,1,"Enter new brand");
                 newValue = userInput.next();
                 dbColumn = "brand";
                 car.setBrand(newValue);
                 break;
-            case 3:
+            case 2:
                 check = true;
-                System.out.println("Enter new model");
+                tools.customizedButton(60,1,"Enter new model");
                 newValue = userInput.next();
                 dbColumn = "model";
                 car.setModel(newValue);
                 break;
-            case 4:
+            case 3:
                 check = true;
-                System.out.println("Enter new registration date");
+                tools.customizedButton(60,1,"Enter new registration date");
                 newValue = userInput.next();
                 dbColumn = "registration_date";
                 car.setRegistrationDate(newValue);
                 break;
-            case 5:
+            case 4:
                 check = true;
-                System.out.println("Enter new km driven");
+                tools.customizedButton(60,1,"Enter new km driven");
                 int newKm = userInput.nextInt();
                 newValue = String.valueOf(newKm);
                 dbColumn = "km_driven";
                 car.setKmDriven(newKm);
                 break;
-            case 6:
+            case 5:
                 check = false;
-                System.out.println("Enter new gear type - does it have manual gear?");
+                tools.customizedButton(60,1,"Enter new gear type - does it have manual gear?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";
@@ -134,9 +135,9 @@ public class SportRepository {
                 dbColumn = "manual_gear";
                 car.setManualGear(Boolean.parseBoolean(newValue));
                 break;
-            case 7:
+            case 6:
                 check = false;
-                System.out.println("Does it have over 200 hp?");
+                tools.customizedButton(60,1,"Does it have over 200 hp?");
                 newValue = userInput.next();
                 if (newValue.equalsIgnoreCase("yes")) {
                     newValue = "true";

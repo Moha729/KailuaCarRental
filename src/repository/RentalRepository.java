@@ -26,6 +26,7 @@ public class RentalRepository {
 
         if (newCustomer.equalsIgnoreCase("yes")) {
             int rental_id = 0;
+            rental_id ++;
 
             Car car = carRepository.getCar(carList, tools);
 
@@ -44,6 +45,7 @@ public class RentalRepository {
             rentalList.clear();
             populateRentalContractsToArrayList(rentalList,carList,customerList);
             viewRental(rentalList.get(rentalList.size() - 1));
+
         } else {
             try {
                 customerRepository.createCustomer(statement, customerList);
@@ -92,8 +94,12 @@ public class RentalRepository {
         Rental rental = getRental(rentalList, tools);
         int answer = rental.getRental_id();
 
-        System.out.println("What do you want to update?\n" +
-                "1 to change car\n2 for new start date\n3 for new end date\n4 for new max KM");
+        tools.customizedButton(60,2, "What do you want to update?");
+        System.out.println();
+        tools.customizedButton(39,3,"\t\t1 to change car\t\t\t\t\t|" +
+                "\n|\t\t2 for new start date\t\t\t|" +
+                "\n|\t\t3 for new end date\t\t\t\t|\n|\t\t4 for new max KM\t\t\t\t");
+
 
         int ans = userInput.nextInt();
 
@@ -156,6 +162,11 @@ public class RentalRepository {
                 rental = rentalList.get(i);
                 return rental;
             }
+        }
+        if(rental == null){
+
+            rental = getRental(rentalList, tools);
+            System.out.println("Does not exist - try again!");
         }
         return rental;
     }

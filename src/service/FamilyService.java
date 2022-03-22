@@ -27,8 +27,8 @@ public class FamilyService {
     }
 
 
-    public void updateFamilyCar(Scanner userInput, String regNum, Family car) {
-        familyRepository.updateFamilyCar(userInput, regNum, car);
+    public void updateFamilyCar(Scanner userInput, String regNum, Family car, UITools tools) {
+        familyRepository.updateFamilyCar(userInput, regNum, car, tools);
     }
 
 

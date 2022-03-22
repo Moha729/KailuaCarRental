@@ -32,7 +32,7 @@ public class SportService {
     }
 
 
-    public void updateSportCar(Scanner userInput, String regNum, Sport car) {
+    public void updateSportCar(Scanner userInput, String regNum, Sport car, UITools tools) {
         sportRepository.updateSportCar(userInput, regNum, car);
     }
     public void deleteSportCar(ArrayList<Car> carList, UITools tools, Car car){

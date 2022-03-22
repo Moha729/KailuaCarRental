@@ -90,26 +90,16 @@ public class CustomerRepository {
 
     public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput){
 
-        Customer customer = new Customer();
+        Customer customer = getCustomer(customerList, tools);
 
-        for (int i = 0; i < customerList.size(); i++) {
-            System.out.println(customerList.get(i));
-        }
-
-        System.out.println("Enter which driver license number to be updated");
-        String answer = userInput.next();
-
-        for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getDriverLicenseNumber().equalsIgnoreCase(answer)) {
-                System.out.println(customerList.get(i));
-                customer = customerList.get(i);
-
-            }
-        }
-
-        System.out.println("What do you want to update?\n" +
-                "1 for DrLicNumb\n2 for DrSincDate\n3 for fName\n4 for lName\n5 for zipCode" +
-                "\n6 for city\n7 for pNumb\n8 for mNumb\n9 for email");
+        tools.customizedButton(60,2, "What do you want to update?");
+        System.out.println();
+        tools.customizedButton(39,3,"" +
+                   "\t\t1 to First name\t\t\t\t\t|" +
+                "\n|\t\t2 for Last name\t\t\t\t\t|" +
+                "\n|\t\t3 for zip-code\t\t\t\t\t|\n|\t\t4 for city\t\t\t\t\t\t|"+
+                "\n|\t\t5 for phone number\t\t\t\t|\n|\t\t6 for mobile number\t\t\t\t|"+
+                "\n|\t\t7 for E-mail\t\t\t\t\t");
 
         int ans = userInput.nextInt();
 
@@ -119,63 +109,52 @@ public class CustomerRepository {
         switch (ans){
 
             case 1 :
-                System.out.println("Not available");
-                break;
-            case 2 :
-                System.out.println("Enter customer driver since number");
-                newValue =  userInput.next();
-                dbColumn = "customer_driver_since_number";
-                customer.setDriverSinceNumber(newValue);
-                break;
-            case 3 :
                 System.out.println("Enter new first name");
                 newValue = userInput.next();
                 dbColumn = "customer_first_name";
                 customer.setName(newValue);
                 break;
-            case 4 :
+            case 2 :
                 System.out.println("Enter new last name");
                 newValue = userInput.next();
                 dbColumn = "customer_last_name";
                 customer.setLastName(newValue);
                 break;
-            case 5 :
+            case 3 :
                 System.out.println("Enter new customer zip code");
                 int newZip = userInput.nextInt();
                 newValue = String.valueOf(newZip);
                 dbColumn = "customer_zip_code";
                 customer.setZip(newZip);
                 break;
-            case 6 :
+            case 4 :
                 System.out.println("Enter new city");
                 newValue = userInput.next();
                 dbColumn = "customer_city";
                 customer.setCity(newValue);
                 break;
-            case 7 :
+            case 5 :
                 System.out.println("Enter new customer phone number");
                 int newPhone = userInput.nextInt();
                 newValue = String.valueOf(newPhone);
                 dbColumn = "customer_phone_number";
                 customer.setPhone(newPhone);
-
                 break;
-            case 8 :
+            case 6 :
                 System.out.println("Enter new customer mobile number");
                 int newMobile = userInput.nextInt();
                 newValue = String.valueOf(newMobile);
                 dbColumn = "customer_mobile_number";
                 customer.setMobilePhone(newMobile);
-
                 break;
-            case 9 :
+            case 7 :
                 System.out.println("Enter new customer email");
                 newValue = userInput.next();
                 dbColumn = "customer_email";
                 customer.setEmail(newValue);
                 break;
         }
-        dbCustomerRepo.updateCustomer(statement, dbColumn, newValue, answer);
+        dbCustomerRepo.updateCustomer(statement, dbColumn, newValue, customer.getDriverLicenseNumber());
     }
 
     public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools) throws SQLException{
