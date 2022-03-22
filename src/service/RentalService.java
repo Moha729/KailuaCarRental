@@ -18,8 +18,8 @@ public class RentalService {
         rentalRepository = new RentalRepository();
     }
 
-    public void createRentalContract(ArrayList<Rental> rentalList,ArrayList<Car> carList,ArrayList<Customer> customerList, Statement statement){
-        rentalRepository.createRentalContract(rentalList,carList,customerList, statement);
+    public void createRentalContract(ArrayList<Rental> rentalList,ArrayList<Car> carList,ArrayList<Customer> customerList){
+        rentalRepository.createRentalContract(rentalList,carList,customerList);
     }
     public void populateRentalContractsToArrayList(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList){
         rentalRepository.populateRentalContractsToArrayList(rentalList, carList, customerList);
@@ -28,10 +28,10 @@ public class RentalService {
         rentalRepository.viewRentalsInMain(rentalList, tools);
         rentalRepository.chooseRental(rentalList);
     }
-    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList, Scanner userInput, ArrayList<Car> carList){
-        rentalRepository.updateRentalContracts(statement, rentalList, userInput, carList);
+    public void updateRentalContracts(ArrayList<Rental> rentalList, Scanner userInput, ArrayList<Car> carList){
+        rentalRepository.updateRentalContracts(rentalList, userInput, carList);
     }
-    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList) throws SQLException {
-        rentalRepository.deleteRentalContract(statement, rentalList);
+    public void deleteRentalContract(ArrayList<Rental> rentalList) throws SQLException {
+        rentalRepository.deleteRentalContract(rentalList);
     }
 }

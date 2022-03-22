@@ -21,7 +21,7 @@ public class RentalRepository {
         rentalRepo.populateRentals(rentalList, carList, customerList);
     }
 
-    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList, Statement statement) {
+    public void createRentalContract(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList) {
         String newCustomer = tools.returnStringInfo(50, 1, "Are you a returning customer");
 
         if (newCustomer.equalsIgnoreCase("yes")) {
@@ -41,14 +41,14 @@ public class RentalRepository {
             Rental rental = new Rental(car, customer, rental_id, fromDateAndTime,toDateAndTime, maxKm);
 
             rentalList.add(rental);
-            rentalRepo.addRentalToDB(rental, statement);
+            rentalRepo.addRentalToDB(rental);
             rentalList.clear();
             populateRentalContractsToArrayList(rentalList,carList,customerList);
             viewRental(rentalList.get(rentalList.size() - 1));
 
         } else {
             try {
-                customerRepository.createCustomer(statement, customerList);
+                customerRepository.createCustomer(customerList);
             } catch (SQLException e) {
                 System.out.println("Customer not created");
             }
@@ -89,7 +89,7 @@ public class RentalRepository {
         System.out.println();
     }
 
-    public void updateRentalContracts(Statement statement, ArrayList<Rental> rentalList,Scanner userInput, ArrayList<Car> carList) {
+    public void updateRentalContracts(ArrayList<Rental> rentalList,Scanner userInput, ArrayList<Car> carList) {
 
         Rental rental = getRental(rentalList, tools);
         int answer = rental.getRental_id();
@@ -136,16 +136,16 @@ public class RentalRepository {
                 break;
 
         }
-        rentalRepo.updateRental(statement, newVariable, newValue, answer);
+        rentalRepo.updateRental(newVariable, newValue, answer);
 
     }
 
-    public void deleteRentalContract(Statement statement, ArrayList<Rental> rentalList) {
+    public void deleteRentalContract(ArrayList<Rental> rentalList) {
 
         Rental rental = getRental(rentalList, tools);
         int answer = rental.getRental_id();
 
-        rentalRepo.deleteRental(statement, answer);
+        rentalRepo.deleteRental(answer);
         tools.customizedButton(30, 1, "Rental id: " + answer + " is deleted");
         rentalList.remove(rental);
 

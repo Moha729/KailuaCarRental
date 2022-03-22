@@ -36,7 +36,7 @@ public class CustomerRepository {
     }
 
 
-    public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
+    public void createCustomer(ArrayList<Customer> customerList) throws SQLException {
 
         String name = tools.returnStringInfo(50, 1, "Enter first name");
 
@@ -59,14 +59,14 @@ public class CustomerRepository {
         Customer customer = new Customer(driverLicenseNumber, driverSinceNumber, name, lastName, zip,
                 city, phone, mobilePhone, email);
         customerList.add(customer);
-        addCustomerToDB(customer, statement);
+        addCustomerToDB(customer);
     }
 
     public void populateCustomerToArrayList(ArrayList<Customer> customerList){
         dbCustomerRepo.populateCustomerToArrayList(customerList);
     }
-    public void addCustomerToDB(Customer customer, Statement statement)throws  SQLException{
-        dbCustomerRepo.addCustomerToDB(customer, statement);
+    public void addCustomerToDB(Customer customer){
+        dbCustomerRepo.addCustomerToDB(customer);
     }
 
     public void viewCustomer(ArrayList<Customer> customerList, UITools tools){
@@ -88,7 +88,7 @@ public class CustomerRepository {
         System.out.println();
     }
 
-    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput){
+    public void updateCustomer(ArrayList<Customer> customerList, Scanner userInput) {
 
         Customer customer = getCustomer(customerList, tools);
 
@@ -154,16 +154,16 @@ public class CustomerRepository {
                 customer.setEmail(newValue);
                 break;
         }
-        dbCustomerRepo.updateCustomer(statement, dbColumn, newValue, customer.getDriverLicenseNumber());
+        dbCustomerRepo.updateCustomer(dbColumn, newValue, answer);
     }
 
-    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools) throws SQLException{
+    public void deleteCustomer(ArrayList<Customer> customerList, UITools tools) throws SQLException{
         String answer;
         viewCustomer(customerList, tools);
         String DriverNumb = tools.returnStringInfo(50, 1, "Enter the driver license number for the customer you want to delete");
         answer = DriverNumb;
 
-        dbCustomerRepo.deleteCustomer(statement, customerList, answer);
+        dbCustomerRepo.deleteCustomer(customerList, answer);
 
         System.out.println("Customer deleted!");
         }

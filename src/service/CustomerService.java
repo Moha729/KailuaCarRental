@@ -15,8 +15,8 @@ public class CustomerService {
     public CustomerService(){
         customerRepository = new CustomerRepository();
     }
-    public void createCustomer(Statement statement, ArrayList<Customer> customerList) throws SQLException {
-        customerRepository.createCustomer(statement,customerList);
+    public void createCustomer(ArrayList<Customer> customerList) throws SQLException {
+        customerRepository.createCustomer(customerList);
     }
     public void populateCustomerToArrayList(ArrayList<Customer> customerList){
         customerRepository.populateCustomerToArrayList(customerList);
@@ -24,10 +24,10 @@ public class CustomerService {
     public void viewCustomer(ArrayList<Customer> customerList, UITools tools){
         customerRepository.viewCustomer(customerList,tools);
     }
-    public void updateCustomer(Statement statement, ArrayList<Customer> customerList, Scanner userInput){
-        customerRepository.updateCustomer(statement, customerList, userInput);
+    public void updateCustomer(ArrayList<Customer> customerList, Scanner userInput) throws SQLException {
+        customerRepository.updateCustomer(customerList, userInput);
     }
-    public void deleteCustomer(Statement statement, ArrayList<Customer> customerList, UITools tools) throws SQLException {
-        customerRepository.deleteCustomer(statement, customerList, tools);
+    public void deleteCustomer(ArrayList<Customer> customerList, UITools tools) throws SQLException {
+        customerRepository.deleteCustomer(customerList, tools);
     }
 }

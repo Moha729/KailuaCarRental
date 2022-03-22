@@ -13,7 +13,8 @@ public class DBRentalRepo {
     CarRepository carRepository = new CarRepository();
     CustomerRepository customerRepository = new CustomerRepository();
     Connection connection = DBManager.getConnection();
-    public void populateRentals(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList){
+
+    public void populateRentals(ArrayList<Rental> rentalList, ArrayList<Car> carList, ArrayList<Customer> customerList) {
 
         try {
             String sql = ("SELECT * FROM rental_table");
@@ -35,42 +36,50 @@ public class DBRentalRepo {
                     rentalList.add(rental);
                 }
 
-//            resultSet.close();
+            resultSet.close();
         } catch (SQLException e) {
-            System.out.println("Error in populating rentals: "+e.getMessage() + "\n");
+            System.out.println("Error in populating rentals: " + e.getMessage() + "\n");
         }
     }
 
-    public void addRentalToDB(Rental rental, Statement statement){
+    public void addRentalToDB(Rental rental) {
 
         try {
-            statement.execute("INSERT INTO rental_table " + "(registration_number, customer_driver_license_number," +
-                    "rental_from_date, rental_to_date, rental_max_km)" + ""
-                    + "VALUES('"
-                    + rental.getCar().getRegistrationNumber() + "','"
-                    + rental.getCustomer().getDriverLicenseNumber() + "','"
-                    + rental.getFromDateAndTime() + "','"
-                    + rental.getToDateAndTime() + "','"
-                    + rental.getMaxKm() +  "')");
-        } catch (SQLException e) {
-            System.out.println("Error not added rental to db:\n" + e);
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement("INSERT INTO rental_table " + "(registration_number, customer_driver_license_number,rental_from_date, rental_to_date, rental_max_km)" + "VALUES(?,?,?,?,?)");
+            preparedStatement.setString(1, rental.getCar().getRegistrationNumber());
+            preparedStatement.setString(2, rental.getCustomer().getDriverLicenseNumber());
+            preparedStatement.setString(3, rental.getFromDateAndTime());
+            preparedStatement.setString(4, rental.getToDateAndTime());
+            preparedStatement.setInt(5, rental.getMaxKm());
+            preparedStatement.executeUpdate();
+
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
         }
 
-    }
 
-    public void updateRental(Statement statement, String newVariable, String newValue, int answer){
-        try {
-            statement.execute("UPDATE rental_table SET " +
-                    newVariable + " = '" + newValue + "' " +
-                    "WHERE rental_id ='" + answer + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Could not update rentals contract table");
-        }
+
+
     }
-    public void deleteRental(Statement statement, int answer){
+    public void updateRental(String dbColumn, String newValue, int answer) {
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE rental_table SET " + dbColumn + " =? " + " WHERE rental_id =?");
+                preparedStatement.setString(1, newValue);
+                preparedStatement.setInt(2, answer);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+
+    public void deleteRental(int answer){
         try {
-            statement.execute("DELETE FROM rental_table WHERE rental_id = '" + answer + "'");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM rental_table WHERE rental_id = ?");
+            preparedStatement.setInt(1, answer);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
