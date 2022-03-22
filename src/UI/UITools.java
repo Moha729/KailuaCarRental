@@ -108,6 +108,7 @@ public class UITools {
         }
     }
 
+    //Ikke pille mere her uden at give besked!
     public int menuOptions(String menuOrder){
         if (menuOrder.equalsIgnoreCase("menuOptions")){
             return menuOptions("Welcome to Kailua car rental",
