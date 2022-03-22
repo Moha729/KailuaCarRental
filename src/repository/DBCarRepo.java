@@ -107,7 +107,7 @@ public class DBCarRepo {
             preparedStatement.executeUpdate();
 
 
-            preparedStatement = connection.prepareStatement("INSERT INTO family_cars " + "(registration_number, air_condition, cruise_control, seven_seats_or_more)" + "" +
+            preparedStatement = connection.prepareStatement("INSERT INTO family_cars " + "(registration_number,manual_gear, air_condition, cruise_control, seven_seats_or_more)" + "" +
                     "VALUES(?,?,?,?,?)");
 
             preparedStatement.setString(1,familyCar.getRegistrationNumber());
