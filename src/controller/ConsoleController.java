@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.*;
 
 public class ConsoleController {
-
+    // Final version
     ArrayList<Car> carList = new ArrayList<>();
     ArrayList<Customer> customerList = new ArrayList<>();
     ArrayList<Rental> rentalList = new ArrayList<>();
