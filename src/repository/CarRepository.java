@@ -92,15 +92,13 @@ public class CarRepository {
         String regNum = car.getRegistrationNumber();
 
         if (car.getClass().getSimpleName().equalsIgnoreCase("luxury")) {
-            luxuryService.updateLuxuryCar(userInput, (Luxury) car, tools);
+            luxuryService.updateLuxuryCar(userInput, regNum,(Luxury) car, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("sport")) {
-            sportService.updateSportCar(userInput, regNum, (Sport) car, tools);
+            sportService.updateSportCar(userInput, regNum,(Sport) car, tools);
         } else if (car.getClass().getSimpleName().equalsIgnoreCase("family")) {
-            familyService.updateFamilyCar(userInput, regNum, (Family) car, tools);
+            familyService.updateFamilyCar(userInput, regNum,(Family) car, tools);
         }
-        System.out.println();
         tools.customizedButton(40, 1, "Car is updated");
-        System.out.println();
     }
 
     public void delete(ArrayList<Car> carList, UITools tools) {

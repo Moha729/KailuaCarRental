@@ -7,7 +7,6 @@ import repository.LuxuryRepository;
 
 
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,9 +31,9 @@ public class LuxuryService {
         luxuryRepository.viewLuxuryCars(carList, tools);
     }
 
-    public void updateLuxuryCar(Scanner userInput, Luxury car, UITools tools){
+    public void updateLuxuryCar(Scanner userInput, String answer, Luxury car, UITools tools){
 
-        luxuryRepository.updateLuxuryCar(userInput, car, tools);
+        luxuryRepository.updateLuxuryCar(userInput, answer,car, tools);
     }
     public void deleteLuxuryCar(ArrayList<Car> carList, UITools tools, Car car){
         luxuryRepository.deleteLuxuryCar(carList, tools,car);

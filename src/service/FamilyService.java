@@ -4,7 +4,7 @@ import UI.UITools;
 import models.Car;
 import models.Family;
 import repository.FamilyRepository;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,8 +27,8 @@ public class FamilyService {
     }
 
 
-    public void updateFamilyCar(Scanner userInput, String regNum, Family car, UITools tools) {
-        familyRepository.updateFamilyCar(userInput, regNum, car, tools);
+    public void updateFamilyCar(Scanner userInput, String answer, Family car, UITools tools) {
+        familyRepository.updateFamilyCar(userInput,answer, car, tools);
     }
 
 

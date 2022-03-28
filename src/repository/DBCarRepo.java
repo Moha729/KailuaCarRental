@@ -93,7 +93,8 @@ public class DBCarRepo {
     public void addFamilyCarToDB(Family familyCar) {
         try {
             PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("INSERT INTO car_table " + "(registration_number, brand, model, registration_date, km_driven)" + "" +
+            preparedStatement = connection.prepareStatement("INSERT INTO car_table " +
+                    "(registration_number, brand, model, registration_date, km_driven)" + "" +
                     "VALUES(?,?,?,?,?)");
 
             preparedStatement.setString(1,familyCar.getRegistrationNumber());
@@ -104,7 +105,8 @@ public class DBCarRepo {
             preparedStatement.executeUpdate();
 
 
-            preparedStatement = connection.prepareStatement("INSERT INTO family_cars " + "(registration_number,manual_gear, air_condition, cruise_control, seven_seats_or_more)" + "" +
+            preparedStatement = connection.prepareStatement("INSERT INTO family_cars " +
+                    "(registration_number,manual_gear, air_condition, cruise_control, seven_seats_or_more)" + "" +
                     "VALUES(?,?,?,?,?)");
 
             preparedStatement.setString(1,familyCar.getRegistrationNumber());
@@ -113,10 +115,10 @@ public class DBCarRepo {
             preparedStatement.setBoolean(4,familyCar.isCruiseControl());
             preparedStatement.setBoolean(5,familyCar.isSevenSeatsOrMore());
             preparedStatement.executeUpdate();
+            preparedStatement.close();
 
         } catch (SQLException sqlException) {
             System.out.println("Error adding family to database: " + sqlException);
-            System.exit(1);
         }
     }
 

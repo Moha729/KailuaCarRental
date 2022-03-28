@@ -101,9 +101,6 @@ public class Customer {
         return driverSinceNumber;
     }
 
-    public void setDriverSinceNumber(String driverSinceNumber) {
-        this.driverSinceNumber = driverSinceNumber;
-    }
 }
 
 

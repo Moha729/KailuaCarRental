@@ -59,7 +59,7 @@ public class LuxuryRepository {
         System.out.println();
     }
 
-    public void updateLuxuryCar(Scanner userInput, Luxury car, UITools tools) {
+    public void updateLuxuryCar(Scanner userInput,String answer, Luxury car, UITools tools) {
         tools.customizedButton(60,2, "What do you want to update?");
         System.out.println();
         tools.customizedButton(39,3,"" +

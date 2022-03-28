@@ -11,17 +11,17 @@ public class DBManager {
     private static String password;
     private static Connection connection;
 
-    private DBManager(){}
+    private DBManager() {
+    }
 
     public static Connection getConnection() {
-        if(connection == null)
+        if (connection == null)
         url = System.getenv("url");
         user = System.getenv("user");
         password = System.getenv("password");
         try {
-            connection = DriverManager.getConnection(url,user, password);
-        }
-        catch(SQLException e){
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return connection;

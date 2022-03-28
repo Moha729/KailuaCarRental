@@ -26,7 +26,7 @@ public class RentalRepository {
 
         if (newCustomer.equalsIgnoreCase("yes")) {
             int rental_id = 0;
-            rental_id ++;
+            rental_id++;
 
             Car car = carRepository.getCar(carList, tools);
 

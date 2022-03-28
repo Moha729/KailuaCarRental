@@ -6,7 +6,6 @@ import models.Sport;
 import repository.SportRepository;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,7 +29,6 @@ public class SportService {
     public void viewSportCars(ArrayList<Car> carList, UITools tools) {
         sportRepository.viewSportCars(carList, tools);
     }
-
 
     public void updateSportCar(Scanner userInput, String regNum, Sport car, UITools tools) {
         sportRepository.updateSportCar(userInput, regNum, car);
